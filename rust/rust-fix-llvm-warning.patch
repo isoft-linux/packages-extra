@@ -1,0 +1,100 @@
+diff -Nur rustc-1.1.0/src/llvm/include/llvm/ADT/APFloat.h rustc-1.1.0new/src/llvm/include/llvm/ADT/APFloat.h
+--- rustc-1.1.0/src/llvm/include/llvm/ADT/APFloat.h	2015-06-19 22:32:34.000000000 +0000
++++ rustc-1.1.0new/src/llvm/include/llvm/ADT/APFloat.h	2015-07-29 13:48:20.794840496 +0000
+@@ -349,7 +349,7 @@
+   /// copied from some other APFloat.
+   static APFloat copySign(APFloat Value, const APFloat &Sign) {
+     Value.copySign(Sign);
+-    return std::move(Value);
++    return Value;
+   }
+ 
+   /// @}
+diff -Nur rustc-1.1.0/src/llvm/include/llvm/Analysis/CGSCCPassManager.h rustc-1.1.0new/src/llvm/include/llvm/Analysis/CGSCCPassManager.h
+--- rustc-1.1.0/src/llvm/include/llvm/Analysis/CGSCCPassManager.h	2015-06-19 22:32:34.000000000 +0000
++++ rustc-1.1.0new/src/llvm/include/llvm/Analysis/CGSCCPassManager.h	2015-07-29 13:54:43.289833647 +0000
+@@ -263,8 +263,7 @@
+ template <typename CGSCCPassT>
+ ModuleToPostOrderCGSCCPassAdaptor<CGSCCPassT>
+ createModuleToPostOrderCGSCCPassAdaptor(CGSCCPassT Pass) {
+-  return std::move(
+-      ModuleToPostOrderCGSCCPassAdaptor<CGSCCPassT>(std::move(Pass)));
++  return ModuleToPostOrderCGSCCPassAdaptor<CGSCCPassT>(std::move(Pass));
+ }
+ 
+ /// \brief A CGSCC analysis which acts as a proxy for a function analysis
+@@ -484,7 +483,7 @@
+ template <typename FunctionPassT>
+ CGSCCToFunctionPassAdaptor<FunctionPassT>
+ createCGSCCToFunctionPassAdaptor(FunctionPassT Pass) {
+-  return std::move(CGSCCToFunctionPassAdaptor<FunctionPassT>(std::move(Pass)));
++  return CGSCCToFunctionPassAdaptor<FunctionPassT>(std::move(Pass));
+ }
+ }
+ 
+diff -Nur rustc-1.1.0/src/llvm/include/llvm/IR/PassManager.h rustc-1.1.0new/src/llvm/include/llvm/IR/PassManager.h
+--- rustc-1.1.0/src/llvm/include/llvm/IR/PassManager.h	2015-06-19 22:32:34.000000000 +0000
++++ rustc-1.1.0new/src/llvm/include/llvm/IR/PassManager.h	2015-07-29 13:48:20.796840496 +0000
+@@ -502,7 +502,7 @@
+   PreservedAnalyses invalidateImpl(IRUnitT &IR, PreservedAnalyses PA) {
+     // Short circuit for a common case of all analyses being preserved.
+     if (PA.areAllPreserved())
+-      return std::move(PA);
++      return PA;
+ 
+     if (DebugLogging)
+       dbgs() << "Invalidating all non-preserved analyses for: "
+@@ -542,7 +542,7 @@
+     if (ResultsList.empty())
+       AnalysisResultLists.erase(&IR);
+ 
+-    return std::move(PA);
++    return PA;
+   }
+ 
+   /// \brief List of function analysis pass IDs and associated concept pointers.
+@@ -817,7 +817,7 @@
+ template <typename FunctionPassT>
+ ModuleToFunctionPassAdaptor<FunctionPassT>
+ createModuleToFunctionPassAdaptor(FunctionPassT Pass) {
+-  return std::move(ModuleToFunctionPassAdaptor<FunctionPassT>(std::move(Pass)));
++  return ModuleToFunctionPassAdaptor<FunctionPassT>(std::move(Pass));
+ }
+ 
+ /// \brief A template utility pass to force an analysis result to be available.
+--- rustc-1.1.0/src/llvm/lib/Support/YAMLParser.cpp	2015-06-19 22:32:34.000000000 +0000
++++ rustc-1.1.0new/src/llvm/lib/Support/YAMLParser.cpp	2015-07-29 13:48:20.795840496 +0000
+@@ -1570,11 +1570,11 @@
+     if (Raw.find_last_of('!') == 0) {
+       Ret = Doc->getTagMap().find("!")->second;
+       Ret += Raw.substr(1);
+-      return std::move(Ret);
++      return Ret;
+     } else if (Raw.startswith("!!")) {
+       Ret = Doc->getTagMap().find("!!")->second;
+       Ret += Raw.substr(2);
+-      return std::move(Ret);
++      return Ret;
+     } else {
+       StringRef TagHandle = Raw.substr(0, Raw.find_last_of('!') + 1);
+       std::map<StringRef, StringRef>::const_iterator It =
+@@ -1588,7 +1588,7 @@
+         setError(Twine("Unknown tag handle ") + TagHandle, T);
+       }
+       Ret += Raw.substr(Raw.find_last_of('!') + 1);
+-      return std::move(Ret);
++      return Ret;
+     }
+   }
+ 
+--- rustc-1.1.0/src/llvm/lib/AsmParser/Parser.cpp	2015-06-19 22:32:34.000000000 +0000
++++ rustc-1.1.0new/src/llvm/lib/AsmParser/Parser.cpp	2015-07-29 13:54:21.152834043 +0000
+@@ -38,7 +38,7 @@
+   if (parseAssemblyInto(F, *M, Err))
+     return nullptr;
+ 
+-  return std::move(M);
++  return M;
+ }
+ 
+ std::unique_ptr<Module> llvm::parseAssemblyFile(StringRef Filename,

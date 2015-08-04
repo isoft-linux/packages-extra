@@ -1,0 +1,31 @@
+diff -Naupr giblib-1.2.4.orig/giblib-config.in giblib-1.2.4/giblib-config.in
+--- giblib-1.2.4.orig/giblib-config.in	2004-09-04 16:40:40.000000000 +0200
++++ giblib-1.2.4/giblib-config.in	2008-12-21 18:36:40.282246819 +0100
+@@ -4,6 +4,17 @@ prefix=@prefix@
+ exec_prefix=@exec_prefix@
+ exec_prefix_set=no
+ 
++# Fedora specific hack to share the same script on all archs
++ARCH=$(uname -m)
++case ${ARCH} in
++x86_64|ia64|s390)
++  lib_dir=@prefix@/lib64
++  ;;
++*)
++  lib_dir=@prefix@/lib
++  ;;
++esac
++
+ usage="\
+ Usage: giblib-config [--prefix[=DIR]] [--exec-prefix[=DIR]] [--version] [--libs] [--cflags]"
+ 
+@@ -45,8 +56,7 @@ while test $# -gt 0; do
+       echo $includes -I$prefix/include/giblib @IMLIB_CFLAGS@
+       ;;
+     --libs)
+-      libdirs=-L@libdir@
+-      echo $libdirs -lgiblib @LDFLAGS@ @IMLIB_LIBS@
++      echo -L${lib_dir} -lgiblib @LDFLAGS@ @IMLIB_LIBS@
+       ;;
+     *)
+       echo "${usage}" 1>&2

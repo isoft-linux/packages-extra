@@ -1,0 +1,23 @@
+diff -Nur rustc-1.1.0/configure rustc-1.1.0n/configure
+--- rustc-1.1.0/configure	2015-06-19 22:30:35.000000000 +0000
++++ rustc-1.1.0n/configure	2015-07-28 23:34:20.108210125 +0000
+@@ -986,7 +986,7 @@
+             | cut -d ' ' -f 2)
+ 
+         case $CFG_CLANG_VERSION in
+-            (3.2* | 3.3* | 3.4* | 3.5* | 3.6*)
++            (3.2* | 3.3* | 3.4* | 3.5* | 3.6* | 3.7*)
+             step_msg "found ok version of CLANG: $CFG_CLANG_VERSION"
+             if [ -z "$CC" ]
+             then
+--- rustc-1.1.0/configure	2015-07-28 23:45:00.859242036 +0000
++++ rustc-1.1.0n/configure	2015-07-28 23:45:26.604243318 +0000
+@@ -927,7 +927,7 @@
+     LLVM_VERSION=$($LLVM_CONFIG --version)
+ 
+     case $LLVM_VERSION in
+-        (3.[5-6]*)
++        (3.[5-7]*)
+             msg "found ok version of LLVM: $LLVM_VERSION"
+             ;;
+         (*)

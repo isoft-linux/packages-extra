@@ -1,0 +1,228 @@
+diff -Nur emacs-clang-complete-async-master/src/helper.c emacs-clang-complete-async-mastern/src/helper.c
+--- emacs-clang-complete-async-master/src/helper.c	1970-01-01 08:00:00.000000000 +0800
++++ emacs-clang-complete-async-mastern/src/helper.c	2012-12-04 23:02:36.113948721 +0800
+@@ -0,0 +1,84 @@
++#include "helper.h"
++#include <libgen.h>
++#include <sys/types.h>
++#include <sys/stat.h>
++#include <unistd.h>
++#include <dirent.h>
++#include <stdlib.h>
++#include <string.h>
++#include <stdio.h>
++#include <limits.h>
++argcv_s change_argcv(int argc, char **argv)
++{
++    /*detect filename and path,
++    then try to find .pch files in the same folder.
++    if it has one, just modify argv to include it.*/
++
++    int i;
++    char **n_argv = argv;
++    int n_argc = argc;
++    argcv_s newargcv;
++    const char * filename = strdup(argv[argc-1]);
++    char *pch_file = find_pch_file_in_same_dir(filename);
++    if(pch_file) {
++        n_argv = (char **)malloc((3 + argc)*sizeof(char*));
++        n_argv[0] = strdup(argv[0]);
++        n_argv[1] = strdup("-include"); 
++        n_argv[2] = strdup(pch_file);
++        for (i = 1; i < argc; i ++) {
++            n_argv[2+i] = argv[i];
++        }
++        n_argv[2+argc] = (char *)0;
++        n_argc += 2;
++    }
++    newargcv.argc = n_argc;
++    newargcv.argv = n_argv;
++    return newargcv;
++}
++
++int str_end_with(const char * orig, const char *end)
++{
++    if(!orig || !end)
++        return 0;
++    char *tmp = strstr(orig,end);
++    if(!tmp)
++        return 0;
++    if(strcmp(tmp,end) == 0)
++        return 1;
++    return 0;
++}
++
++
++char * find_pch_file_in_same_dir(const char* filename)
++{
++    char * path = dirname(strdup(filename));
++    char *pch_file = NULL;
++    struct stat st;
++    int ret = stat(path, &st);
++
++    if(ret == 0 && S_ISDIR(st.st_mode)) {
++        DIR *dirptr=NULL;
++        struct dirent *entry;
++        if((dirptr = opendir(path)) != NULL) {
++            while((entry=readdir(dirptr)))
++            {
++                char *temp_filename = strdup(entry->d_name);
++                char *end = ".pch";
++                if(str_end_with(temp_filename,end)) {
++                    pch_file = strdup(temp_filename);
++                    break;
++                }
++            }
++            closedir(dirptr);
++        }
++    }
++    if(pch_file) {
++        char * fullpath = (char *)malloc(strlen(path) + strlen(pch_file) + 2);
++        bzero(fullpath, strlen(path) + strlen(pch_file));
++        strcat(fullpath, path);
++        strcat(fullpath, "/");
++        strcat(fullpath, pch_file);
++        return fullpath;
++    }
++    return NULL;
++}
+diff -Nur emacs-clang-complete-async-master/src/helper.h emacs-clang-complete-async-mastern/src/helper.h
+--- emacs-clang-complete-async-master/src/helper.h	1970-01-01 08:00:00.000000000 +0800
++++ emacs-clang-complete-async-mastern/src/helper.h	2012-12-04 22:57:43.970903169 +0800
+@@ -0,0 +1,12 @@
++#ifndef _HELPER_H
++#define _HELPER_H
++struct argcv {
++    int argc;
++    char **argv;
++};
++typedef struct argcv argcv_s;
++
++argcv_s change_argcv(int argc, char **argv);
++int str_end_with(const char *orig, const char *end);
++char * find_pch_file_in_same_dir(const char* filename);
++#endif
+diff -Nur emacs-clang-complete-async-master/src/main.c emacs-clang-complete-async-mastern/src/main.c
+--- emacs-clang-complete-async-master/src/main.c	2012-10-28 00:51:28.000000000 +0800
++++ emacs-clang-complete-async-mastern/src/main.c	2012-12-04 23:02:06.976944457 +0800
+@@ -6,6 +6,8 @@
+ #include "completion.h"
+ #include "msg_callback.h"
+ 
++#include "helper.h"
++
+ 
+ /* This function is intended to help debugging transmition issues, and should 
+    not be called in the final release version. */
+@@ -21,11 +23,13 @@
+         session->src_filename, session->src_buffer); fflush(fp);
+ }
+ 
+-
+ int main(int argc, char *argv[])
+ {
+     completion_Session session;
+-    startup_completionSession(argc, argv, &session);
++
++    argcv_s newargcv;
++    newargcv = change_argcv(argc, argv); 
++    startup_completionSession(newargcv.argc, newargcv.argv, &session);
+ 
+     for ( ; ; ) {
+         completion_AcceptRequest(&session, stdin);
+diff -Nur emacs-clang-complete-async-master/src/msg_handlers.c emacs-clang-complete-async-mastern/src/msg_handlers.c
+--- emacs-clang-complete-async-master/src/msg_handlers.c	2012-12-04 22:57:25.404899442 +0800
++++ emacs-clang-complete-async-mastern/src/msg_handlers.c	2012-12-04 23:02:07.953944556 +0800
+@@ -3,7 +3,7 @@
+ #include <limits.h>
+ #include <unistd.h>
+ #include "msg_callback.h"
+-
++#include "helper.h"
+ 
+ /* discard all remaining contents on this line, jump to the beginning of the
+    next line */
+@@ -126,11 +126,28 @@
+ 
+     /* get number of arguments */
+     fscanf(fp, "num_args:%d", &(session->num_args)); __skip_the_rest(fp);
++    
++    char *pch_file = find_pch_file_in_same_dir(session->src_filename);
++    if(pch_file) {
++        session->num_args += 2; 
++    }
+     session->cmdline_args = (char**)calloc(sizeof(char*), session->num_args);
+ 
+     /* rebuild command line arguments vector according to the message */
+     for ( ; i_arg < session->num_args; i_arg++)
+     {
++        if(pch_file) {
++            if(i_arg == session->num_args-2) {
++                session->cmdline_args[i_arg] = (char*)calloc(sizeof(char), strlen("-include") + 1);
++                strcpy(session->cmdline_args[i_arg],"-include");
++                continue;
++            }
++            if(i_arg == session->num_args-1) {
++                session->cmdline_args[i_arg] = (char*)calloc(sizeof(char), strlen(pch_file) + 1);
++                strcpy(session->cmdline_args[i_arg], strdup(pch_file));
++                continue;
++            }
++        }
+         /* fetch an argument from message */
+         fscanf(fp, "%s", arg);
+ 
+@@ -138,7 +155,6 @@
+         session->cmdline_args[i_arg] = (char*)calloc(sizeof(char), strlen(arg) + 1);
+         strcpy(session->cmdline_args[i_arg], arg);
+     }
+-
+     /* we have to rebuild our translation units to make these cmdline args changes 
+        take place */
+     clang_disposeTranslationUnit(session->cx_tu);
+@@ -148,7 +164,7 @@
+ 
+ /* Update command line arguments and source files passing to clang translation unit. Format
+    of the coming FILECHANGED message is as follows:
+-       filename: [#new filename#]  
++       filename: [#new filename#] 
+        num_args: [#n_args#]
+        arg1 arg2 ... (there should be n_args items here)
+ */
+@@ -170,11 +186,27 @@
+ 
+     /* get number of arguments */
+     fscanf(fp, "num_args:%d", &(session->num_args)); __skip_the_rest(fp);
++    char *pch_file = find_pch_file_in_same_dir(session->src_filename);
++    if(pch_file) {
++        session->num_args += 2;
++    }
+     session->cmdline_args = (char**)calloc(sizeof(char*), session->num_args);
+ 
+     /* rebuild command line arguments vector according to the message */
+     for ( ; i_arg < session->num_args; i_arg++)
+     {
++        if(pch_file) {
++            if(i_arg == session->num_args-2) {
++                session->cmdline_args[i_arg] = (char*)calloc(sizeof(char), strlen("-include") + 1);
++                strcpy(session->cmdline_args[i_arg],"-include");
++                continue;
++            }
++            if(i_arg == session->num_args-1) {
++                session->cmdline_args[i_arg] = (char*)calloc(sizeof(char), strlen(pch_file) + 1);
++                strcpy(session->cmdline_args[i_arg], strdup(pch_file));
++                continue;
++            }
++        }
+         /* fetch an argument from message */
+         fscanf(fp, "%s", arg);
+ 
+@@ -182,7 +214,8 @@
+         session->cmdline_args[i_arg] = (char*)calloc(sizeof(char), strlen(arg) + 1);
+         strcpy(session->cmdline_args[i_arg], arg);
+     }
+-    
++
++
+     /* we have to rebuild our translation units to make these cmdline args changes 
+        take place */
+     clang_disposeTranslationUnit(session->cx_tu);

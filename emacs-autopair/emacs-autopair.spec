@@ -1,0 +1,27 @@
+Name:	    emacs-autopair
+Version:	0.1
+Release:    1	
+Summary:    Another stab at making braces and quotes pair like in TextMate	
+Group:		Development/Tools
+License:	GPL
+Source0:	autopair.el
+Source1:    autopair-init.el
+BuildRequires:	emacs
+Requires:	emacs
+BuildRoot:	%{_tmppath}/%{realname}-%{version}-%{release}
+
+%description
+Another stab at making braces and quotes pair like in TextMate
+%prep
+%install
+mkdir -p $RPM_BUILD_ROOT/usr/share/emacs/site-lisp/site-start.d
+install -m 0644 %{SOURCE0} $RPM_BUILD_ROOT/usr/share/emacs/site-lisp/
+install -m 0644 %{SOURCE1} $RPM_BUILD_ROOT/usr/share/emacs/site-lisp/site-start.d/
+%clean
+[ ${RPM_BUILD_ROOT} != "/" ] && rm -rf ${RPM_BUILD_ROOT}
+
+%files
+%defattr(-,root,root)
+/usr/share/emacs/site-lisp/*.el
+/usr/share/emacs/site-lisp/site-start.d/*.el
+%changelog

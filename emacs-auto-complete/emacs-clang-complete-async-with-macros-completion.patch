@@ -1,0 +1,12 @@
+diff -Nur emacs-clang-complete-async-master/auto-complete-clang-async.el emacs-clang-complete-async-mastern/auto-complete-clang-async.el
+--- emacs-clang-complete-async-master/auto-complete-clang-async.el	2012-12-02 00:00:05.992189107 +0800
++++ emacs-clang-complete-async-mastern/auto-complete-clang-async.el	2012-12-02 00:00:36.334196182 +0800
+@@ -185,7 +185,7 @@
+              "c++"))))
+ 
+ (defsubst ac-clang-build-complete-args ()
+-  (append '("-cc1" "-fsyntax-only")
++  (append '("-cc1" "-fsyntax-only" "-code-completion-macros" "-code-completion-patterns")
+           (list "-x" (ac-clang-lang-option))
+           ac-clang-cflags
+           (when (stringp ac-clang-prefix-header)

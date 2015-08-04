@@ -1,0 +1,40 @@
+diff -Nur yasnippet/snippets/cc-mode/do yasnippetn/snippets/cc-mode/do
+--- yasnippet/snippets/cc-mode/do	2015-08-01 13:33:31.000000000 +0000
++++ yasnippetn/snippets/cc-mode/do	2015-08-01 13:48:01.217963266 +0000
+@@ -1,7 +1,6 @@
+ #name : do { ... } while (...)
+ # key: do
+ # --
+-do
+-{
++do {
+     $0
+-} while (${1:condition});
+\ No newline at end of file
++} while (${1:condition});
+diff -Nur yasnippet/snippets/cc-mode/if yasnippetn/snippets/cc-mode/if
+--- yasnippet/snippets/cc-mode/if	2015-08-01 13:33:31.000000000 +0000
++++ yasnippetn/snippets/cc-mode/if	2015-08-01 13:48:25.204962837 +0000
+@@ -1,7 +1,6 @@
+ #name : if (...) { ... }
+ # key: cc-modeif
+ # --
+-if (${1:condition})
+-{
++if (${1:condition}) {
+     $0
+-}
+\ No newline at end of file
++}
+diff -Nur yasnippet/snippets/cc-mode/main yasnippetn/snippets/cc-mode/main
+--- yasnippet/snippets/cc-mode/main	2015-08-01 13:33:31.000000000 +0000
++++ yasnippetn/snippets/cc-mode/main	2015-08-01 13:47:08.931964202 +0000
+@@ -2,7 +2,7 @@
+ # name: main
+ # key: main
+ # --
+-int main(${1:int argc, char *argv[]})
++int main(${1:int argc, char **argv})
+ {
+     $0
+     return 0;

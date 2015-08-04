@@ -1,0 +1,23 @@
+diff -Nur synaptic-0.57.2/Makefile.am synaptic-0.57.2fix/Makefile.am
+--- synaptic-0.57.2/Makefile.am	2005-06-10 18:35:06.000000000 +0800
++++ synaptic-0.57.2fix/Makefile.am	2006-09-07 22:51:26.000000000 +0800
+@@ -1,6 +1,6 @@
+ # synaptic makefile
+ 
+-SUBDIRS = data common gtk man pixmaps po help doc
++SUBDIRS = data common gtk man pixmaps po doc
+ 
+ EXTRA_DIST = config.h.in \
+ 	     synaptic.spec synaptic-suse.spec synaptic-redhat.spec \
+diff -Nur synaptic-0.57.2/Makefile.in synaptic-0.57.2fix/Makefile.in
+--- synaptic-0.57.2/Makefile.in	2005-07-04 20:55:47.000000000 +0800
++++ synaptic-0.57.2fix/Makefile.in	2006-09-07 22:51:35.000000000 +0800
+@@ -174,7 +174,7 @@
+ sysconfdir = @sysconfdir@
+ target_alias = @target_alias@
+ 
+-SUBDIRS = data common gtk man pixmaps po help doc
++SUBDIRS = data common gtk man pixmaps po doc
+ 
+ EXTRA_DIST = config.h.in \
+ 	     synaptic.spec synaptic-suse.spec synaptic-redhat.spec \

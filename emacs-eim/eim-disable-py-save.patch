@@ -1,0 +1,12 @@
+diff -Nur viogus-eim-5994240/eim-py.el viogus-eim-5994240n/eim-py.el
+--- viogus-eim-5994240/eim-py.el	2009-03-31 23:11:04.000000000 +0800
++++ viogus-eim-5994240n/eim-py.el	2012-03-16 14:50:09.671814586 +0800
+@@ -513,7 +513,7 @@
+     (eim-set-active-function 'eim-py-activate-function))
+   (run-hooks 'eim-py-load-hook)
+   (setq eim-py-initialized t)
+-  (add-to-list 'kill-emacs-hook 'eim-py-save-file)
++;;  (add-to-list 'kill-emacs-hook 'eim-py-save-file)
+   
+ (eim-py-make-char-table
+ '(

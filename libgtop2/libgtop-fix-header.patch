@@ -1,0 +1,12 @@
+diff -Nur libgtop-2.30.0/sysdeps/linux/netload.c libgtop-2.30.0n/sysdeps/linux/netload.c
+--- libgtop-2.30.0/sysdeps/linux/netload.c	2014-04-28 21:09:24.000000000 +0000
++++ libgtop-2.30.0n/sysdeps/linux/netload.c	2014-10-20 15:55:36.856782919 +0000
+@@ -45,7 +45,7 @@
+ #include <net/if.h>
+ #else /* Libc 5 */
+ #include <linux/if.h>
+-#include <linux/in.h>
++//#include <linux/in.h>
+ #include <linux/ip.h>
+ #include <linux/icmp.h>
+ #include <linux/tcp.h>

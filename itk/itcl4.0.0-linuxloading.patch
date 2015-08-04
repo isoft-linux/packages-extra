@@ -1,0 +1,11 @@
+--- itk4.0.0.orig/generic/itkBase.c	2013-02-03 17:25:51.000000000 +0100
++++ itk4.0.0.orig/generic/itkBase.c	2014-06-06 16:56:28.045513277 +0200
+@@ -73,7 +73,7 @@ namespace eval ::itk {\n\
+             lappend dirs [file join $bindir .. .. library]\n\
+             lappend dirs [file join $bindir .. .. itk library]\n\
+             # On MacOSX, check the directories in the tcl_pkgPath\n\
+-            if {[string equal $::tcl_platform(platform) \"unix\"] && \
++            if {[string equal $::tcl_platform(platform) \"unix\"] || \
+                     [string equal $::tcl_platform(os) \"Darwin\"]} {\n\
+                 foreach d $::tcl_pkgPath {\n\
+                     lappend dirs [file join $d itk$patchLevel]\n\

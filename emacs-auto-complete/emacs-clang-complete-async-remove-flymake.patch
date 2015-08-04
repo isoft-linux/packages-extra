@@ -1,0 +1,65 @@
+diff -Nur emacs-clang-complete-async-master/auto-complete-clang-async.el emacs-clang-complete-async-mastern/auto-complete-clang-async.el
+--- emacs-clang-complete-async-master/auto-complete-clang-async.el	2012-10-28 00:51:28.000000000 +0800
++++ emacs-clang-complete-async-mastern/auto-complete-clang-async.el	2012-12-01 23:58:12.174152277 +0800
+@@ -36,7 +36,6 @@
+ (provide 'auto-complete-clang-async)
+ (require 'cl)
+ (require 'auto-complete)
+-(require 'flymake)
+ 
+ 
+ (defcustom ac-clang-complete-executable
+@@ -430,12 +429,6 @@
+     (process-send-string proc (ac-clang-create-position-string (- (point) (length ac-prefix))))
+     (ac-clang-send-source-code proc)))
+ 
+-(defun ac-clang-send-syntaxcheck-request (proc)
+-  (save-restriction
+-    (widen)
+-    (process-send-string proc "SYNTAXCHECK\n")
+-    (ac-clang-send-source-code proc)))
+-
+ (defun ac-clang-send-cmdline-args (proc)
+   ;; send message head and num_args
+   (process-send-string proc "CMDLINEARGS\n")
+@@ -532,40 +525,6 @@
+      nil)))
+ 
+ 
+-;; Syntax checking with flymake
+-
+-(defun ac-clang-flymake-process-sentinel ()
+-  (interactive)
+-  (setq flymake-err-info flymake-new-err-info)
+-  (setq flymake-new-err-info nil)
+-  (setq flymake-err-info
+-        (flymake-fix-line-numbers
+-         flymake-err-info 1 (flymake-count-lines)))
+-  (flymake-delete-own-overlays)
+-  (flymake-highlight-err-lines flymake-err-info))
+-
+-(defun ac-clang-flymake-process-filter (process output)
+-  (ac-clang-append-process-output-to-process-buffer process output)
+-  (flymake-log 3 "received %d byte(s) of output from process %d"
+-               (length output) (process-id process))
+-  (flymake-parse-output-and-residual output)
+-  (when (string= (substring output -1 nil) "$")
+-    (flymake-parse-residual)
+-    (ac-clang-flymake-process-sentinel)
+-    (setq ac-clang-status 'idle)
+-    (set-process-filter ac-clang-completion-process 'ac-clang-filter-output)))
+-
+-(defun ac-clang-syntax-check ()
+-  (interactive)
+-  (when (eq ac-clang-status 'idle)
+-    (with-current-buffer (process-buffer ac-clang-completion-process)
+-      (erase-buffer))
+-    (setq ac-clang-status 'wait)
+-    (set-process-filter ac-clang-completion-process 'ac-clang-flymake-process-filter)
+-    (ac-clang-send-syntaxcheck-request ac-clang-completion-process)))
+-
+-
+-
+ (defun ac-clang-shutdown-process ()
+   (if ac-clang-completion-process
+       (ac-clang-send-shutdown-command ac-clang-completion-process)))

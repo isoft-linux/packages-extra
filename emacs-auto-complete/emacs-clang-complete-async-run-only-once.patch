@@ -1,0 +1,196 @@
+diff -Nur emacs-clang-complete-async-master/auto-complete-clang-async.el emacs-clang-complete-async-mastern/auto-complete-clang-async.el
+--- emacs-clang-complete-async-master/auto-complete-clang-async.el	2012-12-04 22:51:26.237823425 +0800
++++ emacs-clang-complete-async-mastern/auto-complete-clang-async.el	2012-12-04 22:52:26.942833706 +0800
+@@ -1,4 +1,4 @@
+-;;; auto-complete-clang-async.el --- Auto Completion source for clang for GNU Emacs
++;;; auto-complete-clang-async-once.el --- Auto Completion source for clang for GNU Emacs
+ 
+ ;; Copyright (C) 2010  Brian Jiang
+ ;; Copyright (C) 2012  Taylan Ulrich Bayirli/Kammer
+@@ -6,6 +6,7 @@
+ ;; Authors: Brian Jiang <brianjcj@gmail.com>
+ ;;          Golevka(?) [https://github.com/Golevka]
+ ;;          Taylan Ulrich Bayirli/Kammer <taylanbayirli@gmail.com>
++;;          Cjacker <cjacker@gmail.com>
+ ;;          Many others
+ ;; Keywords: completion, convenience
+ ;; Version: 0
+@@ -29,7 +30,7 @@
+ ;; Auto Completion source for clang.
+ ;; Uses a "completion server" process to utilize libclang.
+ ;; Also provides flymake syntax checking.
+-
++;; Cjacker: Made clang-complete server only run once for one emacs instance, and change the source file internally
+ ;;; Code:
+ 
+ 
+@@ -396,9 +397,11 @@
+ (defvar ac-clang-completion-process nil)
+ (defvar ac-clang-saved-prefix "")
+ 
+-(make-variable-buffer-local 'ac-clang-status)
+-(make-variable-buffer-local 'ac-clang-current-candidate)
+-(make-variable-buffer-local 'ac-clang-completion-process)
++(defvar current-clang-file "")
++
++;;(make-variable-buffer-local 'ac-clang-status)
++;;(make-variable-buffer-local 'ac-clang-current-candidate)
++;;(make-variable-buffer-local 'ac-clang-completion-process)
+ 
+ ;;;
+ ;;; Functions to speak with the clang-complete process
+@@ -423,6 +426,8 @@
+     (process-send-string proc "REPARSE\n\n")))
+ 
+ (defun ac-clang-send-completion-request (proc)
++  (if (not (string= current-clang-file (buffer-file-name)))
++      (ac-clang-filechanged))
+   (save-restriction
+     (widen)
+     (process-send-string proc "COMPLETION\n")
+@@ -448,6 +453,27 @@
+          (ac-clang-send-cmdline-args ac-clang-completion-process)
+          (message "`ac-clang-cflags' should be a list of strings")))
+ 
++(defun ac-clang-send-filechanged (proc)
++  ;; send message head and num_args
++  (process-send-string proc "FILECHANGED\n")
++  (process-send-string
++   proc (format "filename:%s\n" (buffer-file-name)))
++  (process-send-string
++   proc (format "num_args:%d\n" (length (ac-clang-build-complete-args))))
++  ;; send arguments
++  (mapc
++   (lambda (arg)
++     (process-send-string proc (format "%s " arg)))
++   (ac-clang-build-complete-args))
++  (process-send-string proc "\n"))
++
++(defun ac-clang-filechanged ()
++  (interactive)
++  (if (not (string= current-clang-file (buffer-file-name)))
++    (setq current-clang-file (buffer-file-name)))
++  (ac-clang-send-filechanged ac-clang-completion-process))
++
++
+ (defun ac-clang-send-shutdown-command (proc)
+   (if (eq (process-status "clang-complete") 'run)
+     (process-send-string proc "SHUTDOWN\n"))
+@@ -494,8 +520,8 @@
+   (case ac-clang-status
+     (idle
+      ;; (message "ac-clang-candidate triggered - fetching candidates...")
+-     (setq ac-clang-saved-prefix ac-prefix)
+ 
++     (setq ac-clang-saved-prefix ac-prefix)
+      ;; NOTE: although auto-complete would filter the result for us, but when there's
+      ;;       a HUGE number of candidates avaliable it would cause auto-complete to
+      ;;       block. So we filter it uncompletely here, then let auto-complete filter
+@@ -541,20 +567,29 @@
+     (setq ac-clang-status 'preempted)))
+ 
+ (defun ac-clang-launch-completion-process ()
++   (interactive)
++   (if ac-clang-completion-process
++       (ac-clang-filechanged)
++       (ac-clang-launch-completion-process-internal)))
++
++(defun ac-clang-launch-completion-process-internal ()
++   (interactive)
+   (setq ac-clang-completion-process
+         (let ((process-connection-type nil))
+           (apply 'start-process
+                  "clang-complete" "*clang-complete*"
+                  ac-clang-complete-executable
+                  (append (ac-clang-build-complete-args)
+-                         (list (buffer-file-name))))))
++                         (list (buffer-file-name)))
++)))
+ 
+   (set-process-filter ac-clang-completion-process 'ac-clang-filter-output)
+   (set-process-query-on-exit-flag ac-clang-completion-process nil)
+   ;; Pre-parse source code.
+   (ac-clang-send-reparse-request ac-clang-completion-process)
+ 
+-  (add-hook 'kill-buffer-hook 'ac-clang-shutdown-process nil t)
++;;  (add-hook 'kill-buffer-hook 'ac-clang-shutdown-process nil t)
++  (add-hook 'kill-emacs-hook 'ac-clang-shutdown-process nil t)
+   (add-hook 'before-save-hook 'ac-clang-reparse-buffer)
+ 
+   (local-set-key (kbd ".") 'ac-clang-async-preemptive)
+diff -Nur emacs-clang-complete-async-master/src/msg_callback.h emacs-clang-complete-async-mastern/src/msg_callback.h
+--- emacs-clang-complete-async-master/src/msg_callback.h	2012-10-28 00:51:28.000000000 +0800
++++ emacs-clang-complete-async-mastern/src/msg_callback.h	2012-12-04 22:52:01.296830076 +0800
+@@ -46,6 +46,7 @@
+ void completion_doCompletion(completion_Session *session, FILE *fp);   /* COMPLETION */
+ void completion_doSourcefile(completion_Session *session, FILE *fp);   /* SOURCEFILE */
+ void completion_doCmdlineArgs(completion_Session *session, FILE *fp);  /* CMDLINEARGS */
++void completion_doFileChanged(completion_Session *session, FILE *fp);  /* FILECHANGED */
+ void completion_doReparse(completion_Session *session, FILE *fp);      /* REPARSE */
+ void completion_doSyntaxCheck(completion_Session *session, FILE *fp);  /* SYNTAXCHECK */
+ void completion_doShutdown(completion_Session *session, FILE *fp);     /* SHUTDOWN */
+diff -Nur emacs-clang-complete-async-master/src/msg_dispatcher.c emacs-clang-complete-async-mastern/src/msg_dispatcher.c
+--- emacs-clang-complete-async-master/src/msg_dispatcher.c	2012-10-28 00:51:28.000000000 +0800
++++ emacs-clang-complete-async-mastern/src/msg_dispatcher.c	2012-12-04 22:52:01.296830076 +0800
+@@ -17,6 +17,7 @@
+     {"COMPLETION",   completion_doCompletion},
+     {"SOURCEFILE",   completion_doSourcefile},
+     {"CMDLINEARGS",  completion_doCmdlineArgs},
++    {"FILECHANGED",  completion_doFileChanged},
+     {"SYNTAXCHECK",  completion_doSyntaxCheck},
+     {"REPARSE",      completion_doReparse},
+     {"SHUTDOWN",     completion_doShutdown}
+diff -Nur emacs-clang-complete-async-master/src/msg_handlers.c emacs-clang-complete-async-mastern/src/msg_handlers.c
+--- emacs-clang-complete-async-master/src/msg_handlers.c	2012-10-28 00:51:28.000000000 +0800
++++ emacs-clang-complete-async-mastern/src/msg_handlers.c	2012-12-04 22:54:43.162860818 +0800
+@@ -146,6 +146,50 @@
+     completion_reparseTranslationUnit(session);  /* dump PCH for acceleration */
+ }
+ 
++/* Update command line arguments and source files passing to clang translation unit. Format
++   of the coming FILECHANGED message is as follows:
++       filename: [#new filename#]  
++       num_args: [#n_args#]
++       arg1 arg2 ... (there should be n_args items here)
++*/
++void completion_doFileChanged(completion_Session *session, FILE *fp)
++{
++    int i_arg = 0;
++    char arg[LINE_MAX];
++
++    /* destroy command line args, and we will rebuild it later */
++    completion_freeCmdlineArgs(session);
++
++    char filename[LINE_MAX];
++    fscanf(fp, "filename:%s", filename); __skip_the_rest(fp);
++    session->src_filename = strdup(filename);
++    session->src_length = 0;      /* we haven't read any source code yet. */
++    session->buffer_capacity = INITIAL_SRC_BUFFER_SIZE;
++    free(session->src_buffer);
++    session->src_buffer = (char*)calloc(sizeof(char), session->buffer_capacity);
++
++    /* get number of arguments */
++    fscanf(fp, "num_args:%d", &(session->num_args)); __skip_the_rest(fp);
++    session->cmdline_args = (char**)calloc(sizeof(char*), session->num_args);
++
++    /* rebuild command line arguments vector according to the message */
++    for ( ; i_arg < session->num_args; i_arg++)
++    {
++        /* fetch an argument from message */
++        fscanf(fp, "%s", arg);
++
++        /* and add it to cmdline_args */
++        session->cmdline_args[i_arg] = (char*)calloc(sizeof(char), strlen(arg) + 1);
++        strcpy(session->cmdline_args[i_arg], arg);
++    }
++    
++    /* we have to rebuild our translation units to make these cmdline args changes 
++       take place */
++    clang_disposeTranslationUnit(session->cx_tu);
++    completion_parseTranslationUnit(session);
++    completion_reparseTranslationUnit(session);  /* dump PCH for acceleration */
++}
++
+ /* Handle syntax checking request, message format:
+        source_length: [#src_length#]
+        <# SOURCE CODE #>

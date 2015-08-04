@@ -1,0 +1,10 @@
+[Desktop Entry]
+Encoding=UTF-8
+Categories=Graphics;
+Exec=xdot %f
+Icon=x-office-document
+StartupNotify=true
+Type=Application
+Terminal=false
+MimeType=text/vnd.graphviz;
+Name=Graphviz Dot Viewer

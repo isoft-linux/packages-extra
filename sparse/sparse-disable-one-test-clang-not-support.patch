@@ -1,0 +1,12 @@
+diff -Nur sparse/Makefile sparsen/Makefile
+--- sparse/Makefile	2014-11-04 15:45:14.000000000 -0800
++++ sparsen/Makefile	2014-11-04 15:56:26.528128370 -0800
+@@ -52,7 +52,7 @@
+ PKGCONFIGDIR=$(LIBDIR)/pkgconfig
+ 
+ PROGRAMS=test-lexing test-parsing obfuscate compile graph sparse \
+-	 test-linearize example test-unssa test-dissect ctags
++	 test-linearize example test-unssa ctags
+ INST_PROGRAMS=sparse cgcc
+ INST_MAN1=sparse.1 cgcc.1
+ 

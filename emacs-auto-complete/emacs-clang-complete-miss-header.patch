@@ -1,0 +1,12 @@
+diff -Nur emacs-clang-complete-async-master/src/completion.h emacs-clang-complete-async-mastern/src/completion.h
+--- emacs-clang-complete-async-master/src/completion.h	2012-10-28 00:51:28.000000000 +0800
++++ emacs-clang-complete-async-mastern/src/completion.h	2014-06-22 02:06:35.901518503 +0800
+@@ -1,7 +1,7 @@
+ #ifndef _COMPLETION_SESSION_H_
+ #define _COMPLETION_SESSION_H_
+ 
+-
++#include <stdio.h>
+ #include <clang-c/Index.h>
+ 
+ 

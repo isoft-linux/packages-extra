@@ -1,0 +1,15 @@
+diff -Nur xdot-0.6/xdot.py xdot-0.6nn/xdot.py
+--- xdot-0.6/xdot.py	2014-06-18 00:10:00.748277043 +0800
++++ xdot-0.6nn/xdot.py	2014-06-18 00:10:23.638276224 +0800
+@@ -2108,10 +2108,7 @@
+     win = DotWindow()
+     win.connect('destroy', gtk.main_quit)
+     win.set_filter(options.filter)
+-    if len(args) == 0:
+-        if not sys.stdin.isatty():
+-            win.set_dotcode(sys.stdin.read())
+-    else:
++    if len(args) != 0:
+         if args[0] == '-':
+             win.set_dotcode(sys.stdin.read())
+         else:

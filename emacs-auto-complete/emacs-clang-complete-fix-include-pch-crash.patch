@@ -1,0 +1,12 @@
+diff -Nur emacs-clang-complete-async-master/auto-complete-clang-async.el emacs-clang-complete-async-mastern/auto-complete-clang-async.el
+--- emacs-clang-complete-async-master/auto-complete-clang-async.el	2012-12-05 23:55:57.645253350 +0800
++++ emacs-clang-complete-async-mastern/auto-complete-clang-async.el	2012-12-05 23:56:21.551258069 +0800
+@@ -190,7 +190,7 @@
+           (list "-x" (ac-clang-lang-option))
+           ac-clang-cflags
+           (when (stringp ac-clang-prefix-header)
+-            (list "-include-pch" (expand-file-name ac-clang-prefix-header)))))
++            (list "-include" (expand-file-name ac-clang-prefix-header)))))
+ 
+ 
+ (defsubst ac-clang-clean-document (s)

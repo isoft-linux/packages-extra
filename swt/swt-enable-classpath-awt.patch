@@ -1,0 +1,12 @@
+diff -Nur source/build.sh sourcen/build.sh
+--- source/build.sh	2013-06-05 20:39:54.000000000 +0800
++++ sourcen/build.sh	2014-05-02 18:16:24.726672979 +0800
+@@ -507,6 +507,8 @@
+ 	fi
+ fi
+ 
++export AWT_LIB_PATH=/usr/lib/classpath
++
+ if [ -f ${AWT_LIB_PATH}/libjawt.* ]; then
+ 	echo "libjawt.so found, the SWT/AWT integration library will be compiled."
+ 	MAKE_AWT=make_awt

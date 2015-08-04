@@ -1,0 +1,16 @@
+diff -urp iwidgets4.0.1/iwidgets.tcl.in iwidgets4.0.1-calls/iwidgets.tcl.in
+--- iwidgets4.0.1/iwidgets.tcl.in	2001-08-08 02:56:47.000000000 +0700
++++ iwidgets4.0.1-calls/iwidgets.tcl.in	2014-10-18 09:43:42.481994043 +0700
+@@ -14,9 +14,9 @@
+ # redistribution of this file, and for a DISCLAIMER OF ALL WARRANTIES.
+ 
+ package require Tcl 8.0
+-package require Tk 8.0
+-package require Itcl @ITCL_VERSION@
+-package require Itk @ITCL_VERSION@
++package require Tk
++package require itcl @ITCL_VERSION@
++package require itk @ITCL_VERSION@
+ 
+ namespace eval ::iwidgets {
+     namespace export *
