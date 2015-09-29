@@ -3,10 +3,10 @@ Name: spice
 Version: 0.12.5
 Release: 1
 License: LGPLv2+
-Group: User Interface/Desktops 
 Source: %{name}-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 BuildRequires: spice-protocol, celt051-devel, libcacard-devel, pyparsing
+
 %description
 SPICE is a remote display system built for virtual environments which
 allows you to view a computing 'desktop' environment not only on the
@@ -15,15 +15,12 @@ from a wide variety of machine architectures.
 
 %package -n libspice
 Summary:        Runtime libraries for %{name}
-Group:          System Environment/Libraries
 
 %description -n libspice
 This package contains runtime library of %{name}
 
-
 %package -n libspice-devel
 Summary:        Development libraries and header files for %{name}
-Group:          Development/Libraries
 Requires:       libspice = %{version}-%{release}
 
 %description -n libspice-devel
@@ -33,9 +30,7 @@ This package contains Development libraries and header files of %{name}
 %setup -q
 
 %build
-export CC=clang
-export CXX=clang++
-%configure --disable-client --without-sasl
+%configure --disable-client --without-sasl --enable-smartcard
 make %{?_smp_mflags}
 
 %install

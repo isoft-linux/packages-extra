@@ -1,0 +1,11 @@
+--- libucimf-2.3.8/src/ucimf.cpp	2011-02-13 12:05:45.000000000 -0800
++++ libucimf-2.3.8n/src/ucimf.cpp	2014-11-12 13:30:11.924935684 -0800
+@@ -17,7 +17,7 @@
+  * along with this program; if not, write to the Free Software
+  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
+  */
+-
++#include <unistd.h>
+ #include <ucimf.h>
+ #include <sys/ioctl.h>
+ #include <linux/kd.h>

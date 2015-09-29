@@ -1,11 +1,11 @@
 #this package use internal rom shiped with qemu
 
-%define _udevdir /usr/lib/udev/rules.d
+%define _udevdir %{_libdir}/udev/rules.d
 
 Summary: QEMU is a FAST! processor emulator
 Name: qemu
-Version: 2.3.0
-Release: 1 
+Version: 2.4.0
+Release: 1
 License: GPLv2+ and LGPLv2+ and BSD
 Group: Development/Tools
 URL: http://www.qemu.org/
@@ -29,20 +29,20 @@ Source9: ksmtuned.conf
 
 Source10: qemu-guest-agent.service
 Source11: 99-qemu-guest-agent.rules
-Source12: bridge.conf
 
 # Creates /dev/kvm
 Source15: 80-kvm.rules
 
 Source20: qemu.binfmt
 
-BuildRequires: SDL2-devel zlib-devel which
+BuildRequires: SDL-devel zlib-devel which
 BuildRequires: libaio-devel
 BuildRequires: pciutils-devel
 BuildRequires: ncurses-devel
 BuildRequires: spice-protocol
 BuildRequires: libspice-devel
 BuildRequires: usbredir-devel
+BuildRequires: nss-devel nspr-devel glib2-devel
 
 %description
 QEMU is a generic and open source processor emulator which achieves a good
@@ -61,13 +61,9 @@ As QEMU requires no host kernel patches to run, it is safe and easy to use.
 %setup -q -n qemu-%{version}
 
 %build
-export CC=clang
-export CXX=clang++
-#--enable-gtk 
 ./configure --prefix=%{_prefix} \
             --sysconfdir=%{_sysconfdir} \
             --libdir=%{_libdir} \
-            --sysconfdir=%{_sysconfdir} \
             --localstatedir=%{_localstatedir} \
             --libexecdir=%{_libexecdir} \
             --target-list=x86_64-softmmu \
@@ -88,7 +84,6 @@ export CXX=clang++
 make V=1 %{?_smp_mflags} $buildldflags
 
 cc %{SOURCE6} -O2 -g -o ksmctl
-
 
 %install
 rm -rf $RPM_BUILD_ROOT
@@ -131,11 +126,11 @@ install -D -p -m 0644 %{SOURCE9} $RPM_BUILD_ROOT%{_sysconfdir}/ksmtuned.conf
 
 install -m 0644 %{SOURCE10} $RPM_BUILD_ROOT%{_unitdir}
 install -m 0644 %{SOURCE11} $RPM_BUILD_ROOT%{_udevdir}
-# Install rules to use the bridge helper with libvirt's virbr0
-install -m 0644 %{SOURCE12} $RPM_BUILD_ROOT%{_sysconfdir}/qemu
 
 # Install the usb redir config files, needed by qemu-kvm-spice wrapper
-install -m 0644 docs/ich9-ehci-uhci.cfg $RPM_BUILD_ROOT%{_sysconfdir}/qemu
+mkdir -p $RPM_BUILD_ROOT%{_sysconfdir}/qemu/
+install -m 0644 docs/ich9-ehci-uhci.cfg $RPM_BUILD_ROOT%{_sysconfdir}/qemu/
+install -m 0644 docs/q35-chipset.cfg $RPM_BUILD_ROOT%{_sysconfdir}/qemu/
 
 #setup binfmt.d
 mkdir -p $RPM_BUILD_ROOT/%{_libdir}/binfmt.d
@@ -198,3 +193,9 @@ getent passwd qemu >/dev/null || \
 %dir %{_datadir}/qemu
 %{_datadir}/qemu/*
 #%{_datadir}/locale/*
+
+%changelog
+* Wed Aug 12 2015 Cjacker <cjacker@foxmail.com>
+- update to 2.4.0
+* Sun Aug 09 2015 Cjacker <cjacker@foxmail.com>
+- update to 2.4.0-rc4

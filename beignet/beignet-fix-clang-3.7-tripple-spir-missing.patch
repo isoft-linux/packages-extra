@@ -1,0 +1,52 @@
+diff -Nur beignet/backend/src/CMakeLists.txt beignetnew/backend/src/CMakeLists.txt
+--- beignet/backend/src/CMakeLists.txt	2015-07-25 16:23:36.000000000 +0000
++++ beignetnew/backend/src/CMakeLists.txt	2015-07-25 17:25:27.385422554 +0000
+@@ -189,7 +189,7 @@
+ 
+ install (TARGETS gbe LIBRARY DESTINATION ${BEIGNET_INSTALL_DIR})
+ install (FILES ${OCL_OBJECT_DIR}/beignet.bc DESTINATION ${BEIGNET_INSTALL_DIR})
+-install (FILES ${OCL_OBJECT_DIR}/beignet.pch DESTINATION ${BEIGNET_INSTALL_DIR})
++#install (FILES ${OCL_OBJECT_DIR}/beignet.pch DESTINATION ${BEIGNET_INSTALL_DIR})
+ install (FILES ${OCL_HEADER_FILES} DESTINATION ${BEIGNET_INSTALL_DIR}/include)
+ endif (NOT (USE_STANDALONE_GBE_COMPILER STREQUAL "true"))
+ 
+diff -Nur beignet/backend/src/libocl/CMakeLists.txt beignetnew/backend/src/libocl/CMakeLists.txt
+--- beignet/backend/src/libocl/CMakeLists.txt	2015-07-25 16:23:36.000000000 +0000
++++ beignetnew/backend/src/libocl/CMakeLists.txt	2015-07-25 16:48:04.498462720 +0000
+@@ -198,21 +198,22 @@
+     COMMENT "Generate the bitcode file: ${OCL_OBJECT_DIR}/beignet.bc"
+     )
+ 
+-ADD_CUSTOM_COMMAND(OUTPUT ${OCL_OBJECT_DIR}/beignet.local.pch
+-    COMMAND mkdir -p ${OCL_OBJECT_DIR}
+-    COMMAND ${CLANG_EXECUTABLE} -cc1 ${CLANG_OCL_FLAGS} -triple spir -I ${OCL_OBJECT_DIR}/include/ -emit-pch -x cl ${OCL_OBJECT_DIR}/include/ocl.h -o ${OCL_OBJECT_DIR}/beignet.local.pch
+-    DEPENDS ${OCL_HEADER_FILES}
+-    COMMENT "Generate the pch file: ${OCL_OBJECT_DIR}/beignet.local.pch"
+-    )
+-
+-ADD_CUSTOM_COMMAND(OUTPUT ${OCL_OBJECT_DIR}/beignet.pch
+-    COMMAND mkdir -p ${OCL_OBJECT_DIR}
+-    COMMAND ${CLANG_EXECUTABLE} -cc1 ${CLANG_OCL_FLAGS} -triple spir -I ${OCL_OBJECT_DIR}/include/ --relocatable-pch -emit-pch -isysroot ${LIBOCL_BINARY_DIR} -x cl ${OCL_OBJECT_DIR}/include/ocl.h -o ${OCL_OBJECT_DIR}/beignet.pch
+-    DEPENDS ${OCL_HEADER_FILES}
+-    COMMENT "Generate the pch file: ${OCL_OBJECT_DIR}/beignet.pch"
+-    )
++#ADD_CUSTOM_COMMAND(OUTPUT ${OCL_OBJECT_DIR}/beignet.local.pch
++#    COMMAND mkdir -p ${OCL_OBJECT_DIR}
++#    COMMAND ${CLANG_EXECUTABLE} -cc1 ${CLANG_OCL_FLAGS} -triple spir -I ${OCL_OBJECT_DIR}/include/ -emit-pch -x cl ${OCL_OBJECT_DIR}/include/ocl.h -o ${OCL_OBJECT_DIR}/beignet.local.pch
++#    DEPENDS ${OCL_HEADER_FILES}
++#    COMMENT "Generate the pch file: ${OCL_OBJECT_DIR}/beignet.local.pch"
++#    )
++#
++#ADD_CUSTOM_COMMAND(OUTPUT ${OCL_OBJECT_DIR}/beignet.pch
++#    COMMAND mkdir -p ${OCL_OBJECT_DIR}
++#    COMMAND ${CLANG_EXECUTABLE} -cc1 ${CLANG_OCL_FLAGS} -triple spir -I ${OCL_OBJECT_DIR}/include/ --relocatable-pch -emit-pch -isysroot ${LIBOCL_BINARY_DIR} -x cl ${OCL_OBJECT_DIR}/include/ocl.h -o ${OCL_OBJECT_DIR}/beignet.pch
++#    DEPENDS ${OCL_HEADER_FILES}
++#    COMMENT "Generate the pch file: ${OCL_OBJECT_DIR}/beignet.pch"
++#    )
+ 
+ 
+-add_custom_target(beignet_bitcode ALL DEPENDS ${OCL_OBJECT_DIR}/beignet.bc ${OCL_OBJECT_DIR}/beignet.pch ${OCL_OBJECT_DIR}/beignet.local.pch)
++#add_custom_target(beignet_bitcode ALL DEPENDS ${OCL_OBJECT_DIR}/beignet.bc ${OCL_OBJECT_DIR}/beignet.pch ${OCL_OBJECT_DIR}/beignet.local.pch)
++add_custom_target(beignet_bitcode ALL DEPENDS ${OCL_OBJECT_DIR}/beignet.bc)
+ SET (OCL_OBJECT_DIR ${OCL_OBJECT_DIR} PARENT_SCOPE)
+ SET (OCL_HEADER_FILES ${OCL_HEADER_FILES} PARENT_SCOPE)

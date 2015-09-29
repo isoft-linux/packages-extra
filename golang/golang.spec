@@ -1,10 +1,3 @@
-# build ids are not currently generated:
-# https://code.google.com/p/go/issues/detail?id=5238
-#
-# also, debuginfo extraction currently fails with
-# "Failed to write file: invalid section alignment"
-%global debug_package %{nil}
-
 # we are shipping the full contents of src in the data subpackage, which
 # contains binary-like things (ELF data for tests, etc)
 %global _binaries_in_noarch_packages_terminate_build 0
@@ -26,6 +19,7 @@
 %global goroot          /usr/lib/%{name}
 %global gopath          %{_datadir}/gocode
 %global go_arches       %{ix86} x86_64 %{arm}
+
 %ifarch x86_64
 %global gohostarch  amd64
 %endif
@@ -37,72 +31,46 @@
 %endif
 
 %global go_api 1.5
-%global go_version 1.5beta2
+%global go_version 1.5.1
 
 Name:           golang
-Version:        1.4.99
-Release:        4.%{go_version}%{?dist}
+Version:        1.5
+Release:        5%{?dist}
 Summary:        The Go Programming Language
 
 License:        BSD
 URL:            http://golang.org/
 Source0:        https://storage.googleapis.com/golang/go%{go_version}.src.tar.gz
 
-# go1.5 bootstrapping. The compiler is written in golang.
-BuildRequires:  golang > 1.4
-# use the arch dependent path in the bootstrap
-Patch212:       ./golang-1.5-bootstrap-binary-path.patch
+Source100:      golang-gdbinit
+Source101:      golang-prelink.conf
+Source102:      macros.golang
 
+Patch210:       golang-hostname.patch
+# use the arch dependent path in the bootstrap
+Patch212:       golang-1.5-bootstrap-binary-path.patch
+# disable TestGdbPython
+# https://github.com/golang/go/issues/11214
+Patch213:       go1.5beta1-disable-TestGdbPython.patch
+# disable  TestCloneNEWUSERAndRemapNoRootDisableSetgroups
+# this is not possible in the limitied build chroot
+Patch214:       go1.5beta2-disable-TestCloneNEWUSERAndRemapNoRootDisableSetgroups.patch
+
+
+ExclusiveArch:  %{go_arches}
+
+BuildRequires:  golang > 1.4
 BuildRequires:  /usr/bin/hostname
-Patch210:       golang-f21-hostname.patch
 
 Provides:       go = %{version}-%{release}
 Requires:       %{name}-bin
 Requires:       %{name}-src = %{version}-%{release}
 
-Patch0:         golang-1.2-verbose-build.patch
 
-# https://bugzilla.redhat.com/show_bug.cgi?id=1038683
-Patch1:         golang-1.2-remove-ECC-p224.patch
-
-# disable TestGdbPython
-# https://github.com/golang/go/issues/11214
-Patch213:       go1.5beta1-disable-TestGdbPython.patch
-
-# disable  TestCloneNEWUSERAndRemapNoRootDisableSetgroups
-# this is not possible in the limitied build chroot
-Patch214:       go1.5beta2-disable-TestCloneNEWUSERAndRemapNoRootDisableSetgroups.patch
-
-# Having documentation separate was broken
-Obsoletes:      %{name}-docs < 1.1-4
-
-# RPM can't handle symlink -> dir with subpackages, so merge back
-Obsoletes:      %{name}-data < 1.1.1-4
-
-# go1.4 deprecates a few packages
-Obsoletes:      %{name}-vim < 1.4
-Obsoletes:      emacs-%{name} < 1.4
-
-# These are the only RHEL/Fedora architectures that we compile this package for
-ExclusiveArch:  %{go_arches}
-
-Source100:      golang-gdbinit
-Source101:      golang-prelink.conf
-Source102:      macros.golang
 
 %description
 %{summary}.
 
-
-# Restore this package if RPM gets fixed (bug #975909)
-#%package       data
-#Summary:       Required architecture-independent files for Go
-#Requires:      %{name} = %{version}-%{release}
-#BuildArch:     noarch
-#Obsoletes:     %{name}-docs < 1.1-4
-#
-#%description   data
-#%{summary}.
 
 %package       docs
 Summary:       Golang compiler docs
@@ -140,36 +108,9 @@ BuildArch:      noarch
 %package        bin
 Summary:        Golang core compiler tools
 Requires:       go = %{version}-%{release}
-# Pre-go1.5, all arches had to be bootstrapped individually, before usable, and
-# env variables to compile for the target os-arch.
-# Now the host compiler needs only the GOOS and GOARCH environment variables
-# set to compile for the target os-arch.
-Obsoletes:      %{name}-pkg-bin-linux-386 < 1.4.99
-Obsoletes:      %{name}-pkg-bin-linux-amd64 < 1.4.99
-Obsoletes:      %{name}-pkg-bin-linux-arm < 1.4.99
-Obsoletes:      %{name}-pkg-linux-386 < 1.4.99
-Obsoletes:      %{name}-pkg-linux-amd64 < 1.4.99
-Obsoletes:      %{name}-pkg-linux-arm < 1.4.99
-Obsoletes:      %{name}-pkg-darwin-386 < 1.4.99
-Obsoletes:      %{name}-pkg-darwin-amd64 < 1.4.99
-Obsoletes:      %{name}-pkg-windows-386 < 1.4.99
-Obsoletes:      %{name}-pkg-windows-amd64 < 1.4.99
-Obsoletes:      %{name}-pkg-plan9-386 < 1.4.99
-Obsoletes:      %{name}-pkg-plan9-amd64 < 1.4.99
-Obsoletes:      %{name}-pkg-freebsd-386 < 1.4.99
-Obsoletes:      %{name}-pkg-freebsd-amd64 < 1.4.99
-Obsoletes:      %{name}-pkg-freebsd-arm < 1.4.99
-Obsoletes:      %{name}-pkg-netbsd-386 < 1.4.99
-Obsoletes:      %{name}-pkg-netbsd-amd64 < 1.4.99
-Obsoletes:      %{name}-pkg-netbsd-arm < 1.4.99
-Obsoletes:      %{name}-pkg-openbsd-386 < 1.4.99
-Obsoletes:      %{name}-pkg-openbsd-amd64 < 1.4.99
-
 Requires(post): %{_sbindir}/update-alternatives
 Requires(postun): %{_sbindir}/update-alternatives
 
-# We strip the meta dependency, but go does require glibc.
-# This is an odd issue, still looking for a better fix.
 Requires:       glibc
 Requires:       gcc
 %description    bin
@@ -188,22 +129,9 @@ end
 
 %prep
 %setup -q -n go
-
 %patch210 -p0
-
-# increase verbosity of build
-%patch0 -p1
-
-# remove the P224 curve
-%patch1 -p1
-
-# use the arch dependent path in the bootstrap
 %patch212 -p1
-
-# disable TestGdbPython
 %patch213 -p1
-
-# disable TestCloneNEWUSERAndRemapNoRootDisableSetgroups
 %patch214 -p1
 
 %build
@@ -316,18 +244,6 @@ cp -av %{SOURCE102} $RPM_BUILD_ROOT%{_rpmconfigdir}/macros.d/macros.golang
 export GOROOT=$(pwd -P)
 export PATH="$GOROOT"/bin:"$PATH"
 cd src
-# skip using CGO for test. causes a SIGABRT on fc21 (bz1086900)
-# until this test/issue is fixed
-# https://bugzilla.redhat.com/show_bug.cgi?id=1086900
-# CGO for test, which fails in i686 on fc21 inside mock/chroot (bz1087621)
-# https://bugzilla.redhat.com/show_bug.cgi?id=1087621
-
-# not using our 'gcc' since the CFLAGS fails crash_cgo_test.go due to unused variables
-# https://code.google.com/p/go/issues/detail?id=6883
-
-# XXX reenable. likely go1.5beta2 https://github.com/golang/go/commit/9adf684686bad7c6319080d0b1da8308a77b08c9
-#CGO_ENABLED=0 ./run.bash --no-rebuild
-
 CC="gcc" \
 CFLAGS="$RPM_OPT_FLAGS" \
 LDFLAGS="$RPM_LD_FLAGS" \
@@ -394,3 +310,7 @@ fi
 
 
 %changelog
+* Thu Aug 20 2015 Cjacker <cjacker@foxmail.com>
+- update to 1.5.
+* Fri Aug 07 2015 Cjacker <cjacker@foxmail.com>
+- update to 1.5rc1

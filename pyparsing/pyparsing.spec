@@ -1,11 +1,10 @@
-%global with_python3 0 
+%global with_python3 1 
 %{!?python_sitelib: %global python_sitelib %(%{__python} -c "from distutils.sysconfig import get_python_lib; print (get_python_lib())")}
 
 Name:           pyparsing
 Version:        1.5.6
 Release:        6
 Summary:        An object-oriented approach to text processing
-Group:          Development/Libraries
 License:        MIT
 URL:            http://pyparsing.wikispaces.com/
 Source0:        http://downloads.sourceforge.net/pyparsing/pyparsing-%{version}.tar.gz
@@ -23,7 +22,6 @@ definitions for any number of text parsing applications.
 
 %package doc
 Summary:        Documentation for pyparsing
-Group:          Development/Libraries
 
 %description doc
 The package contains documentation for pyparsing.
@@ -31,7 +29,6 @@ The package contains documentation for pyparsing.
 %if 0%{?with_python3}
 %package -n python3-pyparsing
 Summary:        An object-oriented approach to text processing (Python 3 version)
-Group:          Development/Libraries
 
 %description -n python3-pyparsing
 pyparsing is a module that can be used to easily and directly configure syntax

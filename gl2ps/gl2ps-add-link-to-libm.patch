@@ -1,0 +1,15 @@
+diff -Nur gl2ps-1.3.8-source/CMakeLists.txt gl2ps-1.3.8-sourcen/CMakeLists.txt
+--- gl2ps-1.3.8-source/CMakeLists.txt	2012-11-27 19:41:06.000000000 +0000
++++ gl2ps-1.3.8-sourcen/CMakeLists.txt	2015-08-03 13:47:59.760020203 +0000
+@@ -140,9 +140,9 @@
+ 
+ if(GLUT_FOUND)
+   add_executable(gl2psTest WIN32 gl2psTest.c)
+-  target_link_libraries(gl2psTest lib ${EXTERNAL_LIBRARIES})
++  target_link_libraries(gl2psTest lib ${EXTERNAL_LIBRARIES} -lm)
+   add_executable(gl2psTestSimple WIN32 gl2psTestSimple.c)
+-  target_link_libraries(gl2psTestSimple lib ${EXTERNAL_LIBRARIES})
++  target_link_libraries(gl2psTestSimple lib ${EXTERNAL_LIBRARIES} -lm)
+ endif(GLUT_FOUND)
+ 
+ find_package(LATEX)

@@ -1,0 +1,42 @@
+--- ./callback/trampoline_r/trampoline.c.orig	2009-04-27 09:24:05.000000000 -0600
++++ ./callback/trampoline_r/trampoline.c	2012-01-10 12:03:02.752466354 -0700
+@@ -67,10 +67,6 @@ extern void (*tramp_r) (); /* trampoline
+ 
+ #ifndef CODE_EXECUTABLE
+ /* How do we make the trampoline's code executable? */
+-#if defined(HAVE_MACH_VM) || defined(__convex__) || defined(HAVE_WORKING_MPROTECT) || defined(HAVE_SYS_M88KBCS_H)
+-/* mprotect() [or equivalent] the malloc'ed area. */
+-#define EXECUTABLE_VIA_MPROTECT
+-#else
+ #ifdef HAVE_MMAP
+ /* Use an mmap'ed page. */
+ #define EXECUTABLE_VIA_MMAP
+@@ -90,7 +86,6 @@ extern void (*tramp_r) (); /* trampoline
+ #endif
+ #endif
+ #endif
+-#endif
+ 
+ #include <stdio.h> /* declares fprintf() */
+ 
+--- ./trampoline/trampoline.c.orig	2008-09-26 14:19:37.000000000 -0600
++++ ./trampoline/trampoline.c	2012-01-10 12:02:33.027731322 -0700
+@@ -67,10 +67,6 @@ extern void (*tramp) (); /* trampoline p
+ 
+ #ifndef CODE_EXECUTABLE
+ /* How do we make the trampoline's code executable? */
+-#if defined(HAVE_MACH_VM) || defined(__convex__) || defined(HAVE_WORKING_MPROTECT) || defined(HAVE_SYS_M88KBCS_H)
+-/* mprotect() [or equivalent] the malloc'ed area. */
+-#define EXECUTABLE_VIA_MPROTECT
+-#else
+ #ifdef HAVE_MMAP
+ /* Use an mmap'ed page. */
+ #define EXECUTABLE_VIA_MMAP
+@@ -90,7 +86,6 @@ extern void (*tramp) (); /* trampoline p
+ #endif
+ #endif
+ #endif
+-#endif
+ 
+ #include <stdio.h> /* declares fprintf() */
+ 

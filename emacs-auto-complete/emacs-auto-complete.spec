@@ -1,21 +1,21 @@
-Name:	    emacs-auto-complete
-Version:	1.4
-Release:    1	
-Summary:	emacs c/c++/objc codes auto complete based on clang.
-URL:	    http://cx4a.org/software/auto-complete	
-Group:		Development/Tools
-License:	GPL
+Name: emacs-auto-complete
+Version: 1.4
+Release: 2 
+Summary: emacs c/c++/objc codes auto complete based on clang.
+URL: http://cx4a.org/software/auto-complete	
+Group: Development/Tools
+License: GPL
 #do not use 1.3.1, conflicts with autopair mode.
-Source0:	auto-complete-%{version}.tar.bz2
+Source0: auto-complete-%{version}.tar.bz2
 #https://github.com/Golevka/emacs-clang-complete-async
-Source1:    emacs-clang-complete-async-master.zip
-Source2:    auto-complete-init.el 
-Patch0:     emacs-clang-complete-async-remove-flymake.patch
-Patch1:     emacs-clang-complete-async-with-macros-completion.patch
-Patch2:     emacs-clang-complete-async-run-only-once.patch
-Patch3:     emacs-clang-complete-async-auto-find-pch.patch
-Patch4:     emacs-clang-complete-fix-include-pch-crash.patch
-Patch5:     emacs-clang-complete-miss-header.patch
+Source1: emacs-clang-complete-async-master.zip
+Source2: auto-complete-init.el 
+Patch0: emacs-clang-complete-async-remove-flymake.patch
+Patch1: emacs-clang-complete-async-with-macros-completion.patch
+Patch2: emacs-clang-complete-async-run-only-once.patch
+Patch3: emacs-clang-complete-async-auto-find-pch.patch
+Patch4: emacs-clang-complete-fix-include-pch-crash.patch
+Patch5: emacs-clang-complete-miss-header.patch
 
 BuildRequires:	emacs libclang-devel
 Requires:	emacs emacs-init libclang
@@ -66,4 +66,5 @@ install -m 0644 %{SOURCE2} $RPM_BUILD_ROOT/usr/share/emacs/site-lisp/site-start.
 /usr/share/emacs/site-lisp/auto-complete
 /usr/share/emacs/site-lisp/*.el
 /usr/share/emacs/site-lisp/site-start.d/*.el
+
 %changelog

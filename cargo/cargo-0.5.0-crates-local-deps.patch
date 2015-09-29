@@ -1,0 +1,596 @@
+diff -Nur cargo-0.5.0/aho-corasick-0.3.0/Cargo.toml cargo-0.5.0n/aho-corasick-0.3.0/Cargo.toml
+--- cargo-0.5.0/aho-corasick-0.3.0/Cargo.toml	2015-07-15 06:03:46.000000000 +0800
++++ cargo-0.5.0n/aho-corasick-0.3.0/Cargo.toml	2015-09-17 17:18:36.926845925 +0800
+@@ -20,14 +20,7 @@
+ bench = false
+ 
+ [dependencies]
+-memchr = "0.1.*"
+-
+-[dev-dependencies]
+-csv = "*"
+-docopt = "*"
+-quickcheck = "*"
+-rand = "*"
+-rustc-serialize = "*"
++memchr = { version = "0.1.3", path = "../memchr-0.1.3" }
+ 
+ [[bench]]
+ name = "bench"
+diff -Nur cargo-0.5.0/curl-0.2.11/Cargo.toml cargo-0.5.0n/curl-0.2.11/Cargo.toml
+--- cargo-0.5.0/curl-0.2.11/Cargo.toml	2015-09-09 01:37:49.000000000 +0800
++++ cargo-0.5.0n/curl-0.2.11/Cargo.toml	2015-09-17 17:23:41.182682128 +0800
+@@ -8,37 +8,34 @@
+ description = "Rust bindings to libcurl for making HTTP requests"
+ 
+ [dependencies]
+-url = "0.2.0"
+-log = "0.3.0"
+-libc = "0.1"
+-curl-sys = { path = "curl-sys", version = "0.1.0" }
+-
+-[dev-dependencies]
+-env_logger = "0.3.0"
++url = { version = "0.2.37", path = "../url-0.2.37" }
++log = { version = "0.3.1", path = "../log-0.3.1" }
++libc = { version = "0.1.8", path = "../libc-0.1.8" }
++curl-sys = { version = "0.1.25", path = "../curl-sys-0.1.25" }
+ 
+ # Unix platforms use OpenSSL for now to provide SSL functionality
+ [target.i686-apple-darwin.dependencies]
+-openssl-sys = "0.6.0"
++openssl-sys = { version = "0.6.4", path = "../openssl-sys-0.6.4" }
+ [target.x86_64-apple-darwin.dependencies]
+-openssl-sys = "0.6.0"
++openssl-sys = { version = "0.6.4", path = "../openssl-sys-0.6.4" }
+ [target.i686-unknown-linux-gnu.dependencies]
+-openssl-sys = "0.6.0"
++openssl-sys = { version = "0.6.4", path = "../openssl-sys-0.6.4" }
+ [target.x86_64-unknown-linux-gnu.dependencies]
+-openssl-sys = "0.6.0"
++openssl-sys = { version = "0.6.4", path = "../openssl-sys-0.6.4" }
+ [target.arm-unknown-linux-gnueabihf.dependencies]
+-openssl-sys = "0.6.0"
++openssl-sys = { version = "0.6.4", path = "../openssl-sys-0.6.4" }
+ [target.aarch64-unknown-linux-gnu.dependencies]
+-openssl-sys = "0.6.0"
++openssl-sys = { version = "0.6.4", path = "../openssl-sys-0.6.4" }
+ [target.i686-unknown-freebsd.dependencies]
+-openssl-sys = "0.6.0"
++openssl-sys = { version = "0.6.4", path = "../openssl-sys-0.6.4" }
+ [target.x86_64-unknown-freebsd.dependencies]
+-openssl-sys = "0.6.0"
++openssl-sys = { version = "0.6.4", path = "../openssl-sys-0.6.4" }
+ [target.x86_64-unknown-bitrig.dependencies]
+-openssl-sys = "0.6.0"
++openssl-sys = { version = "0.6.4", path = "../openssl-sys-0.6.4" }
+ [target.x86_64-unknown-openbsd.dependencies]
+-openssl-sys = "0.6.0"
++openssl-sys = { version = "0.6.4", path = "../openssl-sys-0.6.4" }
+ [target.x86_64-unknown-dragonfly.dependencies]
+-openssl-sys = "0.6.0"
++openssl-sys = { version = "0.6.4", path = "../openssl-sys-0.6.4" }
+ 
+ [[test]]
+ 
+diff -Nur cargo-0.5.0/curl-sys-0.1.25/Cargo.toml cargo-0.5.0n/curl-sys-0.1.25/Cargo.toml
+--- cargo-0.5.0/curl-sys-0.1.25/Cargo.toml	2015-07-23 04:50:15.000000000 +0800
++++ cargo-0.5.0n/curl-sys-0.1.25/Cargo.toml	2015-09-17 17:18:36.971846197 +0800
+@@ -9,33 +9,33 @@
+ description = "Native bindings to the libcurl library"
+ 
+ [build-dependencies]
+-pkg-config = "0.3"
+-gcc = "0.3.10"
++pkg-config = { version = "0.3.5", path = "../pkg-config-0.3.5" }
++gcc = { version = "0.3.13", path = "../gcc-0.3.13" }
+ 
+ [lib]
+ name = "curl_sys"
+ path = "lib.rs"
+ 
+ [dependencies]
+-libz-sys = "0.1.0"
+-libc = "0.1"
++libz-sys = { version = "0.1.8", path = "../libz-sys-0.1.8" }
++libc = { version = "0.1.8", path = "../libc-0.1.8" }
+ 
+ # Unix platforms use OpenSSL for now to provide SSL functionality
+ [target.i686-apple-darwin.dependencies]
+-openssl-sys = "0.6.0"
++openssl-sys = { version = "0.6.4", path = "../openssl-sys-0.6.4" }
+ [target.x86_64-apple-darwin.dependencies]
+-openssl-sys = "0.6.0"
++openssl-sys = { version = "0.6.4", path = "../openssl-sys-0.6.4" }
+ [target.i686-unknown-linux-gnu.dependencies]
+-openssl-sys = "0.6.0"
++openssl-sys = { version = "0.6.4", path = "../openssl-sys-0.6.4" }
+ [target.x86_64-unknown-linux-gnu.dependencies]
+-openssl-sys = "0.6.0"
++openssl-sys = { version = "0.6.4", path = "../openssl-sys-0.6.4" }
+ [target.arm-unknown-linux-gnueabihf.dependencies]
+-openssl-sys = "0.6.0"
++openssl-sys = { version = "0.6.4", path = "../openssl-sys-0.6.4" }
+ [target.aarch64-unknown-linux-gnu.dependencies]
+-openssl-sys = "0.6.0"
++openssl-sys = { version = "0.6.4", path = "../openssl-sys-0.6.4" }
+ [target.i686-unknown-freebsd.dependencies]
+-openssl-sys = "0.6.0"
++openssl-sys = { version = "0.6.4", path = "../openssl-sys-0.6.4" }
+ [target.x86_64-unknown-freebsd.dependencies]
+-openssl-sys = "0.6.0"
++openssl-sys = { version = "0.6.4", path = "../openssl-sys-0.6.4" }
+ [target.x86_64-unknown-bitrig.dependencies]
+-openssl-sys = "0.6.0"
++openssl-sys = { version = "0.6.4", path = "../openssl-sys-0.6.4" }
+diff -Nur cargo-0.5.0/docopt-0.6.70/Cargo.toml cargo-0.5.0n/docopt-0.6.70/Cargo.toml
+--- cargo-0.5.0/docopt-0.6.70/Cargo.toml	2015-08-06 08:25:31.000000000 +0800
++++ cargo-0.5.0n/docopt-0.6.70/Cargo.toml	2015-09-17 17:18:36.971846197 +0800
+@@ -20,6 +20,6 @@
+ test = false
+ 
+ [dependencies]
+-regex = "0.1"
+-rustc-serialize = "0.3"
+-strsim = "0.3"
++regex = { version = "0.1.41", path = "../regex-0.1.41" }
++rustc-serialize = { version = "0.3.16", path = "../rustc-serialize-0.3.16" }
++strsim = { version = "0.3.0", path = "../strsim-0.3.0" }
+diff -Nur cargo-0.5.0/env_logger-0.3.1/Cargo.toml cargo-0.5.0n/env_logger-0.3.1/Cargo.toml
+--- cargo-0.5.0/env_logger-0.3.1/Cargo.toml	2015-05-18 23:48:21.000000000 +0800
++++ cargo-0.5.0n/env_logger-0.3.1/Cargo.toml	2015-09-17 17:18:36.971846197 +0800
+@@ -13,7 +13,7 @@
+ 
+ [dependencies.log]
+ version = "0.3"
+-path = ".."
++path = "../log-0.3.1"
+ 
+ [dependencies]
+-regex = "0.1"
++regex = { version = "0.1.41", path = "../regex-0.1.41" }
+diff -Nur cargo-0.5.0/filetime-0.1.5/Cargo.toml cargo-0.5.0n/filetime-0.1.5/Cargo.toml
+--- cargo-0.5.0/filetime-0.1.5/Cargo.toml	2015-07-30 01:14:37.000000000 +0800
++++ cargo-0.5.0n/filetime-0.1.5/Cargo.toml	2015-09-17 17:18:36.972846202 +0800
+@@ -13,9 +13,4 @@
+ """
+ 
+ [dependencies]
+-libc = "0.1"
+-kernel32-sys = "0.1"
+-winapi = "0.2"
+-
+-[dev-dependencies]
+-tempdir = "0.3"
++libc = { version = "0.1.8", path = "../libc-0.1.8" }
+diff -Nur cargo-0.5.0/filetime-0.1.5/src/lib.rs cargo-0.5.0n/filetime-0.1.5/src/lib.rs
+--- cargo-0.5.0/filetime-0.1.5/src/lib.rs	2015-07-30 01:12:28.000000000 +0800
++++ cargo-0.5.0n/filetime-0.1.5/src/lib.rs	2015-09-17 17:18:36.972846202 +0800
+@@ -35,7 +35,9 @@
+ //! ```
+ 
+ extern crate libc;
++#[cfg(windows)]
+ extern crate winapi;
++#[cfg(windows)]
+ extern crate kernel32;
+ 
+ #[cfg(unix)] use std::os::unix::prelude::*;
+diff -Nur cargo-0.5.0/flate2-0.2.7/Cargo.toml cargo-0.5.0n/flate2-0.2.7/Cargo.toml
+--- cargo-0.5.0/flate2-0.2.7/Cargo.toml	2015-04-23 23:47:43.000000000 +0800
++++ cargo-0.5.0n/flate2-0.2.7/Cargo.toml	2015-09-17 17:18:36.972846202 +0800
+@@ -16,8 +16,5 @@
+ """
+ 
+ [dependencies]
+-libc = "0.1"
+-miniz-sys = { path = "miniz-sys", version = "0.1" }
+-
+-[dev-dependencies]
+-rand = "0.3"
++libc = { version = "0.1.8", path = "../libc-0.1.8" }
++miniz-sys = { version = "0.1.5", path = "../miniz-sys-0.1.5" }
+diff -Nur cargo-0.5.0/gcc-0.3.13/Cargo.toml cargo-0.5.0n/gcc-0.3.13/Cargo.toml
+--- cargo-0.5.0/gcc-0.3.13/Cargo.toml	2015-08-11 06:03:29.000000000 +0800
++++ cargo-0.5.0n/gcc-0.3.13/Cargo.toml	2015-09-17 17:18:36.972846202 +0800
+@@ -12,16 +12,3 @@
+ code.
+ """
+ keywords = ["build-dependencies"]
+-
+-[target.i686-pc-windows-msvc.dependencies]
+-winapi = "0.2.1"
+-advapi32-sys = "0.1.2"
+-[target.x86_64-pc-windows-msvc.dependencies]
+-winapi = "0.2.1"
+-advapi32-sys = "0.1.2"
+-[target.i686-pc-windows-gnu.dependencies]
+-winapi = "0.2.1"
+-advapi32-sys = "0.1.2"
+-[target.x86_64-pc-windows-gnu.dependencies]
+-winapi = "0.2.1"
+-advapi32-sys = "0.1.2"
+diff -Nur cargo-0.5.0/git2-0.2.14/Cargo.toml cargo-0.5.0n/git2-0.2.14/Cargo.toml
+--- cargo-0.5.0/git2-0.2.14/Cargo.toml	2015-07-28 00:35:29.000000000 +0800
++++ cargo-0.5.0n/git2-0.2.14/Cargo.toml	2015-09-17 17:18:36.973846209 +0800
+@@ -16,16 +16,10 @@
+ """
+ 
+ [dependencies]
+-url = "0.2"
+-bitflags = "0.1"
+-libc = "0.1"
+-libgit2-sys = { path = "libgit2-sys", version = "0.2.3" }
+-
+-[dev-dependencies]
+-docopt = "0.6"
+-rustc-serialize = "0.3"
+-time = "0.1"
+-tempdir = "0.3"
++url = { version = "0.2.37", path = "../url-0.2.37" }
++bitflags = { version = "0.1.1", path = "../bitflags-0.1.1" }
++libc = { version = "0.1.8", path = "../libc-0.1.8" }
++libgit2-sys = { version = "0.2.20", path = "../libgit2-sys-0.2.20" }
+ 
+ [features]
+ unstable = []
+diff -Nur cargo-0.5.0/git2-curl-0.2.4/Cargo.toml cargo-0.5.0n/git2-curl-0.2.4/Cargo.toml
+--- cargo-0.5.0/git2-curl-0.2.4/Cargo.toml	2015-04-21 00:39:56.000000000 +0800
++++ cargo-0.5.0n/git2-curl-0.2.4/Cargo.toml	2015-09-17 17:18:36.973846209 +0800
+@@ -14,20 +14,14 @@
+ """
+ 
+ [dependencies]
+-curl = "0.2"
+-url = "0.2"
+-log = "0.3"
++curl = { version = "0.2.11", path = "../curl-0.2.11" }
++url = { version = "0.2.37", path = "../url-0.2.37" }
++log = { version = "0.3.1", path = "../log-0.3.1" }
+ 
+ [dependencies.git2]
+-path = ".."
++path = "../git2-0.2.14"
+ version = "0.2"
+ 
+-[dev-dependencies]
+-civet = "0.7"
+-conduit = "0.7"
+-conduit-git-http-backend = "0.7"
+-tempdir = "0.3"
+-
+ [[test]]
+ name = "all"
+ harness = false
+diff -Nur cargo-0.5.0/glob-0.2.10/Cargo.toml cargo-0.5.0n/glob-0.2.10/Cargo.toml
+--- cargo-0.5.0/glob-0.2.10/Cargo.toml	2015-04-14 08:48:17.000000000 +0800
++++ cargo-0.5.0n/glob-0.2.10/Cargo.toml	2015-09-17 17:18:36.973846209 +0800
+@@ -10,6 +10,3 @@
+ description = """
+ Support for matching file paths against Unix shell style patterns.
+ """
+-
+-[dev-dependencies]
+-tempdir = "0.3"
+diff -Nur cargo-0.5.0/libgit2-sys-0.2.20/Cargo.toml cargo-0.5.0n/libgit2-sys-0.2.20/Cargo.toml
+--- cargo-0.5.0/libgit2-sys-0.2.20/Cargo.toml	2015-07-23 04:09:02.000000000 +0800
++++ cargo-0.5.0n/libgit2-sys-0.2.20/Cargo.toml	2015-09-17 17:18:37.059846727 +0800
+@@ -14,42 +14,42 @@
+ path = "lib.rs"
+ 
+ [dependencies]
+-libssh2-sys = "0.1.26"
+-libc = "0.1"
++libssh2-sys = { version = "0.1.30", path = "../libssh2-sys-0.1.30" }
++libc = { version = "0.1.8", path = "../libc-0.1.8" }
+ 
+ [build-dependencies]
+-pkg-config = "0.3"
++pkg-config = { version = "0.3.5", path = "../pkg-config-0.3.5" }
+ 
+ [target.i686-apple-darwin.dependencies]
+-openssl-sys = "0.6.0"
+-libz-sys = "0.1.0"
++openssl-sys = { version = "0.6.4", path = "../openssl-sys-0.6.4" }
++libz-sys = { version = "0.1.8", path = "../libz-sys-0.1.8" }
+ [target.x86_64-apple-darwin.dependencies]
+-openssl-sys = "0.6.0"
+-libz-sys = "0.1.0"
++openssl-sys = { version = "0.6.4", path = "../openssl-sys-0.6.4" }
++libz-sys = { version = "0.1.8", path = "../libz-sys-0.1.8" }
+ [target.i686-unknown-linux-gnu.dependencies]
+-openssl-sys = "0.6.0"
+-libz-sys = "0.1.0"
++openssl-sys = { version = "0.6.4", path = "../openssl-sys-0.6.4" }
++libz-sys = { version = "0.1.8", path = "../libz-sys-0.1.8" }
+ [target.x86_64-unknown-linux-gnu.dependencies]
+-openssl-sys = "0.6.0"
+-libz-sys = "0.1.0"
++openssl-sys = { version = "0.6.4", path = "../openssl-sys-0.6.4" }
++libz-sys = { version = "0.1.8", path = "../libz-sys-0.1.8" }
+ [target.aarch64-unknown-linux-gnu.dependencies]
+-openssl-sys = "0.6.0"
+-libz-sys = "0.1.0"
++openssl-sys = { version = "0.6.4", path = "../openssl-sys-0.6.4" }
++libz-sys = { version = "0.1.8", path = "../libz-sys-0.1.8" }
+ [target.arm-unknown-linux-gnueabihf.dependencies]
+-openssl-sys = "0.6.0"
+-libz-sys = "0.1.0"
++openssl-sys = { version = "0.6.4", path = "../openssl-sys-0.6.4" }
++libz-sys = { version = "0.1.8", path = "../libz-sys-0.1.8" }
+ [target.i686-unknown-freebsd.dependencies]
+-openssl-sys = "0.6.0"
+-libz-sys = "0.1.0"
++openssl-sys = { version = "0.6.4", path = "../openssl-sys-0.6.4" }
++libz-sys = { version = "0.1.8", path = "../libz-sys-0.1.8" }
+ [target.x86_64-unknown-freebsd.dependencies]
+-openssl-sys = "0.6.0"
+-libz-sys = "0.1.0"
++openssl-sys = { version = "0.6.4", path = "../openssl-sys-0.6.4" }
++libz-sys = { version = "0.1.8", path = "../libz-sys-0.1.8" }
+ [target.x86_64-unknown-bitrig.dependencies]
+-openssl-sys = "0.6.0"
+-libz-sys = "0.1.0"
++openssl-sys = { version = "0.6.4", path = "../openssl-sys-0.6.4" }
++libz-sys = { version = "0.1.8", path = "../libz-sys-0.1.8" }
+ [target.x86_64-unknown-openbsd.dependencies]
+-openssl-sys = "0.6.0"
+-libz-sys = "0.1.0"
++openssl-sys = { version = "0.6.4", path = "../openssl-sys-0.6.4" }
++libz-sys = { version = "0.1.8", path = "../libz-sys-0.1.8" }
+ [target.x86_64-unknown-dragonfly.dependencies]
+-openssl-sys = "0.6.0"
+-libz-sys = "0.1.0"
++openssl-sys = { version = "0.6.4", path = "../openssl-sys-0.6.4" }
++libz-sys = { version = "0.1.8", path = "../libz-sys-0.1.8" }
+diff -Nur cargo-0.5.0/libssh2-sys-0.1.30/Cargo.toml cargo-0.5.0n/libssh2-sys-0.1.30/Cargo.toml
+--- cargo-0.5.0/libssh2-sys-0.1.30/Cargo.toml	2015-08-19 01:23:46.000000000 +0800
++++ cargo-0.5.0n/libssh2-sys-0.1.30/Cargo.toml	2015-09-17 17:22:01.628081187 +0800
+@@ -13,32 +13,32 @@
+ path = "lib.rs"
+ 
+ [dependencies]
+-libz-sys = "0.1.0"
+-libc = "0.1"
++libz-sys = { version = "0.1.8", path = "../libz-sys-0.1.8" }
++libc = { version = "0.1.8", path = "../libc-0.1.8" }
+ 
+ [target.i686-apple-darwin.dependencies]
+-openssl-sys = "0.6.0"
++openssl-sys = { version = "0.6.4", path = "../openssl-sys-0.6.4" }
+ [target.x86_64-apple-darwin.dependencies]
+-openssl-sys = "0.6.0"
++openssl-sys = { version = "0.6.4", path = "../openssl-sys-0.6.4" }
+ [target.i686-unknown-linux-gnu.dependencies]
+-openssl-sys = "0.6.0"
++openssl-sys = { version = "0.6.4", path = "../openssl-sys-0.6.4" }
+ [target.x86_64-unknown-linux-gnu.dependencies]
+-openssl-sys = "0.6.0"
++openssl-sys = { version = "0.6.4", path = "../openssl-sys-0.6.4" }
+ [target.aarch64-unknown-linux-gnu.dependencies]
+-openssl-sys = "0.6.0"
++openssl-sys = { version = "0.6.4", path = "../openssl-sys-0.6.4" }
+ [target.arm-unknown-linux-gnueabihf.dependencies]
+-openssl-sys = "0.6.0"
++openssl-sys = { version = "0.6.4", path = "../openssl-sys-0.6.4" }
+ [target.i686-unknown-freebsd.dependencies]
+-openssl-sys = "0.6.0"
++openssl-sys = { version = "0.6.4", path = "../openssl-sys-0.6.4" }
+ [target.x86_64-unknown-freebsd.dependencies]
+-openssl-sys = "0.6.0"
++openssl-sys = { version = "0.6.4", path = "../openssl-sys-0.6.4" }
+ [target.x86_64-unknown-dragonfly.dependencies]
+-openssl-sys = "0.6.0"
++openssl-sys = { version = "0.6.4", path = "../openssl-sys-0.6.4" }
+ [target.x86_64-unknown-bitrig.dependencies]
+-openssl-sys = "0.6.0"
++openssl-sys = { version = "0.6.4", path = "../openssl-sys-0.6.4" }
+ [target.x86_64-unknown-openbsd.dependencies]
+-openssl-sys = "0.6.0"
++openssl-sys = { version = "0.6.4", path = "../openssl-sys-0.6.4" }
+ 
+ [build-dependencies]
+-pkg-config = "0.3"
+-cmake = "0.1.2"
++pkg-config = { version = "0.3.5", path = "../pkg-config-0.3.5" }
++cmake = { version = "0.1.3", path = "../cmake-0.1.3" }
+diff -Nur cargo-0.5.0/libz-sys-0.1.8/Cargo.toml cargo-0.5.0n/libz-sys-0.1.8/Cargo.toml
+--- cargo-0.5.0/libz-sys-0.1.8/Cargo.toml	2015-08-14 11:33:57.000000000 +0800
++++ cargo-0.5.0n/libz-sys-0.1.8/Cargo.toml	2015-09-17 17:18:37.070846794 +0800
+@@ -13,8 +13,8 @@
+ """
+ 
+ [dependencies]
+-libc = "0.1"
++libc = { version = "0.1.8", path = "../libc-0.1.8" }
+ 
+ [build-dependencies]
+-pkg-config = "0.3"
+-gcc = "0.3.10"
++pkg-config = { version = "0.3.5", path = "../pkg-config-0.3.5" }
++gcc = { version = "0.3.13", path = "../gcc-0.3.13" }
+diff -Nur cargo-0.5.0/log-0.3.1/Cargo.toml cargo-0.5.0n/log-0.3.1/Cargo.toml
+--- cargo-0.5.0/log-0.3.1/Cargo.toml	2015-03-29 02:20:02.000000000 +0800
++++ cargo-0.5.0n/log-0.3.1/Cargo.toml	2015-09-17 17:18:37.070846794 +0800
+@@ -17,4 +17,4 @@
+ harness = false
+ 
+ [dependencies]
+-libc = "0.1"
++libc = { version = "0.1.8", path = "../libc-0.1.8" }
+diff -Nur cargo-0.5.0/memchr-0.1.3/Cargo.toml cargo-0.5.0n/memchr-0.1.3/Cargo.toml
+--- cargo-0.5.0/memchr-0.1.3/Cargo.toml	2015-06-15 04:15:11.000000000 +0800
++++ cargo-0.5.0n/memchr-0.1.3/Cargo.toml	2015-09-17 17:18:37.070846794 +0800
+@@ -14,7 +14,4 @@
+ name = "memchr"
+ 
+ [dependencies]
+-libc = "0.1.*"
+-
+-[dev-dependencies]
+-quickcheck = "0.2.*"
++libc = { version = "0.1.8", path = "../libc-0.1.8" }
+diff -Nur cargo-0.5.0/miniz-sys-0.1.5/Cargo.toml cargo-0.5.0n/miniz-sys-0.1.5/Cargo.toml
+--- cargo-0.5.0/miniz-sys-0.1.5/Cargo.toml	2015-05-15 07:18:01.000000000 +0800
++++ cargo-0.5.0n/miniz-sys-0.1.5/Cargo.toml	2015-09-17 17:18:37.070846794 +0800
+@@ -16,7 +16,7 @@
+ path = "lib.rs"
+ 
+ [dependencies]
+-libc = "0.1"
++libc = { version = "0.1.8", path = "../libc-0.1.8" }
+ 
+ [build-dependencies]
+-gcc = "0.3"
++gcc = { version = "0.3.13", path = "../gcc-0.3.13" }
+diff -Nur cargo-0.5.0/num_cpus-0.2.6/Cargo.toml cargo-0.5.0n/num_cpus-0.2.6/Cargo.toml
+--- cargo-0.5.0/num_cpus-0.2.6/Cargo.toml	2015-05-26 00:02:46.000000000 +0800
++++ cargo-0.5.0n/num_cpus-0.2.6/Cargo.toml	2015-09-17 17:18:37.071846800 +0800
+@@ -9,4 +9,4 @@
+ 
+ 
+ [dependencies]
+-libc = "0.1.7"
++libc = { version = "0.1.8", path = "../libc-0.1.8" }
+diff -Nur cargo-0.5.0/openssl-sys-0.6.4/Cargo.toml cargo-0.5.0n/openssl-sys-0.6.4/Cargo.toml
+--- cargo-0.5.0/openssl-sys-0.6.4/Cargo.toml	2015-07-07 02:13:25.000000000 +0800
++++ cargo-0.5.0n/openssl-sys-0.6.4/Cargo.toml	2015-09-17 17:18:37.071846800 +0800
+@@ -22,17 +22,8 @@
+ alpn = []
+ 
+ [dependencies]
+-libc = "0.1"
++libc = { version = "0.1.8", path = "../libc-0.1.8" }
+ 
+ [build-dependencies]
+-pkg-config = "0.3"
+-gcc = "0.3"
+-
+-[target.le32-unknown-nacl.dependencies]
+-libressl-pnacl-sys = "2.1.0"
+-[target.x86_64-unknown-nacl.dependencies]
+-libressl-pnacl-sys = "2.1.0"
+-[target.i686-unknown-nacl.dependencies]
+-libressl-pnacl-sys = "2.1.0"
+-[target.arm-unknown-nacl.dependencies]
+-libressl-pnacl-sys = "2.1.0"
++pkg-config = { version = "0.3.5", path = "../pkg-config-0.3.5" }
++gcc = { version = "0.3.13", path = "../gcc-0.3.13" }
+diff -Nur cargo-0.5.0/regex-0.1.41/Cargo.toml cargo-0.5.0n/regex-0.1.41/Cargo.toml
+--- cargo-0.5.0/regex-0.1.41/Cargo.toml	2015-07-15 06:08:35.000000000 +0800
++++ cargo-0.5.0n/regex-0.1.41/Cargo.toml	2015-09-17 17:22:31.599262091 +0800
+@@ -34,12 +34,9 @@
+ bench = true
+ 
+ [dependencies]
+-aho-corasick = "0.3"
+-memchr = "0.1"
+-regex-syntax = { path = "regex-syntax", version = "0.2" }
+-
+-[dev-dependencies]
+-rand = "0.3"
++aho-corasick = { version = "0.3.0", path = "../aho-corasick-0.3.0" }
++memchr = { version = "0.1.3", path = "../memchr-0.1.3" }
++regex-syntax = { path = "../regex-syntax-0.2.1", version = "0.2" }
+ 
+ [features]
+ pattern = []
+diff -Nur cargo-0.5.0/regex-syntax-0.2.1/Cargo.toml cargo-0.5.0n/regex-syntax-0.2.1/Cargo.toml
+--- cargo-0.5.0/regex-syntax-0.2.1/Cargo.toml	2015-07-22 06:35:34.000000000 +0800
++++ cargo-0.5.0n/regex-syntax-0.2.1/Cargo.toml	2015-09-17 17:18:37.073846812 +0800
+@@ -7,7 +7,3 @@
+ documentation = "http://doc.rust-lang.org/regex"
+ homepage = "https://github.com/rust-lang/regex"
+ description = "A regular expression parser."
+-
+-[dev-dependencies]
+-quickcheck = "0.2"
+-rand = "0.3"
+diff -Nur cargo-0.5.0/rustc-serialize-0.3.16/Cargo.toml cargo-0.5.0n/rustc-serialize-0.3.16/Cargo.toml
+--- cargo-0.5.0/rustc-serialize-0.3.16/Cargo.toml	2015-08-17 01:55:45.000000000 +0800
++++ cargo-0.5.0n/rustc-serialize-0.3.16/Cargo.toml	2015-09-17 17:18:37.073846812 +0800
+@@ -13,6 +13,3 @@
+ `derive(RustcEncodable, RustcDecodable)` mode in the compiler. Also includes
+ support for hex, base64, and json encoding and decoding.
+ """
+-
+-[dev-dependencies]
+-rand = "0.3"
+diff -Nur cargo-0.5.0/tar-0.3.1/Cargo.toml cargo-0.5.0n/tar-0.3.1/Cargo.toml
+--- cargo-0.5.0/tar-0.3.1/Cargo.toml	2015-08-01 02:24:00.000000000 +0800
++++ cargo-0.5.0n/tar-0.3.1/Cargo.toml	2015-09-17 17:19:49.420283317 +0800
+@@ -18,8 +18,5 @@
+ """
+ 
+ [dependencies]
+-libc = "0.1"
+-filetime = "0.1.5"
+-
+-[dev-dependencies]
+-tempdir = "0.3"
++libc = { version = "0.1.8", path = "../libc-0.1.8" }
++filetime = { version = "0.1.5", path = "../filetime-0.1.5" }
+diff -Nur cargo-0.5.0/term-0.2.11/Cargo.toml cargo-0.5.0n/term-0.2.11/Cargo.toml
+--- cargo-0.5.0/term-0.2.11/Cargo.toml	2015-07-14 22:05:09.000000000 +0800
++++ cargo-0.5.0n/term-0.2.11/Cargo.toml	2015-09-17 17:18:37.074846818 +0800
+@@ -11,7 +11,3 @@
+ description = """
+ A terminal formatting library
+ """
+-
+-[dependencies]
+-winapi = "0.2"
+-kernel32-sys = "0.1"
+diff -Nur cargo-0.5.0/time-0.1.32/Cargo.toml cargo-0.5.0n/time-0.1.32/Cargo.toml
+--- cargo-0.5.0/time-0.1.32/Cargo.toml	2015-07-30 00:17:39.000000000 +0800
++++ cargo-0.5.0n/time-0.1.32/Cargo.toml	2015-09-17 17:26:07.406564937 +0800
+@@ -12,11 +12,5 @@
+ """
+ 
+ [dependencies]
+-libc = "0.1"
+-winapi = "0.2.0"
+-kernel32-sys = "0.1.2"
+-rustc-serialize = { version = "0.3", optional = true }
+-
+-[dev-dependencies]
+-log = "0.3"
+-advapi32-sys = "0.1.2"
++libc = { version = "0.1.8", path = "../libc-0.1.8" }
++rustc-serialize = { version = "0.3", optional = true, path = "../rustc-serialize-0.3.16" }
+diff -Nur cargo-0.5.0/toml-0.1.22/Cargo.toml cargo-0.5.0n/toml-0.1.22/Cargo.toml
+--- cargo-0.5.0/toml-0.1.22/Cargo.toml	2015-08-14 00:56:49.000000000 +0800
++++ cargo-0.5.0n/toml-0.1.22/Cargo.toml	2015-09-17 17:26:03.368540556 +0800
+@@ -16,11 +16,7 @@
+ """
+ 
+ [dependencies]
+-rustc-serialize = { optional = true, version = "0.3.0" }
+-serde = { optional = true, version = "0.5" }
++rustc-serialize = { optional = true, version = "0.3.0", path = "../rustc-serialize-0.3.16" }
+ 
+ [features]
+ default = ["rustc-serialize"]
+-
+-[dev-dependencies]
+-rustc-serialize = "0.3"
+diff -Nur cargo-0.5.0/url-0.2.37/Cargo.toml cargo-0.5.0n/url-0.2.37/Cargo.toml
+--- cargo-0.5.0/url-0.2.37/Cargo.toml	2015-08-13 22:55:37.000000000 +0800
++++ cargo-0.5.0n/url-0.2.37/Cargo.toml	2015-09-17 17:18:37.077846836 +0800
+@@ -33,5 +33,5 @@
+ optional = true
+ 
+ [dependencies]
+-rustc-serialize = "0.3"
+-matches = "0.1"
++rustc-serialize = { version = "0.3.16", path = "../rustc-serialize-0.3.16" }
++matches = { version = "0.1.2", path = "../matches-0.1.2" }
+diff -Nur cargo-0.5.0/cmake-0.1.3/Cargo.toml cargo-0.5.0new/cmake-0.1.3/Cargo.toml
+--- cargo-0.5.0/cmake-0.1.3/Cargo.toml	2015-08-11 14:57:10.000000000 +0800
++++ cargo-0.5.0new/cmake-0.1.3/Cargo.toml	2015-09-17 17:30:45.592244830 +0800
+@@ -14,4 +14,4 @@
+ """
+ 
+ [dependencies]
+-gcc = "0.3.11"
++gcc = { version = "0.3.13", path = "../gcc-0.3.13" }

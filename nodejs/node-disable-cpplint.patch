@@ -1,0 +1,11 @@
+diff -Nur node-v0.12.5/Makefile node-v0.12.5n/Makefile
+--- node-v0.12.5/Makefile	2015-06-22 18:22:53.000000000 +0000
++++ node-v0.12.5n/Makefile	2015-06-24 14:16:03.374251891 +0000
+@@ -88,7 +88,6 @@
+ test: all
+ 	$(PYTHON) tools/test.py --mode=release simple message
+ 	$(MAKE) jslint
+-	$(MAKE) cpplint
+ 
+ test-http1: all
+ 	$(PYTHON) tools/test.py --mode=release --use-http1 simple message

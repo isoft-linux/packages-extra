@@ -1,65 +1,42 @@
 #it's part of qemu, since spice need libcacard and qemu need spice library.
 #here seperate it.
 
-%define _udevdir /usr/lib/udev/rules.d
+%define _udevdir %{_libdir}/udev/rules.d
 
 Summary: Common Access Card (CAC) Emulation Development library
 Name:    libcacard 
-Version: 2.3.0
-Release: 1 
+Version: 2.4.0
+Release: 1
 License: GPLv2+ and LGPLv2+ and BSD
-Group:   App/Runtime/Library
 URL: http://www.qemu.org/
 Source0: qemu-%{version}.tar.bz2
 
-BuildRequires: SDL2-devel zlib-devel which
-BuildRequires: libaio-devel
-BuildRequires: pciutils-devel
+BuildRequires: zlib-devel which
 BuildRequires: ncurses-devel
-BuildRequires: spice-protocol
-BuildRequires: usbredir-devel
+BuildRequires: nss-devel nspr-devel glib2-devel
 
 %description
 Common Access Card (CAC) Emulation
 
 %package devel
 Summary:   CAC Emulation devel
-Group:     App/Development/Library
 Requires:  libcacard = %{version}-%{release}
 
 %description devel
 Common Access Card (CAC) Emulation Development library
 
-
-
 %prep
 %setup -q -n qemu-%{version}
 
 %build
-export CC=clang
-export CXX=clang++
+#if build with clang, should enable it.
+#--extra-cflags="$RPM_OPT_FLAGS -fno-integrated-as"
 ./configure --prefix=%{_prefix} \
             --sysconfdir=%{_sysconfdir} \
             --libdir=%{_libdir} \
             --sysconfdir=%{_sysconfdir} \
             --localstatedir=%{_localstatedir} \
-            --libexecdir=%{_libexecdir} \
-            --target-list=x86_64-softmmu \
-            --audio-drv-list=pa,alsa \
-            --disable-spice \
-            --enable-gtk \
-            --disable-sdl \
-            --enable-virtfs \
-            --enable-vnc \
-            --enable-kvm \
-            --enable-libusb \
-            --enable-usb-redir \
-            --disable-strip \
-            --disable-xen \
-            --disable-gtk \
-            --disable-vnc-sasl \
-            --extra-ldflags="$extraldflags -lrt" \
-            --extra-cflags="$RPM_OPT_FLAGS -fno-integrated-as"
+            --extra-ldflags="$extraldflags -lrt"
             
 
 make V=1 %{?_smp_mflags} libcacard
@@ -69,7 +46,6 @@ rm -rf $RPM_BUILD_ROOT
 make install-libcacard DESTDIR=$RPM_BUILD_ROOT
 
 chmod +x $RPM_BUILD_ROOT/%{_libdir}/*
-rpmclean
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -88,4 +64,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/libcacard.so
 %{_libdir}/libcacard.a
 %dir %{_includedir}/cacard
+%{_includedir}/cacard/*
+
+%changelog
+* Wed Aug 12 2015 Cjacker <cjacker@foxmail.com>
+- update to 2.4.0
 %{_includedir}/cacard/*

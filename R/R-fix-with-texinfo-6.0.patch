@@ -1,0 +1,14 @@
+diff -Nur R-3.2.1/configure R-3.2.1n/configure
+--- R-3.2.1/configure	2015-06-10 22:16:27.000000000 +0000
++++ R-3.2.1n/configure	2015-08-03 22:08:51.814775471 +0000
+@@ -5269,8 +5269,8 @@
+ if test -z "${texi2any_version_maj}" \
+      || test -z "${texi2any_version_min}"; then
+   r_cv_prog_texi2any_v5=no
+-elif test ${texi2any_version_maj} -lt 5 \
+-     || test ${texi2any_version_min} -lt 1; then
++elif test ${texi2any_version_maj} -lt 6 \
++     || test ${texi2any_version_min} -lt 0; then
+   r_cv_prog_texi2any_v5=no
+ else
+   r_cv_prog_texi2any_v5=yes

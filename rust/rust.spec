@@ -5,8 +5,8 @@
 %global with_system_llvm 0
 
 Name: rust
-Version: 1.1.0
-Release: 1
+Version: 1.3.0
+Release: 2 
 Summary: rust programming language	
 
 Group:   Software/Development/Language
@@ -14,14 +14,20 @@ License: Apache
 URL:	 http://www.rust-lang.org	
 
 Source0: https://static.rust-lang.org/dist/rustc-%{version}-src.tar.gz
-Source1: http://static.rust-lang.org/stage0-snapshots/rust-stage0-2015-04-27-857ef6e-linux-x86_64-94089740e48167c5975c92c139ae9c286764012f.tar.bz2
-Source2: http://static.rust-lang.org/stage0-snapshots/rust-stage0-2015-04-27-857ef6e-linux-i386-0bc8cffdce611fb71fd7d3d8e7cdbfaf748a4f16.tar.bz2
+#see src/snapshots.txt
+Source1: http://static.rust-lang.org/stage0-snapshots/rust-stage0-2015-07-26-a5c12f4-linux-x86_64-e451e3bd6e5fcef71e41ae6f3da9fb1cf0e13a0c.tar.bz2
+Source2: https://static.rust-lang.org/stage0-snapshots/rust-stage0-2015-07-26-a5c12f4-linux-i386-3459275cdf3896f678e225843fa56f0d9fdbabe8.tar.bz2
+
+Source10: rust-src.sh
 
 Patch0:	rustc-with-clang-3.7.patch
 #warning/error with clang-3.7.
 Patch1: rust-fix-llvm-warning.patch
 
 Patch2: rust-1.1.0-install.patch
+
+#add isoft tripple
+Patch3: rust-add-isoft-tripple.patch
 
 #only support amd64/x86
 ExclusiveArch: x86_64 %{ix86}
@@ -41,10 +47,25 @@ Requires:       %{name} = %{version}-%{release}
 The %{name}-devel package contains libraries and header files for
 developing applications that use %{name}.
 
+%package        src
+Summary:        Source files for %{name}
+Requires:       %{name} = %{version}-%{release}
+
+%description   src
+The %{name}-src package contains all sources of rust, intend to used by racer and other utilities.
+
+#filter out any requires/dependencies of sources.
+%{?filter_setup:
+%filter_provides_in /usr/src/rust
+%filter_requires_in /usr/src/rust
+%filter_setup
+}
+
+
 %prep
 %setup -q -n rustc-%{version}
-%patch0 -p1
-%patch1 -p1
+#%patch0 -p1
+#%patch1 -p1
 %patch2 -p0
 
 #for bootstrap
@@ -52,8 +73,26 @@ mkdir dl
 cp %{SOURCE1} dl
 cp %{SOURCE2} dl
 
+#setup triplets
+#for i686
+#cp mk/cfg/i686-unknown-linux-gnu.mk mk/cfg/i686-isoft-linux.mk
+#sed -i 's|-gnu||g' mk/cfg/i686-isoft-linux.mk
+#sed -i 's|unknown|isoft|g' mk/cfg/i686-isoft-linux.mk
+#cp src/librustc_back/target/i686_unknown_linux_gnu.rs src/librustc_back/target/i686_isoft_linux.rs
+#sed -i 's|i686-unknown-linux-gnu|i686-isoft-linux|g' src/librustc_back/target/i686_isoft_linux.rs
+#
+##for x86_64
+#cp mk/cfg/x86_64-unknown-linux-gnu.mk mk/cfg/x86_64-isoft-linux.mk
+#sed -i 's|-gnu||g' mk/cfg/x86_64-isoft-linux.mk
+#sed -i 's|unknown|isoft|g' mk/cfg/x86_64-isoft-linux.mk
+#cp src/librustc_back/target/x86_64_unknown_linux_gnu.rs src/librustc_back/target/x86_64_isoft_linux.rs
+#sed -i 's|x86_64-unknown-linux-gnu|x86_64-isoft-linux|g' src/librustc_back/target/x86_64_isoft_linux.rs
+#
+#%patch3 -p1
+
 %build
-./configure --prefix=%{_prefix} \
+./configure \
+    --prefix=%{_prefix} \
     --sysconfdir=%{_sysconfdir} \
     --datadir=%{_datadir} \
     --infodir=%{_infodir} \
@@ -86,9 +125,29 @@ chmod 755 $RPM_BUILD_ROOT%{_libdir}/rustlib/*/*/*.so
 mkdir -p %{buildroot}/%{_docdir}/rust-doc
 cp -ra doc/* %{buildroot}/%{_docdir}/rust-doc
 
+#install all sources, some utils such as racer need it.
+mkdir -p %{buildroot}%{_prefix}/src/rust
+tar xf %{SOURCE0} -C %{buildroot}%{_prefix}/src/rust --strip-components=1
+
+pushd %{buildroot}%{_prefix}/src/rust
+rm -rf man mk A* L* C* M* R* configure
+pushd src
+rm -rf llvm rustllvm rt compiler-rt test jemalloc libbacktrace etc doc rust-intaller
+popd
+
+#fix perms.
+find . -type d|xargs chmod 755 ||:
+find . -type f|xargs chmod 644 ||:
+popd
+
+mkdir -p %{buildroot}%{_sysconfdir}/profile.d
+install -m 0755 %{SOURCE10} %{buildroot}%{_sysconfdir}/profile.d/rust-src.sh
+
+
 %check
 #too long to run everytime
 #make check
+
 
 %files
 %{_bindir}/rust-gdb
@@ -102,7 +161,20 @@ cp -ra doc/* %{buildroot}/%{_docdir}/rust-doc
 %{_docdir}/rust
 %{_docdir}/rust-doc
 
+%files src
+%{_sysconfdir}/profile.d/rust-src.sh
+%{_prefix}/src/rust/
+
 %changelog
+* Fri Sep 18 2015 Cjacker <cjacker@foxmail.com>
+- update to 1.3.0
+
+* Mon Aug 17 2015 Cjacker <cjacker@foxmail.com>
+- add src package.
+
+* Sat Aug 08 2015 Cjacker <cjacker@foxmail.com>
+- update to 1.2.0
+
 * Tue Jul 28 2015 Cjacker <cjacker@foxmail.com>
 - update to 1.1.0
 - add ix86 build support.

@@ -1,0 +1,11 @@
+--- ucimf-openvanilla-2.10.11/src/openvanilla.cpp	2010-07-13 14:45:33.000000000 -0800
++++ ucimf-openvanilla-2.10.11n/src/openvanilla.cpp	2014-11-12 14:05:21.894967345 -0800
+@@ -29,7 +29,7 @@
+  * implementation of OVImfKeyCode
+  */
+ 
+-OVImfKeyCode::OVImfKeyCode (int p=0)  { chr=p; shift=capslock=ctrl=alt=0; }
++OVImfKeyCode::OVImfKeyCode (int p)  { chr=p; shift=capslock=ctrl=alt=0; }
+ int OVImfKeyCode::code()              { return chr; }
+ bool OVImfKeyCode::isShift()           { return shift!=0; }
+ bool OVImfKeyCode::isCapslock()        { return capslock!=0; }

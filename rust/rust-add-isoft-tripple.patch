@@ -1,0 +1,13 @@
+diff -Nur rustc-1.2.0/src/librustc_back/target/mod.rs rustc-1.2.0n/src/librustc_back/target/mod.rs
+--- rustc-1.2.0/src/librustc_back/target/mod.rs	2015-08-05 03:28:48.000000000 +0800
++++ rustc-1.2.0n/src/librustc_back/target/mod.rs	2015-09-18 08:50:36.231790006 +0800
+@@ -349,7 +349,9 @@
+ 
+         load_specific!(
+             x86_64_unknown_linux_gnu,
++            x86_64_isoft_linux,
+             i686_unknown_linux_gnu,
++            i686_isoft_linux,
+             mips_unknown_linux_gnu,
+             mipsel_unknown_linux_gnu,
+             powerpc_unknown_linux_gnu,

@@ -1,25 +1,24 @@
 Name: cargo
-Version: 0.3.0	
-Release: 1
+Version: 0.5.0	
+Release: 2
 Summary: The Rust package manager 	
 
-Group: Software/Development/Language
 License: Apache	
 URL:	 https://github.com/rust-lang/cargo	
 Source0: %{name}-%{version}.tar.gz 
 
-Source1: https://static.rust-lang.org/cargo-dist/cargo-nightly-x86_64-unknown-linux-gnu.tar.gz
-Source2: https://static.rust-lang.org/cargo-dist/cargo-nightly-i686-unknown-linux-gnu.tar.gz
+Source1: https://static.rust-lang.org/cargo-dist/2015-04-02/cargo-nightly-x86_64-unknown-linux-gnu.tar.gz
+Source2: https://static.rust-lang.org/cargo-dist/2015-04-02/cargo-nightly-i686-unknown-linux-gnu.tar.gz
 
 #rust-installer
 Source3: https://github.com/rust-lang/rust-installer/archive/e54d4823d26cdb3f98e5a1b17e1c257cd329aa61.tar.gz
 
-#predownload carets, downloaded by Source5 from gentoo
-Source4: carets.tar.gz
-Source5: download-carets.sh
+#Pre-downloaded crats required to build cargo
+#Generally, every cargo release need update this tarball.
+Source4: cargo-crates.tar.gz
 
-Patch0: cargo-0.3.0-makefile.patch
-Patch1: cargo-0.3.0-local-deps.patch
+Patch0: cargo-0.5.0-crates-local-deps.patch
+Patch1: cargo-0.5.0-local-deps.patch
 
 #only support amd64/x86
 ExclusiveArch: x86_64 %{ix86}
@@ -48,19 +47,16 @@ tar xf %{SOURCE2} -C .
 #unpack rust-installer
 tar xf %{SOURCE3} -C .
 
-#unpack carets
+#unpack crates
 tar xf %{SOURCE4} -C .
-pushd carets
+pushd cargo-crates
 for i in `ls *`;
 do
 tar xf $i -C ..
 done
 popd
 
-pushd %{name}-%{version}
 %patch0 -p1
-popd
-
 %patch1 -p1
 
 rm -rf %{name}-%{version}/src/rust-installer
@@ -104,5 +100,10 @@ rm -rf %{buildroot}/usr/etc
 %{_docdir}/cargo
 
 %changelog
+* Thu Sep 17 2015 Cjacker <cjacker@foxmail.com>
+- update to 0.5.0
+
+* Sat Aug 08 2015 Cjacker <cjacker@foxmail.com>
+- rebuild with rust-1.2.0
 * Wed Jul 29 2015 Cjacker <cjacker@foxmail.com>
 - 0.3.0, first build.
