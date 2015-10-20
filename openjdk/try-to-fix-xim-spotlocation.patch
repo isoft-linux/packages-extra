@@ -1,0 +1,110 @@
+--- jdk8u-jdk8u45-b14old/jdk/src/solaris/native/sun/awt/awt_InputMethod.c	2015-07-07 22:58:02.355223886 +0000
++++ jdk8u-jdk8u45-b14/jdk/src/solaris/native/sun/awt/awt_InputMethod.c	2015-07-07 23:01:53.343219750 +0000
+@@ -1105,6 +1106,8 @@
+     jstring javastr = NULL;
+     jintArray style = NULL;
+ 
++    jint cursorX = -1;
++    jint cursorY = -1;
+     /* printf("Native: PreeditDrawCallback() \n"); */
+     if (pre_draw == NULL) {
+         return;
+@@ -1178,8 +1181,28 @@
+                          (jint)pre_draw->chg_length,
+                          (jint)pre_draw->caret,
+                          awt_util_nowMillisUTC());
++    cursorX = JNU_CallMethodByName(env, NULL, pX11IMData->x11inputmethod,
++                         "getCursorPointX",
++                         "()I").i;
++    cursorY = JNU_CallMethodByName(env, NULL, pX11IMData->x11inputmethod,
++                         "getCursorPointY",
++                         "()I").i;
+ finally:
+     AWT_UNLOCK();
++    
++    if(ic && (cursorX != -1) && (cursorY != -1)) {
++        XVaNestedList preedit_attr;
++        XPoint          spot;
++        spot.x = cursorX;
++        spot.y = cursorY;
++        preedit_attr = XVaCreateNestedList (0,
++                          XNSpotLocation, &spot,
++                          NULL);
++        XSetICValues (ic,
++            XNPreeditAttributes, preedit_attr,
++            NULL);
++        XFree(preedit_attr);
++    }
+     return;
+ }
+ 
+--- jdk8u-jdk8u45-b14old/./jdk/src/solaris/classes/sun/awt/X11InputMethod.java	2015-02-05 12:00:26.000000000 +0000
++++ jdk8u-jdk8u45-b14/./jdk/src/solaris/classes/sun/awt/X11InputMethod.java	2015-07-07 23:54:16.073163469 +0000
+@@ -53,11 +53,16 @@
+ import java.text.AttributedString;
+ import java.text.AttributedCharacterIterator;
+ 
++import java.awt.Rectangle;
++import java.awt.im.InputMethodRequests;
++import java.awt.Point;
++
+ import java.io.File;
+ import java.io.FileReader;
+ import java.io.BufferedReader;
+ import java.io.IOException;
+ import java.lang.ref.WeakReference;
++import java.lang.*;
+ import sun.util.logging.PlatformLogger;
+ import java.util.StringTokenizer;
+ import java.util.regex.Pattern;
+@@ -91,6 +96,8 @@
+                                                XIMVisibleToBackward|
+                                                XIMVisibleCenter);
+ 
++    private Point cursorPoint = null;
++
+     private Locale locale;
+     private static boolean isXIMOpened = false;
+     protected Container clientComponentWindow = null;
+@@ -183,6 +190,9 @@
+      * @exception AWTException if XOpenIM() failed.
+      */
+     public X11InputMethod() throws AWTException {
++        cursorPoint = new Point();
++        cursorPoint.x = -1;
++        cursorPoint.y = -1;
+         // supports only the locale in which the VM is started
+         locale = X11InputMethodDescriptor.getSupportedLocale();
+         if (initXIM() == false) {
+@@ -738,7 +748,12 @@
+                                    composedOffset + startOffset,
+                                    composedOffset + currentOffset);
+         }
+-
++        //cjacker
++        Rectangle rec = lastXICFocussedComponent.getInputMethodRequests().getTextLocation(TextHitInfo.leading(caretPosition));
++        Point componentLocation = lastXICFocussedComponent.getLocationOnScreen();
++        cursorPoint.x = rec.x + rec.width - componentLocation.x;
++        cursorPoint.y = rec.y + rec.height - componentLocation.y;
++        //System.out.printf("X:%d Y:%d\n", rec.x+rec.width, rec.y+rec.height);
+         postInputMethodEvent(InputMethodEvent.INPUT_METHOD_TEXT_CHANGED,
+                              inputText.getIterator(),
+                              composedOffset,
+@@ -746,7 +761,16 @@
+                              visiblePositionInfo,
+                              when);
+     }
+-
++    int getCursorPointX() {
++        if(cursorPoint != null)
++            return cursorPoint.x;
++        return -1;
++    }
++    int getCursorPointY() {
++        if(cursorPoint != null)
++            return cursorPoint.y;
++        return -1;
++    }
+     /**
+      * Flushes composed and committed text held in this context.
+      * This method is invoked in the AWT Toolkit (X event loop) thread context

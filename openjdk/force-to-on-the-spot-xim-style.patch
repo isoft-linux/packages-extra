@@ -1,0 +1,19 @@
+--- jdk8u-jdk8u45-b14old/jdk/src/solaris/native/sun/awt/awt_InputMethod.c	2015-02-05 12:00:26.000000000 +0000
++++ jdk8u-jdk8u45-b14/jdk/src/solaris/native/sun/awt/awt_InputMethod.c	2015-07-07 16:17:46.042550892 +0000
+@@ -947,11 +947,14 @@
+     on_the_spot_styles |= XIMStatusNothing;
+ #endif /* __linux__ || MACOSX */
+ 
+-    for (i = 0; i < im_styles->count_styles; i++) {
++    /*for (i = 0; i < im_styles->count_styles; i++) {
+         active_styles |= im_styles->supported_styles[i] & on_the_spot_styles;
+         passive_styles |= im_styles->supported_styles[i] & ROOT_WINDOW_STYLES;
+         no_styles |= im_styles->supported_styles[i] & NO_STYLES;
+-    }
++    }*/
++    active_styles = on_the_spot_styles;
++    passive_styles = ROOT_WINDOW_STYLES;
++    no_styles = NO_STYLES;
+ 
+     XFree(im_styles);
+ 

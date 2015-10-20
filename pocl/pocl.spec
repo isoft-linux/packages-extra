@@ -1,6 +1,6 @@
 Name:		pocl
 Version:	0.12
-Release:	3.git
+Release:	4.git
 Summary:	Portable Computing Language
 
 Group:	    Development/Languages	

@@ -1,0 +1,33 @@
+diff -Nur llvm/tools/clang/lib/Driver/ToolChains.cpp llvm-n/tools/clang/lib/Driver/ToolChains.cpp
+--- llvm/tools/clang/lib/Driver/ToolChains.cpp	2013-12-05 13:02:19.379441563 +0800
++++ llvm-n/tools/clang/lib/Driver/ToolChains.cpp	2013-12-05 13:01:20.527437694 +0800
+@@ -1114,7 +1114,7 @@
+   static const char *const ARMHFTriples[] = { "arm-linux-gnueabihf",
+                                               "armv7hl-redhat-linux-gnueabi" };
+ 
+-  static const char *const X86_64LibDirs[] = { "/lib64", "/lib" };
++  static const char *const X86_64LibDirs[] = { "/lib", "/lib64" };
+   static const char *const X86_64Triples[] = {
+     "x86_64-linux-gnu", "x86_64-unknown-linux-gnu", "x86_64-pc-linux-gnu",
+     "x86_64-redhat-linux6E", "x86_64-redhat-linux", "x86_64-suse-linux",
+@@ -2354,7 +2354,7 @@
+       Triple.getArch() == llvm::Triple::ppc)
+     return "lib32";
+ 
+-  return Triple.isArch32Bit() ? "lib" : "lib64";
++  return Triple.isArch32Bit() ? "lib32" : "lib";
+ }
+ 
+ Linux::Linux(const Driver &D, const llvm::Triple &Triple, const ArgList &Args)
+diff -Nur llvm/tools/clang/lib/Driver/Tools.cpp llvm-n/tools/clang/lib/Driver/Tools.cpp
+--- llvm/tools/clang/lib/Driver/Tools.cpp	2013-12-05 12:44:18.000000000 +0800
++++ llvm-n/tools/clang/lib/Driver/Tools.cpp	2013-12-05 13:01:59.929440284 +0800
+@@ -6306,7 +6306,7 @@
+            ToolChain.getArch() == llvm::Triple::systemz)
+     return "/lib64/ld64.so.1";
+   else
+-    return "/lib64/ld-linux-x86-64.so.2";
++    return "/lib/ld-linux-x86-64.so.2";
+ }
+ 
+ void gnutools::Link::ConstructJob(Compilation &C, const JobAction &JA,

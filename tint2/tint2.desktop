@@ -1,0 +1,7 @@
+[Desktop Entry]
+Encoding=UTF-8
+Type=Application
+Exec=tint2 -c /etc/xdg/tint2/tintrc.everest &
+Icon=exec
+Name=tint2
+NotShowIn=KDE

@@ -1,5 +1,5 @@
 Name:           beignet
-Version:        1.1.0
+Version:        1.1.1
 Release:        4%{?dist}
 Summary:        Open source implementation of the OpenCL for Intel GPUs
 
@@ -78,3 +78,6 @@ build/utests/utest_run ||:
 %{_includedir}/CL/cl_intel.h
 
 %changelog
+*Fri Oct 09 2015 Cjacker <cjacker@foxmail.com>
+- update to 1.1.1
+

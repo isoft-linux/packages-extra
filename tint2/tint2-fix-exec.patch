@@ -1,0 +1,27 @@
+diff -Nur tint2-0.11/src/util/common.c tint2-0.11n/src/util/common.c
+--- tint2-0.11/src/util/common.c	2010-06-12 02:47:26.000000000 +0800
++++ tint2-0.11n/src/util/common.c	2010-07-14 13:56:31.000000000 +0800
+@@ -80,7 +80,12 @@
+ void tint_exec(const char *command)
+ {
+ 	if (command) {
+-		pid_t pid;
++	char * runcmd = (char *)malloc(1024);
++	sprintf(runcmd,"/bin/sh -c \"%s\"&",command);
++	system(runcmd);
++	free(runcmd);
++	
++	/*	pid_t pid;
+ 		pid = fork();
+ 		if (pid == 0) {
+ 			// change for the fork the signal mask
+@@ -89,7 +94,8 @@
+ //			sigprocmask(SIG_UNBLOCK, &sigset, 0);
+ 			execl("/bin/sh", "/bin/sh", "-c", command, NULL);
+ 			_exit(0);
+-		}
++			
++		}*/
+ 	}
+ }
+ 

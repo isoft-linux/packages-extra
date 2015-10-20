@@ -1,5 +1,5 @@
 Name:           plasma-pa
-Version:        5.4.1
+Version:        5.4.2
 Release:        7
 Summary:        Plasma Volume Controller 
 
@@ -103,6 +103,9 @@ fi
 %{_kf5_datadir}/plasma/plasmoids/org.kde.plasma.volume
 
 %changelog
+* Wed Oct 07 2015 Cjacker <cjacker@foxmail.com>
+- update to 5.4.2
+
 * Wed Sep 09 2015 Cjacker <cjacker@foxmail.com>
 - update to 5.4.1
 

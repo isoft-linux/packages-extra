@@ -1,0 +1,19 @@
+diff -Nur openbox-3.5.0/openbox/moveresize.c openbox-3.5.0n/openbox/moveresize.c
+--- openbox-3.5.0/openbox/moveresize.c	2011-08-02 04:14:58.000000000 +0800
++++ openbox-3.5.0n/openbox/moveresize.c	2013-01-01 00:51:47.784242149 +0800
+@@ -325,7 +325,15 @@
+         sync_timer = 0;
+ #endif
+     }
++    if (!moveresize_client) {
++        ob_debug("moveresize_end: moveresize_client is NULL!");
++        return;
++    }
+ 
++    if (!moveresize_in_progress) {
++        ob_debug("moveresize_end: moveresize_in_progress is FALSE!");
++        return;
++    }
+     /* don't use client_move() here, use the same width/height as
+        we've been using during the move, otherwise we get different results
+        when moving maximized windows between monitors of different sizes !

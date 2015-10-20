@@ -1,0 +1,10 @@
+#!/bin/bash
+disabled=`xset q|grep "DPMS is Disabled"`
+
+if [ -n "$disabled" ]; then
+    echo "ScreenSaver on"|aosd_cat -n "Sans 30" -p 4 -u 500 -f 50 -o 50 -x 0&
+    xset +dpms s on
+else
+    echo "ScreenSaver off"|aosd_cat -n "Sans 30" -R red -p 4 -u 500 -f 50 -o 50 -x 0&
+    xset -dpms s off
+fi

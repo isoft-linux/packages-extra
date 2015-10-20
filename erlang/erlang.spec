@@ -5,7 +5,7 @@
 %define _javadir %{_datadir}/java
 
 Name: erlang
-Version: 18.0
+Version: 18.1
 Release: 1
 Summary: Erlang programing language
 

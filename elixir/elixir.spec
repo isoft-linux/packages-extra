@@ -1,5 +1,5 @@
 Name:           elixir
-Version:        1.0.5
+Version:        1.1.1
 Release:        1%{?dist}
 Summary:        A modern approach to programming for the Erlang VM 
 

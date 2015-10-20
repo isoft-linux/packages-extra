@@ -1,0 +1,12 @@
+[Desktop Entry]
+Type=Service
+X-KDE-ServiceTypes=SystemSettingsExternalApp
+X-KDE-Keywords=IcedTea;IcedTea-Web;java;javaws;web;start;webstart;jnlp;
+X-KDE-System-Settings-Parent-Category=network
+
+Name=IcedTea-Web Policy Editor
+Name[zh_CN]=Java Applet策略
+Comment=Edit Java Applet policy and permission settings
+Comment[zh_CN]=编辑Java Applet策略和权限
+Exec=policyeditor
+Icon=javaws

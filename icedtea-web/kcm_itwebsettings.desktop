@@ -1,0 +1,18 @@
+[Desktop Entry]
+Type=Service
+X-KDE-ServiceTypes=SystemSettingsExternalApp
+X-KDE-Keywords=IcedTea;IcedTea-Web;java;javaws;web;start;webstart;jnlp;
+X-KDE-System-Settings-Parent-Category=network
+
+Name=IcedTea-Web Control Panel
+Name[de]=IcedTea-Web Systemsteuerung
+Name[pl]=Panel sterowania IcedTea-Web
+Name[cs]=Ovládací panel IcedTea-Web
+Name[zh_CN]=Java Applet控制面板
+Comment=Configure IcedTea-Web (javaws and plugin)
+Comment[de]=Konfiguriert IcedTea-Web (javaws und Plug-in)
+Comment[pl]=Konfiguruj IcedTea-Web (javaws i wtyczkę)
+Comment[cs]=Konfigurace aplikace IcedTea-Web (javaws a zásuvný modul)
+Comment[zh_CN]=配置Java Applet (javaws和插件)
+Exec=itweb-settings
+Icon=javaws
