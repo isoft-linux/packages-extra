@@ -1,0 +1,12 @@
+diff -Nur lokalize-15.08.2/src/org.kde.lokalize.desktop lokalize-15.08.2n/src/org.kde.lokalize.desktop
+--- lokalize-15.08.2/src/org.kde.lokalize.desktop	2015-09-14 05:30:58.000000000 +0800
++++ lokalize-15.08.2n/src/org.kde.lokalize.desktop	2015-10-20 22:26:47.216505111 +0800
+@@ -55,7 +55,7 @@
+ Exec=lokalize %F
+ Icon=lokalize
+ Type=Application
+-Categories=Qt;KDE;Development;Office;Translation;
++Categories=Qt;KDE;Development;
+ MimeType=application/x-xliff;text/x-gettext-translation;application/x-lokalize-project;
+ X-DocPath=lokalize/index.html
+ X-DBUS-StartupType=Multi

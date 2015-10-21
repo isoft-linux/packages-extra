@@ -1,7 +1,7 @@
 Name:    lokalize
 Summary: Computer-aided translation system
 Version: 15.08.2
-Release: 2
+Release: 4 
 
 License: GPLv2+ and GFDL
 URL:     https://projects.kde.org/projects/kde/kdesdk/lokalize
@@ -12,6 +12,7 @@ URL:     https://projects.kde.org/projects/kde/kdesdk/lokalize
 %global stable stable
 %endif
 Source0: http://download.kde.org/%{stable}/applications/%{version}/src/%{name}-%{version}.tar.xz
+Patch0: lokalize-tune-desktop.patch
 
 BuildRequires: cmake
 BuildRequires: desktop-file-utils
@@ -44,12 +45,12 @@ BuildRequires: kf5-kxmlgui-devel
 BuildRequires: kf5-sonnet-devel
 BuildRequires: pkgconfig(hunspell)
 BuildRequires: pkgconfig(Qt5Widgets) pkgconfig(Qt5DBus) pkgconfig(Qt5Script) pkgconfig(Qt5Sql)
-#BuildRequires: libappstream-glib
+BuildRequires: appstream-glib
 
 Requires: dbus-python
 Requires: gettext
 # odf2xliff
-#Requires: translate-toolkit
+Requires: translate-toolkit
 Recommends: poxml
 Recommends: subversion
 
@@ -62,7 +63,7 @@ Computer-aided translation system focusing on productivity and performance
 
 %prep
 %setup -q
-
+%patch0 -p1
 
 %build
 mkdir %{_target_platform}
@@ -103,21 +104,18 @@ gtk-update-icon-cache %{_kf5_datadir}/icons/hicolor &> /dev/null || :
 
 %files
 %doc COPYING*
-#doc README
 %{_kf5_bindir}/%{name}
-#{_sysconfdir}/xdg/%{name}.knsrc
 %{_kf5_datadir}/applications/org.kde.%{name}.desktop
-#{_kf5_datadir}/appdata/org.kde.%{name}.appdata.xml
 %{_kf5_datadir}/icons/hicolor/*/apps/%{name}.*
 %{_kf5_datadir}/%{name}/
 %{_kf5_docdir}/HTML/en/%{name}/
-#{_kf5_datadir}/kconf_update/%{name}*
-#{_kf5_datadir}/knotifications5/%{name}.notifyrc
 %{_kf5_datadir}/kxmlgui5/%{name}/
-#{_kf5_datadir}/sounds/%{name}/
 %{_kf5_datadir}/config.kcfg/%{name}.kcfg
 
 
 %changelog
+* Tue Oct 20 2015 Cjacker <cjacker@foxmail.com>
+- tune desktop file, remove submenu.
+- add translate-toolkit require.
 * Sun Oct 18 2015 Cjacker <cjacker@foxmail.com>
 - update to 15.08.2
