@@ -1,0 +1,1408 @@
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+#
+# Cjacker <cjacker@foxmail.com>, 2015.
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2015-10-20 16:38+0800\n"
+"PO-Revision-Date: 2015-10-20 17:54+0800\n"
+"Last-Translator: Cjacker <cjacker@foxmail.com>\n"
+"Language-Team: Chinese <kde-i18n-doc@kde.org>\n"
+"Language: zh_CN\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Lokalize 2.0\n"
+
+#: rc.cpp:3
+#, kde-format
+msgctxt "@title:group"
+msgid "Tab Bar"
+msgstr "页签"
+
+#: rc.cpp:6
+#, kde-format
+msgctxt "@option:check"
+msgid "Show the tab bar"
+msgstr "显示页签"
+
+#: rc.cpp:9
+#, kde-format
+msgctxt "@info:whatsthis"
+msgid ""
+"If this option is enabled, the information about the active terminal's "
+"contents that is normally shown in the title bar will also be shown on the "
+"tab bar. You can modify the format of the information in the terminal "
+"profile."
+msgstr ""
+"如果打开这个选项，通常显示在标题栏上的活动终端的信息也会显示在页签上。你"
+"可以在终端方案中修改显示信息的格式。"
+
+#: rc.cpp:12
+#, kde-format
+msgctxt "@option:check"
+msgid "Show title bar contents in tab labels"
+msgstr "在页签上显示内容"
+
+#: rc.cpp:15
+#, kde-format
+msgctxt "@title:group"
+msgid "Size and Animation"
+msgstr "尺寸和动画"
+
+#: rc.cpp:18
+#, kde-format
+msgctxt "@label:slider"
+msgid "Width:"
+msgstr "宽度："
+
+#: rc.cpp:22 rc.cpp:29 rc.cpp:313
+#, no-c-format, kde-format
+msgctxt "@label Spinbox unit suffix"
+msgid "%"
+msgstr ""
+
+#: rc.cpp:25
+#, kde-format
+msgctxt "@label:slider"
+msgid "Height:"
+msgstr "高度："
+
+#: rc.cpp:32
+#, kde-format
+msgctxt "@label:slider"
+msgid "Duration:"
+msgstr "持续时间："
+
+#: rc.cpp:35
+#, kde-format
+msgctxt "@label Spinbox unit suffix"
+msgid "ms"
+msgstr "毫秒"
+
+#: rc.cpp:38
+#, kde-format
+msgctxt "@label Spinbox unit prefix"
+msgid "~"
+msgstr ""
+
+#: rc.cpp:41
+#, kde-format
+msgctxt "@info:whatsthis"
+msgid ""
+"If this option is enabled, Yakuake will ask the window manager to perform "
+"the window open/retract animation. If the window manager is unable to "
+"provide the requested service, Yakuake will fall back to an animation "
+"strategy of progressively adjusting the window mask."
+msgstr ""
+"如果打开这个选项，Yakuake会请求窗口管理器处理展开和收回动画。如果窗口管理器不"
+"能处理，Yakuake将使用默认的动画策略。"
+
+#: rc.cpp:44
+#, kde-format
+msgctxt "@option:check"
+msgid "Ask the window manager to perform the animation"
+msgstr "请求窗口管理器处理动画。"
+
+#: rc.cpp:47
+#, kde-format
+msgctxt "@title:group"
+msgid "Position"
+msgstr "位置"
+
+#: rc.cpp:50
+#, kde-format
+msgctxt "@item:inrange Direction to move the window in"
+msgid "Left"
+msgstr "左"
+
+#: rc.cpp:53
+#, kde-format
+msgctxt "@item:inrange Direction to move the window in"
+msgid "Right"
+msgstr "右"
+
+#: rc.cpp:56
+#, kde-format
+msgctxt "@label:listbox"
+msgid "Open on screen:"
+msgstr "所在的屏幕："
+
+#: rc.cpp:59
+#, kde-format
+msgctxt "@item:inlistbox"
+msgid "At mouse location"
+msgstr "鼠标所在位置"
+
+#: rc.cpp:62
+#, kde-format
+msgctxt "@item:inlistbox"
+msgid "Screen 1"
+msgstr "屏幕1"
+
+#: rc.cpp:65
+#, kde-format
+msgctxt "@option:check"
+msgid "Show on all desktops"
+msgstr "在所有桌面显示"
+
+#: rc.cpp:68 rc.cpp:285
+#, kde-format
+msgctxt "@title:group Group box label"
+msgid "General"
+msgstr "通用"
+
+#: rc.cpp:71
+#, kde-format
+msgctxt "@option:check"
+msgid "Focus terminals when the mouse pointer is moved over them"
+msgstr "当鼠标移动到终端上时自动取得焦点"
+
+#: rc.cpp:74
+#, kde-format
+msgctxt "@info:whatsthis"
+msgid ""
+"If this option is enabled, the shortcut normally used to open and retract "
+"the window will give it focus, rather than close it, if it has previously "
+"lost focus. Unless the window is set to show on all virtual desktops, this "
+"may cause the window manager to switch to the virtual desktop it currently "
+"resides on."
+msgstr ""
+"如果打开这个选项，当终端失去焦点，通过展开和收回的快捷键可以取得焦点，而不是"
+"收回终端。"
+
+#: rc.cpp:77
+#, kde-format
+msgctxt "@option:check"
+msgid "Use Open/Retract action to focus window"
+msgstr "使用展开/收回动作取得焦点"
+
+#: rc.cpp:80
+#, kde-format
+msgctxt "@option:check"
+msgid "Keep window above other windows"
+msgstr "保持窗口置顶"
+
+#: rc.cpp:83
+#, kde-format
+msgctxt "@option:check"
+msgid "Open window after program start"
+msgstr "在程序启动时打开窗口"
+
+#: rc.cpp:86
+#, kde-format
+msgctxt "@info:whatsthis"
+msgid ""
+"If this option is enabled, the window will automatically open when the mouse "
+"pointer is moved to the same edge of the screen that it would open on when "
+"using the shortcut."
+msgstr "如果打开这个选项，当鼠标移动到屏幕边缘时，窗口会自动展开。"
+
+#: rc.cpp:89
+#, kde-format
+msgctxt "@option:check"
+msgid "Open window when the mouse pointer touches the screen edge"
+msgstr "当鼠标指针接触屏幕边缘时自动展开窗口"
+
+#: rc.cpp:92
+#, kde-format
+msgctxt "@option:check"
+msgid "Keep window open when it loses focus"
+msgstr "失去焦点时保持窗口打开"
+
+#: rc.cpp:96
+#, kde-format
+msgid "Keep window open after the last session is closed"
+msgstr "最后一个回话关闭时保持窗口打开"
+
+#: rc.cpp:99
+#, kde-format
+msgctxt "@title:group"
+msgid "Dialogs"
+msgstr "对话框"
+
+#: rc.cpp:102
+#, kde-format
+msgctxt "@option:check"
+msgid "Confirm quit when more than one session is open"
+msgstr "当存在多于一个回话时确认退出。"
+
+#: rc.cpp:105
+#, kde-format
+msgctxt "@label"
+msgid "Screen to use"
+msgstr "要使用的屏幕"
+
+#: rc.cpp:108
+#, kde-format
+msgctxt "@info:whatsthis"
+msgid ""
+"The screen on which the application window will appear. 0 is understood to "
+"be the screen the mouse pointer is on."
+msgstr "窗口要显示的所在屏幕。0是当前鼠标光标所在的屏幕。"
+
+#: rc.cpp:111
+#, kde-format
+msgctxt "@label"
+msgid "Window width"
+msgstr "窗口宽度"
+
+#: rc.cpp:114
+#, kde-format
+msgctxt "@info:whatsthis"
+msgid "Width of the application window as a percentage of the screen."
+msgstr "以屏幕百分比表示的窗口宽度。"
+
+#: rc.cpp:117
+#, kde-format
+msgctxt "@label"
+msgid "Window height"
+msgstr "窗口高度"
+
+#: rc.cpp:120
+#, kde-format
+msgctxt "@info:whatsthis"
+msgid "Height of the application window as a percentage of the screen."
+msgstr "以屏幕百分比表示的窗口高度。"
+
+#: rc.cpp:123
+#, kde-format
+msgctxt "@label"
+msgid "Window position"
+msgstr "窗口位置"
+
+#: rc.cpp:126
+#, kde-format
+msgctxt "@info:whatsthis"
+msgid ""
+"Center point of the application window, as a percentage, measured from the "
+"left-hand edge of the screen."
+msgstr "从屏幕的左手边计算的窗口中心点所在的位置百分比。"
+
+#: rc.cpp:129
+#, kde-format
+msgctxt "@label"
+msgid "Show window on all desktops"
+msgstr "在所有桌面显示窗口"
+
+#: rc.cpp:132
+#, kde-format
+msgctxt "@info:whatsthis"
+msgid "Whether to show the window on all desktops."
+msgstr "是否在所有桌面显示窗口。"
+
+#: rc.cpp:135
+#, kde-format
+msgctxt "@label"
+msgid "Keep window open"
+msgstr "保持窗口打开"
+
+#: rc.cpp:138
+#, kde-format
+msgctxt "@info:whatsthis"
+msgid "Whether to keep the application window open when it loses focus."
+msgstr "是否在失去焦点时保持窗口打开。"
+
+#: rc.cpp:141
+#, kde-format
+msgctxt "@label"
+msgid "Keep window open after last session closes"
+msgstr "在最后一个回话关闭时保持窗口打开"
+
+#: rc.cpp:144
+#, kde-format
+msgctxt "@info:whatsthis"
+msgid ""
+"Whether to keep the application window open after the last session is closed."
+msgstr "是否在最后一个回话关闭时保持窗口打开。"
+
+#: rc.cpp:147
+#, kde-format
+msgctxt "@label"
+msgid "Use open/retract shortcut to focus window"
+msgstr "使用展开/收回快捷键取得焦点"
+
+#: rc.cpp:150
+#, kde-format
+msgctxt "@info:whatsthis"
+msgid ""
+"Whether the open/retract keyboard shortcut can be used to focus the "
+"application window when it is already open."
+msgstr "如果窗口已经打开，是否使用展开/收回快捷键取得焦点。"
+
+#: rc.cpp:153
+#, kde-format
+msgctxt "@label"
+msgid "Keep window on top"
+msgstr "保持窗口置顶"
+
+#: rc.cpp:156
+#, kde-format
+msgctxt "@info:whatsthis"
+msgid ""
+"Whether to keep the application window above other windows on the screen."
+msgstr "是否保持窗口置顶。"
+
+#: rc.cpp:159
+#, kde-format
+msgctxt "@label"
+msgid "Show tab bar"
+msgstr "显示页签"
+
+#: rc.cpp:162
+#, kde-format
+msgctxt "@info:whatsthis"
+msgid "Whether to show the tab bar in the application window."
+msgstr "是否在程序窗口显示页签。"
+
+#: rc.cpp:165
+#, kde-format
+msgctxt "@label"
+msgid "Dynamic tab titles"
+msgstr "动态页签标题"
+
+#: rc.cpp:168
+#, kde-format
+msgctxt "@info:whatsthis"
+msgid "Whether to update tab titles along with the title bar."
+msgstr "是否随标题栏更新页签的标题"
+
+#: rc.cpp:171
+#, kde-format
+msgctxt "@label"
+msgid "Focus follows mouse"
+msgstr "焦点跟随鼠标"
+
+#: rc.cpp:174
+#, kde-format
+msgctxt "@info:whatsthis"
+msgid ""
+"Whether an individual terminal in a session will be given focus when the "
+"mouse pointer is moved above it."
+msgstr "当鼠标光标移动到会话的一个独立终端时是否自动取得焦点。"
+
+#: rc.cpp:177
+#, kde-format
+msgctxt "@label"
+msgid "Open after start"
+msgstr "启动后打开"
+
+#: rc.cpp:180
+#, kde-format
+msgctxt "@info:whatsthis"
+msgid "Whether the application window should be opened after program start."
+msgstr "程序启动后是否自动打开应用窗口"
+
+#: rc.cpp:183
+#, kde-format
+msgctxt "@label"
+msgid "Skin"
+msgstr "皮肤"
+
+#: rc.cpp:186
+#, kde-format
+msgctxt "@info:whatsthis"
+msgid "The skin to be used by the application window."
+msgstr "应用程序窗口所使用的皮肤。"
+
+#: rc.cpp:189
+#, kde-format
+msgctxt "@label"
+msgid "Skin installed by KNS"
+msgstr "通过KNS安装的皮肤"
+
+#: rc.cpp:192
+#, kde-format
+msgctxt "@info:whatsthis"
+msgid "Whether the currently active skin was installed via KNS."
+msgstr "当前使用的皮肤是否是通过KNS安装。"
+
+#: rc.cpp:195
+#, kde-format
+msgctxt "@label"
+msgid "Use translucent background"
+msgstr "使用透明背景"
+
+#: rc.cpp:198
+#, kde-format
+msgctxt "@info:whatsthis"
+msgid "Whether to make use of XComposite ARGB translucency."
+msgstr "是否使用X合成的ARGB透明。"
+
+#: rc.cpp:201
+#, kde-format
+msgctxt "@label"
+msgid "Window background color"
+msgstr "窗口背景色"
+
+#: rc.cpp:204
+#, kde-format
+msgctxt "@info:whatsthis"
+msgid "Background color painted below skin elements."
+msgstr "皮肤元素下绘制的背景色。"
+
+#: rc.cpp:207
+#, kde-format
+msgctxt "@label"
+msgid "Background color opacity"
+msgstr "背景色透明度"
+
+#: rc.cpp:210
+#, kde-format
+msgctxt "@info:whatsthis"
+msgid "The opacity of the background color fill when using translucency."
+msgstr "使用透明时背景色的透明度。"
+
+#: rc.cpp:213
+#, kde-format
+msgctxt "@label"
+msgid "Highlight newly focused terminals"
+msgstr "高亮取得焦点的终端"
+
+#: rc.cpp:216
+#, kde-format
+msgctxt "@info:whatsthis"
+msgid ""
+"Whether to briefly display a colored overlay above the newly focused "
+"terminal when moving focus between multiple terminals in a session, as well "
+"as over the currently focused terminal when switching to a session with "
+"multiple terminals."
+msgstr "会话中焦点变化时是否高亮显示刚刚取得焦点的终端。"
+
+#: rc.cpp:219
+#, kde-format
+msgctxt "@label"
+msgid "Terminal highlight opacity"
+msgstr "终端高亮透明度"
+
+#: rc.cpp:222
+#, kde-format
+msgctxt "@info:whatsthis"
+msgid "The opacity of the colored overlay used to highlight a terminal."
+msgstr "用于高亮显示终端时覆盖色的透明度。"
+
+#: rc.cpp:225
+#, kde-format
+msgctxt "@label"
+msgid "Terminal highlight duration"
+msgstr "终端高亮持续时间"
+
+#: rc.cpp:228
+#, kde-format
+msgctxt "@info:whatsthis"
+msgid "The duration of the terminal highlight overlay."
+msgstr "终端高亮的持续时间。"
+
+#: rc.cpp:231
+#, kde-format
+msgctxt "@label"
+msgid "Keyboard input block indicator color"
+msgstr "屏蔽键盘输入的指示色"
+
+#: rc.cpp:234
+#, kde-format
+msgctxt "@info:whatsthis"
+msgid "The color of the keyboard input block indicator overlay."
+msgstr "屏蔽键盘输入时的指示颜色。"
+
+#: rc.cpp:237
+#, kde-format
+msgctxt "@label"
+msgid "Keyboard input block indicator opacity"
+msgstr "屏蔽键盘输入指示器透明度"
+
+#: rc.cpp:240
+#, kde-format
+msgctxt "@info:whatsthis"
+msgid "The opacity of the keyboard input block indicator overlay."
+msgstr "屏蔽键盘输入指示器颜色透明度。"
+
+#: rc.cpp:243
+#, kde-format
+msgctxt "@label"
+msgid "Keyboard input block indicator duration"
+msgstr "屏蔽键盘输入指示器的持续时间"
+
+#: rc.cpp:246
+#, kde-format
+msgctxt "@info:whatsthis"
+msgid "The duration of the keyboard input block indicator overlay."
+msgstr "屏蔽键盘输入指示器的持续时间。"
+
+#: rc.cpp:249
+#, kde-format
+msgctxt "@label"
+msgid "Attempt to use the window manager to animate the window"
+msgstr "尝试使用窗口管理器处理窗口动画"
+
+#: rc.cpp:252
+#, kde-format
+msgctxt "@info:whatsthis"
+msgid ""
+"Whether to try and let the window manager perform the window open/retract "
+"animation. Yakuake will fall back to an animation strategy of progressively "
+"adjusting the window mask if the window manager is unable to provide the "
+"requested service."
+msgstr ""
+"是否尝试使用窗口管理器处理展开/收回动画。如果窗口管理器不能提供这个功能，将使"
+"用默认动画。"
+
+#: rc.cpp:255
+#, kde-format
+msgctxt "@label"
+msgid "Animation frames"
+msgstr "动画帧"
+
+#: rc.cpp:258
+#, kde-format
+msgctxt "@info:whatsthis"
+msgid ""
+"The number of frames of the open/retract animation. One frame is taken to be "
+"10 miliseconds."
+msgstr "展开/收回动画的帧数。一帧10毫秒。"
+
+#: rc.cpp:261
+#, kde-format
+msgctxt "@label"
+msgid "Auto-open window"
+msgstr "自动打开窗口"
+
+#: rc.cpp:264
+#, kde-format
+msgctxt "@info:whatsthis"
+msgid ""
+"Whether to automatically open the application window when the mouse pointer "
+"is found at the edge of the screen."
+msgstr "当鼠标在屏幕边缘时是否自动打开应用窗口。"
+
+#: rc.cpp:267
+#, kde-format
+msgctxt "@label"
+msgid "Mouse pointer poll interval"
+msgstr "探测鼠标光标的时间间隔"
+
+#: rc.cpp:270
+#, kde-format
+msgctxt "@info:whatsthis"
+msgid ""
+"The interval during which the mouse pointer position will be checked to "
+"determine whether or not it is at the same edge of the screen as the window."
+msgstr "探测鼠标是否位于屏幕边缘的时间间隔。"
+
+#: rc.cpp:273
+#, kde-format
+msgctxt "@label"
+msgid "Application first run"
+msgstr "应用程序首次运行"
+
+#: rc.cpp:276
+#, kde-format
+msgctxt "@info:whatsthis"
+msgid "Whether this is the first time the application is run."
+msgstr "是否是应用程序首次运行。"
+
+#: rc.cpp:279
+#, kde-format
+msgctxt "@label"
+msgid "Confirm quit with multiple sessions"
+msgstr "多会话存在时退出需要确认"
+
+#: rc.cpp:282
+#, kde-format
+msgctxt "@info:whatsthis"
+msgid ""
+"Whether to prompt the user before quitting the application when multiple "
+"sessions are open."
+msgstr "当存在多个会话打开时，退出是否需要确认。"
+
+#: rc.cpp:288
+#, kde-format
+msgctxt "@info:whatsthis"
+msgid ""
+"Enabling this option will make Yakuake briefly display a colored overlay "
+"above the newly focused terminal when moving focus between multple terminals "
+"in a session, as well as over the currently focused terminal when switching "
+"to a session with multiple terminals."
+msgstr ""
+"如果打开这个选项，在同一会话的多个终端间切换焦点时，Yakuake将在刚刚获得焦点的终端显示一个覆盖色。同样，在切换到一个新回话时，也会在获得焦点的终端显示"
+"。"
+
+#: rc.cpp:291
+#, kde-format
+msgctxt "@option:check"
+msgid "Highlight terminals when moving focus between them"
+msgstr "改变焦点时高亮终端"
+
+#: rc.cpp:294
+#, kde-format
+msgctxt "@title:group"
+msgid "Window Background"
+msgstr "窗口背景"
+
+#: rc.cpp:297
+#, kde-format
+msgctxt "@label:chooser"
+msgid "Background color:"
+msgstr "背景色："
+
+#: rc.cpp:300
+#, kde-format
+msgctxt "@info:whatsthis"
+msgid ""
+"Translucency requires support by the selected skin as well as your desktop "
+"environment. The default skin supports translucency."
+msgstr "半透明同时需要您的桌面环境和皮肤的支持。默认皮肤支持半透明。"
+
+#: rc.cpp:303
+#, kde-format
+msgctxt "@option:check"
+msgid "Use skin translucency if supported"
+msgstr "支持时使用皮肤透明"
+
+#: rc.cpp:306
+#, kde-format
+msgctxt "@label:spinbox"
+msgid "Background color opacity:"
+msgstr "背景色透明度："
+
+#: rc.cpp:309
+#, kde-format
+msgctxt "@info:whatsthis"
+msgid ""
+"When using translucency, the background color will be filled in using the "
+"given opacity before the skin elements are painted on top of the background. "
+"This allows influencing the opacity and color tint of translucent areas of "
+"the skin."
+msgstr "当使用透明时，将使用置顶的透明度绘制背景色，然后在背景色上绘制皮肤。皮肤的半透明区域将收到背景色和透明度的影响。"
+
+#: rc.cpp:316
+#, kde-format
+msgctxt "@title:group"
+msgid "Skin"
+msgstr "皮肤"
+
+#: rc.cpp:319
+#, kde-format
+msgctxt "@action:button"
+msgid "Get New Skins..."
+msgstr "获取新的皮肤..."
+
+#: rc.cpp:322
+#, kde-format
+msgctxt "@action:button"
+msgid "Remove Skin"
+msgstr "删除皮肤"
+
+#: rc.cpp:325
+#, kde-format
+msgctxt "@action:button"
+msgid "Install Skin..."
+msgstr "安装皮肤..."
+
+#: rc.cpp:328
+#, kde-format
+msgctxt "@title"
+msgid "Welcome to Yakuake"
+msgstr "欢迎使用Yakuake"
+
+#: rc.cpp:331
+#, kde-format
+msgctxt "@info"
+msgid ""
+"Before starting to use the application, you might want to change the "
+"keyboard shortcut used to open and retract the Yakuake window:"
+msgstr "在开始使用Yakuake前，你可能需要修改展开/收回Yakuake窗口的快捷键："
+
+#: rc.cpp:334
+#, kde-format
+msgctxt "@info"
+msgid "You can change the shortcut later at any time via the menu."
+msgstr "你可以通过菜单改变快捷键。"
+
+#: app/config/appearancesettings.cpp:175
+#, kde-kuit-format
+msgctxt "@item:inlistbox Unknown skin author"
+msgid "Unknown"
+msgstr "未知"
+
+#: app/config/appearancesettings.cpp:221
+#, kde-format
+msgctxt "@title:window"
+msgid "Select the skin archive to install"
+msgstr "选择要安装的皮肤包"
+
+#: app/config/appearancesettings.cpp:271
+#, kde-kuit-format
+msgctxt "@info"
+msgid ""
+"Unable to locate required files in the skin archive.<nl/><nl/>The archive "
+"appears to be invalid."
+msgstr "在皮肤包中找不到必需的文件。<nl/><nl/>皮肤包无效。"
+
+#: app/config/appearancesettings.cpp:274
+#, kde-kuit-format
+msgctxt "@info"
+msgid "Unable to list the skin archive contents."
+msgstr "不能列出皮肤包内容。"
+
+#: app/config/appearancesettings.cpp:320
+#, kde-kuit-format
+msgctxt "@info"
+msgid ""
+"This skin appears to be already installed and you lack the required "
+"permissions to overwrite it."
+msgstr "皮肤已经安装，你没有覆盖的权限。"
+
+#: app/config/appearancesettings.cpp:327
+#, kde-kuit-format
+msgctxt "@info"
+msgid "This skin appears to be already installed. Do you want to overwrite it?"
+msgstr "皮肤已经安装，你确认要覆盖吗？"
+
+#: app/config/appearancesettings.cpp:328
+#, kde-kuit-format
+msgctxt "@title:window"
+msgid "Skin Already Exists"
+msgstr "皮肤已经存在"
+
+#: app/config/appearancesettings.cpp:329
+#, kde-kuit-format
+msgctxt "@action:button"
+msgid "Reinstall Skin"
+msgstr "重新安装皮肤"
+
+#: app/config/appearancesettings.cpp:348 app/config/appearancesettings.cpp:447
+#, kde-kuit-format
+msgctxt "@title:Window"
+msgid "Could Not Delete Skin"
+msgstr "不能删除皮肤"
+
+#: app/config/appearancesettings.cpp:368
+#, kde-kuit-format
+msgctxt "@info"
+msgid "The skin archive file could not be opened."
+msgstr "皮肤包无法打开。"
+
+#: app/config/appearancesettings.cpp:373
+#, kde-kuit-format
+msgctxt "@title:window"
+msgid "Cannot Install Skin"
+msgstr "不能安装皮肤"
+
+#: app/config/appearancesettings.cpp:437
+#, kde-kuit-format
+msgctxt "@info"
+msgid "Do you want to remove \"%1\" by %2?"
+msgstr "确定\"%2\"的\"%1\"皮肤吗？"
+
+#: app/config/appearancesettings.cpp:438
+#, kde-kuit-format
+msgctxt "@title:window"
+msgid "Remove Skin"
+msgstr "删除皮肤"
+
+#: app/config/appearancesettings.cpp:548
+#, kde-kuit-format
+msgctxt "@info"
+msgid ""
+"The following skin is missing required files. Thus it was removed:<ul>%2</ul>"
+msgid_plural ""
+"The following skins are missing required files. Thus they were removed:<ul>"
+"%2</ul>"
+msgstr[0] ""
+"下列皮肤缺少必须的文件。因此将被删除：<ul>"
+"%2</ul>"
+
+#: app/config/skinlistdelegate.cpp:146 app/config/skinlistdelegate.cpp:189
+#, kde-kuit-format
+msgctxt "@item:intext"
+msgid "by %1"
+msgstr "作者：%1"
+
+#: app/config/windowsettings.cpp:34
+#, kde-kuit-format
+msgctxt "@item:inlistbox"
+msgid "Screen %1"
+msgstr "屏幕 %1"
+
+#: app/firstrundialog.cpp:36
+#, kde-kuit-format
+msgctxt "@title:window"
+msgid "First Run"
+msgstr "首次运行"
+
+#: app/main.cpp:38
+#, kde-kuit-format
+msgctxt "@title"
+msgid "<application>Yakuake</application>"
+msgstr ""
+
+#: app/main.cpp:40
+#, kde-kuit-format
+msgctxt "@title"
+msgid "A drop-down terminal emulator based on KDE Konsole technology."
+msgstr "基于KDE Konsole组件的拉幕式终端。"
+
+#: app/main.cpp:42
+#, kde-kuit-format
+msgctxt "@info:credit"
+msgid "(c) 2008-2014 The Yakuake Team"
+msgstr "(C) 2008-2014 Yakuake开发团队"
+
+#: app/main.cpp:50
+#, kde-kuit-format
+msgctxt "@info:credit"
+msgid "Eike Hein"
+msgstr ""
+
+#: app/main.cpp:51
+#, kde-kuit-format
+msgctxt "@info:credit"
+msgid "Maintainer, Lead Developer"
+msgstr "维护者，领导开发者"
+
+#: app/main.cpp:52
+#, kde-kuit-format
+msgctxt "@info:credit"
+msgid "Francois Chazal"
+msgstr ""
+
+#: app/main.cpp:53
+#, kde-kuit-format
+msgctxt "@info:credit"
+msgid "Project Founder, Default skin (Inactive)"
+msgstr "项目创建者，默认皮肤"
+
+#: app/main.cpp:54
+#, kde-kuit-format
+msgctxt "@info:credit"
+msgid "Daniel 'suslik' D."
+msgstr ""
+
+#: app/main.cpp:55
+#, kde-kuit-format
+msgctxt "@info:credit"
+msgid "Plastik skin"
+msgstr "Plastik皮肤"
+
+#: app/main.cpp:56
+#, kde-kuit-format
+msgctxt "@info:credit"
+msgid "Juan Carlos Torres"
+msgstr ""
+
+#: app/main.cpp:57
+#, kde-kuit-format
+msgctxt "@info:credit"
+msgid "Tab bar drag and drop support, Prevent Closing toggle"
+msgstr "页签拖放支持，防止关闭开关"
+
+#: app/main.cpp:58
+#, kde-kuit-format
+msgctxt "@info:credit"
+msgid "Gustavo Ribeiro Croscato"
+msgstr ""
+
+#: app/main.cpp:59
+#, kde-kuit-format
+msgctxt "@info:credit"
+msgid "Icon on tabs with Prevent Closing enabled"
+msgstr "防止关闭的页签指示图标"
+
+#: app/main.cpp:60
+#, kde-kuit-format
+msgctxt "@info:credit"
+msgid "Danilo Cesar Lemes de Paula"
+msgstr ""
+
+#: app/main.cpp:61
+#, kde-kuit-format
+msgctxt "@info:credit"
+msgid "Actions to grow terminals"
+msgstr "延展终端的动作"
+
+#: app/mainwindow.cpp:138
+#, kde-kuit-format
+msgctxt "@info"
+msgid "Are you sure you want to quit?"
+msgstr "确定要退出吗？"
+
+#: app/mainwindow.cpp:146
+#, kde-kuit-format
+msgctxt "@info"
+msgid ""
+"<warning>There are multiple open sessions, <emphasis>some of which you have "
+"locked to prevent closing them accidentally.</emphasis> These will be killed "
+"if you continue.</warning>"
+msgstr ""
+"<warning>存在多个会话，<emphasis>其中存在您已经锁定、避免意外关闭的终端。</emphasis> 如果您选择继续将强制关闭。<"
+"/warning>"
+
+#: app/mainwindow.cpp:148
+#, kde-kuit-format
+msgctxt "@info"
+msgid ""
+"<warning>There are multiple open sessions. These will be killed if you "
+"continue.</warning>"
+msgstr "<warning>存在多个会话，如果您继续将强制关闭。</warning>"
+
+#: app/mainwindow.cpp:152
+#, kde-kuit-format
+msgctxt "@info"
+msgid ""
+"<warning>There are one or more open sessions that you have locked to prevent "
+"closing them accidentally. These will be killed if you continue.</warning>"
+msgstr "<warning>存在您已经锁定、避免意外关闭的会话。如果您继续将强制退出。</warning>"
+
+#: app/mainwindow.cpp:157
+#, kde-kuit-format
+msgctxt "@title:window"
+msgid "Really Quit?"
+msgstr "确认退出？"
+
+#: app/mainwindow.cpp:190
+#, kde-kuit-format
+msgctxt "@action"
+msgid "Open/Retract Yakuake"
+msgstr "打开/收回 Yakuake"
+
+#: app/mainwindow.cpp:200
+#, kde-kuit-format
+msgctxt "@action"
+msgid "Keep window open when it loses focus"
+msgstr "失去焦点时保持窗口打开"
+
+#: app/mainwindow.cpp:205
+#, kde-kuit-format
+msgctxt "@action"
+msgid "Manage Profiles..."
+msgstr "管理配置方案..."
+
+#: app/mainwindow.cpp:210
+#, kde-kuit-format
+msgctxt "@action"
+msgid "Edit Current Profile..."
+msgstr "编辑当前方案..."
+
+#: app/mainwindow.cpp:216
+#, kde-kuit-format
+msgctxt "@action"
+msgid "Increase Window Width"
+msgstr "增大窗口宽度"
+
+#: app/mainwindow.cpp:221
+#, kde-kuit-format
+msgctxt "@action"
+msgid "Decrease Window Width"
+msgstr "减小窗口宽度"
+
+#: app/mainwindow.cpp:226
+#, kde-kuit-format
+msgctxt "@action"
+msgid "Increase Window Height"
+msgstr "增大窗口高度"
+
+#: app/mainwindow.cpp:231
+#, kde-kuit-format
+msgctxt "@action"
+msgid "Decrease Window Height"
+msgstr "减小窗口高度"
+
+#: app/mainwindow.cpp:236
+#, kde-kuit-format
+msgctxt "@action"
+msgid "New Session"
+msgstr "新建会话"
+
+#: app/mainwindow.cpp:242
+#, kde-kuit-format
+msgctxt "@action"
+msgid "Two Terminals, Horizontally"
+msgstr "两个终端，水平布局"
+
+#: app/mainwindow.cpp:247
+#, kde-kuit-format
+msgctxt "@action"
+msgid "Two Terminals, Vertically"
+msgstr "两个终端，垂直布局"
+
+#: app/mainwindow.cpp:252
+#, kde-kuit-format
+msgctxt "@action"
+msgid "Four Terminals, Grid"
+msgstr "四个终端，按格布局"
+
+#: app/mainwindow.cpp:257
+#, kde-kuit-format
+msgctxt "@action"
+msgid "Close Session"
+msgstr "关闭会话"
+
+#: app/mainwindow.cpp:264
+#, kde-kuit-format
+msgctxt "@action"
+msgid "Previous Session"
+msgstr "上一个会话"
+
+#: app/mainwindow.cpp:270
+#, kde-kuit-format
+msgctxt "@action"
+msgid "Next Session"
+msgstr "下一个会话"
+
+#: app/mainwindow.cpp:276
+#, kde-kuit-format
+msgctxt "@action"
+msgid "Move Session Left"
+msgstr "向左移动会话"
+
+#: app/mainwindow.cpp:283
+#, kde-kuit-format
+msgctxt "@action"
+msgid "Move Session Right"
+msgstr "向右移动会话"
+
+#: app/mainwindow.cpp:290
+#, kde-kuit-format
+msgctxt "@action"
+msgid "Grow Terminal to the Right"
+msgstr "延展终端到右边缘"
+
+#: app/mainwindow.cpp:297
+#, kde-kuit-format
+msgctxt "@action"
+msgid "Grow Terminal to the Left"
+msgstr "延展终端到左边缘"
+
+#: app/mainwindow.cpp:304
+#, kde-kuit-format
+msgctxt "@action"
+msgid "Grow Terminal to the Top"
+msgstr "延展终端到顶部"
+
+#: app/mainwindow.cpp:311
+#, kde-kuit-format
+msgctxt "@action"
+msgid "Grow Terminal to the Bottom"
+msgstr "延展终端到底部"
+
+#: app/mainwindow.cpp:318
+#, kde-kuit-format
+msgctxt "@action"
+msgid "Rename Session..."
+msgstr "重命名会话..."
+
+#: app/mainwindow.cpp:325
+#, kde-kuit-format
+msgctxt "@action"
+msgid "Previous Terminal"
+msgstr "上一个终端"
+
+#: app/mainwindow.cpp:331
+#, kde-kuit-format
+msgctxt "@action"
+msgid "Next Terminal"
+msgstr "下一个终端"
+
+#: app/mainwindow.cpp:337
+#, kde-kuit-format
+msgctxt "@action"
+msgid "Close Active Terminal"
+msgstr "关闭活动终端"
+
+#: app/mainwindow.cpp:344
+#, kde-kuit-format
+msgctxt "@action"
+msgid "Split Left/Right"
+msgstr "左右分割"
+
+#: app/mainwindow.cpp:351
+#, kde-kuit-format
+msgctxt "@action"
+msgid "Split Top/Bottom"
+msgstr "上下风格"
+
+#: app/mainwindow.cpp:358
+#, kde-kuit-format
+msgctxt "@action"
+msgid "Prevent Closing"
+msgstr "防止关闭"
+
+#: app/mainwindow.cpp:364 app/tabbar.cpp:207
+#, kde-kuit-format
+msgctxt "@action"
+msgid "Disable Keyboard Input"
+msgstr "禁止键盘输入"
+
+#: app/mainwindow.cpp:370 app/tabbar.cpp:255
+#, kde-kuit-format
+msgctxt "@action"
+msgid "Monitor for Activity"
+msgstr "监控活动"
+
+#: app/mainwindow.cpp:377 app/tabbar.cpp:303
+#, kde-kuit-format
+msgctxt "@action"
+msgid "Monitor for Silence"
+msgstr "监控静默"
+
+#: app/mainwindow.cpp:386
+#, kde-kuit-format
+msgctxt "@action"
+msgid "Switch to Session %1"
+msgstr "切换到会话%1"
+
+#: app/mainwindow.cpp:518
+#, kde-kuit-format
+msgctxt "@info"
+msgid "Activity detected in monitored terminal in session \"%1\"."
+msgstr "在会话“%1”中的受监控终端探测到活动。"
+
+#: app/mainwindow.cpp:532
+#, kde-kuit-format
+msgctxt "@info"
+msgid "Silence detected in monitored terminal in session \"%1\"."
+msgstr "在会话“%1”中的受监控终端探测到静默。"
+
+#: app/mainwindow.cpp:568
+#, kde-kuit-format
+msgctxt "@title:menu"
+msgid "Screen"
+msgstr "屏幕"
+
+#: app/mainwindow.cpp:573
+#, kde-kuit-format
+msgctxt "@title:menu"
+msgid "Width"
+msgstr "宽度"
+
+#: app/mainwindow.cpp:578
+#, kde-kuit-format
+msgctxt "@title:menu"
+msgid "Height"
+msgstr "高度"
+
+#: app/mainwindow.cpp:594
+#, kde-kuit-format
+msgctxt "@item:inmenu"
+msgid "At mouse location"
+msgstr "在鼠标位置"
+
+#: app/mainwindow.cpp:601
+#, kde-kuit-format
+msgctxt "@item:inmenu"
+msgid "Screen %1"
+msgstr "屏幕 %1"
+
+#: app/mainwindow.cpp:691
+#, kde-kuit-format
+msgctxt "@title Preferences page name"
+msgid "Window"
+msgstr "窗口"
+
+#: app/mainwindow.cpp:698
+#, kde-kuit-format
+msgctxt "@title Preferences page name"
+msgid "Behavior"
+msgstr "行为"
+
+#: app/mainwindow.cpp:702
+#, kde-kuit-format
+msgctxt "@title Preferences page name"
+msgid "Appearance"
+msgstr "外观"
+
+#: app/mainwindow.cpp:757
+#, kde-kuit-format
+msgctxt "@info"
+msgid ""
+"<application>Yakuake</application> was unable to load a skin. It is likely "
+"that it was installed incorrectly.<nl/><nl/>The application will now quit."
+msgstr "<application>Yakuake</application>不能加载皮肤。很可能是安装不正确。<nl/><nl/>应用程序将退出。"
+
+#: app/mainwindow.cpp:759
+#, kde-kuit-format
+msgctxt "@title:window"
+msgid "Cannot Load Skin"
+msgstr "不能加载皮肤"
+
+#: app/mainwindow.cpp:1340
+#, kde-kuit-format
+msgctxt "@info"
+msgid ""
+"Application successfully started.<nl/>Press <shortcut>%1</shortcut> to use "
+"it ..."
+msgstr "应用成功启动。<nl/>如需使用，按下<shortcut>%1</shortcut>键打开终端窗口..."
+
+#: app/sessionstack.cpp:614
+#, kde-kuit-format
+msgctxt "@info"
+msgid ""
+"<warning>You have locked this session to prevent accidental closing of "
+"terminals.</warning>"
+msgstr "<warning>为避免意外关闭终端，您已经锁定会话。</warning>"
+
+#: app/sessionstack.cpp:618
+#, kde-kuit-format
+msgctxt "@info"
+msgid "Are you sure you want to close this session?"
+msgstr "你确定要关闭这个会话吗？"
+
+#: app/sessionstack.cpp:620
+#, kde-kuit-format
+msgctxt "@info"
+msgid "Are you sure you want to close this terminal?"
+msgstr "你确定要关闭这个终端吗？"
+
+#: app/sessionstack.cpp:624
+#, kde-kuit-format
+msgctxt "@title:window"
+msgid "Really Close?"
+msgstr "确认关闭？"
+
+#: app/tabbar.cpp:55
+#, kde-kuit-format
+msgctxt "@info:whatsthis"
+msgid ""
+"<title>Tab Bar</title><para>The tab bar allows you to switch between "
+"sessions. You can double-click a tab to edit its label.</para>"
+msgstr "<title>页签</title><para>页签用于切换会话。你可以双击页签编辑标题。</para>"
+
+#: app/tabbar.cpp:74
+#, kde-kuit-format
+msgctxt "@title:menu"
+msgid "Disable Keyboard Input"
+msgstr "禁止键盘输入"
+
+#: app/tabbar.cpp:75
+#, kde-kuit-format
+msgctxt "@title:menu"
+msgid "Monitor for Activity"
+msgstr "监控活动"
+
+#: app/tabbar.cpp:76
+#, kde-kuit-format
+msgctxt "@title:menu"
+msgid "Monitor for Silence"
+msgstr "监控静默"
+
+#: app/tabbar.cpp:85
+#, kde-kuit-format
+msgctxt "@info:tooltip"
+msgid "New Session"
+msgstr "新会话"
+
+#: app/tabbar.cpp:86
+#, kde-kuit-format
+msgctxt "@info:whatsthis"
+msgid "Adds a new session. Press and hold to select session type from menu."
+msgstr "添加新的会话。按住从菜单选择会话类型。"
+
+#: app/tabbar.cpp:91
+#, kde-kuit-format
+msgctxt "@info:tooltip"
+msgid "Close Session"
+msgstr "关闭会话"
+
+#: app/tabbar.cpp:92
+#, kde-kuit-format
+msgctxt "@info:whatsthis"
+msgid "Closes the active session."
+msgstr "关闭活动会话。"
+
+#: app/tabbar.cpp:213
+#, kde-kuit-format
+msgctxt "@action"
+msgid "For This Session"
+msgstr "对于这个会话"
+
+#: app/tabbar.cpp:231
+#, kde-kuit-format
+msgctxt "@action"
+msgid "For Terminal %1"
+msgstr "对于终端 %1"
+
+#: app/tabbar.cpp:261 app/tabbar.cpp:309
+#, kde-kuit-format
+msgctxt "@action"
+msgid "In This Session"
+msgstr "在这个会话"
+
+#: app/tabbar.cpp:279 app/tabbar.cpp:327
+#, kde-kuit-format
+msgctxt "@action"
+msgid "In Terminal %1"
+msgstr "在终端 %1"
+
+#: app/tabbar.cpp:945
+#, kde-kuit-format
+msgctxt "@title:tab"
+msgid "Shell"
+msgstr "终端"
+
+#: app/tabbar.cpp:949
+#, kde-kuit-format
+msgctxt "@title:tab"
+msgid "Shell No. %1"
+msgstr "终端 %1"
+
+#: app/terminal.cpp:165
+#, kde-kuit-format
+msgctxt "@info"
+msgid ""
+"<application>Yakuake</application> was unable to load the "
+"<application>Konsole</application> component.<nl/> A <application>Konsole</"
+"application> installation is required to use Yakuake."
+msgstr ""
+"<application>Yakuake</application>不能加载"
+"<application>Konsole</application>组件<nl/>安装<application>Konsole</"
+"application>后才能使用Yakuake。"
+
+#: app/titlebar.cpp:39
+#, kde-kuit-format
+msgctxt "@info:whatsthis"
+msgid ""
+"<title>Title Bar</title><para>The title bar displays the session title if "
+"available.</para>"
+msgstr "<title>标题栏</title><para>在可用时标题栏显示会话名称。</para>"
+
+#: app/titlebar.cpp:50
+#, kde-kuit-format
+msgctxt "@info:tooltip"
+msgid "Keep window open when it loses focus"
+msgstr "失去焦点时保持窗口打开"
+
+#: app/titlebar.cpp:51
+#, kde-kuit-format
+msgctxt "@info:whatsthis"
+msgid "If this is checked, the window will stay open when it loses focus."
+msgstr "如果选择这个选项，窗口失去焦点时将保持打开。"
+
+#: app/titlebar.cpp:57
+#, kde-kuit-format
+msgctxt "@info:tooltip"
+msgid "Open Menu"
+msgstr "打开菜单"
+
+#: app/titlebar.cpp:58
+#, kde-kuit-format
+msgctxt "@info:whatsthis"
+msgid "Opens the main menu."
+msgstr "打开主菜单。"
+
+#: app/titlebar.cpp:62
+#, kde-kuit-format
+msgctxt "@info:tooltip Quits the application"
+msgid "Quit"
+msgstr "退出"
+
+#: app/titlebar.cpp:63
+#, kde-kuit-format
+msgctxt "@info:whatsthis"
+msgid "Quits the application."
+msgstr "退出应用程序。"
+
+
