@@ -1,0 +1,21 @@
+diff -Nur emacs-24.5/lisp/startup.el emacs-24.5new/lisp/startup.el
+--- emacs-24.5/lisp/startup.el	2015-04-02 07:23:06.000000000 +0000
++++ emacs-24.5new/lisp/startup.el	2015-07-25 22:05:30.163613084 +0000
+@@ -1071,7 +1071,7 @@
+ 
+     ;; Sites should not disable this.  Only individuals should disable
+     ;; the startup screen.
+-    (setq inhibit-startup-screen nil)
++    (setq inhibit-startup-screen t)
+ 
+     ;; Warn for invalid user name.
+     (when init-file-user
+@@ -1170,7 +1170,7 @@
+ 			    (setq user-init-file source))))
+ 
+ 		      (unless inhibit-default-init
+-                        (let ((inhibit-startup-screen nil))
++                        (let ((inhibit-startup-screen t))
+                           ;; Users are supposed to be told their rights.
+                           ;; (Plus how to get help and how to undo.)
+                           ;; Don't you dare turn this off for anyone

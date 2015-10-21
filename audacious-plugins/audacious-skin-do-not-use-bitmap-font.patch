@@ -1,0 +1,24 @@
+diff -Nur audacious-plugins-3.7-alpha1/src/skins/skins_cfg.cc audacious-plugins-3.7-alpha1n/src/skins/skins_cfg.cc
+--- audacious-plugins-3.7-alpha1/src/skins/skins_cfg.cc	2015-06-30 00:58:08.000000000 +0000
++++ audacious-plugins-3.7-alpha1n/src/skins/skins_cfg.cc	2015-07-09 10:26:29.985319098 +0000
+@@ -45,7 +45,7 @@
+  /* general */
+  "autoscroll_songname", "TRUE",
+  "mainwin_font", "Sans Bold 9",
+- "mainwin_use_bitmapfont", "TRUE",
++ "mainwin_use_bitmapfont", "FALSE",
+  "playlist_font", "Sans Bold 8",
+  "show_remaining_time", "FALSE",
+  "twoway_scroll", "FALSE",
+diff -Nur audacious-plugins-3.7-alpha1/src/skins-qt/skins_cfg.cc audacious-plugins-3.7-alpha1n/src/skins-qt/skins_cfg.cc
+--- audacious-plugins-3.7-alpha1/src/skins-qt/skins_cfg.cc	2015-06-30 00:58:08.000000000 +0000
++++ audacious-plugins-3.7-alpha1n/src/skins-qt/skins_cfg.cc	2015-07-09 10:26:16.352319342 +0000
+@@ -43,7 +43,7 @@
+  /* general */
+  "autoscroll_songname", "TRUE",
+  "mainwin_font", "Sans Bold 9",
+- "mainwin_use_bitmapfont", "TRUE",
++ "mainwin_use_bitmapfont", "FALSE",
+  "playlist_font", "Sans Bold 8",
+  "show_remaining_time", "FALSE",
+  "twoway_scroll", "FALSE",

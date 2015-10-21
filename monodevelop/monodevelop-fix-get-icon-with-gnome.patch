@@ -1,0 +1,55 @@
+diff -Nur monodevelop-4.2.3/src/addins/GnomePlatform/Gio.cs monodevelop-4.2.3n/src/addins/GnomePlatform/Gio.cs
+--- monodevelop-4.2.3/src/addins/GnomePlatform/Gio.cs	2014-05-11 15:02:23.912170034 +0800
++++ monodevelop-4.2.3n/src/addins/GnomePlatform/Gio.cs	2014-05-11 15:02:38.994171149 +0800
+@@ -61,6 +61,10 @@
+ 		static extern IntPtr g_file_query_info (IntPtr handle, IntPtr attrs, int flags, IntPtr cancellable, out IntPtr error);
+ 		[DllImport (gio, CallingConvention = CallingConvention.Cdecl)]
+ 		static extern bool g_app_info_launch_default_for_uri (IntPtr uri, IntPtr launch_context, out IntPtr error);
++		[DllImport (gio, CallingConvention = CallingConvention.Cdecl)]
++		static extern IntPtr g_file_info_get_icon (IntPtr handle);
++		[DllImport (gio, CallingConvention = CallingConvention.Cdecl)]
++		static extern IntPtr g_icon_to_string (IntPtr icon);
+ 		[DllImport (glib, CallingConvention = CallingConvention.Cdecl)]
+ 		static extern void g_list_free (IntPtr raw);
+ 		[DllImport (gobject, CallingConvention = CallingConvention.Cdecl)]
+@@ -139,6 +143,29 @@
+             IntPtr error;
+             g_app_info_launch_default_for_uri(native, IntPtr.Zero, out error);
+         }
++        public static string GetIconForFile(string uri) 
++        {
++            if (String.IsNullOrEmpty (uri))
++                return null;
++            IntPtr native = GLib.Marshaller.StringToPtrGStrdup (uri);
++            IntPtr gfile = g_file_new_for_uri (native);
++            GLib.Marshaller.Free (native);
++            IntPtr native_attrs = GLib.Marshaller.StringToPtrGStrdup ("standard::*");
++            IntPtr error;
++            IntPtr info = g_file_query_info (gfile, native_attrs, 0, IntPtr.Zero, out error);
++            if (error != IntPtr.Zero)
++                return null;
++            IntPtr icon = g_file_info_get_icon(info);
++            string iconstring = GLib.Marshaller.Utf8PtrToString(g_icon_to_string(icon));
++            string []sa;
++            sa = iconstring.Split(' '); 
++            string finalstring;
++            if(sa.Length > 1)
++                finalstring = sa[sa.Length-1];
++            else
++                finalstring = iconstring;
++            return finalstring;  
++        }
+ 		public static string GetMimeTypeForUri (string uri)
+ 		{
+ 			if (String.IsNullOrEmpty (uri))
+diff -Nur monodevelop-4.2.3/src/addins/GnomePlatform/GnomePlatform.cs monodevelop-4.2.3n/src/addins/GnomePlatform/GnomePlatform.cs
+--- monodevelop-4.2.3/src/addins/GnomePlatform/GnomePlatform.cs	2014-05-11 15:02:23.913170034 +0800
++++ monodevelop-4.2.3n/src/addins/GnomePlatform/GnomePlatform.cs	2014-05-11 15:02:46.012171667 +0800
+@@ -106,6 +106,7 @@
+ 				filename = EscapeFileName (filename);
+ 				if (filename == null)
+ 					return "gnome-fs-regular";
++                return Gio.GetIconForFile(filename);
+ 			}			
+ 			return "gnome-fs-regular";
+ 			

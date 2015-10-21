@@ -1,0 +1,16 @@
+diff -Nur smplayer-14.9.0.6690/src/smplayer.pro smplayer-14.9.0.6690n/src/smplayer.pro
+--- smplayer-14.9.0.6690/src/smplayer.pro	2015-01-05 15:58:58.000000000 +0000
++++ smplayer-14.9.0.6690n/src/smplayer.pro	2015-07-17 22:31:34.585746608 +0000
+@@ -281,11 +281,7 @@
+ 
+ # qtsingleapplication
+ contains( DEFINES, SINGLE_INSTANCE ) {
+-	INCLUDEPATH += qtsingleapplication
+-	DEPENDPATH += qtsingleapplication
+-
+-	SOURCES += qtsingleapplication/qtsingleapplication.cpp qtsingleapplication/qtlocalpeer.cpp
+-	HEADERS += qtsingleapplication/qtsingleapplication.h qtsingleapplication/qtlocalpeer.h
++    CONFIG += qtsingleapplication
+ }
+ 
+ # Find subtitles dialog

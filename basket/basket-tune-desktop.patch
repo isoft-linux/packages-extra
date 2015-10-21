@@ -1,0 +1,15 @@
+diff -Nur basket-2.10b/src/basket.desktop basket-2.10bnew/src/basket.desktop
+--- basket-2.10b/src/basket.desktop	2014-06-27 01:14:06.000000000 +0800
++++ basket-2.10bnew/src/basket.desktop	2015-10-18 21:47:08.111896896 +0800
+@@ -20,8 +20,11 @@
+ Name[ru]=Альбом заметок BasKet
+ Name[tr]=Basket
+ Name[xx]=xxBasKet Note Padsxx
++Name[zh_CN]=Basket便签
++
+ GenericName=Multi-Purpose Notepad
+ GenericName[tr]=Not Tutma Aracı
++GenericName[zh_CN]=多功能便签
+ 
+ Comment=Taking care of your ideas.
+ Comment[de]=Bewahren Sie Ihre Ideen.

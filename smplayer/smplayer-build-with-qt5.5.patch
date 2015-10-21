@@ -1,0 +1,11 @@
+diff -Nur smplayer-14.9.0.6690/src/qtsingleapplication/qtlocalpeer.cpp smplayer-14.9.0.6690new/src/qtsingleapplication/qtlocalpeer.cpp
+--- smplayer-14.9.0.6690/src/qtsingleapplication/qtlocalpeer.cpp	2013-08-30 00:53:57.000000000 +0000
++++ smplayer-14.9.0.6690new/src/qtsingleapplication/qtlocalpeer.cpp	2015-07-17 23:24:27.956689779 +0000
+@@ -42,6 +42,7 @@
+ #include "qtlocalpeer.h"
+ #include <QCoreApplication>
+ #include <QTime>
++#include <QDataStream>
+ 
+ #if defined(Q_OS_WIN)
+ #include <QLibrary>

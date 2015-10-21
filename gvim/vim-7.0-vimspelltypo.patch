@@ -1,0 +1,11 @@
+--- vim70/runtime/tools/vimspell.sh.typo	2006-09-28 16:48:52.000000000 +0200
++++ vim70/runtime/tools/vimspell.sh	2006-09-28 16:49:29.000000000 +0200
+@@ -22,7 +22,7 @@
+ # create a file in the safest way possible.
+ if test "$OUTFILE" = none; then
+         OUTFILE=$tmp/vimspell$$
+-	[ -e $OUTFILE ] && { echo "Cannot use temporary file $OUTFILE, it already exists!; exit 1 ; } 
++	[ -e $OUTFILE ] && { echo "Cannot use temporary file $OUTFILE, it already exists!"; exit 1 ; } 
+         (umask 077; touch $OUTFILE)
+ fi
+ # Note the copy of vimspell cannot be deleted on exit since it is

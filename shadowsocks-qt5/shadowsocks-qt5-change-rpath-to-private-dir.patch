@@ -1,0 +1,12 @@
+diff -Nur shadowsocks-qt5/shadowsocks-qt5.pro shadowsocks-qt5n/shadowsocks-qt5.pro
+--- shadowsocks-qt5/shadowsocks-qt5.pro	2015-08-14 22:48:03.000000000 +0000
++++ shadowsocks-qt5n/shadowsocks-qt5.pro	2015-08-16 22:51:10.778464903 +0000
+@@ -14,6 +14,8 @@
+ VERSION    = 2.4.1
+ DEFINES   += APP_VERSION=\\\"$$VERSION\\\"
+ 
++
++QMAKE_LFLAGS += -Wl,-rpath,'/usr/lib/shadowsocks-qt5'  
+ include(src/ss-qt5.pri)
+ 
+ OTHER_FILES  += README.md \

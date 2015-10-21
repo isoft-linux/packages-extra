@@ -1,0 +1,850 @@
+* Thu Mar 09 2006 Karsten Hopp <karsten@redhat.de> 6.4.007-4
+- fix configure check for python (#184478)
+
+* Thu Mar 09 2006 Karsten Hopp <karsten@redhat.de> 6.4.007-3
+- rebuild
+
+* Mon Feb 20 2006 Karsten Hopp <karsten@redhat.de> 6.4.007-2
+- gtk-update-icon-cache --ignore-theme-index 
+  (avoids %%post failures when hicolor-icon-theme isn't installed)
+
+* Wed Feb 15 2006 Karsten Hopp <karsten@redhat.de> 6.4.007-1
+- fix vim.csh script (#180429)
+- patchlevel 7
+
+* Fri Feb 10 2006 Jesse Keating <jkeating@redhat.com> - 1:6.4.006-1.2
+- bump again for double-long bug on ppc(64)
+
+* Tue Feb 07 2006 Jesse Keating <jkeating@redhat.com> - 1:6.4.006-1.1
+- rebuilt for new gcc4.1 snapshot and glibc changes
+
+* Mon Jan 02 2006 Karsten Hopp <karsten@redhat.de> 6.4.006-1
+- patchlevel 6, fixes bz# 175048
+
+* Tue Dec 20 2005 Karsten Hopp <karsten@redhat.de> 6.4.004-2
+- disable templates when editing new .c / .h files (#175878)
+
+* Fri Dec 09 2005 Jesse Keating <jkeating@redhat.com>
+- rebuilt
+
+* Thu Dec 08 2005 Karsten Hopp <karsten@redhat.de> 6.4.004-1
+- fix fstab syntax file (#174735)
+- patchlevel 4
+
+* Wed Nov 30 2005 Karsten Hopp <karsten@redhat.de> 6.4.003-1
+- patchlevel 3
+- remove withgui switch as we include vim-X11 in all our distributions now 
+  (#174271)
+
+* Fri Nov 25 2005 Karsten Hopp <karsten@redhat.de> 6.4.000-4
+- enable tmpfile patch 
+
+* Thu Oct 27 2005 Karsten Hopp <karsten@redhat.de> 6.4.000-3
+- test build
+
+* Tue Oct 25 2005 Karsten Hopp <karsten@redhat.de> 6.4.000-2
+- use %%{_sysconfdir} (#171556)
+- add syntax highlighting rule for %%check (Ralf Ertzinger, #165277)
+
+* Mon Oct 17 2005 Karsten Hopp <karsten@redhat.de> 6.4.000-1
+- vim-6.4 patchlevel 0
+
+* Tue Oct 11 2005 Karsten Hopp <karsten@redhat.de> 6.3.090-2
+- don't try to run cscope if cscope binary doesn't exist (#170371)
+- another attempt to fix perl requirements (#145475)
+
+* Mon Oct 10 2005 Karsten Hopp <karsten@redhat.de> 6.3.090-1
+- patchlevel 90
+- next attempt to fix perl requirements, add perl-epoch (#145475)
+
+* Thu Sep 08 2005 Karsten Hopp <karsten@redhat.de> 6.3.086-5
+- fix path to csupport templates
+- point user at README.csupport so that defaults can be set
+- make vim buildable without csupport with a variable
+
+* Thu Sep 01 2005 Karsten Hopp <karsten@redhat.de> 6.3.086-3
+- move X11 stuff to /usr/bin per request of xorg.x11 maintainer
+  Matthias Saou (#167176)
+
+* Tue Aug 16 2005 Karsten Hopp <karsten@redhat.de> 6.3.086-2
+- rebuild
+
+* Tue Aug 09 2005 Karsten Hopp <karsten@redhat.de> 6.3.086-1
+- update to patchlevel 86
+
+* Mon Jun 12 2005 Karsten Hopp <karsten@redhat.de> 6.3.080-1
+- update to patchlevel 80
+
+* Wed Apr 27 2005 Jeremy Katz <katzj@redhat.com> - 1:6.3.071-3
+- silence %%post
+
+* Mon Apr 18 2005 Karsten Hopp <karsten@redhat.de> 6.3.071-2
+- fix wrong Russian code page for vimtutor (#155181)
+
+* Mon Apr 11 2005 Karsten Hopp <karsten@redhat.de> 6.3.071-1
+- patchlevel 71, fixes crashes when converting text with illegal characters
+  and when moving the vertical separator to the far left (vertically splitted 
+  window)
+
+* Mon Apr 11 2005 Karsten Hopp <karsten@redhat.de> 6.3.068-2
+- quote special characters in here documents (vim.sh/vim.csh) (#154321)
+
+* Thu Mar 31 2005 Karsten Hopp <karsten@redhat.de> 6.3-068
+- pathlevel 68 (can't write when editing symbolic link to compressed file)
+- remove -s parameter from install, this should fix debuginfo packages
+
+* Mon Mar 28 2005 Christopher Aillon <caillon@redhat.com>
+- rebuilt
+
+* Fri Mar 25 2005 Christopher Aillon <caillon@redhat.com> 6.3.067-2
+- Update the GTK+ theme icon cache on (un)install
+
+* Wed Mar 23 2005 Karsten Hopp <karsten@redhat.de> 6.3.067-1
+- Newly created files got execute permission (caused by patch 66)
+  #151667
+
+* Fri Mar 18 2005 Karsten Hopp <karsten@redhat.de> 6.3.066-1
+- patchlevel 66
+
+* Mon Mar 14 2005 Karsten Hopp <karsten@redhat.de> 6.3.064-1
+- patchlevel 64
+- fix selinux warning (#150126)
+
+* Wed Mar 02 2005 Karsten Hopp <karsten@redhat.de> 6.3.062-1
+- patchlevel 62, build with gcc-4
+
+* Thu Feb 10 2005 Karsten Hopp <karsten@redhat.de> 6.3.061-3
+- spec.vim fix from Andrew Overholt
+
+* Mon Feb 07 2005 Karsten Hopp <karsten@redhat.de> 6.3.061-2 
+- fix tmpfile patch (#147192)
+
+* Mon Jan 31 2005 Karsten Hopp <karsten@redhat.de> 6.3.061-1 
+- patchlevel 61
+
+* Tue Jan 18 2005 Chip Turner <cturner@redhat.com> 1:058-2
+- rebuild for new perl
+
+* Tue Jan 18 2005 Karsten Hopp <karsten@redhat.de> 6.3.058-1
+- Patchlevel 58
+- rebuild with new perl
+- remove all rpm backup files
+
+* Wed Jan 12 2005 Karsten Hopp <karsten@redhat.de> 6.3.054-2
+- remove backup files
+
+* Wed Jan 12 2005 Karsten Hopp <karsten@redhat.de> 6.3.054-1
+- patchlevel 54
+- fix unsecure tempfile usage (#144698)
+
+* Mon Dec 06 2004 Karsten Hopp <karsten@redhat.de> 6.3.042-1 
+- patchlevel 42
+
+* Thu Dec 02 2004 Karsten Hopp <karsten@redhat.de> 6.3.035-2 
+- fix compressed docs handling (#141565)
+
+* Wed Dec 01 2004 Karsten Hopp <karsten@redhat.de> 6.3.035-1 
+- patchlevel 35
+- allow remapping of 'g' (#140747)
+
+* Fri Nov 19 2004 Karsten Hopp <karsten@redhat.de> 6.3.033-1 
+- patchlevel 33
+
+* Tue Nov 02 2004 Karsten Hopp <karsten@redhat.de> 6.3.030-3 
+- fix selinux patch, so that HAVE_SELINUX will not be defined on 
+  non-selinux systems (#137860)
+
+* Tue Oct 19 2004 Karsten Hopp <karsten@redhat.de> 6.3.030-3 
+- fix dependencies on vim-common (#132371)
+
+* Mon Oct 11 2004 Karsten Hopp <karsten@redhat.de> 6.3.030-2 
+- add cscope to vimrc so that cscope DB will be used 
+  automatically when available
+
+* Fri Oct 08 2004 Karsten Hopp <karsten@redhat.de> 6.3.030-2
+- patchlevel 30
+
+* Wed Oct 06 2004 Karsten Hopp <karsten@redhat.de> 6.3.029-2 
+- fix perl requirement
+- patchlevel 29 to fix crash when inserting a line break
+
+* Wed Sep 29 2004 Karsten Hopp <karsten@redhat.de> 6.3.028-2 
+- add patch from Ulrich Drepper to fix syntax highlighting of 
+  DNS config files (#133746)
+
+* Tue Sep 21 2004 Than Ngo <than@redhat.com> 6.3.028-1
+- add patchlevel 27,28
+
+* Tue Sep 14 2004 Karsten Hopp <karsten@redhat.de> 6.3.026-1
+- patchlevel 26 (fixes an endless loop in syntax highlighting)
+
+* Wed Sep 08 2004 Karsten Hopp <karsten@redhat.de> 6.3.025-2 
+- clean up spec file
+- disable fontset
+- enable cscope
+
+* Mon Sep 06 2004 Karsten Hopp <karsten@redhat.de> 6.3.025-1 
+- patchlevel 25
+
+* Wed Sep 01 2004 Karsten Hopp <karsten@redhat.de> 6.3.020-1
+- patchlevel 20
+
+* Sun Aug 29 2004 Karsten Hopp <karsten@redhat.de> 6.3.017-1 
+- patchlevel 17
+
+* Fri Aug 06 2004 Karsten Hopp <karsten@redhat.de> 6.3.015-1
+- update to patchlevel 15
+- move older rpm changelog entries to Changelog.rpm
+
+* Mon Jul 26 2004 Warren Togami <wtogami@redhat.com> 6.3.014-2
+- future proof vim-enhanced perl dep
+
+* Thu Jul 22 2004 Karsten Hopp <karsten@redhat.de> 6.3.014-1
+- patchlevel 14, fixes 'helplang' default settings
+- fix escape sequence in /etc/vimrc (#128344)
+
+* Fri Jul 16 2004 Karsten Hopp <karsten@redhat.de> 6.3.013-2
+- use different encoding for tutor.pl (#125376)
+
+* Tue Jul 13 2004 Karsten Hopp <karsten@redhat.de> 6.3.013-1
+- patchlevel 13 to fix some crashes with multi-line patterns 
+  and when using CTRL-R in command mode
+
+* Thu Jul 8 2004 Dan Walsh <dwalsh@redhat.com> 6.3.011-4
+- Fix selinux patch to handle symlinks
+
+* Wed Jul 07 2004 Karsten Hopp <karsten@redhat.de> 6.3.011-3
+- rebuild with new gcc
+
+* Mon Jul 05 2004 Karsten Hopp <karsten@redhat.de> 6.3.011-2 
+- convert tutorial files to UTF8 (#125376)
+
+* Sat Jul 03 2004 Karsten Hopp <karsten@redhat.de> 6.3.011-1 
+- patchlevel 11
+
+* Thu Jun 17 2004 Karsten Hopp <karsten@redhat.de> 6.3.006-1 
+- update to new major release
+
+* Tue Jun 15 2004 Elliot Lee <sopwith@redhat.com>
+- rebuilt
+
+* Fri Jun 04 2004 Karsten Hopp <karsten@redhat.de> 6.2.532-4 
+- enable build on ppc*
+
+* Wed Jun 02 2004 Karsten Hopp <karsten@redhat.de> 6.2.532-3
+- rebuild
+
+* Wed Jun 02 2004 Karsten Hopp <karsten@redhat.de> 6.2.532-2
+- rebuild
+
+* Thu Jun 01 2004 Karsten Hopp <karsten@redhat.de> 6.2.532-1 
+- patchlevel 532
+- include vimrc in vim-minimal (#123205)
+- add gvim icons (#110033)
+
+* Wed Apr 07 2004 Karsten Hopp <karsten@redhat.de> 6.2.457-1 
+- patchlevel 457
+
+* Fri Mar 26 2004 Karsten Hopp <karsten@redhat.de> 6.2.403-1
+- patchlevel 403
+
+* Thu Mar 18 2004 Karsten Hopp <karsten@redhat.de> 6.2.380-1 
+- patchlevel 380
+
+* Mon Mar 08 2004 Karsten Hopp <karsten@redhat.de> 6.2.327-1 
+- patchlevel 327
+
+* Wed Mar 03 2004 Karsten Hopp <karsten@redhat.de> 6.2.311-1 
+- patchlevel 311
+
+* Mon Mar 01 2004 Karsten Hopp <karsten@redhat.de> 6.2.294-1 
+- patchlevel 294
+
+* Fri Feb 13 2004 Elliot Lee <sopwith@redhat.com>
+- rebuilt
+
+* Wed Feb 11 2004 Karsten Hopp <karsten@redhat.de> 6.2.253-1 
+- patchlevel 253
+- disable netbeans
+
+* Thu Jan 29 2004 Karsten Hopp <karsten@redhat.de> 6.2.214-1 
+- Patchlevel 214
+
+* Mon Jan 26 2004 Dan Walsh <dwalsh@redhat.com> 1:6.2.195-5
+- Fix call to is_selinux_enabled()
+
+* Sat Jan 24 2004 Karsten Hopp <karsten@redhat.de> 6.2.195-4
+- fix perl requirement
+
+* Fri Jan 23 2004 Dan Walsh <dwalsh@redhat.com> 1:6.2.195-3
+- Only attempt to change context if it is different
+
+* Thu Jan 22 2004 Karsten Hopp <karsten@redhat.de> 6.2.195-1
+- update to patchlevel 195
+- enable ppc64 build
+
+* Mon Jan 12 2004 Karsten Hopp <karsten@redhat.de> 6.2.180-2 
+- vim-enhanced requires perl >= 5.8.2 (#111592)
+
+* Mon Jan 12 2004 Karsten Hopp <karsten@redhat.de> 6.2.180-1 
+- Patchlevel 180
+- update spec.vim, use g:packager instead of {Packager} macro
+
+* Tue Jan 6 2004 Dan Walsh <dwalsh@redhat.com> 1:6.2.154-7
+- Enable selinux support for vim-minimal
+
+* Wed Dec 17 2003 Dan Walsh <dwalsh@redhat.com> 1:6.2.154-6
+- Enable selinux support
+
+* Thu Dec 04 2003 Karsten Hopp <karsten@redhat.de> 1:6.2.154-5
+- rebuild with new perl
+
+* Wed Dec 03 2003 Karsten Hopp <karsten@redhat.de> 1:6.2.154-4
+- fix sh.vim syntax file (#104312)
+
+* Tue Dec 02 2003 Karsten Hopp <karsten@redhat.de> 1:6.2.154-3
+- perl interface was disabled when perl had thread support.
+
+* Thu Nov 27 2003 Karsten Hopp <karsten@redhat.de> 1:6.2.154-2
+- fix date in specfile changelog entries
+
+* Thu Nov 13 2003 Karsten Hopp <karsten@redhat.de> 1:6.2.154-1
+- Patchlevel 154
+- vim-minimal doesn't really require vim-common to run, removed dependency
+  (#109819)
+
+* Mon Nov 10 2003 Karsten Hopp <karsten@redhat.de> 1:6.2.149-1
+- Patchlevel 149
+- fix fstab syntax file (Robert G. (Doc) Savage)
+- lots of updates for syntax files, macros, documentation
+- disable vimnotvi patch so that vim's behaviour matches documentation
+- clean up vimrc
+
+* Thu Nov 06 2003 Karsten Hopp <karsten@redhat.de> 1:6.2.145-1
+- rebuild with new Python
+- Patchlevel 145
+
+* Tue Oct 14 2003 Karsten Hopp <karsten@redhat.de> 1:6.2.121-1
+- patchlevel 121
+- fix buildrequires (#106824, #105832)
+
+* Tue Sep 16 2003 Karsten Hopp <karsten@redhat.de> 1:6.2.98-1.1
+- rebuilt
+
+* Tue Sep 16 2003 Karsten Hopp <karsten@redhat.de> 1:6.2.98-1
+- upstream fix for undeclared stop_insert_mode variable
+
+* Tue Sep 16 2003 Karsten Hopp <karsten@redhat.de> 1:6.2.97-1
+- patchlevel 97, see README for descriptions
+
+* Mon Sep 01 2003 Karsten Hopp <karsten@redhat.de> 1:6.2.71-1
+- several upstream fixes (PL 71)
+
+* Tue Aug 05 2003 Karsten Hopp <karsten@redhat.de> 1:6.2.60-1.1
+- rebuilt
+
+* Mon Aug 04 2003 Karsten Hopp <karsten@redhat.de> 1:6.2.60-1
+- update to fix cut&paste segfaults and UTF8 problems
+- move vimrc to /etc (#2188)
+- fix filelist
+
+* Mon Aug 04 2003 Karsten Hopp <karsten@redhat.de> 1:6.2.57-2
+- rebuilt
+
+* Tue Jul 29 2003 Karsten Hopp <karsten@redhat.de> 1:6.2.57-1
+-  update to patchlevel 57, this should take care of #100670
+
+* Thu Jul 24 2003 Karsten Hopp <karsten@redhat.de> 6.2.21-1
+- some minor upstream fixes (PL 21)
+
+* Mon Jul 14 2003 Chip Turner <cturner@redhat.com>
+- rebuild for new perl 5.8.1
+
+* Fri Jul 04 2003 Karsten Hopp <karsten@redhat.de> 6.2.18-1
+- update
+
+* Wed Jun 10 2003 Karsten Hopp <karsten@redhat.de> 6.2.14-1
+- update to 6.2
+
+* Wed Jun 04 2003 Elliot Lee <sopwith@redhat.com>
+- rebuilt
+
+* Tue Jun 03 2003 Karsten Hopp <karsten@redhat.de> 6.1.474-3
+- rebuild
+
+* Mon Jun 02 2003 Karsten Hopp <karsten@redhat.de> 6.1.474-2
+- initialize variable before using it
+
+* Tue May 06 2003 Karsten Hopp <karsten@redhat.de> 6.1.474-1
+- patchlevel 474
+
+* Wed Apr 23 2003 Karsten Hopp <karsten@redhat.de> 6.1.469-4
+- add gvimdiff link (#89462)
+
+* Sun Apr 20 2003 Karsten Hopp <karsten@redhat.de> 6.1.469-3
+- rebuild with vim-X11 and gtk2
+- don't hardcode ruby path (thanks to Ian Macdonald)
+
+* Fri Apr 18 2003 Karsten Hopp <karsten@redhat.de> 6.1.469-2
+- rebuild
+
+* Thu Apr 17 2003 Karsten Hopp <karsten@redhat.de> 6.1.469-1
+- enable ruby interpreter (#89045) and update to patchlevel 469
+
+* Tue Apr 01 2003 Karsten Hopp <karsten@redhat.de> 6.1.434-1
+- update to patchlevel 434
+- update gtk2 patch and disable it for now
+
+* Sun Mar 16 2003 Karsten Hopp <karsten@redhat.de> 1:6.1.406-1
+- new versioning to match the official patchlevel
+- new tarballs from the stable CVS tree to get rid of >300 patches
+- add gtk2 patch fom gvim and build gtk2 gvim
+
+* Wed Feb 12 2003 Karsten Hopp <karsten@redhat.de> 1:6.1-29
+- clean up vimrc (fix #84088)
+- clean up specfile so that it works with vim's specfile mode
+- remove unused rescue stuff from specfile
+
+* Mon Feb 10 2003 Karsten Hopp <karsten@redhat.de> 1.6.1-28
+- patchlevel 320, to fix 'file changed' warning after :wq
+- don't overwrite systemwide config file (#82037)
+
+* Wed Jan 29 2003 Karsten Hopp <karsten@redhat.de> 6.1-27
+- patchlevel 311
+- fix #78837, only install message catalog for selected language
+
+* Tue Jan 28 2003 Karsten Hopp <karsten@redhat.de> 6.1.26
+- patchlevel 302
+- added epoch to automated changelog entry (specs.vim)
+- don't warn (vim-minimal) about not implemented functions
+
+* Thu Jan 23 2003 Karsten Hopp <karsten@redhat.de> 6.1.25
+- patchlevel 300
+
+* Wed Jan 22 2003 Tim Powers <timp@redhat.com>
+- rebuilt
+
+* Fri Jan 10 2003 Karsten Hopp <karsten@redhat.de> 6.1.23
+- patchlevel 287
+
+* Wed Jan 08 2003 Karsten Hopp <karsten@redhat.de> 6.1.22
+- use Red Hat style for spec files
+
+* Tue Jan 07 2003 Karsten Hopp <karsten@redhat.de> 6.1.21
+- patchlevel 284
+
+* Mon Dec 23 2002 Karsten Hopp <karsten@redhat.de> 6.1.20
+- upstream patch for the modeline issue
+
+* Sat Dec 21 2002 Karsten Hopp <karsten@redhat.de> 6.1-19
+- disable libcall() and system() in modelines
+- Patchlevel 264
+
+* Tue Dec 17 2002 Karsten Hopp <karsten@redhat.de> 6.1-17
+- Patchlevel 263
+- gvim works again (#79355)
+- don't backup all those patched files
+
+* Tue Nov 12 2002 Karsten Hopp <karsten@redhat.de>
+- added a lot of upstream patches + the README describing them
+- fix alias for zsh (#77007)
+- FIXME: gvim is currently broken
+
+* Wed Oct 02 2002 Karsten Hopp <karsten@redhat.de>
+- include the other httpd config files for syntax highlight
+
+* Wed Oct 02 2002 Karsten Hopp <karsten@redhat.de>
+- PL 206
+- fix #74135
+
+* Wed Aug 28 2002 Karsten Hopp <karsten@redhat.de>
+- PL 165: 
+ - when conversion to xxd fails 'filetype' was set anyway
+ - undo information is corrupted when splitting a saved line
+- add latin1 to fileencodings to fix 'conversion errors'
+
+* Mon Aug 19 2002 Karsten Hopp <karsten@redhat.de>
+- PL 159: expanding a multi-byte abbreviation deletes too much
+- build /bin/vi with --enably-multibyte (#71282)
+
+* Thu Aug 15 2002 Karsten Hopp <karsten@redhat.de>
+- Patchlevel 153:
+  translated menus are not used when lang contains "iso8859"
+  searching in included files could loop recursively
+- don't mark runtime files as %%doc or the files will be added to the package
+  twice. (saves 2M)
+- fix 'Installed (but unpackaged) file(s) found: .../gvim.desktop'
+- work around rpm limitations, can't replace directories with
+  symlinks
+
+* Sun Aug 11 2002 Florian La Roche <Florian.LaRoche@redhat.de>
+- fix profile.d/vim.sh
+
+* Thu Aug 08 2002 Karsten Hopp <karsten@redhat.de>
+- Patchlevel 151
+
+* Fri Jul 26 2002 Karsten Hopp <karsten@redhat.de>
+- Patchlevel 141
+- use desktop-file-utils (#69443)
+- fix /etc/profile.d/vim.sh (#67264)
+
+* Tue Jul 09 2002 Karsten Hopp <karsten@redhat.de> 6.1-8
+- Update to patchlevel 125
+- fix #59176, #65766, #59958, #55065, #62374, #62654, #63248
+- reenable alpha
+
+* Mon Jul  1 2002 Bernhard Rosenkraenzer <bero@redhat.com> 6.1-7
+- Update to patchlevel 118
+- Fix bug 64589
+
+* Tue Jun 25 2002 Karsten Hopp <karsten@redhat.de> 6.1-6
+- Update to patchlevel 112
+- added a modified patch 49 for INVALCOLOR
+
+* Fri Jun 21 2002 Tim Powers <timp@redhat.com>
+- automated rebuild
+
+* Thu May 23 2002 Tim Powers <timp@redhat.com>
+- automated rebuild
+
+* Thu May  9 2002 Bernhard Rosenkraenzer <bero@redhat.com> 6.1-3
+- Update to patchlevel 57
+- Rebuild with current toolchain
+- Temporarily exclude alpha, the build environment is broken
+  (no db, no python 2.x)
+
+* Wed Mar 27 2002 Bernhard Rosenkraenzer <bero@redhat.com> 6.1-2
+- Rebuild with new perl
+
+* Sun Mar 24 2002 Bernhard Rosenkraenzer <bero@redhat.com> 6.1-1
+- Update to 6.1 (pure bugfix release)
+
+* Mon Mar 11 2002 Bernhard Rosenkraenzer <bero@redhat.com> 6.0-14
+- Patchlevel 270
+- Move vimtutor to /usr/bin and vim-enhanced (#60772)
+
+* Mon Jan 28 2002 Bernhard Rosenkraenzer <bero@redhat.com> 6.0-13
+- Patchlevel 152
+- Add symlinks for evim, rvim and vimdiff as described in vim docs
+
+* Tue Jan 22 2002 Bernhard Rosenkraenzer <bero@redhat.com> 6.0-12
+- Patchlevel 149
+
+* Tue Jan 22 2002 Bernhard Rosenkraenzer <bero@redhat.com> 6.0-11
+- Patchlevel 147
+
+* Thu Dec 27 2001 Bernhard Rosenkraenzer <bero@redhat.com> 6.0-9
+- Patchlevel 101
+
+* Mon Nov 26 2001 Bernhard Rosenkraenzer <bero@redhat.com> 6.0-8
+- Patchlevel 93
+
+* Mon Nov  5 2001 Bernhard Rosenkraenzer <bero@redhat.com> 6.0-7
+- 6.0pl78
+- Move desktop file (Utilities -> Applications), #53503
+
+* Thu Nov  1 2001 Bernhard Rosenkraenzer <bero@redhat.com> 6.0-6
+- 6.0pl61
+
+* Wed Oct 31 2001 Bernhard Rosenkraenzer <bero@redhat.com>
+- 6.0pl44
+
+* Mon Oct 29 2001 Bernhard Rosenkraenzer <bero@redhat.com> 6.0-5
+- 6.0pl36
+- Fix build with gcc 3.1
+
+* Tue Oct 23 2001 Bernhard Rosenkraenzer <bero@redhat.com> 6.0-4
+- 6.0pl21
+- Don't show an error message when trying to "return" to a line
+  that no longer exists (#54551)
+
+* Mon Oct 22 2001 Bernhard Rosenkraenzer <bero@redhat.com> 6.0-3
+- 6.0pl19
+
+* Sun Sep 30 2001 Bernhard Rosenkraenzer <bero@redhat.com> 6.0-2
+- 6.0pl11
+
+* Wed Sep 26 2001 Bernhard Rosenkraenzer <bero@redhat.com> 6.0-1
+- 6.0
+
+* Thu Sep 13 2001 Bernhard Rosenkraenzer <bero@redhat.com> 6.0-0.av.1
+- 6.0av
+- Use -Os in rescue mode
+
+* Tue Sep  4 2001 Bernhard Rosenkraenzer <bero@redhat.com> 6.0-0.au.1
+- Update to 6.0au
+- Allow rescue build
+
+* Tue Aug 28 2001 Bernhard Rosenkraenzer <bero@redhat.com> 6.0-0.at.1
+- vim 6.0at
+- Increase epoch so we can update 7.2 systems
+
+* Fri Jun  1 2001 Bernhard Rosenkraenzer <bero@redhat.com> 6.0-0.33
+- 6.0ah
+- Add a bash alias for vi=vim to the vim-enhanced package, too many people
+  have complained about "missing features in vi even though I installed
+  vim-enhanced".
+
+* Mon May 21 2001 Bernhard Rosenkraenzer <bero@redhat.com> 6.0-0.32
+- 6.0ag
+- Make xxd locale aware (#37073)
+
+* Mon May 14 2001 Bernhard Rosenkraenzer <bero@redhat.com> 6.0-0.31
+- 6.0af
+
+* Mon May  7 2001 Bernhard Rosenkraenzer <bero@redhat.com> 6.0-0.30
+- 6.0ae
+
+* Mon Apr 30 2001 Bernhard Rosenkraenzer <bero@redhat.com>
+- 6.0ad
+- XML .xsd files are still xml files - use the right syntax
+  highlighting (RFE#38224)
+
+* Sun Apr 15 2001 Bernhard Rosenkraenzer <bero@redhat.com>
+- 6.0aa
+
+* Fri Mar 30 2001 Bernhard Rosenkraenzer <bero@redhat.com>
+- Fix large file handling (#34061)
+
+* Mon Feb 26 2001 Trond Eivind Glomsrød <teg@redhat.com>
+- use %%{_tmppath}
+
+* Thu Feb 15 2001 Yukihiro Nakai <ynakai@redhat.com>
+- vimrc update for 6.0v
+
+* Mon Feb 12 2001 Bernhard Rosenkraenzer <bero@redhat.com>
+- Fix "lba32" keyword in lilo.conf syntax highlighting
+- Fix build with current glibc
+
+* Fri Feb  2 2001 Bernhard Rosenkraenzer <bero@redhat.com>
+- Fix crontab -e in vim-minimal (#25376)
+
+* Tue Jan 30 2001 Bernhard Rosenkraenzer <bero@redhat.com>
+- Fix segfault on q, up, up, q (Bug #25261)
+
+* Mon Jan 22 2001 Bernhard Rosenkraenzer <bero@redhat.com>
+- Set minlines=500 as default in PHP syntax highlighting (RFE #24374)
+- Don't symlink gvimrc to vimrc (Bug #22518)
+- Add symlinks gview -> gvim and gex -> gvim in -X11 (RFE #24394)
+- 6.0t
+
+* Mon Jan 15 2001 Bernhard Rosenkraenzer <bero@redhat.com>
+- More fixes to rpm specfile syntax highlighting:
+  - recognize %%ifnarch
+  - recognize "j" as a tar option
+  - recognize %{_libdir}
+
+* Sun Jan 14 2001 Bernhard Rosenkraenzer <bero@redhat.com>
+- 6.0s
+
+* Wed Jan  3 2001 Bernhard Rosenkraenzer <bero@redhat.com>
+- 6.0r
+- Restore crv patch (this should fix #23135 for whoever is seeing it;
+  I'm not).
+
+* Tue Dec 19 2000 Yukihiro Nakai <ynakai@redhat.com>
+- Symbolic link to menu_ja_jp.ujis.vim to menu_ja_jp.eucjp.vim
+
+* Mon Dec 18 2000 Yukihiro Nakai <ynakai@redhat.com>
+- Delete i18n patch (already implmented by author)
+- Add menu i18n patch
+- Update vimrc to support CJK
+- Add menu translations.
+
+* Sun Dec 17 2000 Bernhard Rosenkraenzer <bero@redhat.com>
+- 6.0q
+
+* Sun Dec 17 2000 Yukihiro Nakai <ynakai@redhat.com>
+- Add --enable-fontset to configure options.
+- Add i18nrc patch and resources.
+
+* Tue Dec 12 2000 Bernhard Rosenkraenzer <bero@redhat.com>
+- 6.0p, new ncurses
+
+* Mon Dec 11 2000 Karsten Hopp <karsten@redhat.de>
+- rebuilt to fix permissions of /usr/share/doc/ and
+  /usr/share/vim
+
+* Mon Nov 13 2000 Bernhard Rosenkraenzer <bero@redhat.com>
+- 6.0m
+
+* Thu Nov  9 2000 Bernhard Rosenkraenzer <bero@redhat.com>
+- 6.0l
+
+* Mon Oct 30 2000 Bernhard Rosenkraenzer <bero@redhat.com>
+- 6.0k
+
+* Tue Oct 17 2000 Bernhard Rosenkraenzer <bero@redhat.com>
+- 6.0i
+- add new desktop file w/ translations
+
+* Thu Aug 31 2000 Bernhard Rosenkraenzer <bero@redhat.com>
+- 6.0h
+
+* Wed Aug 30 2000 Bernhard Rosenkraenzer <bero@redhat.com>
+- 6.0g
+
+* Mon Aug 14 2000 Bernhard Rosenkraenzer <bero@redhat.com>
+- 6.0f
+
+* Wed Aug  9 2000 Bernhard Rosenkraenzer <bero@redhat.com>
+- 6.0e
+
+* Sun Jul 23 2000 Bernhard Rosenkraenzer <bero@redhat.com>
+- 6.0c
+- get rid of the DESTDIR patch, no longer needed
+
+* Sun Jul 16 2000 Bernhard Rosenkraenzer <bero@redhat.com>
+- 6.0b
+
+* Mon Jul 10 2000 Bernhard Rosenkraenzer <bero@redhat.com>
+- 6.0a
+
+* Sun Jun 25 2000 Bernhard Rosenkraenzer <bero@redhat.com>
+- 5.7 release
+- some more fixes to .spec file syntax highlighting rules... About time it
+  recognizes %%{_mandir}...
+
+* Sun Jun 18 2000 Bernhard Rosenkraenzer <bero@redhat.com>
+- 5.7a
+
+* Sat Jun  3 2000 Bernhard Rosenkränzer <bero@redhat.com>
+- patchlevel 74
+- add %%makeinstall macro recognition to .spec file syntax highlighting rules
+- fix up Makefiles
+
+* Fri Apr 14 2000 Bernhard Rosenkränzer <bero@redhat.com>
+- patchlevel 66
+- fix compilation with perl 5.6.0
+
+* Mon Mar 20 2000 Bernhard Rosenkränzer <bero@redhat.com>
+- patchlevel 12
+
+* Tue Mar 07 2000 Preston Brown <pbrown@redhat.com>
+- fix home/end in vimrc (we did a term = rxvt, totally wrong)
+
+* Tue Feb 29 2000 Preston Brown <pbrown@redhat.com>
+- change F1-F4 keybindings for xterm builtin terminfo to match real terminfo
+
+* Thu Feb 17 2000 Bill Nottingham <notting@redhat.com>
+- kill autoindent
+
+* Mon Feb 07 2000 Preston Brown <pbrown@redhat.com>
+- wmconfig -> desktop
+
+* Sat Feb  5 2000 Bernhard Rosenkränzer <bero@redhat.com>
+- Patchlevel 11
+- handle compressed man pages
+- fix man page symlinks
+
+* Wed Feb  2 2000 Bill Nottingham <notting@redhat.com>
+- eliminate dependencies on X in vim-enhanced, and ncurses/gpm
+  in vim-minimal
+
+* Fri Jan 28 2000 Bill Nottingham <notting@redhat.com>
+- eliminate dependencies on csh and perl in vim-common
+
+* Wed Jan 19 2000 Bernhard Rosenrkänzer <bero@redhat.com>
+- Use awk, not nawk
+
+* Tue Jan 18 2000 Bernhard Rosenrkänzer <bero@redhat.com>
+- 5.6
+- patch 5.6.001
+- remove /usr/bin/vi - if you want vim, type vim
+
+* Tue Jan 11 2000 Bernhard Rosenkränzer <bero@redhat.com>
+- 5.6a
+- Remove dependency on nawk (introduced by base update)
+- some tweaks to make updating easier
+
+* Tue Nov  9 1999 Bernhard Rosenkränzer <bero@redhat.com>
+- 5.5
+- fix path to vimrc
+
+* Tue Jul 27 1999 Michael K. Johnson <johnsonm@redhat.com>
+- moved from athena to gtk widgets for X version
+- removed vim.1 from X11 filelist because X11 depends on vim-common anyway
+- fixed rogue dependencies from sample files
+
+* Tue Jul 27 1999 Jeff Johnson <jbj@redhat.com>
+- update to 5.4.
+
+* Thu Jul 22 1999 Jeff Johnson <jbj@redhat.com>
+- man page had buildroot pollution (#3629).
+
+* Thu Mar 25 1999 Preston Brown <pbrown@redhat.com>
+- with recent termcap/terminfo fixes, regular vim works in xterm/console
+- in color, so vim-color package removed.
+
+* Tue Mar 23 1999 Erik Troan <ewt@redhat.com>
+- removed "set backupdir=/tmp/vim_backup" from default vimrc
+
+* Sun Mar 21 1999 Cristian Gafton <gafton@redhat.com> 
+- auto rebuild in the new build environment (release 5)
+
+* Thu Dec 17 1998 Michael Maher <mike@redaht.com>
+- built pacakge for 6.0
+
+* Tue Sep 15 1998 Michael Maher <mike@redhat.com>
+- removed '--with-tlib=termcap' so that color-vim works
+
+* Wed Sep  2 1998 Jeff Johnson <jbj@redhat.com>
+- update to 5.3.
+
+* Mon Aug 10 1998 Jeff Johnson <jbj@redhat.com>
+- merge in Toshio's changes
+- color-vim: changed "--disable-p" to "--disable-perlinterp --with-tlib=termcap"
+- added minimal rvi/rview and man pages.
+- move Obsoletes to same package as executable.
+
+* Thu Aug 06 1998 Toshio Kuratomi <badger@prtr-13.ucsc.edu>
+- Break the package apart similar to the way the netscape package was
+  broken down to handle navigator or communicator: The vim package is
+  Obsolete, now there is vim-common with all the common files, and a
+  package for each binary: vim-minimal (has /bin/vi compiled with no
+  frills), vim-enhanced (has /usr/bin/vim with extra perl and python
+  interpreters), and vim-X11 (has /usr/X11R6/bin/gvim compiled with
+  GUI support.)
+- Enable the perl and python interpreters in the gui version (gvim).
+
+* Tue Jun 30 1998 Michael Maher <mike@redhat.com>
+- Fixed tutor help.
+- cvim package added.  Thanks to Stevie Wills for finding this one :-)
+
+* Thu May 07 1998 Prospector System <bugs@redhat.com>
+- translations modified for de, fr, tr
+
+* Fri May 01 1998 Donnie Barnes <djb@redhat.com>
+- added patch to turn off the "vi compatibility" by default.  You can
+  still get it via the -C command line option
+
+* Thu Apr 23 1998 Donnie Barnes <djb@redhat.com>
+- removed perl and python interpreters (sorry, but those don't belong
+  in a /bin/vi and having two vi's seemed like overkill...complain
+  to suggest@redhat.com if you care)
+
+* Fri Apr 17 1998 Donnie Barnes <djb@redhat.com>
+- fixed buildroot bug
+
+* Sat Apr 11 1998 Donnie Barnes <djb@redhat.com>
+- updated from 4.6 to 5.1
+- moved to buildroot
+
+* Sun Nov 09 1997 Donnie Barnes <djb@redhat.com>
+- fixed missing man page
+
+* Wed Oct 22 1997 Donnie Barnes <djb@redhat.com>
+- added wmconfig entry to vim-X11
+
+* Mon Oct 20 1997 Donnie Barnes <djb@redhat.com>
+- upgraded from 4.5 to 4.6
+
+* Fri Jun 13 1997 Erik Troan <ewt@redhat.com>
+- built against glibc
+
+* Tue Mar 25 1997 Michael K. Johnson <johnsonm@redhat.com>
+- Upgraded to 4.5
+- Added ex symlinks
+
+* Tue Mar 11 1997 Michael K. Johnson <johnsonm@redhat.com>
+- Added view symlink.

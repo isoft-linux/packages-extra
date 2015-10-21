@@ -1,0 +1,15 @@
+#!/bin/bash
+if [ -z "$JAVA_HOME" ] ; then
+    if [ -x `which java` ]; then
+	export JAVACMD=`which java`
+    elif [ -x `which jamvm` ]; then
+        export JAVACMD=`which jamvm`
+    else 
+        echo "JAVA_HOME did not setup properly. Jamvm also can not be found in your system."
+        echo "Please consider:"
+        echo "Install openjdk or jamvm/classpath"
+        exit 1
+    fi
+fi
+
+exec /usr/share/fop/fop $@

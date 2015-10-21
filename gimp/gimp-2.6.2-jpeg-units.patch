@@ -1,0 +1,29 @@
+diff -up gimp-2.6.2/plug-ins/file-jpeg/jpeg-save.c.jpeg-units gimp-2.6.2/plug-ins/file-jpeg/jpeg-save.c
+--- gimp-2.6.2/plug-ins/file-jpeg/jpeg-save.c.jpeg-units	2008-10-30 10:32:32.000000000 +0100
++++ gimp-2.6.2/plug-ins/file-jpeg/jpeg-save.c	2008-11-11 12:32:18.000000000 +0100
+@@ -192,14 +192,19 @@ background_jpeg_save (PreviewPersistent 
+       /* display the preview stuff */
+       if (!pp->abort_me)
+         {
+-          struct stat buf;
+-          gchar       temp[128];
++          struct stat  buf;
++          gchar       *text;
++          gchar       *size_text;
+ 
+           g_stat (pp->file_name, &buf);
+-          g_snprintf (temp, sizeof (temp),
+-                      _("File size: %02.01f kB"),
+-                      (gdouble) (buf.st_size) / 1024.0);
+-          gtk_label_set_text (GTK_LABEL (preview_size), temp);
++
++          size_text = g_format_size_for_display (buf.st_size);
++          text = g_strdup_printf (_("File size: %s"), size_text);
++
++          gtk_label_set_text (GTK_LABEL (preview_size), text);
++
++          g_free (text);
++          g_free (size_text);
+ 
+           /* and load the preview */
+           load_image (pp->file_name, GIMP_RUN_NONINTERACTIVE, TRUE, NULL);

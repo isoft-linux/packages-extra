@@ -1,0 +1,31 @@
+--- vim60ag/src/xxd/xxd.c.37073	Mon May 21 16:17:29 2001
++++ vim60ag/src/xxd/xxd.c	Mon May 21 16:32:12 2001
+@@ -81,6 +81,7 @@
+ #if __MWERKS__ && !defined(BEBOX)
+ # include <unix.h>	/* for fdopen() on MAC */
+ #endif
++#include <locale.h>
+ 
+ /*  This corrects the problem of missing prototypes for certain functions
+  *  in some GNU installations (e.g. SunOS 4.1.x).
+@@ -424,6 +425,11 @@
+   long length = -1, n = 0, seekoff = 0;
+   char l[LLEN+1];
+   char *pname, *pp;
++  char *lang=getenv("LANG");
++  if(!lang) lang=getenv("LC_ALL");
++  if(!lang) lang=getenv("LC_CTYPE");
++  if(lang)
++	  setlocale(LC_ALL, lang);
+ 
+ #ifdef AMIGA
+   /* This program doesn't work when started from the Workbench */
+@@ -728,7 +734,7 @@
+ #else
+ 	  (e > 31 && e < 127)
+ #endif
+-	  ? e : '.';
++	  ? e : isalnum(e) ? e : '.';
+       if (e)
+         nonzero++;
+       n++;

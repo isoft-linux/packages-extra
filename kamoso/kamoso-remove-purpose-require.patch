@@ -1,0 +1,168 @@
+diff -Nur kamoso-3.0rc1/CMakeLists.txt kamoso-3.0rc1n/CMakeLists.txt
+--- kamoso-3.0rc1/CMakeLists.txt	2015-08-04 13:54:20.000000000 +0000
++++ kamoso-3.0rc1n/CMakeLists.txt	2015-08-13 16:48:33.428014271 +0000
+@@ -9,7 +9,6 @@
+ find_package(KF5 REQUIRED COMPONENTS WidgetsAddons Config ConfigWidgets DocTools Solid KIO Declarative I18n)
+ 
+ find_package(Qt5GStreamer 1.1.90 REQUIRED)
+-find_package(KDEExperimentalPurpose REQUIRED)
+ find_package(UDev REQUIRED)
+ 
+ include(KDEInstallDirs)
+diff -Nur kamoso-3.0rc1/src/qml/ImagesView.qml kamoso-3.0rc1new/src/qml/ImagesView.qml
+--- kamoso-3.0rc1/src/qml/ImagesView.qml	2015-08-04 13:53:59.000000000 +0000
++++ kamoso-3.0rc1new/src/qml/ImagesView.qml	2015-08-13 17:19:52.210099206 +0000
+@@ -3,7 +3,6 @@
+ import QtQuick.Controls 1.2
+ import QtQuick.Layouts 1.1
+ import org.kde.kamoso 3.0
+-import org.kde.purpose 1.0
+ 
+ StackView {
+     id: stack
+@@ -29,36 +28,6 @@
+ 
+         MenuSeparator {}
+ 
+-        Instantiator {
+-            id: inst
+-            model: PurposeAlternativesModel {
+-                id: altsModel
+-                pluginType: "Export"
+-                inputData: {
+-                    "urls": [ menu.title ],
+-                    "mimeType": view.mimeFilter
+-                }
+-            }
+-            MenuItem {
+-                text: display
+-                iconName: model.iconName
+-                onTriggered: {
+-                    var config = altsModel.configureJob(index)
+-
+-                    if (config.isReady)
+-                        startShareJob(config)
+-                    else {
+-                        stack.push({
+-                            item: shareWizardComponent,
+-                            properties: { configuration: config }
+-                        })
+-                    }
+-                }
+-            }
+-
+-            onObjectAdded: menu.insertItem(menu.items.count, object)
+-            onObjectRemoved: menu.removeItem(object)
+-        }
+     }
+ 
+     initialItem: DirectoryView {
+@@ -69,108 +38,4 @@
+             menu.popup()
+         }
+     }
+-
+-    function startShareJob(config) {
+-        var job = config.createJob();
+-        stack.push({
+-            item: busyComponent,
+-            properties: { job: job }
+-        });
+-
+-        job.start();
+-        job.output.connect(function(output) {
+-            job.outputUrl = output.url
+-        });
+-        job.result.connect(function(job) {
+-            if (job.outputUrl=="")
+-                return;
+-            stack.replace({
+-                item: sharedComponent,
+-                properties: { text: job.outputUrl },
+-                replace: true
+-            })
+-        });
+-    }
+-
+-    Component {
+-        id: sharedComponent
+-        ColumnLayout {
+-            property alias text: field.text
+-            TextField {
+-                id: field
+-                Layout.fillWidth: true
+-                readOnly: true
+-                focus: true
+-                onTextChanged: {
+-                    selectAll();
+-                    copy();
+-                }
+-            }
+-            Label {
+-                Layout.fillHeight: true
+-                text: i18n("The URL was just shared")
+-            }
+-            Button {
+-                text: i18n("Back")
+-                onClicked: {
+-                    stack.pop()
+-                }
+-            }
+-        }
+-    }
+-
+-    Component {
+-        id: shareWizardComponent
+-        ColumnLayout {
+-            property alias configuration: wiz.configuration
+-            PurposeWizard {
+-                id: wiz
+-
+-                Layout.fillHeight: true
+-                Layout.fillWidth: true
+-            }
+-            RowLayout {
+-                Button {
+-                    text: i18n("Run")
+-                    enabled: wiz.configuration && wiz.configuration.isReady
+-                    onClicked: {
+-                        stack.pop();
+-                        startShareJob(wiz.configuration);
+-                    }
+-                }
+-                Button {
+-                    text: i18n("Back")
+-                    onClicked: {
+-                        stack.pop();
+-                        wiz.cancel()
+-                    }
+-                }
+-            }
+-        }
+-    }
+-
+-    Component {
+-        id: busyComponent
+-        ColumnLayout {
+-            property QtObject job
+-
+-            BusyIndicator {
+-                Layout.fillWidth: true
+-                Layout.fillHeight: true
+-                running: true
+-            }
+-
+-            Button {
+-                anchors.right: parent.right
+-                text: i18n("Cancel")
+-                enabled: parent.job && (parent.job.capabilities & KJob.Killable)
+-
+-                onClicked: {
+-                    if (parent.job.kill()) {
+-                        stack.pop()
+-                    }
+-                }
+-            }
+-        }
+-    }
+ }

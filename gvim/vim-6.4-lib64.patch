@@ -1,0 +1,22 @@
+--- vim64/src/auto/configure.lib64	2005-10-15 14:55:10.000000000 +0200
++++ vim64/src/auto/configure	2006-03-09 15:23:39.000000000 +0100
+@@ -1813,7 +1813,7 @@
+   
+ 	vi_cv_path_python_conf=
+ 	for path in "${vi_cv_path_python_pfx}" "${vi_cv_path_python_epfx}"; do
+-	  for subdir in lib share; do
++	  for subdir in lib64 lib share; do
+ 	    d="${path}/${subdir}/python${vi_cv_var_python_version}/config"
+ 	    if test -d "$d" && test -f "$d/config.c"; then
+ 	      vi_cv_path_python_conf="$d"
+--- vim64/src/configure.in.lib64	2006-03-09 15:24:07.000000000 +0100
++++ vim64/src/configure.in	2006-03-09 15:24:47.000000000 +0100
+@@ -472,7 +472,7 @@
+       [
+ 	vi_cv_path_python_conf=
+ 	for path in "${vi_cv_path_python_pfx}" "${vi_cv_path_python_epfx}"; do
+-	  for subdir in lib share; do
++	  for subdir in lib64 lib share; do
+ 	    d="${path}/${subdir}/python${vi_cv_var_python_version}/config"
+ 	    if test -d "$d" && test -f "$d/config.c"; then
+ 	      vi_cv_path_python_conf="$d"

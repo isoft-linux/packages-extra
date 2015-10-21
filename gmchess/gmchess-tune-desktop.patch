@@ -1,0 +1,31 @@
+diff -Nur gmchess-0.29.6/data/gmchess.desktop.in gmchess-0.29.6n/data/gmchess.desktop.in
+--- gmchess-0.29.6/data/gmchess.desktop.in	2009-09-07 20:08:47.000000000 +0800
++++ gmchess-0.29.6n/data/gmchess.desktop.in	2015-10-18 21:39:29.023406895 +0800
+@@ -1,4 +1,3 @@
+-
+ [Desktop Entry]
+ Name=Chinese chess
+ Name[zh_CN]=天书棋谈
+@@ -8,6 +7,6 @@
+ Icon=gmchess
+ Terminal=false
+ Type=Application
+-Categories=GNOME;GTK;Game;BoardGame;
++Categories=GNOME;GTK;Game;
+ StartupNotify=true
+ Encoding=UTF-8
+--- gmchess-0.29.6/data/gmchess.desktop.in	2015-10-18 21:40:25.039231209 +0800
++++ gmchess-0.29.6n/data/gmchess.desktop.in	2015-10-18 21:42:44.567107946 +0800
+@@ -1,8 +1,10 @@
+ [Desktop Entry]
+-Name=Chinese chess
++Name=gmchess
+ Name[zh_CN]=天书棋谈
++GenericName=Chinese chess
++GenericName[zh_CN]=中国象棋
+ Comment=Play the popular chinese chess game
+-Comment[zh_CN]=玩流行的中国象棋游戏
++Comment[zh_CN]=流行的中国象棋游戏
+ Exec=gmchess
+ Icon=gmchess
+ Terminal=false

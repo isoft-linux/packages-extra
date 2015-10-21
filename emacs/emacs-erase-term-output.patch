@@ -1,0 +1,11 @@
+diff -Nur emacs-23.4/lisp/term.el emacs-23.4n/lisp/term.el
+--- emacs-23.4/lisp/term.el	2012-01-11 20:35:01.000000000 +0800
++++ emacs-23.4n/lisp/term.el	2012-03-30 18:39:41.649132617 +0800
+@@ -3292,6 +3292,7 @@
+     (term-move-columns (- (max 1 term-terminal-parameter))))
+    ;; \E[J - clear to end of screen (terminfo: ed, clear)
+    ((eq char ?J)
++    (erase-buffer)
+     (term-erase-in-display term-terminal-parameter))
+    ;; \E[K - clear to end of line (terminfo: el, el1)
+    ((eq char ?K)

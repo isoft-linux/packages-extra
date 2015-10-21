@@ -1,0 +1,20 @@
+--- vim70/runtime/syntax/c.vim.bracket	2007-02-12 09:53:30.000000000 -0500
++++ vim70/runtime/syntax/c.vim	2007-02-12 09:54:28.000000000 -0500
+@@ -64,6 +64,8 @@
+   endif
+ endif
+ 
++syntax region	cBlock		start="{" end="}" transparent fold
++
+ "catch errors caused by wrong parenthesis and brackets
+ " also accept <% for {, %> for }, <: for [ and :> for ] (C99)
+ " But avoid matching <::.
+@@ -148,8 +150,6 @@
+ syntax match	cCommentError	display "\*/"
+ syntax match	cCommentStartError display "/\*"me=e-1 contained
+ 
+-syntax region	cBlock		start="{" end="}" transparent fold
+-
+ syn keyword	cOperator	sizeof
+ if exists("c_gnu")
+   syn keyword	cStatement	__asm__

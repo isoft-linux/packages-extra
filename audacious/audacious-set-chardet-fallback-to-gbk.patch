@@ -1,0 +1,12 @@
+diff -Nur audacious-3.7-alpha1/src/libaudcore/config.cc audacious-3.7-alpha1n/src/libaudcore/config.cc
+--- audacious-3.7-alpha1/src/libaudcore/config.cc	2015-06-30 00:57:23.000000000 +0000
++++ audacious-3.7-alpha1n/src/libaudcore/config.cc	2015-07-09 10:44:51.074299380 +0000
+@@ -85,7 +85,7 @@
+  "stop_after_current_song", "FALSE",
+ 
+  /* playlist */
+- "chardet_fallback", "ISO-8859-1",
++ "chardet_fallback", "GBK",
+ #ifdef _WIN32
+  "convert_backslash", "TRUE",
+ #else

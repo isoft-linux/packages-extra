@@ -1,0 +1,10 @@
+--- vim61/src/ex_docmd.c.rh2	Tue Jan 28 06:38:26 2003
++++ vim61/src/ex_docmd.c	Tue Jan 28 06:39:15 2003
+@@ -3109,6 +3109,7 @@
+ ex_ni(eap)
+     exarg_T	*eap;
+ {
++    return;
+     if (!eap->skip)
+ 	eap->errmsg = (char_u *)N_("E319: Sorry, the command is not available in this version");
+ }

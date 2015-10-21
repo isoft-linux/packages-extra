@@ -1,0 +1,79 @@
+#!/bin/bash
+
+shopt -s nullglob
+
+GIMPPLUGINDIR="@GIMPPLUGINDIR@"
+EXITVAL=0
+
+showhelp () {
+	cat << EOF
+Usage: gimp-plugin-mgr <mode> [<pluginname> [<pluginname> [...]]
+Mode can be:
+--install|-i:	install plugin(s)
+--uninstall|-u:	uninstall plugin(s)
+--help|-h:	show this message
+EOF
+}
+
+install_uninstall () {
+    local action="$1"
+    shift
+    local plugins="$@"
+    pushd "$GIMPPLUGINDIR/plug-ins" >&/dev/null
+    if [ "$plugins" == "*" ]; then
+        pushd "/etc/gimp/plugins.d" >&/dev/null
+        plugins=""
+        for file in *; do
+            plugins="$plugins ${file%.conf}"
+        done
+        popd >&/dev/null
+    fi
+
+	for plugin in $plugins; do
+        PLUGINFILE=
+        if [ ! -r "/etc/gimp/plugins.d/${plugin}.conf" ]; then
+            echo "gimp-plugin-mgr: can't read /etc/gimp/plugins.d/${plugin}.conf" >&2
+            EXITVAL=$(( $EXITVAL + 1 ))
+            continue
+        fi
+        . "/etc/gimp/plugins.d/${plugin}.conf"
+        case "$action" in
+        install)
+            if [ ! "$PLUGINFILE" ]; then
+                echo "gimp-plugin-mgr: PLUGINFILE not defined for $plugin" >&2
+                EXITVAL=$(( $EXITVAL + 1 ))
+                continue
+            fi
+            ln -snf "$PLUGINFILE" "$GIMPPLUGINDIR/plug-ins/$plugin"
+            ;;
+        uninstall)
+            if [ ! -L "$GIMPPLUGINDIR/plug-ins/$plugin" ]; then
+                echo "gimp-plugin-mgr: $GIMPPLUGINDIR/plug-ins/$plugin not a symbolic link" >&2
+                EXITVAL=$(( $EXITVAL + 1 ))
+                continue
+            fi
+            rm -f "$plugin"
+            ;;
+        esac
+	done
+    popd >&/dev/null
+}
+
+case "$1" in
+--install|-i)
+    shift
+	install_uninstall install "$@"
+	;;
+--uninstall|-u)
+    shift
+	install_uninstall uninstall "$@"
+	;;
+*)
+	if [ "$1" != "--help" -a "$1" != "-h" ]; then
+		EXITVAL=1
+	fi
+	showhelp
+	;;
+esac
+
+exit $EXITVAL

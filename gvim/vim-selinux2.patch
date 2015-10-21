@@ -1,0 +1,11 @@
+--- vim70/src/memfile.c	2006-05-08 11:37:01.000000000 +0200
++++ vim70/src/memfile.c.selinux	2006-05-08 11:34:45.000000000 +0200
+@@ -1325,5 +1325,8 @@
+ 	mfp->mf_ffname = NULL;
+     }
+     else
++#ifdef HAVE_SELINUX
++        mch_copy_sec(fname, mfp->mf_fname);
++#endif
+ 	mch_hide(mfp->mf_fname);    /* try setting the 'hidden' flag */
+ }
