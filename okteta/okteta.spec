@@ -1,6 +1,6 @@
 Name:    okteta
 Summary: Binary/hex editor
-Version: 15.04.3
+Version: 15.08.2
 Release: 3%{?dist}
 
 License: GPLv2+ and GFDL
@@ -42,7 +42,7 @@ BuildRequires: pkgconfig(Qt5ScriptTools)
 BuildRequires: pkgconfig(Qt5Test)
 BuildRequires: pkgconfig(Qt5Widgets)
 BuildRequires: pkgconfig(Qt5Xml)
-BuildRequires: libappstream-glib
+BuildRequires: appstream-glib
 
 Conflicts:      kdesdk-common < 4.10.80
 Obsoletes:      kdesdk-okteta < 4.10.80
@@ -137,8 +137,9 @@ fi
 %{_libdir}/libkasten*.so.*
 %{_libdir}/libokteta*.so.*
 %{_qt5_plugindir}/designer/oktetadesignerplugin.so
-# part
-%{_datadir}/oktetapart/
+
+%{_datadir}/kxmlgui5/oktetapart
+
 %{_qt5_plugindir}/oktetapart.so
 
 %files devel
@@ -159,3 +160,5 @@ fi
 
 
 %changelog
+* Wed Oct 21 2015 Cjacker <cjacker@foxmail.com>
+- Update to 15.08.2
