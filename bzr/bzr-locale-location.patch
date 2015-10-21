@@ -1,0 +1,12 @@
+diff -up bzr-2.6.0/setup.py.bak bzr-2.6.0/setup.py
+--- bzr-2.6.0/setup.py.bak	2014-07-29 10:12:47.521709038 -0700
++++ bzr-2.6.0/setup.py	2014-07-29 10:13:06.278800173 -0700
+@@ -76,7 +76,7 @@ PKG_DATA = {# install files from selftes
+ I18N_FILES = []
+ for filepath in glob.glob("bzrlib/locale/*/LC_MESSAGES/*.mo"):
+     langfile = filepath[len("bzrlib/locale/"):]
+-    targetpath = os.path.dirname(os.path.join("share/locale", langfile))
++    targetpath = os.path.dirname(os.path.join("locale", langfile))
+     I18N_FILES.append((targetpath, [filepath]))
+ 
+ def get_bzrlib_packages():

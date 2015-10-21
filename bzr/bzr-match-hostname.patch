@@ -1,0 +1,135 @@
+diff --git a/bzrlib/tests/test_https_urllib.py b/bzrlib/tests/test_https_urllib.py
+index f18e086..927529d 100644
+--- a/bzrlib/tests/test_https_urllib.py
++++ b/bzrlib/tests/test_https_urllib.py
+@@ -21,12 +21,16 @@
+ import os
+ import ssl
+ 
++if not hasattr(ssl, 'match_hostname'):
++    import backports.ssl_match_hostname
++    ssl.match_hostname = backports.ssl_match_hostname.match_hostname
++
++from ssl import CertificateError
+ from bzrlib import (
+     config,
+     trace,
+     )
+ from bzrlib.errors import (
+-    CertificateError,
+     ConfigOptionValueError,
+     )
+ from bzrlib.tests import (
+@@ -86,31 +90,33 @@ class MatchHostnameTests(TestCase):
+ 
+     def test_no_certificate(self):
+         self.assertRaises(ValueError,
+-                          _urllib2_wrappers.match_hostname, {}, "example.com")
++                          ssl.match_hostname, {}, "example.com")
+ 
+     def test_wildcards_in_cert(self):
+         def ok(cert, hostname):
+-            _urllib2_wrappers.match_hostname(cert, hostname)
++            ssl.match_hostname(cert, hostname)
+ 
+         # Python Issue #17980: avoid denials of service by refusing more than
+         # one wildcard per fragment.
+         cert = {'subject': ((('commonName', 'a*b.com'),),)}
+         ok(cert, 'axxb.com')
++        # according to RFC 6125 this is not allowed scenario too
+         cert = {'subject': ((('commonName', 'a*b.co*'),),)}
+-        ok(cert, 'axxb.com')
++        self.assertRaises(CertificateError, ssl.match_hostname,
++                          cert, 'axxb.com')
+         cert = {'subject': ((('commonName', 'a*b*.com'),),)}
+         try:
+-            _urllib2_wrappers.match_hostname(cert, 'axxbxxc.com')
++            ssl.match_hostname(cert, 'axxbxxc.com')
+         except ValueError as e:
+             self.assertIn("too many wildcards", str(e))
+ 
+     def test_no_valid_attributes(self):
+-        self.assertRaises(CertificateError, _urllib2_wrappers.match_hostname,
++        self.assertRaises(CertificateError, ssl.match_hostname,
+                           {"Problem": "Solved"}, "example.com")
+ 
+     def test_common_name(self):
+         cert = {'subject': ((('commonName', 'example.com'),),)}
+         self.assertIs(None,
+-                      _urllib2_wrappers.match_hostname(cert, "example.com"))
+-        self.assertRaises(CertificateError, _urllib2_wrappers.match_hostname,
++                      ssl.match_hostname(cert, "example.com"))
++        self.assertRaises(CertificateError, ssl.match_hostname,
+                           cert, "example.org")
+diff --git a/bzrlib/transport/http/_urllib2_wrappers.py b/bzrlib/transport/http/_urllib2_wrappers.py
+index 6a8dabd..ca1733a 100644
+--- a/bzrlib/transport/http/_urllib2_wrappers.py
++++ b/bzrlib/transport/http/_urllib2_wrappers.py
+@@ -59,6 +59,12 @@ import re
+ import sys
+ import time
+ 
++import ssl
++
++if not hasattr(ssl, 'match_hostname'):
++    import backports.ssl_match_hostname
++    ssl.match_hostname = backports.ssl_match_hostname.match_hostname
++
+ from bzrlib import __version__ as bzrlib_version
+ from bzrlib import (
+     config,
+@@ -421,45 +427,6 @@ def _dnsname_to_pat(dn, max_wildcards=1):
+     return re.compile(r'\A' + r'\.'.join(pats) + r'\Z', re.IGNORECASE)
+ 
+ 
+-def match_hostname(cert, hostname):
+-    """Verify that *cert* (in decoded format as returned by
+-    SSLSocket.getpeercert()) matches the *hostname*.  RFC 2818 rules
+-    are mostly followed, but IP addresses are not accepted for *hostname*.
+-
+-    CertificateError is raised on failure. On success, the function
+-    returns nothing.
+-    """
+-    if not cert:
+-        raise ValueError("empty or no certificate")
+-    dnsnames = []
+-    san = cert.get('subjectAltName', ())
+-    for key, value in san:
+-        if key == 'DNS':
+-            if _dnsname_to_pat(value).match(hostname):
+-                return
+-            dnsnames.append(value)
+-    if not san:
+-        # The subject is only checked when subjectAltName is empty
+-        for sub in cert.get('subject', ()):
+-            for key, value in sub:
+-                # XXX according to RFC 2818, the most specific Common Name
+-                # must be used.
+-                if key == 'commonName':
+-                    if _dnsname_to_pat(value).match(hostname):
+-                        return
+-                    dnsnames.append(value)
+-    if len(dnsnames) > 1:
+-        raise errors.CertificateError(
+-            "hostname %r doesn't match either of %s"
+-            % (hostname, ', '.join(map(repr, dnsnames))))
+-    elif len(dnsnames) == 1:
+-        raise errors.CertificateError("hostname %r doesn't match %r" %
+-                                      (hostname, dnsnames[0]))
+-    else:
+-        raise errors.CertificateError("no appropriate commonName or "
+-            "subjectAltName fields were found")
+-
+-
+ class HTTPSConnection(AbstractHTTPConnection, httplib.HTTPSConnection):
+ 
+     def __init__(self, host, port=None, key_file=None, cert_file=None,
+@@ -515,7 +482,7 @@ class HTTPSConnection(AbstractHTTPConnection, httplib.HTTPSConnection):
+             raise
+         if cert_reqs == ssl.CERT_REQUIRED:
+             peer_cert = ssl_sock.getpeercert()
+-            match_hostname(peer_cert, host)
++            ssl.match_hostname(peer_cert, host)
+ 
+         # Wrap the ssl socket before anybody use it
+         self._wrap_socket_for_reporting(ssl_sock)
