@@ -2,7 +2,7 @@
 
 Name:    juk 
 Summary: Music player 
-Version: 15.04.3
+Version: 15.08.2
 Release: 2%{?dist}
 
 # code: KDE e.V. may determine that future GPL versions are accepted
@@ -16,10 +16,11 @@ URL:     https://projects.kde.org/projects/kde/kdemultimedia/%{name}
 %global stable stable
 %endif
 Source0: http://download.kde.org/%{stable}/applications/%{version}/src/%{name}-%{version}.tar.xz
+Patch0: juk-fix-cmake-error.patch
 
 BuildRequires: desktop-file-utils
 BuildRequires: kdelibs-devel >= 4.14
-BuildRequires: libappstream-glib
+BuildRequires: appstream-glib
 %if 0%{?tunepimp}
 BuildRequires: libtunepimp-devel
 %endif
@@ -39,7 +40,7 @@ Juk is a jukebox, tagger and music collection manager.
 
 %prep
 %setup
-
+%patch0 -p1
 
 %build
 mkdir -p %{_target_platform}
@@ -87,3 +88,5 @@ fi
 
 
 %changelog
+* Wed Oct 21 2015 Cjacker <cjacker@foxmail.com>
+- update to 15.08.2

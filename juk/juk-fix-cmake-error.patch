@@ -1,0 +1,10 @@
+diff -Nur juk-15.08.2/CMakeLists.txt juk-15.08.2n/CMakeLists.txt
+--- juk-15.08.2/CMakeLists.txt	2015-08-03 13:36:58.000000000 +0800
++++ juk-15.08.2n/CMakeLists.txt	2015-10-21 13:48:17.628392711 +0800
+@@ -1,4 +1,6 @@
+ project(juk)
++cmake_minimum_required(VERSION 3.3)
++
+ set( CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/cmake )
+ find_package( KDE4 REQUIRED )
+ include( KDE4Defaults )
