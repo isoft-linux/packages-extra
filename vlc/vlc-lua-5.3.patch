@@ -1,0 +1,23 @@
+diff -Nur vlc-2.2.1/modules/lua/vlc.h vlc-2.2.1new/modules/lua/vlc.h
+--- vlc-2.2.1/modules/lua/vlc.h	2014-08-28 06:39:06.000000000 +0000
++++ vlc-2.2.1new/modules/lua/vlc.h	2015-07-18 23:47:55.929277374 +0000
+@@ -38,6 +38,7 @@
+ #include <vlc_stream.h>
+ #include <vlc_demux.h>
+ 
++#define LUA_COMPAT_APIINTCASTS
+ #define LUA_COMPAT_MODULE
+ #include <lua.h>        /* Low level lua C API */
+ #include <lauxlib.h>    /* Higher level C API */
+diff -Nur vlc-2.2.1/share/lua/intf/cli.lua vlc-2.2.1new/share/lua/intf/cli.lua
+--- vlc-2.2.1/share/lua/intf/cli.lua	2014-06-14 15:14:17.000000000 +0000
++++ vlc-2.2.1new/share/lua/intf/cli.lua	2015-07-18 23:48:49.458276415 +0000
+@@ -343,7 +343,7 @@
+                 end
+                 if val.args then str = str .. " " .. val.args end
+                 if #str%2 == 1 then str = str .. " " end
+-                str = str .. string.rep(" .",(width-(#str+#val.help)-1)/2)
++                str = str .. string.rep(" .",math.floor((width-(#str+#val.help)-1)/2))
+                 str = str .. string.rep(" ",width-#str-#val.help) .. val.help
+             end
+             client:append(str)

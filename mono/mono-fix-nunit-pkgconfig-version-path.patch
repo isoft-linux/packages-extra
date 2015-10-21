@@ -1,0 +1,8 @@
+--- mono-4.0.2/data/mono-nunit.pc.in	2015-05-08 15:00:13.000000000 +0000
++++ mono-4.0.2n/data/mono-nunit.pc.in	2015-06-25 09:53:48.789879071 +0000
+@@ -6,4 +6,4 @@
+ Name: Mono NUnit
+ Description: Mono's version of NUnit
+ Version: @VERSION@
+-Libs: -r:${libdir}/mono/2.0/nunit.core.dll -r:${libdir}/mono/2.0/nunit.core.interfaces.dll -r:${libdir}/mono/2.0/nunit.core.extensions.dll -r:${libdir}/mono/2.0/nunit.framework.dll -r:${libdir}/mono/2.0/nunit.framework.extensions.dll -r:${libdir}/mono/2.0/nunit.mocks.dll -r:${libdir}/mono/2.0/nunit.util.dll -r:${libdir}/mono/2.0/nunit-console-runner.dll 
++Libs: -r:${libdir}/mono/4.5/nunit.core.dll -r:${libdir}/mono/4.5/nunit.core.interfaces.dll -r:${libdir}/mono/4.5/nunit.core.extensions.dll -r:${libdir}/mono/4.5/nunit.framework.dll -r:${libdir}/mono/4.5/nunit.framework.extensions.dll -r:${libdir}/mono/4.5/nunit.mocks.dll -r:${libdir}/mono/4.5/nunit.util.dll -r:${libdir}/mono/4.5/nunit-console-runner.dll 

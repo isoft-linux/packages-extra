@@ -1,0 +1,32 @@
+diff -Nur classpath-0.99/native/jni/gtk-peer/gnu_java_awt_peer_gtk_FreetypeGlyphVector.c classpath-0.99n/native/jni/gtk-peer/gnu_java_awt_peer_gtk_FreetypeGlyphVector.c
+--- classpath-0.99/native/jni/gtk-peer/gnu_java_awt_peer_gtk_FreetypeGlyphVector.c	2008-12-18 08:43:41.000000000 -0800
++++ classpath-0.99n/native/jni/gtk-peer/gnu_java_awt_peer_gtk_FreetypeGlyphVector.c	2014-11-02 12:08:21.113317435 -0800
+@@ -42,8 +42,8 @@
+ #include <pango/pango.h>
+ #include <pango/pangoft2.h>
+ #include <pango/pangofc-font.h>
+-#include <freetype/ftglyph.h>
+-#include <freetype/ftoutln.h>
++#include <ftglyph.h>
++#include <ftoutln.h>
+ #include "jcl.h"
+ #include "gdkfont.h"
+ #include "gnu_java_awt_peer_gtk_FreetypeGlyphVector.h"
+diff -Nur classpath-0.99/native/jni/gtk-peer/gnu_java_awt_peer_gtk_GdkFontPeer.c classpath-0.99n/native/jni/gtk-peer/gnu_java_awt_peer_gtk_GdkFontPeer.c
+--- classpath-0.99/native/jni/gtk-peer/gnu_java_awt_peer_gtk_GdkFontPeer.c	2007-04-25 22:53:04.000000000 -0800
++++ classpath-0.99n/native/jni/gtk-peer/gnu_java_awt_peer_gtk_GdkFontPeer.c	2014-11-02 12:08:00.505540131 -0800
+@@ -39,10 +39,10 @@
+ #include <pango/pango.h>
+ #include <pango/pangoft2.h>
+ #include <pango/pangofc-font.h>
+-#include <freetype/ftglyph.h>
+-#include <freetype/ftoutln.h>
+-#include <freetype/fttypes.h>
+-#include <freetype/tttables.h>
++#include <ftglyph.h>
++#include <ftoutln.h>
++#include <fttypes.h>
++#include <tttables.h>
+ #include "gdkfont.h"
+ #include "gtkpeer.h"
+ #include "gnu_java_awt_peer_gtk_GdkFontPeer.h"

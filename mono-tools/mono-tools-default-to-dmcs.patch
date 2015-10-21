@@ -1,0 +1,12 @@
+diff -Nur mono-tools-2.11/configure.in mono-tools-2.11n/configure.in
+--- mono-tools-2.11/configure.in	2014-05-11 16:21:16.000000000 +0800
++++ mono-tools-2.11n/configure.in	2014-06-27 10:59:28.360114216 +0800
+@@ -11,7 +11,7 @@
+ 
+ dnl C# compiler
+ AC_PATH_PROG(MCS, mcs, no)
+-AC_PATH_PROG(GMCS, gmcs, no)
++AC_PATH_PROG(GMCS, dmcs, no)
+ AC_PATH_PROG(DMCS, dmcs, no)
+ AC_PATH_PROG(RUNTIME, mono, no)
+ AC_PATH_PROG(GACUTIL, gacutil, no)

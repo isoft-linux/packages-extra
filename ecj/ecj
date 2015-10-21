@@ -1,0 +1,5 @@
+#!/bin/bash
+exec jamvm \
+    -cp /usr/share/ecj/ecj.jar \
+    org.eclipse.jdt.internal.compiler.batch.Main -5 \
+    "$@"

@@ -1,0 +1,11 @@
+diff -Nur wine-1.7.46/loader/wine.inf.in wine-1.7.46n/loader/wine.inf.in
+--- wine-1.7.46/loader/wine.inf.in	2015-07-08 21:12:04.089247354 +0000
++++ wine-1.7.46n/loader/wine.inf.in	2015-07-08 21:12:32.868246838 +0000
+@@ -3227,7 +3227,6 @@
+ HKLM,%CurrentVersionNT%\SvcHost,"netsvcs",0x00010008,"Schedule"
+ 
+ [Services]
+-HKLM,%CurrentVersion%\RunServices,"winemenubuilder",2,"%11%\winemenubuilder.exe -a -r"
+ HKLM,"System\CurrentControlSet\Services\Eventlog\Application",,16
+ HKLM,"System\CurrentControlSet\Services\Tcpip\Parameters",,16
+ HKLM,"System\CurrentControlSet\Services\VxD\MSTCP",,16

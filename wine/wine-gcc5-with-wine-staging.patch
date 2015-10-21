@@ -1,0 +1,174 @@
+diff -Nur wine-1.7.49/dlls/gdi32/font.c wine-1.7.49n/dlls/gdi32/font.c
+--- wine-1.7.49/dlls/gdi32/font.c	2015-08-07 15:56:07.000000000 +0000
++++ wine-1.7.49n/dlls/gdi32/font.c	2015-08-12 13:55:20.095669315 +0000
+@@ -1297,7 +1297,7 @@
+  * Return the size of the string as it would be if it was output properly by
+  * e.g. TextOut.
+  */
+-BOOL WINAPI GetTextExtentExPointW( HDC hdc, LPCWSTR str, INT count, INT max_ext,
++BOOL WINAPI __attribute__((optimize("O0"))) GetTextExtentExPointW( HDC hdc, LPCWSTR str, INT count, INT max_ext,
+                                    LPINT nfit, LPINT dxs, LPSIZE size )
+ {
+     DC *dc;
+diff -Nur wine-1.7.49/dlls/gdi32/freetype.c wine-1.7.49n/dlls/gdi32/freetype.c
+--- wine-1.7.49/dlls/gdi32/freetype.c	2015-08-07 15:56:07.000000000 +0000
++++ wine-1.7.49n/dlls/gdi32/freetype.c	2015-08-12 13:55:20.090669315 +0000
+@@ -6432,7 +6432,7 @@
+ 
+ static const BYTE masks[8] = {0x80, 0x40, 0x20, 0x10, 0x08, 0x04, 0x02, 0x01};
+ 
+-static DWORD get_glyph_outline(GdiFont *incoming_font, UINT glyph, UINT format,
++static DWORD __attribute__((optimize("O0"))) get_glyph_outline(GdiFont *incoming_font, UINT glyph, UINT format,
+                                LPGLYPHMETRICS lpgm, ABC *abc, DWORD buflen, LPVOID buf,
+                                const MAT2* lpmat)
+ {
+diff -Nur wine-1.7.49/dlls/gdi32/mapping.c wine-1.7.49n/dlls/gdi32/mapping.c
+--- wine-1.7.49/dlls/gdi32/mapping.c	2015-08-07 15:56:07.000000000 +0000
++++ wine-1.7.49n/dlls/gdi32/mapping.c	2015-08-12 13:55:20.095669315 +0000
+@@ -324,7 +324,7 @@
+ /***********************************************************************
+  *           DPtoLP    (GDI32.@)
+  */
+-BOOL WINAPI DPtoLP( HDC hdc, LPPOINT points, INT count )
++BOOL WINAPI __attribute__((optimize("O0"))) DPtoLP( HDC hdc, LPPOINT points, INT count )
+ {
+     DC * dc = get_dc_ptr( hdc );
+     if (!dc) return FALSE;
+@@ -352,7 +352,7 @@
+ /***********************************************************************
+  *           LPtoDP    (GDI32.@)
+  */
+-BOOL WINAPI LPtoDP( HDC hdc, LPPOINT points, INT count )
++BOOL WINAPI __attribute__((optimize("O0"))) LPtoDP( HDC hdc, LPPOINT points, INT count )
+ {
+     DC * dc = get_dc_ptr( hdc );
+     if (!dc) return FALSE;
+diff -Nur wine-1.7.49/dlls/kernel32/process.c wine-1.7.49n/dlls/kernel32/process.c
+--- wine-1.7.49/dlls/kernel32/process.c	2015-08-12 13:54:26.946670267 +0000
++++ wine-1.7.49n/dlls/kernel32/process.c	2015-08-12 13:55:47.903668817 +0000
+@@ -1088,7 +1088,7 @@
+  *
+  * Startup routine of a new process. Runs on the new process stack.
+  */
+-static DWORD WINAPI start_process( LPTHREAD_START_ROUTINE entry )
++static DWORD WINAPI __attribute__((optimize("O0"))) start_process( LPTHREAD_START_ROUTINE entry )
+ {
+     PEB *peb = NtCurrentTeb()->Peb;
+ 
+diff -Nur wine-1.7.49/dlls/kernel32/volume.c wine-1.7.49n/dlls/kernel32/volume.c
+--- wine-1.7.49/dlls/kernel32/volume.c	2015-08-12 13:54:27.457670258 +0000
++++ wine-1.7.49n/dlls/kernel32/volume.c	2015-08-12 13:55:20.081669316 +0000
+@@ -713,7 +713,7 @@
+ /***********************************************************************
+  *           GetVolumeInformationW   (KERNEL32.@)
+  */
+-BOOL WINAPI GetVolumeInformationW( LPCWSTR root, LPWSTR label, DWORD label_len,
++BOOL WINAPI __attribute__((optimize("O0"))) GetVolumeInformationW( LPCWSTR root, LPWSTR label, DWORD label_len,
+                                    DWORD *serial, DWORD *filename_len, DWORD *flags,
+                                    LPWSTR fsname, DWORD fsname_len )
+ {
+diff -Nur wine-1.7.49/dlls/ntdll/directory.c wine-1.7.49n/dlls/ntdll/directory.c
+--- wine-1.7.49/dlls/ntdll/directory.c	2015-08-12 13:54:27.525670257 +0000
++++ wine-1.7.49n/dlls/ntdll/directory.c	2015-08-12 13:55:20.081669316 +0000
+@@ -3109,7 +3109,7 @@
+  * element doesn't have to exist; in that case STATUS_NO_SUCH_FILE is
+  * returned, but the unix name is still filled in properly.
+  */
+-NTSTATUS CDECL wine_nt_to_unix_file_name( const UNICODE_STRING *nameW, ANSI_STRING *unix_name_ret,
++NTSTATUS CDECL __attribute__((optimize("O0"))) wine_nt_to_unix_file_name( const UNICODE_STRING *nameW, ANSI_STRING *unix_name_ret,
+                                           UINT disposition, BOOLEAN check_case )
+ {
+     static const WCHAR unixW[] = {'u','n','i','x'};
+diff -Nur wine-1.7.49/dlls/ntdll/sec.c wine-1.7.49n/dlls/ntdll/sec.c
+--- wine-1.7.49/dlls/ntdll/sec.c	2015-08-07 15:56:07.000000000 +0000
++++ wine-1.7.49n/dlls/ntdll/sec.c	2015-08-12 13:55:20.080669316 +0000
+@@ -1726,7 +1726,7 @@
+  * the native function returns something like
+  * "S-1-5-21-0000000000-000000000-0000000000-500";
+  */
+-NTSTATUS WINAPI RtlConvertSidToUnicodeString(
++NTSTATUS WINAPI __attribute__((optimize("O0"))) RtlConvertSidToUnicodeString(
+        PUNICODE_STRING String,
+        PSID pSid,
+        BOOLEAN AllocateString)
+diff -Nur wine-1.7.49/dlls/ntdll/virtual.c wine-1.7.49n/dlls/ntdll/virtual.c
+--- wine-1.7.49/dlls/ntdll/virtual.c	2015-08-12 13:54:28.686670236 +0000
++++ wine-1.7.49n/dlls/ntdll/virtual.c	2015-08-12 13:55:20.082669316 +0000
+@@ -2348,7 +2348,7 @@
+  *             NtQueryVirtualMemory   (NTDLL.@)
+  *             ZwQueryVirtualMemory   (NTDLL.@)
+  */
+-NTSTATUS WINAPI NtQueryVirtualMemory( HANDLE process, LPCVOID addr,
++NTSTATUS WINAPI __attribute__((optimize("O0"))) NtQueryVirtualMemory( HANDLE process, LPCVOID addr,
+                                       MEMORY_INFORMATION_CLASS info_class, PVOID buffer,
+                                       SIZE_T len, SIZE_T *res_len )
+ {
+diff -Nur wine-1.7.49/dlls/rpcrt4/rpc_binding.c wine-1.7.49n/dlls/rpcrt4/rpc_binding.c
+--- wine-1.7.49/dlls/rpcrt4/rpc_binding.c	2015-08-07 15:56:07.000000000 +0000
++++ wine-1.7.49n/dlls/rpcrt4/rpc_binding.c	2015-08-12 13:55:20.094669315 +0000
+@@ -984,7 +984,7 @@
+ /***********************************************************************
+  *             RpcBindingCopy (RPCRT4.@)
+  */
+-RPC_STATUS RPC_ENTRY RpcBindingCopy(
++RPC_STATUS RPC_ENTRY __attribute__((optimize("O0"))) RpcBindingCopy(
+   RPC_BINDING_HANDLE SourceBinding,
+   RPC_BINDING_HANDLE* DestinationBinding)
+ {
+diff -Nur wine-1.7.49/dlls/user32/win.c wine-1.7.49n/dlls/user32/win.c
+--- wine-1.7.49/dlls/user32/win.c	2015-08-12 13:54:29.119670228 +0000
++++ wine-1.7.49n/dlls/user32/win.c	2015-08-12 13:55:20.096669315 +0000
+@@ -2960,7 +2960,7 @@
+ /*****************************************************************
+  *		SetParent (USER32.@)
+  */
+-HWND WINAPI SetParent( HWND hwnd, HWND parent )
++HWND WINAPI __attribute__((optimize("O0"))) SetParent( HWND hwnd, HWND parent )
+ {
+     HWND full_handle;
+     HWND old_parent = 0;
+diff -Nur wine-1.7.49/dlls/winex11.drv/window.c wine-1.7.49n/dlls/winex11.drv/window.c
+--- wine-1.7.49/dlls/winex11.drv/window.c	2015-08-12 13:54:32.317670171 +0000
++++ wine-1.7.49n/dlls/winex11.drv/window.c	2015-08-12 13:55:20.088669315 +0000
+@@ -1312,7 +1312,7 @@
+  *
+  * Synchronize the X client window position with the Windows one
+  */
+-static void sync_client_position( struct x11drv_win_data *data,
++static void __attribute__((optimize("O0"))) sync_client_position( struct x11drv_win_data *data,
+                                   const RECT *old_client_rect, const RECT *old_whole_rect )
+ {
+     int mask = 0;
+diff -Nur wine-1.7.49/programs/winecfg/appdefaults.c wine-1.7.49n/programs/winecfg/appdefaults.c
+--- wine-1.7.49/programs/winecfg/appdefaults.c	2015-08-07 15:56:07.000000000 +0000
++++ wine-1.7.49n/programs/winecfg/appdefaults.c	2015-08-12 13:55:20.097669315 +0000
+@@ -77,7 +77,7 @@
+ static const char szKeyNT[] = "Software\\Microsoft\\Windows NT\\CurrentVersion";
+ static const char szKeyProdNT[] = "System\\CurrentControlSet\\Control\\ProductOptions";
+ 
+-static int get_registry_version(void)
++static int __attribute__((optimize("O0"))) get_registry_version(void)
+ {
+     int i, best = -1, platform, major, minor = 0, build = 0;
+     char *p, *ver, *type = NULL;
+diff -Nur wine-1.7.49/programs/winemenubuilder/winemenubuilder.c wine-1.7.49n/programs/winemenubuilder/winemenubuilder.c
+--- wine-1.7.49/programs/winemenubuilder/winemenubuilder.c	2015-08-12 13:54:31.904670178 +0000
++++ wine-1.7.49n/programs/winemenubuilder/winemenubuilder.c	2015-08-12 13:55:20.098669315 +0000
+@@ -2323,7 +2323,7 @@
+     return ret;
+ }
+ 
+-static void update_association(LPCWSTR extension, LPCSTR mimeType, LPCWSTR progId,
++static void __attribute__((optimize("O0"))) update_association(LPCWSTR extension, LPCSTR mimeType, LPCWSTR progId,
+     LPCSTR appName, LPCSTR desktopFile, LPCSTR openWithIcon)
+ {
+     static const WCHAR ProgIDW[] = {'P','r','o','g','I','D',0};
+@@ -2400,7 +2400,7 @@
+     HeapFree(GetProcessHeap(), 0, openWithIconW);
+ }
+ 
+-static BOOL cleanup_associations(void)
++static BOOL __attribute__((optimize("O0"))) cleanup_associations(void)
+ {
+     static const WCHAR openW[] = {'o','p','e','n',0};
+     static const WCHAR DesktopFileW[] = {'D','e','s','k','t','o','p','F','i','l','e',0};

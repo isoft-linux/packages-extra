@@ -1,0 +1,61 @@
+diff -Nur webkit-sharp-0.3/sources/Makefile.am webkit-sharp-0.3n/sources/Makefile.am
+--- webkit-sharp-0.3/sources/Makefile.am	2009-10-22 03:54:23.000000000 +0800
++++ webkit-sharp-0.3n/sources/Makefile.am	2014-05-11 20:06:45.473519837 +0800
+@@ -30,11 +30,11 @@
+ all: generated-stamp $(ASSEMBLY)
+ 
+ get-sources:
+-	cp -rf /usr/include/webkit-1.0 .
+-	@for file in webkit-1.0/webkit/*.h; do                  \
++	cp -rf /usr/include/webkitgtk-1.0 .
++	@for file in webkitgtk-1.0/webkit/*.h; do                  \
+ 		sed -i -e 's,^WEBKIT_API ,/*WEBKIT_API*/\r,' $$file; \
+ 	done
+-	@for file in webkit-1.0/JavaScriptCore/*.h; do        \
++	@for file in webkitgtk-1.0/JavaScriptCore/*.h; do        \
+ 		sed -i -e 's,^JS_EXPORT ,/*JS_EXPORT*/\r,' $$file; \
+ 	done
+ 
+diff -Nur webkit-sharp-0.3/sources/webkit-sharp.dll.config.in webkit-sharp-0.3n/sources/webkit-sharp.dll.config.in
+--- webkit-sharp-0.3/sources/webkit-sharp.dll.config.in	2009-10-22 03:54:23.000000000 +0800
++++ webkit-sharp-0.3n/sources/webkit-sharp.dll.config.in	2014-05-11 20:06:13.629517483 +0800
+@@ -1,3 +1,3 @@
+ <configuration>
+-  <dllmap dll="webkit-1.0" target="webkit-1.0@LIB_PREFIX@.2@LIB_SUFFIX@"/>
++  <dllmap dll="webkitgtk-1.0" target="webkitgtk-1.0@LIB_PREFIX@.0@LIB_SUFFIX@"/>
+ </configuration>
+diff -Nur webkit-sharp-0.3/sources/webkit-sharp-sources.xml webkit-sharp-0.3n/sources/webkit-sharp-sources.xml
+--- webkit-sharp-0.3/sources/webkit-sharp-sources.xml	2009-10-22 03:54:23.000000000 +0800
++++ webkit-sharp-0.3n/sources/webkit-sharp-sources.xml	2014-05-11 20:06:58.793520822 +0800
+@@ -1,10 +1,10 @@
+ <?xml version="1.0"?>
+ <gapi-parser-input>
+   <api filename="webkit-sharp-api.raw">
+-    <library name="webkit-1.0">
++    <library name="webkitgtk-1.0">
+       <namespace name="WebKit">
+-        <!--<dir>/usr/include/webkit-1.0/webkit</dir>-->
+-        <dir>webkit-1.0/webkit</dir>
++        <!--<dir>/usr/include/webkitgtk-1.0/webkit</dir>-->
++        <dir>webkitgtk-1.0/webkit</dir>
+       </namespace>
+     </library>
+   </api>
+--- webkit-sharp-0.3n/sources/webkit-sharp-api.raw	2009-10-22 03:54:23.000000000 +0800
++++ webkit-sharp-0.3/sources/webkit-sharp-api.raw	2014-05-11 20:10:30.286536454 +0800
+@@ -6,7 +6,7 @@
+         Please DO NOT MODIFY THIS FILE, modify .metadata files instead.
+ 
+ -->
+-  <namespace name="WebKit" library="webkit-1.0">
++  <namespace name="WebKit" library="webkitgtk-1.0">
+     <enum name="DownloadError" cname="WebKitDownloadError" type="enum">
+       <member cname="WEBKIT_DOWNLOAD_ERROR_CANCELLED_BY_USER" name="CancelledByUser" />
+       <member cname="WEBKIT_DOWNLOAD_ERROR_DESTINATION" name="Destination" />
+@@ -949,4 +949,4 @@
+       </method>
+     </class>
+   </namespace>
+-</api>
+\ No newline at end of file
++</api>

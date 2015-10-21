@@ -1,0 +1,97 @@
+From 1ddb8499fc8fdfd4805406c1622193af9df381d4 Mon Sep 17 00:00:00 2001
+From: Lubomir Rintel <lkundrak@v3.sk>
+Date: Sun, 15 Jun 2014 15:13:24 +0200
+Subject: [PATCH] test: Add --batch switch
+
+Makes it possible to run the tests unattended.
+---
+ test/common.c       | 7 ++++++-
+ test/common.h       | 1 +
+ test/testgfx.c      | 7 +++++++
+ test/testrotozoom.c | 2 ++
+ 4 files changed, 16 insertions(+), 1 deletion(-)
+ mode change 100644 => 100755 test/common.c
+ mode change 100644 => 100755 test/common.h
+
+diff --git a/test/common.c b/test/common.c
+old mode 100644
+new mode 100755
+index 771ba9b..b75e9db
+--- a/test/common.c
++++ b/test/common.c
+@@ -17,7 +17,7 @@
+ #include "common.h"
+ 
+ #define VIDEO_USAGE \
+-"[--video driver] [--renderer driver] [--info all|video|modes|render|event] [--log all|error|system|audio|video|render|input] [--display N] [--fullscreen | --windows N] [--title title] [--icon icon.bmp] [--center | --position X,Y] [--geometry WxH] [--depth N] [--refresh R] [--vsync] [--noframe] [--resize] [--minimize] [--maximize] [--grab]"
++"[--batch] [--video driver] [--renderer driver] [--info all|video|modes|render|event] [--log all|error|system|audio|video|render|input] [--display N] [--fullscreen | --windows N] [--title title] [--icon icon.bmp] [--center | --position X,Y] [--geometry WxH] [--depth N] [--refresh R] [--vsync] [--noframe] [--resize] [--minimize] [--maximize] [--grab]"
+ 
+ #define AUDIO_USAGE \
+ "[--rate N] [--format U8|S8|U16|U16LE|U16BE|S16|S16LE|S16BE] [--channels N] [--samples N]"
+@@ -33,6 +33,7 @@ CommonCreateState(char **argv, Uint32 flags)
+ 
+     /* Initialize some defaults */
+     state->argv = argv;
++    state->batch = 0;
+     state->flags = flags;
+ #ifdef __NDS__
+     state->window_title = "";
+@@ -81,6 +82,10 @@ CommonArg(CommonState * state, int index)
+     return 0;
+ #endif
+ 
++    if (SDL_strcasecmp(argv[index], "--batch") == 0) {
++        state->batch = 1;
++        return 1;
++    }
+     if (SDL_strcasecmp(argv[index], "--video") == 0) {
+         ++index;
+         if (!argv[index]) {
+diff --git a/test/common.h b/test/common.h
+old mode 100644
+new mode 100755
+index b93207a..50eda7f
+--- a/test/common.h
++++ b/test/common.h
+@@ -32,6 +32,7 @@ typedef struct
+ {
+     /* SDL init flags */
+     char **argv;
++    int batch;
+     Uint32 flags;
+     Uint32 verbose;
+ 
+diff --git a/test/testgfx.c b/test/testgfx.c
+index 77ff715..8c901fe 100644
+--- a/test/testgfx.c
++++ b/test/testgfx.c
+@@ -1260,6 +1260,13 @@ int main(int argc, char *argv[])
+ 	drawn = 0;
+ 	test = 0;
+     while (!done) {
++
++	if (drawn && state->batch) {
++		if (++test > numTests)
++			done = 1;
++		drawn = 0;
++	}
++
+         /* Check for events */
+         ++frames;
+         while (SDL_PollEvent(&event)) {
+diff --git a/test/testrotozoom.c b/test/testrotozoom.c
+index 57f0c1e..a886b00 100644
+--- a/test/testrotozoom.c
++++ b/test/testrotozoom.c
+@@ -843,6 +843,8 @@ int main(int argc, char *argv[])
+ 			/* Do all the drawing work */ 
+ 			Draw(0, 25);
+ 			drawn = 1;
++			if (state->batch)
++				done = 1;
+ 		}
+ 
+ 	}
+-- 
+2.0.0
+

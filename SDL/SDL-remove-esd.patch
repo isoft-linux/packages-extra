@@ -1,0 +1,43 @@
+diff -Nur SDL-1.2.14/configure.in SDL-1.2.14n/configure.in
+--- SDL-1.2.14/configure.in	2011-01-11 23:41:48.000000000 +0800
++++ SDL-1.2.14n/configure.in	2011-01-11 23:42:01.000000000 +0800
+@@ -456,39 +456,6 @@
+     fi
+ }
+ 
+-dnl Find the ESD includes and libraries
+-CheckESD()
+-{
+-    AC_ARG_ENABLE(esd,
+-AC_HELP_STRING([--enable-esd], [support the Enlightened Sound Daemon [[default=yes]]]),
+-                  , enable_esd=yes)
+-    if test x$enable_audio = xyes -a x$enable_esd = xyes; then
+-        AM_PATH_ESD(0.2.8, have_esd=yes, have_esd=no)
+-        if test x$have_esd = xyes; then
+-            AC_ARG_ENABLE(esd-shared,
+-AC_HELP_STRING([--enable-esd-shared], [dynamically load ESD audio support [[default=yes]]]),
+-                          , enable_esd_shared=yes)
+-            esd_lib=[`find_lib "libesd.so.*" "$ESD_LIBS" | sed 's/.*\/\(.*\)/\1/; q'`]
+-
+-            AC_DEFINE(SDL_AUDIO_DRIVER_ESD)
+-            SOURCES="$SOURCES $srcdir/src/audio/esd/*.c"
+-            EXTRA_CFLAGS="$EXTRA_CFLAGS $ESD_CFLAGS"
+-            if test x$have_loadso != xyes && \
+-               test x$enable_esd_shared = xyes; then
+-                AC_MSG_WARN([You must have SDL_LoadObject() support for dynamic ESD loading])
+-            fi
+-            if test x$have_loadso = xyes && \
+-               test x$enable_esd_shared = xyes && test x$esd_lib != x; then
+-                echo "-- dynamic libesd -> $esd_lib"
+-                AC_DEFINE_UNQUOTED(SDL_AUDIO_DRIVER_ESD_DYNAMIC, "$esd_lib")
+-            else
+-                EXTRA_LDFLAGS="$EXTRA_LDFLAGS $ESD_LIBS"
+-            fi
+-            have_audio=yes
+-        fi
+-    fi
+-}
+-
+ dnl Find PulseAudio
+ CheckPulseAudio()
+ {

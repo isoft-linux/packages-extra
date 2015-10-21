@@ -1,0 +1,24 @@
+diff -Nur mono-tools-2.11/Mono.Profiler/Mono.Profiler.Widgets/Makefile.am mono-tools-2.11n/Mono.Profiler/Mono.Profiler.Widgets/Makefile.am
+--- mono-tools-2.11/Mono.Profiler/Mono.Profiler.Widgets/Makefile.am	2014-05-11 16:21:16.000000000 +0800
++++ mono-tools-2.11n/Mono.Profiler/Mono.Profiler.Widgets/Makefile.am	2014-05-11 16:59:31.363689468 +0800
+@@ -48,7 +48,7 @@
+ 	-r:Mono.Cairo \
+ 	-r:Mono.Posix \
+ 	-r:System \
+-	-r:System.Xml
++	-r:System.Xml -sdk:4
+ 
+ PROJECT_REFERENCES = ../lib/mprof-decoder-library.dll
+ 
+diff -Nur mono-tools-2.11/mperfmon/Makefile.am mono-tools-2.11n/mperfmon/Makefile.am
+--- mono-tools-2.11/mperfmon/Makefile.am	2014-05-11 16:21:16.000000000 +0800
++++ mono-tools-2.11n/mperfmon/Makefile.am	2014-05-11 16:59:47.985690696 +0800
+@@ -25,7 +25,7 @@
+ EXTRA_DIST = $(mperfmon_sources) $(mperfmon_resources) mperfmon.in config $(man_MANS)
+ 
+ packages = -pkg:gtk-sharp-2.0
+-assemblies = -r:System -r:System.Xml -r:Mono.Cairo -r:Mono.Posix
++assemblies = -r:System -r:System.Xml -r:Mono.Cairo -r:Mono.Posix -sdk:4
+ ress= $(foreach res,$(mperfmon_resources), $(addprefix -resource:,$(res)),$(notdir $(res)))
+ 
+ mperfmon.exe: $(mperfmon_sources) $(mperfmon_resources)

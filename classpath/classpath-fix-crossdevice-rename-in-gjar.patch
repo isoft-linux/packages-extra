@@ -1,0 +1,37 @@
+diff -Nur classpath-0.99/tools/gnu/classpath/tools/jar/Updater.java classpath-0.99n/tools/gnu/classpath/tools/jar/Updater.java
+--- classpath-0.99/tools/gnu/classpath/tools/jar/Updater.java	2010-06-04 03:14:36.000000000 +0800
++++ classpath-0.99n/tools/gnu/classpath/tools/jar/Updater.java	2014-09-12 15:28:31.690302919 +0800
+@@ -88,11 +88,29 @@
+       }
+ 
+     close();
+-    if (!tmpFile.renameTo(parameters.archiveFile))
++    if(parameters.archiveFile.exists())
++        parameters.archiveFile.delete();
++    copyFile(tmpFile, parameters.archiveFile);
++    if(tmpFile.exists())
++        if(!tmpFile.delete())
++            throw new IOException("Couldn't delete tmp JAR file " +
++               tmpFile);
++  }
++  private void copyFile(File sourceFile, File destFile) 
++    throws IOException 
++  {
++    BufferedInputStream source =
++      new BufferedInputStream(new FileInputStream(sourceFile));
++    BufferedOutputStream dest =
++      new BufferedOutputStream(new FileOutputStream(destFile));
++    int inputByte;
++    
++    while ((inputByte = source.read()) != -1) 
+       {
+-          throw new IOException("Couldn't rename new JAR file " + tmpFile +
+-                                "to " + parameters.archiveFile);
++   dest.write(inputByte);
+       }
++        
++    source.close();
++    dest.close();
+   }
+-
+ }

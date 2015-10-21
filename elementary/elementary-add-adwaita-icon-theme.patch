@@ -1,0 +1,12 @@
+diff -Nur elementary-1.11.2/src/lib/elm_icon.c elementary-1.11.2n/src/lib/elm_icon.c
+--- elementary-1.11.2/src/lib/elm_icon.c	2014-08-27 08:12:12.000000000 +0000
++++ elementary-1.11.2n/src/lib/elm_icon.c	2014-10-15 11:29:14.883520338 +0000
+@@ -283,7 +283,7 @@
+           {
+              const char **itr;
+              static const char *themes[] = {
+-                "gnome", "Human", "oxygen", "hicolor", NULL
++                "Adwaita", "gnome", "Human", "oxygen", "hicolor", NULL
+              };
+              for (itr = themes; *itr; itr++)
+                {

@@ -1,0 +1,46 @@
+--- jamvm-1.5.4/./src/os/linux/os.c	2010-01-01 02:40:48.000000000 -0800
++++ jamvm-1.5.4n/./src/os/linux/os.c	2014-11-02 12:11:43.105961351 -0800
+@@ -24,6 +24,7 @@
+ #include <stdlib.h>
+ #include <dlfcn.h>
+ #include <sys/sysinfo.h>
++#include <unistd.h>
+ 
+ #define __USE_GNU
+ #include <pthread.h>
+@@ -45,6 +46,7 @@
+ #endif
+ }
+ 
++#define get_nprocs() (sysconf(_SC_NPROCESSORS_ONLN))
+ int nativeAvailableProcessors() {
+ #ifdef __UCLIBC__
+     return 1;
+--- jamvm-1.5.4/./src/os/linux/x86_64/init.c	2010-01-01 02:40:48.000000000 -0800
++++ jamvm-1.5.4n/./src/os/linux/x86_64/init.c	2014-11-02 12:05:49.513058431 -0800
+@@ -19,25 +19,7 @@
+  * Foundation, 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
+  */
+ 
+-#ifdef __linux__
+-#include <fpu_control.h>
+-#endif
+-
+-/* Change the x87 FPU precision to double (64-bit) from the extended
+-   (80-bit) Linux default.  Note, unlike on i386, my testcases pass
+-   without this.  This is probably because gcc assumes and uses SSE
+-   by default, not the x87 FPU.  However, keep it in to be safe.
+-*/
+-
+ void setDoublePrecision() {
+-#ifdef __linux__
+-    fpu_control_t cw;
+-
+-    _FPU_GETCW(cw);
+-    cw &= ~_FPU_EXTENDED;
+-    cw |= _FPU_DOUBLE;
+-    _FPU_SETCW(cw);
+-#endif
+ }
+ 
+ void initialisePlatform() {

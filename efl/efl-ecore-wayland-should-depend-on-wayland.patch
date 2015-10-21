@@ -1,0 +1,11 @@
+diff -Nur efl-1.11.4/pc/ecore-wayland.pc.in efl-1.11.4n/pc/ecore-wayland.pc.in
+--- efl-1.11.4/pc/ecore-wayland.pc.in	2013-11-19 16:07:43.000000000 +0800
++++ efl-1.11.4n/pc/ecore-wayland.pc.in	2014-10-22 16:16:06.875145297 +0800
+@@ -7,6 +7,6 @@
+ Description: E core library, Wayland module
+ Requires.private: @requirements_pc_ecore_wayland@
+ Version: @VERSION@
+-Libs: -L${libdir} -lecore_wayland
++Libs: -L${libdir} -lecore_wayland -lwayland-client
+ Libs.private: @requirements_libs_ecore_wayland@
+ Cflags: -I${includedir}/efl-@VMAJ@ -I${includedir}/ecore-wayland-@VMAJ@

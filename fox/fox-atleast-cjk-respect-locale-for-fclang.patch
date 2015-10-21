@@ -1,0 +1,25 @@
+diff -Nur fox-1.6.50/src/FXFont.cpp fox-1.6.50n/src/FXFont.cpp
+--- fox-1.6.50/src/FXFont.cpp	2014-05-14 04:32:40.000000000 +0000
++++ fox-1.6.50n/src/FXFont.cpp	2015-08-04 13:48:28.358845340 +0000
+@@ -612,7 +613,20 @@
+ //    FcPatternAddCharSet(pattern, FC_CHARSET, charSet);
+ //    FcCharSetDestroy(charSet);
+     }
+-
++  char *lang = getenv("LANG");
++  if(lang) {
++  	if(strstr(lang,"zh_CN"))
++  		FcPatternAddCharSet(pattern, FC_CHARSET, FcLangGetCharSet((FcChar8*)"zh-cn"));
++  	else if(strstr(lang,"zh_TW"))
++  		FcPatternAddCharSet(pattern, FC_CHARSET, FcLangGetCharSet((FcChar8*)"zh-tw"));
++  	else if(strstr(lang,"ja_JP"))
++  		FcPatternAddCharSet(pattern, FC_CHARSET, FcLangGetCharSet((FcChar8*)"ja"));
++  	else if(strstr(lang,"ko_KR"))
++  		FcPatternAddCharSet(pattern, FC_CHARSET, FcLangGetCharSet((FcChar8*)"ko"));
++	else 
++  		FcPatternAddCharSet(pattern, FC_CHARSET, FcLangGetCharSet((FcChar8*)"en"));
++  } else 
++  	FcPatternAddCharSet(pattern, FC_CHARSET, FcLangGetCharSet((FcChar8*)"en"));
+   // Set pitch
+   if(wanthints&FXFont::Fixed){
+     FcPatternAddInteger(pattern,FC_SPACING,FC_MONO);

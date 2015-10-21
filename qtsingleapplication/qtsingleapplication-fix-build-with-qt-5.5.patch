@@ -1,0 +1,12 @@
+diff -Nur qtsingleapplication/src/qtlocalpeer.cpp qtsingleapplicationn/src/qtlocalpeer.cpp
+--- qtsingleapplication/src/qtlocalpeer.cpp	2015-07-17 23:17:52.241696866 +0000
++++ qtsingleapplicationn/src/qtlocalpeer.cpp	2015-07-17 23:18:33.440696128 +0000
+@@ -42,7 +42,7 @@
+ #include "qtlocalpeer.h"
+ #include <QCoreApplication>
+ #include <QTime>
+-
++#include <QDataStream>
+ #if defined(Q_OS_WIN)
+ #include <QLibrary>
+ #include <qt_windows.h>

@@ -1,0 +1,22 @@
+diff -Nur jamvm-1.5.4/configure jamvm-1.5.4n/configure
+--- jamvm-1.5.4/configure	2010-01-01 02:41:44.000000000 -0800
++++ jamvm-1.5.4n/configure	2014-11-02 12:17:13.486120299 -0800
+@@ -2957,7 +2957,6 @@
+ #define INLINING 1
+ _ACEOF
+ 
+-            interp_cflags=-fno-reorder-blocks
+ 
+             if test "$enable_runtime_reloc_checks" != no; then
+ 
+diff -Nur jamvm-1.5.4/configure.ac jamvm-1.5.4n/configure.ac
+--- jamvm-1.5.4/configure.ac	2010-01-01 02:40:45.000000000 -0800
++++ jamvm-1.5.4n/configure.ac	2014-11-02 12:17:03.958918127 -0800
+@@ -176,7 +176,6 @@
+ 
+         if test "$enable_int_inlining" != no; then
+             AC_DEFINE([INLINING],1,[interpreter inlining])
+-            interp_cflags=-fno-reorder-blocks 
+ 
+             if test "$enable_runtime_reloc_checks" != no; then
+                 AC_DEFINE([RUNTIME_RELOC_CHECKS],1,[compute relocatability at runtime])

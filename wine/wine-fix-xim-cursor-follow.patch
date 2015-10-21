@@ -1,0 +1,78 @@
+--- wine-1.7.9.orig/dlls/user32/edit.c	2013-12-21 02:34:52.000000000 +0800
++++ wine-1.7.9/dlls/user32/edit.c	2013-12-25 19:20:45.957037572 +0800
+@@ -4,6 +4,8 @@
+  *	Copyright  David W. Metcalfe, 1994
+  *	Copyright  William Magro, 1995, 1996
+  *	Copyright  Frans van Dorsselaer, 1996, 1997
++ *	Copyright  Cjacker & Ctime, 2008
++ *	Copyright  Cjacker, 2013
+  *
+  *
+  * This library is free software; you can redistribute it and/or
+@@ -59,6 +61,15 @@
+ #include "user_private.h"
+ #include "wine/debug.h"
+ 
++#include <X11/Xatom.h>
++#include <X11/keysym.h>
++#include <X11/Xlib.h>
++#include <X11/Xresource.h>
++#include <X11/Xutil.h>
++#ifdef HAVE_LIBXXF86DGA2
++#include <X11/extensions/xf86dga.h>
++#endif
++
+ WINE_DEFAULT_DEBUG_CHANNEL(edit);
+ WINE_DECLARE_DEBUG_CHANNEL(combo);
+ WINE_DECLARE_DEBUG_CHANNEL(relay);
+@@ -1819,6 +1830,27 @@
+ {
+ 	LRESULT res = EDIT_EM_PosFromChar(es, pos, after_wrap);
+ 	TRACE("%d - %dx%d\n", pos, (short)LOWORD(res), (short)HIWORD(res));
++	HMODULE x11drv;
++	XIC (*pget_ic)(HWND);
++	x11drv = GetModuleHandleA("winex11.drv");
++	if (x11drv) {
++		pget_ic = (XIC)GetProcAddress( x11drv, "get_ic");
++		HWND hwnd = es->hwndParent/*hwndSelf*/;
++		XIC ic;
++		XPoint preedit_area;
++		int count = 0;
++		if ((ic = pget_ic( hwnd )))
++		{
++		  XVaNestedList list;
++		  preedit_area.x = (short)LOWORD(res);
++		  preedit_area.y = (short)HIWORD(res)+30;
++	//        printf("preedit_area.x,y=%d,%d\n",preedit_area.x,preedit_area.y);
++	//        printf("pos.x,y=%d,%d\n",(short)LOWORD(es->region_posx),(short)HIWORD(es->region_posy));
++		  list = XVaCreateNestedList(0, XNSpotLocation, &preedit_area, NULL);
++		  XSetICValues(ic, XNPreeditAttributes, list, NULL);
++		  XFree(list);
++		}
++	}
+ 	SetCaretPos((short)LOWORD(res), (short)HIWORD(res));
+ }
+ 
+--- wine-1.7.9.orig/dlls/winex11.drv/winex11.drv.spec	2013-12-21 02:34:52.000000000 +0800
++++ wine-1.7.9/dlls/winex11.drv/winex11.drv.spec	2013-12-25 19:13:20.169030883 +0800
+@@ -66,6 +66,9 @@
+ # System tray
+ @ cdecl wine_notify_icon(long ptr)
+ 
++# Cursor follow
++@ cdecl get_ic(long) X11DRV_get_ic
++
+ #IME Interface
+ @ stdcall ImeInquire(ptr ptr wstr)
+ @ stdcall ImeConfigure(long long long ptr)
+--- wine-1.7.9.orig/dlls/user32/Makefile.in	2013-12-21 02:34:52.000000000 +0800
++++ wine-1.7.9/dlls/user32/Makefile.in	2013-12-25 19:11:53.943029589 +0800
+@@ -4,6 +4,8 @@
+ IMPORTS   = gdi32 version advapi32
+ DELAYIMPORTS = imm32 usp10
+ 
++EXTRALIBS = -lX11
++
+ C_SRCS = \
+ 	button.c \
+ 	caret.c \

@@ -1,0 +1,19 @@
+diff -Nur gnustep-base-1.24.0/Headers/Foundation/NSObjCRuntime.h gnustep-base-1.24.0n/Headers/Foundation/NSObjCRuntime.h
+--- gnustep-base-1.24.0/Headers/Foundation/NSObjCRuntime.h	2011-12-15 17:09:59.000000000 +0800
++++ gnustep-base-1.24.0n/Headers/Foundation/NSObjCRuntime.h	2012-04-23 23:36:35.538051262 +0800
+@@ -40,6 +40,15 @@
+  */
+ 
+ #if     !defined(NSINTEGER_DEFINED)
++# if __WORDSIZE == 64
++#  define INTPTR_MIN        (-9223372036854775807L-1)
++#  define INTPTR_MAX        (9223372036854775807L)
++#  define UINTPTR_MAX       (18446744073709551615UL)
++# else
++#  define INTPTR_MIN        (-2147483647-1)
++#  define INTPTR_MAX        (2147483647)
++#  define UINTPTR_MAX       (4294967295U)
++# endif
+ typedef	intptr_t	NSInteger;
+ typedef	uintptr_t	NSUInteger;
+ #	define NSIntegerMax  INTPTR_MAX
