@@ -1,0 +1,36 @@
+diff -up isight-firmware-tools-1.6/src/export.c.formatsecurity isight-firmware-tools-1.6/src/export.c
+--- isight-firmware-tools-1.6/src/export.c.formatsecurity	2011-05-01 19:17:49.000000000 +0200
++++ isight-firmware-tools-1.6/src/export.c	2014-04-23 22:08:21.469892807 +0200
+@@ -202,7 +202,7 @@ int main (int argc, char *argv[])
+ 	if (!g_option_context_parse(context, &argc, &argv, &error)) {
+ 		fprintf(stderr, _("Error: %s\n"),
+ 			error->message); /* comment traduire ? */
+-		fprintf(stderr, g_option_context_get_help(context,
++		fprintf(stderr, "%s", g_option_context_get_help(context,
+ 							  FALSE, NULL));
+ 	}
+ 
+diff -up isight-firmware-tools-1.6/src/extract.c.formatsecurity isight-firmware-tools-1.6/src/extract.c
+--- isight-firmware-tools-1.6/src/extract.c.formatsecurity	2014-04-23 22:06:00.374342846 +0200
++++ isight-firmware-tools-1.6/src/extract.c	2014-04-23 22:06:57.939567211 +0200
+@@ -362,7 +362,7 @@ int main (int argc, char *argv[])
+ 	if (!g_option_context_parse(context, &argc, &argv, &error)) {
+ 		fprintf(stderr, _("Error: %s\n"),
+ 			error->message); /* howto translate? */
+-		fprintf(stderr, g_option_context_get_help(context,
++		fprintf(stderr, "%s", g_option_context_get_help(context,
+ 							  FALSE, NULL));
+ 		return 1;
+ 	}
+diff -up isight-firmware-tools-1.6/src/udev.c.formatsecurity isight-firmware-tools-1.6/src/udev.c
+--- isight-firmware-tools-1.6/src/udev.c.formatsecurity	2014-04-23 22:07:43.489744759 +0200
++++ isight-firmware-tools-1.6/src/udev.c	2011-05-01 19:17:49.000000000 +0200
+@@ -91,7 +91,7 @@ main(int argc, char *argv[])
+ 	if (!g_option_context_parse(context, &argc, &argv, &error)) {
+ 		fprintf(stderr, _("Error: %s\n"),
+ 			error->message); /* comment traduire ? */
+-		fprintf(stderr, g_option_context_get_help(context,
++		fprintf(stderr, "%s", g_option_context_get_help(context,
+ 							  FALSE, NULL));
+ 	}
+ 

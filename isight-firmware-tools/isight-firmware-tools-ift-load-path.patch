@@ -1,0 +1,24 @@
+diff -uNr isight-firmware-tools-1.5.93-old/configure isight-firmware-tools-1.5.93-new/configure
+--- isight-firmware-tools-1.5.93-old/configure	2010-05-28 14:54:17.000000000 -0400
++++ isight-firmware-tools-1.5.93-new/configure	2010-10-20 10:15:12.746701819 -0400
+@@ -4561,7 +4561,7 @@
+ 
+ 
+ 
+-udevdir=${libdir}/udev
++udevdir=/lib/udev
+ 
+ 
+ GETTEXT_PACKAGE=isight-firmware-tools
+diff -uNr isight-firmware-tools-1.5.93-old/configure.ac isight-firmware-tools-1.5.93-new/configure.ac
+--- isight-firmware-tools-1.5.93-old/configure.ac	2010-05-28 14:54:06.000000000 -0400
++++ isight-firmware-tools-1.5.93-new/configure.ac	2010-10-20 10:15:26.956701759 -0400
+@@ -25,7 +25,7 @@
+ AC_SUBST(LOAD_CFLAGS)
+ AC_SUBST(LOAD_LIBS)
+ 
+-udevdir=${libdir}/udev
++udevdir=/lib/udev
+ AC_SUBST(udevdir)
+ 
+ dnl GETTEXT
