@@ -1,0 +1,48 @@
+From 3e62fb9c4a4bb6927c58e63ad57e5346412ffa29 Mon Sep 17 00:00:00 2001
+From: Pierre-Yves Chibon <pingou@pingoured.fr>
+Date: Mon, 23 Feb 2015 08:59:22 +0100
+Subject: [PATCH] Require dateutil 1.5
+
+---
+ vobject/__init__.py  | 5 ++++-
+ vobject/icalendar.py | 4 ++++
+ 2 files changed, 8 insertions(+), 1 deletion(-)
+
+diff --git a/vobject/__init__.py b/vobject/__init__.py
+index d5daf30..007d462 100644
+--- a/vobject/__init__.py
++++ b/vobject/__init__.py
+@@ -76,6 +76,9 @@ VObject Overview
+     
+ """
+ 
++__requires__ = ['python-dateutil == 1.5']
++import pkg_resources
++
+ import base, icalendar, vcard
+ from base import readComponents, readOne, newFromBehavior
+ 
+@@ -83,4 +86,4 @@ def iCalendar():
+     return newFromBehavior('vcalendar', '2.0')
+ 
+ def vCard():
+-    return newFromBehavior('vcard', '3.0')
+\ No newline at end of file
++    return newFromBehavior('vcard', '3.0')
+diff --git a/vobject/icalendar.py b/vobject/icalendar.py
+index 4a1da7c..9eaadee 100644
+--- a/vobject/icalendar.py
++++ b/vobject/icalendar.py
+@@ -1,5 +1,9 @@
+ """Definitions and behavior for iCalendar, also known as vCalendar 2.0"""
+ 
++__requires__ = ['python-dateutil == 1.5']
++import pkg_resources
++
++
+ import string
+ import behavior
+ import dateutil.rrule
+-- 
+2.1.0
+
