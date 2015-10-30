@@ -1,8 +1,7 @@
 Name:           perl-IO-String
 Version:        1.08
-Release:        25%{?dist}
+Release:        26%{?dist}
 Summary:        Emulate file interface for in-core strings
-Group:          Development/Libraries
 License:        GPL+ or Artistic
 URL:            http://search.cpan.org/dist/IO-String/
 Source0:        http://www.cpan.org/authors/id/G/GA/GAAS/IO-String-%{version}.tar.gz
@@ -54,3 +53,6 @@ make test
 
 
 %changelog
+* Tue Oct 27 2015 Cjacker <cjacker@foxmail.com> - 1.08-26
+- Rebuild
+

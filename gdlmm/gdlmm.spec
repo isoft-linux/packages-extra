@@ -4,7 +4,7 @@
 
 Name:           gdlmm
 Version:        3.7.3
-Release:        2
+Release:        3
 Summary:        C++ bindings for the gdl library
 
 License:        LGPLv2+
@@ -45,6 +45,7 @@ This package contains the full API documentation for %{name}.
 %build
 export CC=clang
 export CXX=clang++
+export CXXFLAGS="-std=c++11"
 %configure
 make %{?_smp_mflags}
 
@@ -53,7 +54,6 @@ make %{?_smp_mflags}
 make install DESTDIR=$RPM_BUILD_ROOT
 rm $RPM_BUILD_ROOT%{_libdir}/*.la
 
-rpmclean
 
 %check
 make check
@@ -80,3 +80,6 @@ make check
 
 
 %changelog
+* Tue Oct 27 2015 Cjacker <cjacker@foxmail.com> - 3.7.3-3
+- Rebuild
+

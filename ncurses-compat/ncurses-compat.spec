@@ -2,9 +2,8 @@
 Summary: Ncurses support utilities
 Name: ncurses-compat
 Version: 5.9
-Release: 21.%{revision}%{?dist}
+Release: 22.%{revision}%{?dist}
 License: MIT
-Group: System Environment/Base
 URL: http://invisible-island.net/ncurses/ncurses.html
 Source0: ftp://invisible-island.net/ncurses/current/ncurses-%{version}-%{revision}.tgz
 
@@ -28,7 +27,6 @@ tool captoinfo.
 
 %package libs
 Summary: Ncurses libraries
-Group: System Environment/Libraries
 Requires: ncurses-base
 
 %description libs
@@ -106,5 +104,8 @@ rm -f $RPM_BUILD_ROOT%{_libdir}/terminfo
 %{_libdir}/lib*.so.*
 
 %changelog
+* Tue Oct 27 2015 Cjacker <cjacker@foxmail.com> - 5.9-22.20150214
+- Rebuild
+
 * Mon Aug 10 2015 Cjacker <cjacker@foxmail.com>
 - create compat package.

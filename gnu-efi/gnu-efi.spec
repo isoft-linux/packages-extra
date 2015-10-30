@@ -1,9 +1,8 @@
 Summary: Development Libraries and headers for EFI
 Name: gnu-efi
 Version: 3.0.2
-Release: 2%{?dist}
+Release: 3%{?dist}
 Epoch:	1
-Group: Development/System
 License: BSD 
 URL: ftp://ftp.hpl.hp.com/pub/linux-ia64
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
@@ -33,7 +32,6 @@ applications that run under EFI (Extensible Firmware Interface).
 
 %package devel
 Summary: Development Libraries and headers for EFI
-Group: Development/System
 Obsoletes: gnu-efi < 3.0.1-1
 Requires: gnu-efi
 
@@ -43,7 +41,6 @@ applications that run under EFI (Extensible Firmware Interface).
 
 %package utils
 Summary: Utilities for EFI systems
-Group: Applications/System
 
 %description utils
 This package contains utilties for debugging and developing EFI systems.
@@ -86,3 +83,6 @@ rm -rf %{buildroot}
 %attr(0644,root,root) /boot/efi/EFI/%{efidir}/*.efi
 
 %changelog
+* Tue Oct 27 2015 Cjacker <cjacker@foxmail.com> - 1:3.0.2-3
+- Rebuild
+

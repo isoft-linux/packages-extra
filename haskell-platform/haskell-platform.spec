@@ -14,9 +14,11 @@
 
 #if we have old version of haskell-platform package installed, we can build it again.
 
+%define debug_package %{nil}
+
 Name: haskell-platform	
 Version: 7.10.2
-Release: 1
+Release: 2
 Summary: Standard Haskell distribution 	
 
 License: BSD	
@@ -35,6 +37,11 @@ Source16: shake-0.15.4.tar.gz
 Source17: utf8-string-1.tar.gz
 
 BuildRequires: ghc, haskell-platform, haskell-platform-devel
+BuildRequires: freeglut-devel
+BuildRequires: gmp-devel
+BuildRequires: libGLU-devel
+BuildRequires: mesa-libGL-devel
+BuildRequires: zlib-devel
 
 Provides: alex, cabal-install, happy, hscolour, shake
 
@@ -44,7 +51,6 @@ It provides a good starting environment for Haskell development.
 
 %package        devel
 Summary:        Development files for %{name}
-Group:          Development/Libraries
 Requires:       %{name} = %{version}-%{release}
 
 %description    devel
@@ -171,4 +177,7 @@ fi ||:
 %exclude %{_libdir}/ghc-*/*/lib*.so
 
 %changelog
+* Tue Oct 27 2015 Cjacker <cjacker@foxmail.com> - 7.10.2-2
+- Rebuild
+
 

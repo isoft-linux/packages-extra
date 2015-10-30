@@ -1,24 +1,29 @@
 %global debug_package %{nil}
 %global monodir %{_prefix}/lib
-%global bootstrap 1
+
+%global bootstrap 0 
 
 Summary: NAnt is a build tool for Mono and .NET
 Name: nant
-Version: 0.92
-Release: 1%{?dist}
+Version: 0.93
+Release: 5.git%{?dist}
 Epoch: 1
 License: GPLv2+
-Group: Development/Tools
 Url: http://nant.sourceforge.net/
 
-Source0: http://downloads.sourceforge.net/nant/%{name}-%{version}-src.tar.gz
+#http://nant.sourceforge.net/nightly/latestA
+Source0: nant-master.zip
+
 Patch1: nant-0.92-no_ndoc.patch
 Patch2: nant-0.92-system_nunit.patch
 Patch3: nant-0.90-no_sharpcvslib.patch
 Patch4: nant-0.90-system_sharpziplib.patch
 Patch5: nant-0.92-system_log4net.patch
+Patch6: nant-0.92-no_netdumbster.patch
+Patch7: nant-build-fix.patch
 
 BuildRequires: mono-devel
+BuildRequires: nunit-devel >= 2.6.4
 
 %if 0%{bootstrap}
 # Nothing here if we're bootstrapping
@@ -41,7 +46,6 @@ without make's wrinkles. In practice it's a lot like Ant.
 
 %package docs
 Summary:	Documentation package for nant
-Group:	Documentation
 Requires:	%{name} = %{epoch}:%{version}-%{release}
 
 %description docs
@@ -49,33 +53,28 @@ Documentation for nant
 
 %package devel
 Summary:	Development file for nant
-Group:		Development/Libraries
 Requires:	%{name} = %{epoch}:%{version}-%{release}
 
 %description devel
 Development file for %{name}
 
 %prep
-%setup -q -n %{name}-%{version}
+%setup -q -n %{name}-master
 
 # install to libdir instead of datadir
 sed -i -e "/property name=\"install\.share\"/ s/'share'/'lib'/" NAnt.build
 sed -i -e "s,/share/,/lib/," etc/nant.pc.in
 
-%if 0%{bootstrap}
-# do nothing
-%else
-
 # Remove NDoc support
 %patch1 -p1 -b .no_ndoc
 rm src/NAnt.DotNet/Tasks/NDocTask.cs
+rm -Rf src/NDoc.Documenter.NAnt
 find lib -name 'NDoc*.dll' | xargs rm
 
 # Remove NUnit1 support and fix build with system NUnit.
 # Based on Debian's 004-nant-nunit_2.4.dpatch
 %patch2 -p1 -b .system_nunit
 find lib -iname 'nunit*' | xargs rm
-%endif
 
 # Remove SharpCvsLib support
 %patch3 -p1 -b .no_sharpcvslib
@@ -87,8 +86,15 @@ find lib -name "scvs.exe" | xargs rm
 %patch4 -p1 -F 3 -b .system_sharpziplib
 find lib -name "*SharpZipLib*.dll" | xargs rm
 
-find . -type d|xargs chmod 755
-find . -type f|xargs chmod 644
+%patch6 -p1 -b .no_netdumbster
+rm tests/NAnt.Core/Tasks/MailTaskTest.cs
+
+#remove this file.
+rm -rf ./etc/"Reference Resolution in Visual Studio.htm"
+
+find . -type d |xargs chmod 755
+find . -type f |xargs chmod 644
+
 sed -i 's/\r//' doc/license.html
 sed -i 's/\r//' COPYING.txt
 sed -i 's/\r//' README.txt
@@ -110,19 +116,12 @@ rm -rf lib/*
 %patch5 -p1 -b .system_log4net
 %endif
 
-#Fixes for Mono 4
-sed -i "s#gmcs#mcs#g" Makefile
-sed -i "s#TARGET=mono-2.0#TARGET=mono-4.0#g" Makefile
-sed -i "s#mono/4.0#mono/4.5#g" src/NAnt.Console/App.config
-sed -i "s#dmcs#mcs#g" src/NAnt.Console/App.config
-find . -name "*.sln" -print -exec sed -i 's/Format Version 10.00/Format Version 11.00/g' {} \;
-find . -name "*.csproj" -print -exec sed -i 's#ToolsVersion="3.5"#ToolsVersion="4.0"#g; s#<TargetFrameworkVersion>.*</TargetFrameworkVersion>##g; s#<PropertyGroup>#<PropertyGroup><TargetFrameworkVersion>v4.5</TargetFrameworkVersion>#g' {} \;
+%patch7 -p1
 
 %build
-make
+make TARGET=mono-4.0 MCS="mcs -sdk:4"
 
 %install
-rm -rf %{buildroot}
 make install prefix=%{_prefix} DESTDIR=%{buildroot}
 find examples -name \*.dll -o -name \*.exe|xargs rm -f
 rm -rf %{buildroot}%{_datadir}/NAnt/doc
@@ -154,3 +153,6 @@ test "%{_libdir}" = "%{_prefix}/lib" || mv $RPM_BUILD_ROOT/%{_prefix}/lib/pkgcon
 %{_libdir}/pkgconfig/nant.pc
 
 %changelog
+* Thu Oct 29 2015 Cjacker <cjacker@foxmail.com> - 1:0.93-5
+- Rebuild
+

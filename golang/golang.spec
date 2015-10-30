@@ -1,3 +1,5 @@
+%define debug_package %{nil}
+
 # we are shipping the full contents of src in the data subpackage, which
 # contains binary-like things (ELF data for tests, etc)
 %global _binaries_in_noarch_packages_terminate_build 0
@@ -35,7 +37,7 @@
 
 Name:           golang
 Version:        1.5
-Release:        5%{?dist}
+Release:        6%{?dist}
 Summary:        The Go Programming Language
 
 License:        BSD
@@ -310,6 +312,9 @@ fi
 
 
 %changelog
+* Tue Oct 27 2015 Cjacker <cjacker@foxmail.com> - 1.5-6
+- Rebuild
+
 * Thu Aug 20 2015 Cjacker <cjacker@foxmail.com>
 - update to 1.5.
 * Fri Aug 07 2015 Cjacker <cjacker@foxmail.com>

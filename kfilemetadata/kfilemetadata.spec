@@ -1,8 +1,7 @@
-
 Name:    kfilemetadata
 Summary: A library for extracting file metadata
 Version: 4.14.3
-Release: 4%{?dist}
+Release: 5%{?dist}
 
 # # KDE e.V. may determine that future LGPL versions are accepted
 License: LGPLv2 or LGPLv3
@@ -15,6 +14,7 @@ URL:     https://projects.kde.org/projects/kde/kdelibs/%{name}
 %global stable stable
 %endif
 Source0: http://download.kde.org/%{stable}/%{version}/src/%{name}-%{version}.tar.xz
+Patch0: kfilemetadata-fix-cmake-err.patch
 
 ## upstream patches
 
@@ -39,7 +39,7 @@ Requires: kdelibs-devel
 
 %prep
 %setup -q
-
+%patch0 -p1
 
 %build
 mkdir -p %{_target_platform}
@@ -86,3 +86,6 @@ make install/fast DESTDIR=%{buildroot} -C %{_target_platform}
 %{_kde4_libdir}/cmake/KFileMetaData
 
 %changelog
+* Tue Oct 27 2015 Cjacker <cjacker@foxmail.com> - 4.14.3-5
+- Rebuild
+

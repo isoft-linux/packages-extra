@@ -3,7 +3,7 @@
 Name:    qwt
 Summary: Qt Widgets for Technical Applications
 Version: 6.1.2
-Release: 4%{?dist}
+Release: 5%{?dist}
 
 License: LGPLv2 with exceptions
 URL:     http://qwt.sourceforge.net
@@ -177,5 +177,8 @@ cp -alf %{buildroot}%{_qt4_docdir}/html/qwt/ \
 
 
 %changelog
+* Tue Oct 27 2015 Cjacker <cjacker@foxmail.com> - 6.1.2-5
+- Rebuild
+
 * Wed Oct 21 2015 Cjacker <cjacker@foxmail.com>
 - Initial build.

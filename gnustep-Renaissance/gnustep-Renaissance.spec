@@ -1,10 +1,9 @@
 Summary: GNUstep Renaissance is a development framework that reads XML descriptions of GUI. 
 Name: gnustep-Renaissance
 Version: 0.9.0 
-Release: 1
+Release: 2
 URL:    http://www.gnustep.it/Renaissance/index.html
 Source0: http://www.gnustep.it/Renaissance/Download/Renaissance-%{version}.tar.gz
-Group:  Development/Tools
 License: LGPL
 BuildRequires: clang gnustep-make libobjc2-devel
 Requires: %{name}-lib = %{version}-%{release}
@@ -13,14 +12,12 @@ GNUstep Renaissance is free software (GNU LGPL), and part of the GNUstep project
 
 %package lib 
 Summary: Runtime library of Renaissance
-Group: System Environment/Libraries 
 
 %description lib
 this package contains runtime library of Renaissance. 
 
 %package lib-devel
 Summary: Development headers and libraries of Renaissance 
-Group: Development/Libraries
 Requires: %{name}-lib = %{version}-%{release}
 
 %description lib-devel
@@ -35,7 +32,6 @@ make %{?_smp_mflags}
 %install
 mkdir -p $RPM_BUILD_ROOT
 make install DESTDIR=$RPM_BUILD_ROOT
-rpmclean
 %clean
 rm -rf $RPM_BUILD_ROOT
 
@@ -58,6 +54,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_includedir}/Renaissance/*
 %{_libdir}/libRenaissance.so
 %changelog
+* Tue Oct 27 2015 Cjacker <cjacker@foxmail.com> - 0.9.0-2
+- Rebuild
+
 * Tue Dec 10 2013 Cjacker <cjacker@gmail.com>
 - first build, prepare for the new release.
 

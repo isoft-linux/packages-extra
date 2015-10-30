@@ -1,9 +1,8 @@
 Name:           optipng
 Version:        0.7.5
-Release:        5%{?dist}
+Release:        6%{?dist}
 Summary:        PNG optimizer and converter
 
-Group:          Applications/Multimedia
 License:        zlib
 URL:            http://optipng.sourceforge.net/
 Source0:        http://downloads.sourceforge.net/optipng/%{name}-%{version}.tar.gz
@@ -59,5 +58,8 @@ rm -rf $RPM_BUILD_ROOT
 
 
 %changelog
+* Tue Oct 27 2015 Cjacker <cjacker@foxmail.com> - 0.7.5-6
+- Rebuild
+
 * Tue Oct 20 2015 Cjacker <cjacker@foxmail.com>
 - Initial build.

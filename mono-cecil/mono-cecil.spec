@@ -1,6 +1,6 @@
 Name:           mono-cecil
 Version:        0.9.6
-Release:        3
+Release:        4
 Summary:        Library to generate and inspect programs and libraries in the ECMA CIL form
 License:        MIT
 URL:            http://www.mono-project.com/Cecil
@@ -8,6 +8,8 @@ Source0:        https://github.com/jbevain/cecil/archive/%{version}/cecil-%{vers
 Patch0:         %{name}-nobuild-tests.patch
 BuildRequires:  mono
 Requires:       mono
+
+BuildArch: noarch
 
 %global configuration net_4_5_Release
 
@@ -47,3 +49,6 @@ cd -
 %{_libdir}/mono/Mono.Cecil*
 
 %changelog
+* Tue Oct 27 2015 Cjacker <cjacker@foxmail.com> - 0.9.6-4
+- Rebuild
+

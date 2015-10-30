@@ -1,0 +1,21 @@
+--- nant-mastern/src/NAnt.NUnit/NUnit2/NUnit2Task.cs	2015-10-29 11:40:59.993804300 +0800
++++ nant-master/src/NAnt.NUnit/NUnit2/NUnit2Task.cs	2015-10-29 11:53:58.914790351 +0800
+@@ -32,7 +32,6 @@
+ using NUnit.Core.Filters;
+ 
+ using NUnit.Core;
+-using NUnit.Core.Filters;
+ using TestOutput = NUnit.Core.TestOutput;
+ using NUnit.Util;
+ 
+diff -Nur nant-mastern/src/NAnt.Console/NAnt.Console.build nant-master/src/NAnt.Console/NAnt.Console.build
+--- nant-mastern/src/NAnt.Console/NAnt.Console.build	2015-10-29 12:17:29.925765083 +0800
++++ nant-master/src/NAnt.Console/NAnt.Console.build	2015-10-29 12:17:35.843764977 +0800
+@@ -33,7 +33,6 @@
+             </sources>
+             <references>
+                 <include name="System.Configuration.dll" />
+-                <include name="System.Xml.dll" />
+             </references>
+             <pkg-references>
+                 <package name="log4net"/>

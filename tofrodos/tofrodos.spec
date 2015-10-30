@@ -1,6 +1,6 @@
 Name:           tofrodos
 Version:        1.7.13
-Release:        5%{?dist}
+Release:        6%{?dist}
 Summary:        Converts text files between MSDOS and Unix file formats
 License:        GPLv2
 URL:            http://www.thefreecountry.com/tofrodos/
@@ -35,6 +35,9 @@ make -C src/ install INSTALL="install -p" BINDIR="%{buildroot}%{_bindir}" MANDIR
 %{_mandir}/man1/todos.1*
 
 %changelog
+* Tue Oct 27 2015 Cjacker <cjacker@foxmail.com> - 1.7.13-6
+- Rebuild
+
 * Tue Oct 20 2015 Cjacker <cjacker@foxmail.com>
 - Initial build.
 

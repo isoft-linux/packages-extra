@@ -1,7 +1,7 @@
 Name:    kcachegrind
 Summary: GUI to profilers such as Valgrind
 Version: 15.08.2
-Release: 2
+Release: 3
 
 License: GPLv2 and GFDL
 URL:     https://projects.kde.org/projects/kde/kdesdk/kcachegrind
@@ -75,6 +75,9 @@ fi
 %{_kde4_iconsdir}/hicolor/*/apps/kcachegrind.*
 
 %changelog
+* Tue Oct 27 2015 Cjacker <cjacker@foxmail.com> - 15.08.2-3
+- Rebuild
+
 * Sat Oct 17 2015 Cjacker <cjacker@foxmail.com>
 - update to 15.08.2
 

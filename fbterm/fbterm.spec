@@ -1,8 +1,7 @@
 Name:       fbterm
 Version:    1.7.0
-Release:    1 
+Release:    2 
 License:    GPLv2+
-Group:      Core/Runtime/Utility 
 URL:        http://code.google.com/p/fbterm/
 Source0:    http://fbterm.googlecode.com/files/%{name}-%{version}.tar.gz
 Summary:    A frame-buffer terminal emulator
@@ -39,7 +38,6 @@ make %{?_smp_mflags}
 %install
 rm -rf $RPM_BUILD_ROOT
 make DESTDIR=${RPM_BUILD_ROOT} install
-rpmclean
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -48,4 +46,9 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(-,root,root,-)
 %attr(4755,root,root) %{_bindir}/%{name}
 %{_mandir}/man1/%{name}.1.gz
+
+
+%changelog
+* Tue Oct 27 2015 Cjacker <cjacker@foxmail.com> - 1.7.0-2
+- Rebuild
 

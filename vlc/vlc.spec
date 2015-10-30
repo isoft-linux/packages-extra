@@ -1,10 +1,9 @@
 Name:    vlc
 Summary: vlc video player
 Version: 2.2.1
-Release: 2 
+Release: 3 
 
 License: LGPLv2+
-Group:   System Environment/Libraries
 URL:    http://www.videolan.org
 Source0: http://get.videolan.org/vlc/2.2.1/vlc-%{version}.tar.xz
 Patch0: vlc-lua-5.3.patch
@@ -37,14 +36,12 @@ vlc video player
 
 %package -n libvlc
 Summary: Runtime libraries for %{name}
-Group:   System Environment/Libraries
 
 %description -n libvlc
 The package contains runtime libraries of VLC.
 
 %package -n libvlc-devel
 Summary: Development files for %{name}
-Group:   Development/Libraries
 Requires: libvlc = %{version}-%{release}
 
 %description -n libvlc-devel
@@ -54,7 +51,6 @@ developing applications that use %{name}.
 
 
 %package apidocs
-Group: Development/Documentation
 Summary: Grantlee API documentation
 Requires: kde-filesystem
 BuildArch: noarch
@@ -200,6 +196,9 @@ update-desktop-database -q ||:
 %{_docdir}/vlc/*
 
 %changelog
+* Tue Oct 27 2015 Cjacker <cjacker@foxmail.com> - 2.2.1-3
+- Rebuild
+
 * Fri Oct 09 2015 Cjacker <cjacker@foxmail.com>
 - back to qt4
 - setup default fonts to support Chinese OSD/SubTitle.

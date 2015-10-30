@@ -1,7 +1,7 @@
 Name:    kf5-purpose
 Summary: Provides an abstraction to provide and leverage actions of a specific kind
 Version: 5.0.0
-Release: 3.git%{?dist}
+Release: 4.git%{?dist}
 
 License: GPLv2+
 URL:     https://projects.kde.org/projects/kde/kdegraphics/libs/libkexiv2
@@ -110,3 +110,8 @@ fi
 %{_kf5_libdir}/libKF5Purpose.so
 %{_kf5_includedir}/purposewidgets/
 %{_kf5_includedir}/purpose/
+
+%changelog
+* Tue Oct 27 2015 Cjacker <cjacker@foxmail.com> - 5.0.0-4.git
+- Rebuild
+

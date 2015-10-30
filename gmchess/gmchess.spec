@@ -1,6 +1,6 @@
 Name: gmchess
 Version: 0.29.6
-Release: 2%{?dist}
+Release: 3%{?dist}
 Summary: Chinese chess
 
 License: GPLv2
@@ -46,6 +46,9 @@ make install DESTDIR=$RPM_BUILD_ROOT
 %exclude %{_libdir}/libeval.so
 
 %changelog
+* Tue Oct 27 2015 Cjacker <cjacker@foxmail.com> - 0.29.6-3
+- Rebuild
+
 * Sun Oct 18 2015 Cjacker <cjacker@foxmail.com>
 - Initial package
 

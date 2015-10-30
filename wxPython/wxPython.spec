@@ -5,11 +5,10 @@
 
 Name:           wxPython
 Version:        3.0.1.1
-Release:        1 
+Release:        2 
 
 Summary:        GUI toolkit for the Python programming language
 
-Group:          Development/Languages
 License:        LGPL
 URL:            http://www.wxpython.org/
 Source0:        http://dl.sf.net/wxpython/wxPython-src-%{version}.tar.bz2
@@ -31,7 +30,6 @@ extension module (native code) that wraps the popular wxWindows cross
 platform GUI library, which is written in C++.
 
 %package        devel
-Group:          Development/Libraries
 Summary:        Development files for wxPython add-on modules
 Requires:       %{name} = %{version}-%{release}
 
@@ -65,7 +63,6 @@ python setup.py %{buildflags} install --root=$RPM_BUILD_ROOT
 mv $RPM_BUILD_ROOT%{python_sitelib}/wx.pth  $RPM_BUILD_ROOT%{python_sitearch}
 mv $RPM_BUILD_ROOT%{python_sitelib}/wxversion.py* $RPM_BUILD_ROOT%{python_sitearch}
 %endif
-rpmclean
 %clean
 rm -rf $RPM_BUILD_ROOT
 
@@ -84,4 +81,9 @@ rm -rf $RPM_BUILD_ROOT
 %dir %{_includedir}/wx-*/wx/wxPython/i_files
 %{_includedir}/wx-*/wx/wxPython/i_files/*
 
+
+
+%changelog
+* Tue Oct 27 2015 Cjacker <cjacker@foxmail.com> - 3.0.1.1-2
+- Rebuild
 

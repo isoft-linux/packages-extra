@@ -1,8 +1,7 @@
 Name:           autotrace
 Version:        0.31.1
-Release:        41
+Release:        42
 Summary:        Utility for converting bitmaps to vector graphics
-Group:          Applications/Multimedia
 License:        GPLv2+ and LGPLv2+
 URL:            http://autotrace.sourceforge.net/
 Source0:        http://download.sf.net/autotrace/autotrace-0.31.1.tar.gz
@@ -35,7 +34,6 @@ Postscript, SVG, xfig, SWF, and others.
 
 %package devel
 Summary:        Header files for autotrace
-Group:          Development/Libraries
 Requires:       %{name}%{?_isa} = %{version}-%{release}
 Requires:       pkgconfig
 Requires:       ImageMagick-devel
@@ -84,3 +82,6 @@ find $RPM_BUILD_ROOT -type f -name "*.a" -exec rm -f {} ';'
 
 
 %changelog
+* Tue Oct 27 2015 Cjacker <cjacker@foxmail.com> - 0.31.1-42
+- Rebuild
+

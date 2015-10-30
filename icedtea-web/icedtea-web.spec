@@ -1,6 +1,6 @@
 Name: icedtea-web
 Version: 1.6
-Release: 2	
+Release: 3	
 Summary: Additional Java components for OpenJDK - Java browser plug-in and Web Start implementation
 
 License:    LGPLv2+ and GPLv2 with exceptions
@@ -102,4 +102,9 @@ appstream-util validate $RPM_BUILD_ROOT/%{_datadir}/appdata/*.metainfo.xml
 %{_datadir}/pixmaps/*
 %{_datadir}/appdata/*.metainfo.xml
 %doc NEWS README COPYING
+
+
+%changelog
+* Tue Oct 27 2015 Cjacker <cjacker@foxmail.com> - 1.6-3
+- Rebuild
 

@@ -1,10 +1,9 @@
 Summary: A cross-platform multimedia library
 Name: SDL2
 Version: 2.0.3
-Release: 8
+Release: 9
 URL: http://www.libsdl.org/
 License: LGPLv2+
-Group: System Environment/Libraries
 
 Source0: %{name}-%{version}.tar.gz
 Source1: SDL2-backend.sh
@@ -25,7 +24,6 @@ device.
 
 %package devel
 Summary: Files needed to develop Simple DirectMedia Layer applications
-Group: Development/Libraries
 Requires: SDL2 = %{version}-%{release} alsa-lib-devel
 Requires: pkgconfig
 Requires: automake
@@ -38,7 +36,6 @@ resources needed for developing SDL applications.
 
 %package static
 Summary: Files needed to develop static Simple DirectMedia Layer applications
-Group: Development/Libraries
 Requires: SDL2-devel = %{version}-%{release}
 
 %description static
@@ -73,7 +70,6 @@ rm -rf %{buildroot}
 make install DESTDIR=%{buildroot}
 mkdir -p $RPM_BUILD_ROOT%{_sysconfdir}/profile.d
 install -m0755 %{SOURCE1} $RPM_BUILD_ROOT%{_sysconfdir}/profile.d/SDL2-backend.sh
-rpmclean
 %clean
 rm -rf %{buildroot}
 
@@ -99,6 +95,9 @@ rm -rf %{buildroot}
 %{_libdir}/lib*.a
 
 %changelog
+* Tue Oct 27 2015 Cjacker <cjacker@foxmail.com> - 2.0.3-9
+- Rebuild
+
 * Tue Dec 10 2013 Cjacker <cjacker@gmail.com>
 - first build, prepare for the new release.
 

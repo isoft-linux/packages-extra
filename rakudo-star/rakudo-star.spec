@@ -18,10 +18,9 @@
 
 Name:           rakudo-star
 Version:        0.0.%{year}.%{month}
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        Rakudo, Perl6-modules and documentation
 License:        Artistic 2.0
-Group:          Development/Languages
 URL:            http://www.rakudo.org/
 
 Source0:        http://rakudo.org/downloads/star/rakudo-star-%{year}.%{month}.tar.gz
@@ -253,3 +252,6 @@ prove -e ./perl6 -r modules/xml-writer/t
 
 
 %changelog
+* Tue Oct 27 2015 Cjacker <cjacker@foxmail.com> - 0.0.2015.09-2
+- Rebuild
+

@@ -1,14 +1,14 @@
 Summary: GNUstep makefile package 
 Name: gnustep-make
 Version: 2.6.7
-Release: 1
+Release: 2
 Source: ftp://ftp.gnustep.org/pub/gnustep/core/gnustep-make-%{version}.tar.gz
 Source1:gnustep-vars.sh
-
-Group:  Development/Tools
 License: see COPYING
 BuildRequires: clang
 Requires: clang
+
+BuildArch: noarch
 %description
 The makefile package is a simple, powerful and extensible way to write
 makefiles for a GNUstep-based project.  It allows the user to write a
@@ -28,7 +28,6 @@ mkdir -p $RPM_BUILD_ROOT
 make install DESTDIR=$RPM_BUILD_ROOT
 sed -i -e 's/-shared-libgcc//g' $RPM_BUILD_ROOT/usr/share/GNUstep/Makefiles/common.make
 install -D -m0755 %{SOURCE1} $RPM_BUILD_ROOT/%{_sysconfdir}/profile.d/gnustep-vars.sh
-rpmclean
 %clean
 rm -rf $RPM_BUILD_ROOT
 
@@ -49,6 +48,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_mandir}/man7/*
 
 %changelog
+* Tue Oct 27 2015 Cjacker <cjacker@foxmail.com> - 2.6.7-2
+- Rebuild
+
 * Tue Dec 10 2013 Cjacker <cjacker@gmail.com>
 - first build, prepare for the new release.
 

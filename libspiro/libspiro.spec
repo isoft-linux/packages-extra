@@ -1,9 +1,8 @@
 Name:           libspiro
 Version:        20150131
-Release:        2%{?dist}
+Release:        3%{?dist}
 Summary:        Library to simplify the drawing of beautiful curves
 
-Group:          System Environment/Libraries
 License:        GPLv2+
 URL:            http://libspiro.sourceforge.net/
 Source0:        https://github.com/fontforge/libspiro/archive/0.3.20150131.tar.gz
@@ -16,7 +15,6 @@ be used in the myriad of ways the world has come to use béziers.
 
 %package        devel
 Summary:        Development files for %{name}
-Group:          Development/Libraries
 Requires:       %{name}%{?_isa} = %{version}-%{release}
 
 %description    devel
@@ -51,3 +49,6 @@ find $RPM_BUILD_ROOT -name '*.la' -exec rm -f {} ';'
 %{_libdir}/pkgconfig/libspiro.pc
 
 %changelog
+* Tue Oct 27 2015 Cjacker <cjacker@foxmail.com> - 20150131-3
+- Rebuild
+

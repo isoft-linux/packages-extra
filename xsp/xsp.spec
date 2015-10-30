@@ -1,10 +1,9 @@
 Name:		xsp
 Version:	3.8
-Release:	2%{?dist}
+Release:	3%{?dist}
 License:	MIT
 URL:		http://www.mono-project.com/Main_Page
 Summary:	A small web server that hosts ASP.NET
-Group:		System Environment/Daemons
 
 Source0:	http://download.mono-project.com/sources/%{name}/%{name}-%{version}.tar.gz
 BuildRequires:	mono-devel
@@ -22,7 +21,6 @@ applications as well as a set of pages, controls and web services that you can
 use to experience ASP.NET.
 	  
 %package devel
-Group: Development/Libraries
 Requires: %{name} = %{version}-%{release} pkgconfig
 Summary: Development files for xsp
 
@@ -30,7 +28,6 @@ Summary: Development files for xsp
 Development files for xsp
 
 %package tests
-Group: Applications/Internet
 Requires: %{name} = %{version}-%{release}
 Summary: xsp test files
 
@@ -101,3 +98,6 @@ find %{buildroot} -type f -name "*.a" -delete
 %{_prefix}/lib/xsp/test
 
 %changelog
+* Tue Oct 27 2015 Cjacker <cjacker@foxmail.com> - 3.8-3
+- Rebuild
+

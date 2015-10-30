@@ -1,6 +1,6 @@
 Name:           advancecomp
 Version:        1.20
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        Recompression utilities for .PNG, .MNG and .ZIP files
 License:        GPLv3
 URL:            http://advancemame.sourceforge.net/
@@ -42,6 +42,9 @@ make check
 %{_mandir}/man1/*
 
 %changelog
+* Tue Oct 27 2015 Cjacker <cjacker@foxmail.com> - 1.20-2
+- Rebuild
+
 * Tue Oct 20 2015 Cjacker <cjacker@foxmail.com>
 - Initial build.
 

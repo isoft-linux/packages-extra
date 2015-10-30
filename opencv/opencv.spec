@@ -2,9 +2,8 @@
 
 Name:           opencv
 Version:        3.0.0 
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        Collection of algorithms for computer vision
-Group:          Development/Libraries
 License:        BSD
 URL:            http://opencv.org
 #https://github.com/Itseez/opencv/archive/3.0.0.tar.gz
@@ -47,14 +46,12 @@ and Computer Vision algorithms.
 
 %package        core
 Summary:        OpenCV core libraries
-Group:          Development/Libraries
 
 %description    core
 This package contains the OpenCV C/C++ core libraries.
 
 %package        devel
 Summary:        Development files for using the OpenCV library
-Group:          Development/Libraries
 Requires:       opencv%{_isa} = %{version}-%{release}
 
 %description    devel
@@ -65,7 +62,6 @@ package.
 
 %package        devel-docs
 Summary:        Development files for using the OpenCV library
-Group:          Development/Libraries
 Requires:       opencv-devel = %{version}-%{release}
 BuildArch:      noarch
 
@@ -74,7 +70,6 @@ This package contains the OpenCV documentation and examples programs.
 
 %package        python
 Summary:        Python bindings for apps which use OpenCV
-Group:          Development/Libraries
 Requires:       opencv%{_isa} = %{version}-%{release}
 
 %description    python
@@ -82,7 +77,6 @@ This package contains Python bindings for the OpenCV library.
 
 %package        python3
 Summary:        Python3 bindings for apps which use OpenCV
-Group:          Development/Libraries
 Requires:       opencv%{_isa} = %{version}-%{release}
 
 %description    python3
@@ -199,5 +193,8 @@ popd
 %{python3_sitearch}/cv2*.so
 
 %changelog
+* Tue Oct 27 2015 Cjacker <cjacker@foxmail.com> - 3.0.0-2
+- Rebuild
+
 * Fri Oct 09 2015 Cjacker <cjacker@foxmail.com>
 - update to 3.0.0

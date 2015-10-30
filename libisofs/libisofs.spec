@@ -1,9 +1,8 @@
 Summary:	Library to create ISO 9660 disk images
 Name:		libisofs
 Version:	1.3.6
-Release:	1
+Release:	2
 License:	GPLv2+ and LGPLv2+
-Group:		System Environment/Libraries
 URL:		http://libburnia-project.org/
 Source:		http://files.libburnia-project.org/releases/%{name}-%{version}.tar.gz
 BuildRequires:	libacl-devel, zlib-devel, doxygen
@@ -20,7 +19,6 @@ zlib, it supports zisofs compression, too.
 
 %package devel
 Summary:	Development files for libisofs
-Group:		Development/Libraries
 Requires:	%{name}%{?_isa} = %{version}-%{release}, pkgconfig
 
 %description devel
@@ -45,7 +43,6 @@ rm -f $RPM_BUILD_ROOT%{_libdir}/%{name}.la
 # Clean up for later usage in documentation
 rm -rf $RPM_BUILD_ROOT%{_defaultdocdir}
 
-rpmclean
 %clean
 rm -rf $RPM_BUILD_ROOT
 
@@ -65,3 +62,6 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/pkgconfig/%{name}*.pc
 
 %changelog
+* Tue Oct 27 2015 Cjacker <cjacker@foxmail.com> - 1.3.6-2
+- Rebuild
+

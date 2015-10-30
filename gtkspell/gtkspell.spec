@@ -1,6 +1,6 @@
 Name: gtkspell
 Version: 2.0.16
-Release: 10%{?dist}
+Release: 11%{?dist}
 License: GPLv2+
 Summary: On-the-fly spell checking for GtkTextView widgets
 URL: http://gtkspell.sourceforge.net/
@@ -63,5 +63,8 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/pkgconfig/gtkspell-2.0.pc
 
 %changelog
+* Tue Oct 27 2015 Cjacker <cjacker@foxmail.com> - 2.0.16-11
+- Rebuild
+
 * Wed Oct 21 2015 Cjacker <cjacker@foxmail.com>
 - Initial build.

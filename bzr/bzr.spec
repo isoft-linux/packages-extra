@@ -7,7 +7,7 @@
 %global bzrmajor 2.6
 %global bzrminor .0
 #global bzrrc b6
-%global release 12
+%global release 13
 
 Name:           bzr
 Version:        %{bzrmajor}%{?bzrminor}
@@ -133,5 +133,8 @@ rm -rf $RPM_BUILD_ROOT
 %exclude %{_pkgdocdir}/contrib/
 
 %changelog
+* Tue Oct 27 2015 Cjacker <cjacker@foxmail.com> - 2.6.0-13
+- Rebuild
+
 * Wed Oct 21 2015 Cjacker <cjacker@foxmail.com>
 - Initial build.

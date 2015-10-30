@@ -1,9 +1,10 @@
+%define debug_package %{nil}
+
 Summary: MPlayer, the Movie Player for Linux.
 Name: mplayer
 Version: 1.2
 License: GPL
-Release: 12 
-Group: Applications/Multimedia
+Release: 13 
 Source0: http://www.mplayerhq.hu/MPlayer/releases/MPlayer-%{version}.tar.xz
 
 Source1: mplayer.conf
@@ -89,6 +90,9 @@ rm -rf $RPM_BUILD_DIR/%{name}-%{version}
 %{_mandir}/man1/mplayer.1.gz
 
 %changelog
+* Tue Oct 27 2015 Cjacker <cjacker@foxmail.com> - 1.2-13
+- Rebuild
+
 * Mon Oct 05 2015 Cjacker <cjacker@foxmail.com>
 - update to 1.2
 

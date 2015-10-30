@@ -5,10 +5,9 @@
 
 Summary: An open source, cross-platform, implementation of C# and the CLR that is binary compatible with Microsoft.NET. 
 Name:   mono
-Version: 4.0.2.5
-Release: 1 
+Version: 4.0.4.1
+Release: 2 
 License: GPLv2+
-Group:  System Environment/Libraries
 Source:  %{name}-%{version}.tar.bz2
 Source1: mono.binfmt.d
 
@@ -17,7 +16,6 @@ Source1: mono.binfmt.d
 # You should not regenerate this unless you have a really, really, really good reason.
 Source2:        mono.snk
 
-Patch0: fix-zlib-helper.patch
 Patch1: mono-fix-nunit-pkgconfig-version-path.patch
 
 Patch2: mono-4.0.0-ignore-reference-assemblies.patch
@@ -34,15 +32,13 @@ An open source, cross-platform, implementation of C# and the CLR that is binary 
 
 %package devel
 Summary: Libraries and headers for %{name}
-Group:   Development/Libraries
 Requires: %name = %{version}
 
 %description devel
 Libraries and headers for %{name}
 
 %prep
-%setup -q -n mono-4.0.2
-%patch0 -p1
+%setup -q -n mono-4.0.4
 %patch1 -p1
 #%patch2 -p1
 
@@ -150,4 +146,9 @@ fi
 %{_libdir}/pkgconfig/*.pc
 %dir %{_datadir}/mono-2.0
 %{_datadir}/mono-2.0/*
+
+
+%changelog
+* Tue Oct 27 2015 Cjacker <cjacker@foxmail.com> - 4.0.2.5-2
+- Rebuild
 

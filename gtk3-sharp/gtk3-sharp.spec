@@ -1,9 +1,8 @@
 Name:           gtk3-sharp
 Version:        2.99.4
-Release:        1.git
+Release:        2.git
 Summary:        GTK3 bindings for Mono
 
-Group:          System Environment/Libraries
 License:        LGPL
 URL:            https://github.com/mono/gtk-sharp/ 
 Source0:        gtk-sharp.tar.gz
@@ -20,7 +19,6 @@ toolkit used in GNOME. It includes bindings for Gtk3, Atk,
 Pango, Gdk
 
 %package gapi
-Group:        Development/Languages
 Summary:      Glib and GObject C source parser and C generator for the creation and maintenance of managed bindings for Mono and .NET
 Requires:     perl-XML-LibXML-Common perl-XML-LibXML perl-XML-SAX
 
@@ -31,7 +29,6 @@ glib and GObject. Some examples of libraries currently bound using
 the GAPI tools and found in Gtk# include Gtk, Atk, Pango, Gdk.
 
 %package docs 
-Group:        Development/Languages
 Summary:      gtk sharp documents 
 Requires:     %{name} = %{version} 
 
@@ -79,3 +76,8 @@ make install DESTDIR=$RPM_BUILD_ROOT GACUTIL_FLAGS="/package gtk-sharp-3.0 /gacd
 %files docs
 %defattr(-,root,root,-)
 %{_libdir}/monodoc/sources/*
+
+%changelog
+* Tue Oct 27 2015 Cjacker <cjacker@foxmail.com> - 2.99.4-2.git
+- Rebuild
+

@@ -2,7 +2,7 @@
 
 Name: librevenge
 Version: 0.0.2
-Release: 8%{?dist}
+Release: 9%{?dist}
 Summary: A base library for writing document import filters
 
 # src/lib/RVNGOLEStream.{h,cpp} are BSD
@@ -88,5 +88,8 @@ make %{?_smp_mflags} check
 %doc docs/doxygen/html
 
 %changelog
+* Tue Oct 27 2015 Cjacker <cjacker@foxmail.com> - 0.0.2-9
+- Rebuild
+
 * Wed Oct 21 2015 Cjacker <cjacker@foxmail.com>
 - Initial build.

@@ -1,6 +1,6 @@
 Name:           libtommath
 Version:        0.42.0
-Release:        6%{?dist}
+Release:        7%{?dist}
 Summary:        A portable number theoretic multiple-precision integer library
 License:        Public Domain
 URL:            http://www.libtom.org/?page=features&newsitems=5&whatfile=ltm
@@ -76,3 +76,6 @@ find %{buildroot} -name '*.a' -delete
 #%doc bn.pdf poster.pdf tommath.pdf
 
 %changelog
+* Tue Oct 27 2015 Cjacker <cjacker@foxmail.com> - 0.42.0-7
+- Rebuild
+

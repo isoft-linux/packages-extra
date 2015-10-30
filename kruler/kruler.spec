@@ -1,7 +1,7 @@
 Name:    kruler
 Summary: A screen ruler and color measurement tool 
 Version: 15.08.2
-Release: 2%{?dist}
+Release: 3%{?dist}
 
 License: GPLv2 and GFDL
 URL:     https://projects.kde.org/projects/kde/kdegraphics/kruler
@@ -103,6 +103,9 @@ gtk-update-icon-cache %{_kf5_datadir}/icons/hicolor &> /dev/null || :
 
 
 %changelog
+* Tue Oct 27 2015 Cjacker <cjacker@foxmail.com> - 15.08.2-3
+- Rebuild
+
 * Sat Oct 17 2015 Cjacker <cjacker@foxmail.com>
 - update to 15.08.2
 

@@ -2,10 +2,9 @@
 %define debug_package %{nil}
 Name:           emacs-common-modes 
 Version:        0.1 
-Release:        1
+Release:        2
 Summary:        Some basic modes for emacs 
 
-Group:          Development/Tools
 License:        GPL
 #this is a modified version of rpm-spec to fix readonly buffer bugs.
 Source1:  rpm-spec-mode.el
@@ -21,10 +20,13 @@ Source101: c-init.el
 BuildRoot:  %{_tmppath}/%{name}-%{version}-%{release}
 Requires: emacs emacs-init
 BuildRequires: emacs
+
+BuildArch: noarch
+
 %description
 Some basic modes for emacs
-%prep
 
+%prep
 
 %Build
 %install
@@ -53,3 +55,6 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/emacs/*
 
 %changelog
+* Tue Oct 27 2015 Cjacker <cjacker@foxmail.com> - 0.1-2
+- Rebuild
+

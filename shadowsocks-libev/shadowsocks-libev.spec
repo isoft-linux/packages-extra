@@ -1,6 +1,6 @@
 Name:	    shadowsocks-libev	
 Version:	2.2.2
-Release:	1
+Release:	2
 Summary:	A lightweight secured scoks5 proxy for embedded devices and low end boxes
 
 License:    GPL	
@@ -58,4 +58,7 @@ rm -rf %{buildroot}%{_libdir}/*.la
 %{_libdir}/pkgconfig/shadowsocks-libev.pc
 
 %changelog
+* Tue Oct 27 2015 Cjacker <cjacker@foxmail.com> - 2.2.2-2
+- Rebuild
+
 

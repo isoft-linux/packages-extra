@@ -1,7 +1,7 @@
 Summary: The GNU Scientific Library for numerical analysis
 Name: gsl
 Version: 1.16
-Release: 17%{?dist}
+Release: 18%{?dist}
 URL: http://www.gnu.org/software/gsl/
 # info part of this package is under GFDL license
 # eigen/nonsymmv.c and eigen/schur.c
@@ -76,5 +76,8 @@ rm -r $RPM_BUILD_ROOT%{_libdir}/*.a
 %{_mandir}/man3/*.3*
 
 %changelog
+* Tue Oct 27 2015 Cjacker <cjacker@foxmail.com> - 1.16-18
+- Rebuild
+
 * Wed Oct 21 2015 Cjacker <cjacker@foxmail.com>
 - Initial build.

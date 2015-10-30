@@ -1,9 +1,8 @@
 Summary: GNUstep GUI Backend
 Name: gnustep-back
 Version: 0.24.1
-Release: 1
+Release: 2
 Source: ftp://ftp.gnustep.org/pub/gnustep/core/%{name}-%{version}.tar.gz
-Group:  System Environment/Libraries 
 License: see COPYING
 BuildRequires: clang 
 BuildRequires: libobjc2-devel
@@ -23,7 +22,6 @@ make CC=clang CXX=clang++
 %install
 mkdir -p $RPM_BUILD_ROOT
 make install DESTDIR=$RPM_BUILD_ROOT
-rpmclean
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -39,6 +37,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_mandir}/man1/gpbs.1.gz
 
 %changelog
+* Tue Oct 27 2015 Cjacker <cjacker@foxmail.com> - 0.24.1-2
+- Rebuild
+
 * Tue Dec 10 2013 Cjacker <cjacker@gmail.com>
 - first build, prepare for the new release.
 

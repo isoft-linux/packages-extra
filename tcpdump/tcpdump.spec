@@ -1,10 +1,9 @@
 Summary: A network traffic monitoring tool
 Name: tcpdump
 Version: 4.7.4
-Release: 3
+Release: 4
 License: BSD
 URL: http://www.tcpdump.org
-Group: Applications/Internet
 Requires(pre): shadow-utils 
 BuildRequires: openssl-devel
 
@@ -30,7 +29,6 @@ mkdir -p ${RPM_BUILD_ROOT}%{_mandir}/man8
 mkdir -p ${RPM_BUILD_ROOT}%{_sbindir}
 install -m755 tcpdump ${RPM_BUILD_ROOT}%{_sbindir}
 install -m644 tcpdump.1 ${RPM_BUILD_ROOT}%{_mandir}/man8/tcpdump.8
-rpmclean
 
 %clean
 rm -rf ${RPM_BUILD_ROOT}
@@ -45,4 +43,9 @@ exit 0
 %defattr(-,root,root)
 %{_sbindir}/tcpdump
 %{_mandir}/man8/tcpdump.8*
+
+
+%changelog
+* Tue Oct 27 2015 Cjacker <cjacker@foxmail.com> - 4.7.4-4
+- Rebuild
 

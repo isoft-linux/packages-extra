@@ -1,9 +1,8 @@
 Name:           pinta 
 Version:        1.6
-Release:        1
+Release:        2
 Summary:        Pinta is an open-source, cross-platform bitmap image drawing and editing program inspired by Paint.NET
 
-Group:          Applications/Multimedia
 License:        GPL
 Source0:        https://github.com/PintaProject/Pinta/archive/Pinta-%{version}.tar.gz
 Patch0:         Pinta-toolversion-4.0.patch
@@ -12,6 +11,7 @@ BuildRequires:  gtk2-sharp
 Requires:	gtk2-sharp
 Requires:   mono
 
+BuildArch: noarch
 %description
 Pinta is an open-source, cross-platform bitmap image drawing and editing program inspired by Paint.NET
 
@@ -60,3 +60,8 @@ update-desktop-database ||:
 %{_libdir}/pinta/*
 %{_bindir}/pinta
 %{_datadir}/locale/*/LC_MESSAGES/*.mo
+
+%changelog
+* Tue Oct 27 2015 Cjacker <cjacker@foxmail.com> - 1.6-2
+- Rebuild
+

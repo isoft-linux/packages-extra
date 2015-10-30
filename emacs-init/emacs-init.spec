@@ -1,6 +1,6 @@
 %define name	    emacs-init 
 %define version	    0.1 
-%define release	    2 
+%define release	    3 
 
 
 #.%{beta}
@@ -9,12 +9,13 @@ Name:		%{name}
 Version:	%{version}
 Release:	%{release}
 Summary:    Default emacs settings for pure64
-Group:		Development/Tools
 License:	GPL
 Source0:	000-emacs-init.el	
 Source1:        redo+.el
 BuildRequires:	emacs	
 Requires:	emacs
+
+BuildArch: noarch
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}
 
 %description
@@ -33,3 +34,6 @@ install -m 0644  %{SOURCE1}  $RPM_BUILD_ROOT/usr/share/emacs/site-lisp
 %{_datadir}/emacs/site-lisp/site-start.d/*.el
 %{_datadir}/emacs/site-lisp/*.el
 %changelog
+* Tue Oct 27 2015 Cjacker <cjacker@foxmail.com> - 0.1-3
+- Rebuild
+

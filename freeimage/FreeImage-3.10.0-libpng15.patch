@@ -1,0 +1,35 @@
+--- Source/FreeImage/PluginPNG.cpp.orig	2012-02-13 20:40:18.980814932 -0600
++++ Source/FreeImage/PluginPNG.cpp	2012-02-13 21:20:54.917409944 -0600
+@@ -322,7 +322,8 @@
+ 
+ 			png_read_info(png_ptr, info_ptr);
+ 			png_get_IHDR(png_ptr, info_ptr, &width, &height, &bit_depth, &color_type, NULL, NULL, NULL);
+-			pixel_depth = info_ptr->pixel_depth;
++			pixel_depth = png_get_bit_depth(png_ptr, info_ptr) *
++				png_get_channels(png_ptr, info_ptr);
+ 
+ 			// get image data type (assume standard image type)
+ 
+@@ -534,11 +535,11 @@
+ 
+ 			if (png_get_valid(png_ptr, info_ptr, PNG_INFO_iCCP)) {
+ 				png_charp profile_name = NULL;
+-				png_charp profile_data = NULL;
++				png_bytepp profile_data = NULL;
+ 				png_uint_32 profile_length = 0;
+ 				int  compression_type;
+ 
+-				png_get_iCCP(png_ptr, info_ptr, &profile_name, &compression_type, &profile_data, &profile_length);
++				png_get_iCCP(png_ptr, info_ptr, &profile_name, &compression_type, profile_data, &profile_length);
+ 
+ 				// copy ICC profile data (must be done after FreeImage_Allocate)
+ 
+@@ -771,7 +772,7 @@
+ 
+ 			FIICCPROFILE *iccProfile = FreeImage_GetICCProfile(dib);
+ 			if (iccProfile->size && iccProfile->data) {
+-				png_set_iCCP(png_ptr, info_ptr, "Embedded Profile", 0, (png_charp)iccProfile->data, iccProfile->size);
++				png_set_iCCP(png_ptr, info_ptr, "Embedded Profile", 0, (png_const_bytep)iccProfile->data, iccProfile->size);
+ 			}
+ 
+ 			// write metadata

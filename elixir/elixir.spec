@@ -1,9 +1,8 @@
 Name:           elixir
 Version:        1.1.1
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        A modern approach to programming for the Erlang VM 
 
-Group:          Development/Languages
 License:        ASL 2.0 and ERPL
 URL:            http://elixir-lang.org/
 
@@ -45,5 +44,8 @@ LANG="en_US.utf8" make test
 %{_datadir}/%{name}
 
 %changelog
+* Tue Oct 27 2015 Cjacker <cjacker@foxmail.com> - 1.1.1-2
+- Rebuild
+
 * Sat Aug 08 2015 Cjacker <cjacker@foxmail.com>
 - initial build.

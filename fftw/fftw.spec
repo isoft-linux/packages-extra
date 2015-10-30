@@ -1,8 +1,7 @@
 Name:           fftw
 Version:        3.3.4
-Release:        6%{?dist}
+Release:        7%{?dist}
 Summary:        A Fast Fourier Transform library
-Group:          System Environment/Libraries
 License:        GPLv2+
 URL:            http://www.fftw.org
 Source0:        http://www.fftw.org/fftw-%{version}.tar.gz
@@ -27,7 +26,6 @@ data, and of arbitrary input size.
 
 %package libs
 Summary:        FFTW run-time library
-Group:          System Environment/Libraries
 Provides:       fftw3 = %{version}-%{release}
 # Libs rearranged in 3.3.1-2
 Obsoletes:      fftw-libs-threads < %{version}-%{release}
@@ -48,7 +46,6 @@ run-time libraries.
 
 %package devel
 Summary:        Headers, libraries and docs for the FFTW library
-Group:          Development/Libraries
 Requires:       pkgconfig
 Requires:       %{name}%{?_isa} = %{version}-%{release}
 Requires:       %{name}-libs%{?_isa} = %{version}-%{release}
@@ -65,21 +62,18 @@ develop programs using the FFTW fast Fourier transform library.
 
 %package libs-double
 Summary:        FFTW library, double precision
-Group:          Development/Libraries
 
 %description libs-double
 This package contains the FFTW library compiled in double precision.
 
 %package libs-single
 Summary:        FFTW library, single precision
-Group:          Development/Libraries
 
 %description libs-single
 This package contains the FFTW library compiled in single precision.
 
 %package libs-long
 Summary:        FFTW library, long double precision 
-Group:          Development/Libraries
 
 %description libs-long
 This package contains the FFTW library compiled in long double
@@ -88,7 +82,6 @@ precision.
 %if %{quad}
 %package libs-quad
 Summary:        FFTW library, quadruple
-Group:          Development/Libraries
 
 %description libs-quad
 This package contains the FFTW library compiled in quadruple
@@ -97,7 +90,6 @@ precision.
 
 %package        static
 Summary:        Static versions of the FFTW libraries
-Group:          Development/Libraries
 Requires:       %{name}-devel%{?_isa} = %{version}-%{release}
 Provides:       fftw3-static%{?_isa} = %{version}-%{release}
 Provides:       fftw3-static = %{version}-%{release}
@@ -108,7 +100,6 @@ the FFTW fast Fourier transform library.
 
 %package doc
 Summary:        FFTW library manual
-Group:          Documentation
 BuildArch:      noarch
 
 %description doc
@@ -269,3 +260,6 @@ rm -rf %{buildroot}
 %{_libdir}/libfftw3*.a
 
 %changelog
+* Tue Oct 27 2015 Cjacker <cjacker@foxmail.com> - 3.3.4-7
+- Rebuild
+

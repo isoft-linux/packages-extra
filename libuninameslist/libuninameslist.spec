@@ -1,10 +1,9 @@
 Name:           libuninameslist
 Version:        20130501
-Release:        4%{?dist}
+Release:        5%{?dist}
 
 Summary:        A library providing Unicode character names and annotations
 
-Group:          System Environment/Libraries
 License:        BSD
 URL:            http://libuninameslist.sourceforge.net
 Source0:        https://github.com/fontforge/libuninameslist/archive/Version_0.3.20130501.zip
@@ -19,7 +18,6 @@ annotation data from the official Unicode Character Database.
 
 %package        devel
 Summary:        Header files and static libraries for %{name}
-Group:          Development/Libraries
 Requires:       %{name} = %{version}-%{release}
 
 %description    devel
@@ -63,3 +61,6 @@ rm -rf $RPM_BUILD_ROOT
 
 
 %changelog
+* Tue Oct 27 2015 Cjacker <cjacker@foxmail.com> - 20130501-5
+- Rebuild
+

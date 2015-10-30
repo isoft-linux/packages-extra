@@ -1,6 +1,6 @@
 %define name mono-addins
 %define version 1.1 
-%define release 1
+%define release 2
 
 Summary: generic framework for creating extensible applications 
 Name:    mono-addins 
@@ -10,10 +10,10 @@ URL:     http://www.mono-project.com
 Source0: http://download.mono-project.com/sources/mono-addins/%{name}-%{version}.tar.gz
 Patch0:  mono-addins-1.0-libdir.patch
 License: BSD
-Group: Development/Other
 BuildRequires: mono >= 3.0 
 BuildRequires: gtk2-sharp-gapi
 
+BuildArch: noarch
 %description
 Mono.Addins is a generic framework for creating extensible applications,
 and for creating libraries which extend those applications.
@@ -42,3 +42,8 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/mono/mono-addins
 %{_libdir}/pkgconfig/*.pc
 %{_mandir}/man1/mautil.1.gz
+
+%changelog
+* Tue Oct 27 2015 Cjacker <cjacker@foxmail.com> - 1.1-1
+- Rebuild
+

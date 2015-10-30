@@ -4,7 +4,7 @@
 
 Name:           fontforge
 Version:        20150612
-Release:        2
+Release:        3
 Summary:        Outline and bitmap font editor
 
 License:        GPLv3+
@@ -159,3 +159,6 @@ fi
 %doc htdocs
 
 %changelog
+* Tue Oct 27 2015 Cjacker <cjacker@foxmail.com> - 20150612-3
+- Rebuild
+

@@ -2,7 +2,7 @@
 
 Name:		libwps
 Version:	0.4.2
-Release:	1%{?dist}
+Release:	2%{?dist}
 Summary:	A library for import of Microsoft Works documents
 
 License:	LGPLv2+ or MPLv2.0
@@ -98,5 +98,8 @@ install -m 0644 wks2*.1 wps2*.1 %{buildroot}/%{_mandir}/man1
 %doc docs/doxygen/html
 
 %changelog
+* Tue Oct 27 2015 Cjacker <cjacker@foxmail.com> - 0.4.2-2
+- Rebuild
+
 * Wed Oct 21 2015 Cjacker <cjacker@foxmail.com>
 - Initial build.

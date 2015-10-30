@@ -4,10 +4,9 @@
 
 Name:           uniconvertor
 Version:        2.0
-Release:        0.8%{?SVN:.svn%{SVN}}%{?dist}
+Release:        0.9%{?SVN:.svn%{SVN}}%{?dist}
 Summary:        Universal vector graphics translator
 
-Group:          Applications/Multimedia
 License:        LGPLv2+ and GPLv2+ and MIT
 URL:            http://sk1project.org/modules.php?name=Products&product=uniconvertor
 # Script to reproduce given tarball from source0
@@ -55,5 +54,8 @@ update-mime-database -n %{_datadir}/mime &> /dev/null || :
 %{_datarootdir}/mime/packages/vnd.sk1project.pdxf-graphics.xml
 
 %changelog
+* Tue Oct 27 2015 Cjacker <cjacker@foxmail.com> - 2.0-0.9.svn362
+- Rebuild
+
 * Wed Oct 21 2015 Cjacker <cjacker@foxmail.com>
 - Initial build.

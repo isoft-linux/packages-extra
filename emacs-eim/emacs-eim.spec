@@ -1,12 +1,11 @@
 %define realname	    eim
 %define version		2.4
-%define release	    1
+%define release	    2
 
 Name:		emacs-%{realname}
 Version:	%{version}
 Release:	%{release}
 Summary:	EIM --- The Emacs Input Method
-Group:		Development/Tools	
 License:	GPL
 URL:        https://github.com/viogus/eim
 Source:		viogus-eim-5994240.zip
@@ -16,6 +15,8 @@ Source2:	eim-init.el
 Patch0:     eim-disable-py-save.patch
 BuildRequires:	emacs	
 Requires:	emacs
+
+BuildArch: noarch
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}
 
 %description
@@ -41,3 +42,6 @@ install -m 0644  %{SOURCE2}  $RPM_BUILD_ROOT/usr/share/emacs/site-lisp/site-star
 %{_datadir}/emacs/site-lisp/%{realname}
 %{_datadir}/emacs/site-lisp/site-start.d/*
 %changelog
+* Tue Oct 27 2015 Cjacker <cjacker@foxmail.com> - 2.4-2
+- Rebuild
+

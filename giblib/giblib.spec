@@ -1,9 +1,8 @@
 Summary: Simple library and a wrapper for imlib2
 Name: giblib
 Version: 1.2.4
-Release: 23%{?dist}
+Release: 24%{?dist}
 License: MIT
-Group: System Environment/Libraries
 # It looks like this project has been abandoned...
 URL: http://linuxbrit.co.uk/giblib/
 Source: http://linuxbrit.co.uk/downloads/giblib-%{version}.tar.gz
@@ -21,7 +20,6 @@ and more importantly, wraps imlib2's context API.
 
 %package devel
 Summary: Static library and header files for giblib
-Group: Development/Libraries
 Requires: %{name} = %{version}-%{release}
 Requires: imlib2-devel, pkgconfig
 
@@ -62,3 +60,6 @@ rm -rf %{buildroot}%{_prefix}/doc/
 
 
 %changelog
+* Tue Oct 27 2015 Cjacker <cjacker@foxmail.com> - 1.2.4-24
+- Rebuild
+

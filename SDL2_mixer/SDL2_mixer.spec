@@ -1,9 +1,8 @@
 Name:		SDL2_mixer
 Version:	2.0.0
-Release:    1 
+Release:    2 
 Summary:	Simple DirectMedia Layer - Sample Mixer Library
 
-Group:		System Environment/Libraries
 License:	LGPLv2
 URL:		http://www.libsdl.org/projects/SDL_mixer/
 Source0:	http://www.libsdl.org/projects/%{name}/release/%{name}-%{version}.tar.gz
@@ -19,7 +18,6 @@ MikMod MOD, Timidity MIDI and Ogg Vorbis libraries.
 
 %package devel
 Summary:	Development files for %{name}
-Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
 Requires:	SDL2-devel >= 1.2.10
 Requires:	libvorbis-devel
@@ -43,7 +41,6 @@ rm -rf $RPM_BUILD_ROOT
 
 find $RPM_BUILD_ROOT -name '*.la' -exec rm -f {} ';'
 
-rpmclean
 %clean
 rm -rf $RPM_BUILD_ROOT
 
@@ -64,6 +61,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_includedir}/SDL2
 
 %changelog
+* Tue Oct 27 2015 Cjacker <cjacker@foxmail.com> - 2.0.0-2
+- Rebuild
+
 * Tue Dec 10 2013 Cjacker <cjacker@gmail.com>
 - first build, prepare for the new release.
 

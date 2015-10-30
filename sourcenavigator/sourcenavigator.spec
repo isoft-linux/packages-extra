@@ -1,8 +1,7 @@
 Name:           sourcenavigator 
 Version:        4.5 
-Release:        1 
+Release:        2 
 Summary:        source navigator NG is a source code analysis tool.
-Group:          Development/Tools
 License:        GPLv2+
 URL:            http://sourcenav.sourceforge.net/
 Source0:        %{name}-NG%{version}.tar.bz2
@@ -29,3 +28,6 @@ rm -rf $RPM_BUILD_ROOT
 /opt/sourcenavigator
 
 %changelog
+* Tue Oct 27 2015 Cjacker <cjacker@foxmail.com> - 4.5-2
+- Rebuild
+

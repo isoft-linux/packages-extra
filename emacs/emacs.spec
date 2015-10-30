@@ -1,8 +1,7 @@
 Name:           emacs 
 Version:        24.5
-Release:        2
+Release:        3
 Summary:        The extensible, customizable, self-documenting real-time display editor 
-Group:          Extra/Development/Utility
 License:        GPL
 Source0:     	emacs-%{version}.tar.xz
 Source1:	default.el
@@ -24,6 +23,27 @@ Patch2: emacs-disable-fucking-startup-screen.patch
 
 BuildRequires: gtk3-devel
 BuildRequires: libXft-devel
+BuildRequires: fontconfig-devel
+BuildRequires: giflib-devel
+BuildRequires: libICE-devel
+BuildRequires: libSM-devel
+BuildRequires: libX11-devel
+BuildRequires: libXft-devel
+BuildRequires: libXinerama-devel
+BuildRequires: libXpm-devel
+BuildRequires: libXrandr-devel
+BuildRequires: libXrender-devel
+BuildRequires: libacl-devel
+BuildRequires: libjpeg-turbo-devel
+BuildRequires: libpng-devel
+BuildRequires: librsvg2-devel
+BuildRequires: libtiff-devel
+BuildRequires: libxml2-devel
+BuildRequires: ncurses-devel
+BuildRequires: zlib-devel
+
+Requires: ctags ctags-etags
+
 
 Requires(post): gtk3
 Requires(post): desktop-file-utils 
@@ -73,7 +93,11 @@ install -m 0644 %{SOURCE1} $RPM_BUILD_ROOT%{_datadir}/emacs/site-lisp
 
 rm -rf $RPM_BUILD_ROOT/%{_infodir}
 
-rpmclean
+#remove ctags, alread in ctags package.
+rm -rf %{buildroot}%{_bindir}/ctags
+rm -rf %{buildroot}%{_bindir}/etags
+rm -rf %{buildroot}%{_mandir}/man1/ctags.*
+rm -rf %{buildroot}%{_mandir}/man1/etags.*
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -99,5 +123,8 @@ update-desktop-database >/dev/null 2>&1 ||:
 %{_localstatedir}/*
 
 %changelog
+* Tue Oct 27 2015 Cjacker <cjacker@foxmail.com> - 24.5-3
+- Rebuild
+
 * Sun Jul 26 2015 Cjacker <cjacker@foxmail.com>
 - port my cjk monospace patch to 24.5

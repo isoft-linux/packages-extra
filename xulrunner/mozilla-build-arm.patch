@@ -1,0 +1,23 @@
+diff -up firefox-36.0.1/mozilla-release/media/webrtc/trunk/webrtc/build/common.gypi.arm firefox-36.0.1/mozilla-release/media/webrtc/trunk/webrtc/build/common.gypi
+--- firefox-36.0.1/mozilla-release/media/webrtc/trunk/webrtc/build/common.gypi.arm	2015-03-05 11:28:19.000000000 +0100
++++ firefox-36.0.1/mozilla-release/media/webrtc/trunk/webrtc/build/common.gypi	2015-03-09 10:02:17.875243261 +0100
+@@ -235,19 +235,6 @@
+         'defines': [
+           'WEBRTC_ARCH_ARM',
+         ],
+-        'conditions': [
+-          ['arm_version==7', {
+-            'defines': ['WEBRTC_ARCH_ARM_V7',
+-                        'WEBRTC_BUILD_NEON_LIBS'],
+-            'conditions': [
+-              ['arm_neon==1', {
+-                'defines': ['WEBRTC_ARCH_ARM_NEON',],
+-              }, {
+-                'defines': ['WEBRTC_DETECT_ARM_NEON',],
+-              }],
+-            ],
+-          }],
+-        ],
+       }],
+       ['os_bsd==1', {
+         'defines': [

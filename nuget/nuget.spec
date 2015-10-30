@@ -1,8 +1,7 @@
 Name:           nuget
 Version:        2.8.3
-Release:        3.21
+Release:        4.21
 Summary:        DotNet package manager
-Group:          Development/Languages/Mono
 License:        Apache-2.0
 URL:            https://nuget.codeplex.com/
 Source0:        %{name}-%{version}.tar.bz2
@@ -29,7 +28,6 @@ authors and consumers.
 
 %package devel
 Summary:        Development files for NuGet
-Group:          Development/Languages/Mono
 Requires:       nuget = %{version}
 
 %description devel
@@ -96,3 +94,6 @@ EOF
 %{_datadir}/pkgconfig/nuget-core.pc
 
 %changelog
+* Tue Oct 27 2015 Cjacker <cjacker@foxmail.com> - 2.8.3-4.21
+- Rebuild
+

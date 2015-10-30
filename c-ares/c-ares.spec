@@ -1,9 +1,8 @@
 Summary: A library that performs asynchronous DNS operations
 Name: c-ares
 Version: 1.10.0
-Release: 1
+Release: 2
 License: MIT
-Group: System Environment/Libraries
 URL: http://c-ares.haxx.se/
 Source0: http://c-ares.haxx.se/download/%{name}-%{version}.tar.gz
 Patch0: 0001-Use-RPM-compiler-options.patch
@@ -19,7 +18,6 @@ by Greg Hudson at MIT.
 
 %package devel
 Summary: Development files for c-ares
-Group: Development/Libraries
 Requires: %{name} = %{version}-%{release}
 Requires: pkgconfig
 
@@ -41,7 +39,6 @@ autoreconf -if
 rm -rf $RPM_BUILD_ROOT
 make DESTDIR=$RPM_BUILD_ROOT install
 
-rpmclean
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -63,4 +60,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/*.so
 %{_libdir}/pkgconfig/libcares.pc
 %{_mandir}/man3/ares_*
+
+
+%changelog
+* Tue Oct 27 2015 Cjacker <cjacker@foxmail.com> - 1.10.0-2
+- Rebuild
 

@@ -22,9 +22,8 @@ URL:     http://www.vim.org/
 Name: gvim
 Version: %{baseversion}
 #Version: %{baseversion}.%{beta}%{patchlevel}
-Release: 7 
+Release: 8 
 License: GPL
-Group: Applications/Editors
 Source0: ftp://ftp.vim.org/pub/vim/unix/vim-%{baseversion}%{?beta}%{?CVSDATE}.tar.bz2
 Source3: gvim.desktop
 Source4: vimrc
@@ -88,7 +87,6 @@ multiple windows, multi-level undo, block highlighting and more.
 
 %package common
 Summary: The common files needed by any version of the VIM editor
-Group: Applications/Editors
 Conflicts: man-pages-fr < 0.9.7-14
 Conflicts: man-pages-it < 0.3.0-17
 Conflicts: man-pages-pl < 0.24-2
@@ -106,7 +104,6 @@ to install the vim-common package.
 
 %package spell
 Summary: The dictionaries for spell checking. This package is optional
-Group: Applications/Editors
 Requires: vim-common = %{epoch}:%{version}-%{release}
 
 %description spell
@@ -115,7 +112,6 @@ many different languages.
 
 %package minimal
 Summary: A minimal version of the VIM editor
-Group: Applications/Editors
 Provides: vi = %{version}-%{release}
 
 %description minimal
@@ -130,7 +126,6 @@ package is installed.
 
 %package enhanced
 Summary: A version of the VIM editor which includes recent enhancements
-Group: Applications/Editors
 Requires: vim-common = %{epoch}:%{version}-%{release}
 Provides: vim = %{version}-%{release}
 
@@ -243,7 +238,6 @@ install -p -m644 %{SOURCE10} \
   %endif
 )
 
-rpmclean
 
 
 %clean
@@ -252,3 +246,8 @@ rm -rf $RPM_BUILD_ROOT
 %files -n gvim 
 %defattr(-,root,root)
 /usr
+
+%changelog
+* Tue Oct 27 2015 Cjacker <cjacker@foxmail.com> - 2:7.4-8
+- Rebuild
+

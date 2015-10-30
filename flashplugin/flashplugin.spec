@@ -1,7 +1,7 @@
 Summary: Flash Player Plugin for FireFox and Other browsers 
 Name: flashplugin 
 Version: 11.2.202.521
-Release: 3 
+Release: 4 
 URL:    https://www.adobe.com/support/flashplayer/downloads.html
 Source0: install_flash_player_11_linux.x86_64.tar.gz 
 #kde4 is outdated, there is no systemsettings module for kde5, so we use kcmshell4 to launch it
@@ -10,7 +10,6 @@ Source1: kde-flash-panel.desktop
 #add to systemsettings5 as external app.
 Source2: flash.desktop
 
-Group: Applications/Multimedia
 License:Commecial
 
 %description
@@ -77,5 +76,8 @@ kbuildsycoca4 >/dev/null 2>&1 ||:
 %{_datadir}/pixmaps/flash-player-properties.png
 
 %changelog
+* Tue Oct 27 2015 Cjacker <cjacker@foxmail.com> - 11.2.202.521-4
+- Rebuild
+
 * Thu Oct 08 2015 Cjacker <cjacker@foxmail.com>
 - update to 521

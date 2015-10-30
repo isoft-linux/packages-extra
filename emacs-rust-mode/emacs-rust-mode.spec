@@ -1,6 +1,6 @@
 Name: emacs-rust-mode
 Version: 0.1
-Release: 1	
+Release: 2	
 Summary: A major Emacs mode for editing Rust source code
 License: GPL
 #git clone https://github.com/rust-lang/rust-mode
@@ -9,6 +9,7 @@ Source1: rust-mode-init.el
 BuildRequires:emacs
 Requires: emacs
 
+BuildArch: noarch
 %description
 %{summary}
 
@@ -53,5 +54,8 @@ fi ||:
 %{_datadir}/emacs/site-lisp/site-start.d/*.el
 
 %changelog
+* Tue Oct 27 2015 Cjacker <cjacker@foxmail.com> - 0.1-2
+- Rebuild
+
 * Fri Jul 31 2015 Cjacker <cjacker@foxmail.com>
 - initial build

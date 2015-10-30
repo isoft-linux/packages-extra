@@ -1,11 +1,10 @@
 Name:		arpack
-Version:	3.1.5
-Release:	2%{?dist}
+Version:	3.3.0
+Release:	3%{?dist}
 Summary:	Fortran 77 subroutines for solving large scale eigenvalue problems
 License:	BSD
-Group:		Development/Libraries
 URL:		http://forge.scilab.org/index.php/p/arpack-ng/
-Source0:	http://forge.scilab.org/index.php/p/arpack-ng/downloads/get/arpack-ng_%{version}.tar.gz
+Source0:	http://forge.scilab.org/index.php/p/arpack-ng/downloads/get/arpack-ng-%{version}.tar.gz
 BuildRoot:	%(mktemp -ud %{_tmppath}/%{name}-%{version}-%{release}-XXXXXX)
 
 BuildRequires:	gcc-gfortran
@@ -26,7 +25,6 @@ Restarted Arnoldi Method (IRAM).
 
 %package devel
 Summary:	Files needed for developing arpack based applications
-Group:		Development/Libraries
 Requires:	arpack = %{version}-%{release}
 Provides:	arpack-ng-devel = %{version}-%{release}
 
@@ -37,7 +35,6 @@ library links used for building arpack based applications.
 
 %package doc
 Summary:	Examples for the use of arpack
-Group:		Documentation
 BuildArch: noarch
 
 %description doc
@@ -45,7 +42,6 @@ This package contains examples for the use of arpack.
 
 %package static
 Summary:	Static library for developing arpack based applications
-Group:		Development/Libraries
 Requires:	arpack-devel = %{version}-%{release}
 Provides:	arpack-ng-static = %{version}-%{release}
 
@@ -58,6 +54,10 @@ library and so links used for building arpack based applications.
 %setup -q -n arpack-ng-%{version} 
 
 %build
+if [ ! -f "configure" ]; then
+./bootstrap
+fi
+
 export F77=gfortran
 %global atlaslib -L%{_libdir}/atlas -ltatlas
 %configure --enable-shared --enable-static \
@@ -100,3 +100,6 @@ rm -rf %{buildroot}
 %{_libdir}/libarpack.a
 
 %changelog
+* Tue Oct 27 2015 Cjacker <cjacker@foxmail.com> - 3.3.0-3
+- Rebuild
+

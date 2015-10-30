@@ -3,10 +3,9 @@
 
 Name:           itk
 Version:        4.0.1
-Release:        2%{?dist}
+Release:        3%{?dist}
 Summary:        Object oriented extensions to Tk
 
-Group:          Development/Libraries
 License:        TCL
 URL:            http://incrtcl.sourceforge.net/itcl/
 Source0:        https://downloads.sourceforge.net/incrtcl/%{name}%{version}.tar.gz
@@ -25,7 +24,6 @@ useful for building megawidgets.
 
 %package devel
 Summary:  Development headers and libraries for linking against itk
-Group: Development/Libraries
 Requires:       %{name} = %{version}-%{release}
 %description devel
 Development headers and libraries for linking against itk.
@@ -59,3 +57,6 @@ make install DESTDIR=$RPM_BUILD_ROOT
 # What happened to itk's stub library and itkConfig.sh?
 
 %changelog
+* Tue Oct 27 2015 Cjacker <cjacker@foxmail.com> - 4.0.1-3
+- Rebuild
+

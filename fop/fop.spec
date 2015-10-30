@@ -1,9 +1,8 @@
 Name:		fop
 Version:    	2.0 
-Release:	1
+Release:	2
 Summary:	A print formatter driven by XSL formatting objects (XSL-FO)
 
-Group:		Extra/Runtime/Utility/Java
 License:	Apache License, version 2.0
 URL:	    	http://xmlgraphics.apache.org/fop/	
 Source0:	http://apache.01link.hk/xmlgraphics/fop/binaries/fop-%{version}-bin.tar.gz
@@ -41,6 +40,9 @@ install -Dm0755 %{SOURCE1} $RPM_BUILD_ROOT%{_bindir}/fop
 %{_bindir}/fop
 
 %changelog
+* Tue Oct 27 2015 Cjacker <cjacker@foxmail.com> - 2.0-2
+- Rebuild
+
 * Sun Oct 2 2014 Cjacker <cjacker@gmail.com>
 - create package
 - add a wrapper script to detect JAVA_HOME or jamvm

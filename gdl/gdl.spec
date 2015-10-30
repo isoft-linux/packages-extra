@@ -1,8 +1,7 @@
 Name:           gdl
 Version:        3.16.0
-Release:        1
+Release:        2
 Summary:        Gnome Development Library 
-Group:          System Environment/Libraries 
 License:        GPLv2+
 Source0:        http://ftp.acc.umu.se/pub/GNOME/sources/gdl/3.16/%{name}-%{version}.tar.xz
 BuildRequires:  gobject-introspection
@@ -10,7 +9,6 @@ BuildRequires:  gobject-introspection
 GDL is the Gnome Development Library. It features a docking system and can also be used without any gnome dependency
 
 %package devel
-Group:  Development/Libraries
 Summary: Headers and libraries for using gdl
 
 %description devel
@@ -28,7 +26,6 @@ rm -rf $RPM_BUILD_ROOT
 make install DESTDIR=$RPM_BUILD_ROOT
 
 %find_lang gdl-3
-rpmclean
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -46,3 +43,8 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/gir-1.0/Gdl-3.gir
 %dir %{_datadir}/gtk-doc/html/gdl-3.0
 %{_datadir}/gtk-doc/html/gdl-3.0/*
+
+%changelog
+* Tue Oct 27 2015 Cjacker <cjacker@foxmail.com> - 3.16.0-2
+- Rebuild
+

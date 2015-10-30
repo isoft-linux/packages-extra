@@ -1,9 +1,8 @@
 Name:	    adns	
 Version:	1.5.0
-Release:	1
+Release:	2
 Summary:	Advanced, easy to use, asynchronous-capable DNS client library and utilities.
 
-Group:	    Extra/Runtime/Library	
 License:	GPLv3
 URL:		http://www.gnu.org/software/adns/
 Source0:    http://www.chiark.greenend.org.uk/~ian/adns/ftp/%{name}-%{version}.tar.gz	
@@ -13,7 +12,6 @@ Source0:    http://www.chiark.greenend.org.uk/~ian/adns/ftp/%{name}-%{version}.t
 
 %package        devel
 Summary:        Development files for %{name}
-Group:          Development/Libraries
 Requires:       %{name} = %{version}-%{release}
 
 %description    devel
@@ -33,7 +31,6 @@ make %{?_smp_mflags}
 make install DESTDIR=%{buildroot} bindir=%{buildroot}%{_bindir} libdir=%{buildroot}%{_libdir} includedir=%{buildroot}%{_includedir}
 
 chmod +x %{buildroot}%{_libdir}/*.so.*
-rpmclean
 
 %files
 %{_bindir}/adnsheloex
@@ -49,4 +46,7 @@ rpmclean
 %{_libdir}/libadns.so
 
 %changelog
+* Tue Oct 27 2015 Cjacker <cjacker@foxmail.com> - 1.5.0-2
+- Rebuild
+
 

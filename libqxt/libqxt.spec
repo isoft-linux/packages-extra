@@ -1,8 +1,7 @@
 Name:		libqxt
 Version:	0.6.2
-Release:	9%{?dist}
+Release:	10%{?dist}
 Summary:	Qt extension library
-Group:		System Environment/Libraries
 License:	CPL or LGPLv2
 URL:		http://www.libqxt.org/
 Source0:	http://bitbucket.org/libqxt/libqxt/get/v%{version}.tar.bz2
@@ -32,7 +31,6 @@ utility classes to add functionality not readily available in the Qt toolkit.
 
 %package	devel
 Summary:	Development files for %{name}
-Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
 Requires:	avahi-compat-libdns_sd-devel
 Requires:	avahi-devel
@@ -93,3 +91,6 @@ rm -rf $RPM_BUILD_ROOT
 %{_qt4_datadir}/mkspecs/features/qxt*.prf
 
 %changelog
+* Tue Oct 27 2015 Cjacker <cjacker@foxmail.com> - 0.6.2-10
+- Rebuild
+

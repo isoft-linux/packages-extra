@@ -1,6 +1,6 @@
 Name:           pangox-compat
 Version:        0.0.2
-Release:        6%{?dist}
+Release:        7%{?dist}
 Summary:        Compatibility library for pangox
 
 License:        LGPLv2+
@@ -15,7 +15,6 @@ that is not shipped by Pango itself anymore.
 
 %package devel
 Summary: Development files for pangox-compat
-Group: Development/Libraries
 Requires: %{name} = %{version}-%{release}
 
 %description devel
@@ -51,3 +50,6 @@ find $RPM_BUILD_ROOT -name '*.la' -exec rm -f {} ';'
 %{_libdir}/pkgconfig/*
 
 %changelog
+* Tue Oct 27 2015 Cjacker <cjacker@foxmail.com> - 0.0.2-7
+- Rebuild
+

@@ -1,0 +1,20 @@
+--- audacity-minsrc-2.1.1n/src/AudacityApp.cpp	2015-10-23 02:37:00.286959357 +0800
++++ audacity-minsrc-2.1.1/src/AudacityApp.cpp	2015-10-23 02:46:17.429543174 +0800
+@@ -1321,7 +1321,7 @@
+ // they make in their release notes.
+ void AudacityApp::FinishInits()
+ {
+-
++/*
+ // Until we are ready for wxWidgets 3.x, put a warning dialog up.
+ // Our problem is that distros may ship with 3.x builds as default.
+ // We are saying, don't.
+@@ -1346,7 +1346,7 @@
+                     wxT("http://wiki.audacityteam.org/wiki/Incorrect_wxWidgets_Version"),
+                      true);
+ #endif
+-
++*/
+ 
+    // Parse command line and handle options that might require
+    // immediate exit...no need to initialize all of the audio

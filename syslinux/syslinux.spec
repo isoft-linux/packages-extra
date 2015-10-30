@@ -1,9 +1,8 @@
 Summary: Kernel loader which uses a FAT, ext2/3 or iso9660 filesystem or a PXE network
 Name: syslinux
 Version: 6.03
-Release: 1
+Release: 2
 License: GPL
-Group: System/Boot
 Source0: ftp://ftp.kernel.org/pub/linux/utils/boot/syslinux/%{name}-%{version}.tar.xz
 Patch0001: 0001-Add-install-all-target-to-top-side-of-HAVE_FIRMWARE.patch
 # Backport from upstream git master to fix RHBZ #1234653
@@ -17,7 +16,6 @@ Requires: mtools
 
 %package devel
 Summary: Development environment for SYSLINUX add-on modules
-Group: Development/Libraries
 Requires: syslinux
 
 %description
@@ -71,4 +69,9 @@ rm -rf %{buildroot}
 
 %files devel
 %{_datadir}/syslinux/com32
+
+
+%changelog
+* Tue Oct 27 2015 Cjacker <cjacker@foxmail.com> - 6.03-2
+- Rebuild
 

@@ -1,12 +1,13 @@
 Name:		xpybutil
 Version:	20141115
-Release:	1
+Release:	2
 Summary:	A Python rendition of xcb-util. EWMH, ICCCM, key binding, Xinerama, etc...
 
-Group:		GUI/Runtime/Library
 License:    GPL	
 URL:		http://burntsushi.net/X11/xpybutil
 Source0:	xpybutil.tar.gz
+BuildArch: noarch
+
 BuildRequires: xpyb-devel
 
 %description
@@ -14,7 +15,6 @@ BuildRequires: xpyb-devel
 
 %package        devel
 Summary:        Development files for %{name}
-Group:          Development/Libraries
 Requires:       %{name} = %{version}-%{release}
 
 %description    devel
@@ -33,4 +33,7 @@ rm -rf %{buildroot}%{_docdir}
 %{python_sitearch}/*.egg-info
 
 %changelog
+* Tue Oct 27 2015 Cjacker <cjacker@foxmail.com> - 20141115-2
+- Rebuild
+
 

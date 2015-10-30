@@ -1,9 +1,8 @@
 Name: gpsd
 Version: 3.15
-Release: 2
+Release: 3
 Summary: Service daemon for mediating access to a GPS
 
-Group: System Environment/Daemons
 License: BSD
 URL: http://catb.org/gpsd/
 Source0: http://download.savannah.gnu.org/releases/gpsd/%{name}-%{version}.tar.gz
@@ -33,7 +32,6 @@ parse than NMEA 0183.
 
 %package libs
 Summary: Client libraries in C and Python for talking to a running gpsd or GPS
-Group: System Environment/Libraries
 
 %description libs
 This package contains the gpsd libraries and python modules that manage access
@@ -41,7 +39,6 @@ to a GPS for applications.
 
 %package devel
 Summary: Development files for the gpsd library
-Group: Development/Libraries
 Requires: %{name}-libs%{?_isa} = %{version}-%{release}
 Requires: pkgconfig
 
@@ -51,7 +48,6 @@ libraries that manage access to a GPS for applications
 
 %package clients
 Summary: Clients for gpsd
-Group: Applications/System
 
 %description clients
 xgps is a simple test client for gpsd with an X interface. It displays
@@ -210,3 +206,6 @@ rm %{buildroot}%{_libdir}/pkgconfig/libgpsd.pc
 
 
 %changelog
+* Tue Oct 27 2015 Cjacker <cjacker@foxmail.com> - 3.15-3
+- Rebuild
+

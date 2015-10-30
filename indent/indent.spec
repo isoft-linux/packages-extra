@@ -1,9 +1,8 @@
 Summary: A GNU program for formatting C code
 Name: indent
 Version: 2.2.10
-Release: 1
+Release: 2
 License: GPLv3+
-Group: Applications/Text
 URL: http://indent.isidore-it.eu/beautify.html
 Source: http://indent.isidore-it.eu/%{name}-%{version}.tar.gz
 Patch3: indent-2.2.9-explicits.patch
@@ -44,7 +43,6 @@ rm -f $RPM_BUILD_ROOT/%{_infodir}/dir $RPM_BUILD_ROOT/%{_bindir}/texinfo2man \
 	$RPM_BUILD_ROOT/usr/doc/indent/indent.html
 
 %find_lang %name
-rpmclean
 %clean
 rm -rf $RPM_BUILD_ROOT
 
@@ -55,3 +53,6 @@ rm -rf $RPM_BUILD_ROOT
 
 
 %changelog
+* Tue Oct 27 2015 Cjacker <cjacker@foxmail.com> - 2.2.10-2
+- Rebuild
+

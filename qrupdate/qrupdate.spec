@@ -1,8 +1,7 @@
 Name:		qrupdate
 Version:	1.1.2
-Release:	7%{?dist}
+Release:	8%{?dist}
 Summary:	A Fortran library for fast updates of QR and Cholesky decompositions
-Group:		Development/Libraries
 License:	GPLv3+
 URL:		http://qrupdate.sourceforge.net/
 Source0:	http://downloads.sourceforge.net/%{name}/%{name}-%{version}.tar.gz
@@ -20,7 +19,6 @@ decompositions.
 
 %package devel
 Summary:	Development libraries for %{name}
-Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
 
 %description devel
@@ -60,3 +58,6 @@ make test FC=gfortran FFLAGS="%{optflags} -fimplicit-none -funroll-loops"
 
 
 %changelog
+* Tue Oct 27 2015 Cjacker <cjacker@foxmail.com> - 1.1.2-8
+- Rebuild
+

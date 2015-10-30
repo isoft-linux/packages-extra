@@ -1,9 +1,8 @@
 Name:		pocl
 Version:	0.12
-Release:	4.git
+Release:	6.git
 Summary:	Portable Computing Language
 
-Group:	    Development/Languages	
 License:	BSD
 URL:		http://portablecl.org/
 #git clone https://github.com/pocl/pocl
@@ -20,7 +19,6 @@ Portable Computing Language (pocl) aims to become a MIT-licensed open source imp
 
 %package devel 
 Summary:        Development files for %{name}
-Group:          Development/Libraries
 Requires:       %{name} = %{version}-%{release}
 
 %description devel 
@@ -73,5 +71,11 @@ make check ||:
 %{_datadir}/pocl/include
 
 %changelog
+* Tue Oct 27 2015 Cjacker <cjacker@foxmail.com> - 0.12-6.git
+- Rebuild
+
+* Fri Oct 23 2015 Cjacker <cjacker@foxmail.com> - 0.12-5.git
+- update to c80bcc3
+
 * Fri Sep 04 2015 Cjacker <cjacker@foxmail.com>
 - update to latest git.

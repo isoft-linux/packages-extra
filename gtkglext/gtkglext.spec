@@ -3,10 +3,9 @@
 Summary:	OpenGL Extension to GTK
 Name:		gtkglext
 Version:	1.2.0
-Release:	25%{?dist}
+Release:	26%{?dist}
 
 License:	LGPLv2+ or GPLv2+
-Group:		System Environment/Libraries
 URL:		http://gtkglext.sourceforge.net/
 Source0:	ftp://ftp.gnome.org/pub/gnome/sources/gtkglext/1.2/gtkglext-%{version}.tar.bz2
 # Upstream changes, addressing BZ 677457
@@ -33,7 +32,6 @@ make GTK+ widgets OpenGL-capable.
 
 %package libs
 Summary:	OpenGL Extension to GTK
-Group:		System Environment/Libraries
 License:	LGPLv2+
 
 %description libs
@@ -43,7 +41,6 @@ make GTK+ widgets OpenGL-capable.
 
 %package devel
 Summary:	Development tools for GTK-based OpenGL applications
-Group:		Development/Libraries
 License:	LGPLv2+
 
 Requires:	%{name}-libs%{?_isa} = %{version}-%{release}
@@ -92,3 +89,6 @@ rm -f $RPM_BUILD_ROOT%{_libdir}/*.la
 %doc %{_datadir}/gtk-doc/html/*
 
 %changelog
+* Tue Oct 27 2015 Cjacker <cjacker@foxmail.com> - 1.2.0-26
+- Rebuild
+

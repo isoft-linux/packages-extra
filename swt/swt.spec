@@ -1,8 +1,9 @@
+%define debug_package %{nil}
+
 Name:           swt 
 Version:        4.4.2
-Release:        1
+Release:        2
 Summary:        The Standard Widget Toolkit - Eclipse
-Group:          System Environment/Libraries 
 License:        Eclipse Public License
 URL:            http://www.eclipse.org/swt/
 Source0:        swt-%{version}-gtk-linux-x86_64.zip 
@@ -47,7 +48,6 @@ mkdir -p $RPM_BUILD_ROOT/%{_datadir}/swt
 install -m 0644 swt.jar $RPM_BUILD_ROOT/%{_datadir}/swt
 popd
 
-rpmclean
 
 %files
 %defattr(-,root,root,-)
@@ -55,6 +55,9 @@ rpmclean
 %{_datadir}/swt/swt.jar
 
 %changelog
+* Tue Oct 27 2015 Cjacker <cjacker@foxmail.com> - 4.4.2-2
+- Rebuild
+
 * Tue Dec 10 2013 Cjacker <cjacker@gmail.com>
 - first build, prepare for the new release.
 

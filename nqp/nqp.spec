@@ -9,12 +9,11 @@
 
 Name:		nqp
 Version:	0.0.%{year}.%{month}
-Release:	1%{?dist}
+Release:	2%{?dist}
 Summary:	Not Quite Perl (6)
 
 BuildArch:	noarch
 
-Group:		Development/Libraries
 License:	Artistic 2.0 and ISC and WTFPL
 URL:		https://github.com/perl6/nqp
 Source0:	http://rakudo.org/downloads/nqp/nqp-%{year}.%{month}.tar.gz
@@ -42,7 +41,6 @@ a Perl 6 object model and regular expression engine for the virtual machine.
 
 %package doc
 Summary:	Documentation for Not Quite Perl (6)
-Group:		Documentation
 
 BuildArch:	noarch
 
@@ -86,3 +84,6 @@ rm -f t/hll/06-sprintf.t
 
 
 %changelog
+* Tue Oct 27 2015 Cjacker <cjacker@foxmail.com> - 0.0.2015.09.1-2
+- Rebuild
+

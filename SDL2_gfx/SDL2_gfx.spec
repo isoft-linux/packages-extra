@@ -1,9 +1,8 @@
 Summary: SDL2 graphics drawing primitives and other support functions
 Name: SDL2_gfx
 Version: 1.0.0
-Release: 7%{?dist}
+Release: 8%{?dist}
 License: zlib
-Group: System Environment/Libraries
 URL: http://www.ferzkopp.net/Software/SDL2_gfx-2.0/
 Source: http://downloads.sourceforge.net/project/sdl2gfx/%{name}-%{version}.tar.gz
 Patch0: 0001-test-Add-batch-switch.patch
@@ -18,7 +17,6 @@ cross-platform API layer.
 
 %package devel
 Summary: Development files for SDL2_gfx
-Group: Development/Libraries
 Requires: %{name}%{?_isa} = %{version}-%{release}
 Requires: SDL2-devel%{?_isa}
 
@@ -88,3 +86,6 @@ cd test
 
 
 %changelog
+* Tue Oct 27 2015 Cjacker <cjacker@foxmail.com> - 1.0.0-8
+- Rebuild
+

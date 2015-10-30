@@ -8,7 +8,7 @@ diff -uNr nant-0.92.old/examples/NUnit2/ReferenceAssemblies/default.build nant-0
 -				<include name="${nant::scan-probing-paths('nunit.framework.dll')}" />
  			</references>
 +			<pkg-references>
-+			    <package name="mono-nunit"/>
++			    <package name="nunit"/>
 +			</pkg-references>
  		</csc>
  	</target>
@@ -42,7 +42,7 @@ diff -uNr nant-0.92.old/src/NAnt.NUnit/NAnt.NUnit.build nant-0.92/src/NAnt.NUnit
 -                <include name="*.resx"/>
 -            </resources>
 +            <pkg-references>
-+		    <package name="mono-nunit" />
++		    <package name="nunit" />
 +            </pkg-references>
          </csc>
          <csc target="library" define="${current.build.defines}" warnaserror="${build.warnaserror}" debug="${build.debug}" output="${build.dir}/bin/NAnt.NUnit2Tasks.dll" doc="${build.dir}/bin/NAnt.NUnit2Tasks.xml">
@@ -57,7 +57,7 @@ diff -uNr nant-0.92.old/src/NAnt.NUnit/NAnt.NUnit.build nant-0.92/src/NAnt.NUnit
 -                <include name="${nant::scan-probing-paths(build.dir + '/bin','nunit.core.interfaces.dll')}" />
              </references>
 +            <pkg-references>
-+		    <package name="mono-nunit" />
++		    <package name="nunit" />
 +            </pkg-references>
          </csc>
      </target>
@@ -83,7 +83,7 @@ diff -uNr nant-0.92.old/tests/NAnt.Compression/NAnt.Compression.build nant-0.92/
 -                <include name="${nant::scan-probing-paths('nunit.framework.dll')}" />
              </references>
 +            <pkg-references>
-+                <package name="mono-nunit"/>
++                <package name="nunit"/>
 +            </pkg-references>
          </csc>
      </target>
@@ -98,7 +98,7 @@ diff -uNr nant-0.92.old/tests/NAnt.Console/NAnt.Console.build nant-0.92/tests/NA
 -                <include name="${nant::scan-probing-paths('nunit.framework.dll')}" />
              </references>
 +            <pkg-references>
-+                <package name="mono-nunit"/>
++                <package name="nunit"/>
 +            </pkg-references>
          </csc>
      </target>
@@ -114,7 +114,7 @@ diff -uNr nant-0.92.old/tests/NAnt.Core/NAnt.Core.build nant-0.92/tests/NAnt.Cor
                  <include name="${nant::scan-probing-paths('netDumbster.dll')}" />
              </references>
 +            <pkg-references>
-+                <package name="mono-nunit"/>
++                <package name="nunit"/>
 +            </pkg-references>
              <resources failonempty="true" basedir="Resources" dynamicprefix="true" prefix="XML:">
                  <include name="**/*.xml"/>
@@ -129,7 +129,7 @@ diff -uNr nant-0.92.old/tests/NAnt.DotNet/NAnt.DotNet.build nant-0.92/tests/NAnt
 -                <include name="${nant::scan-probing-paths('nunit.framework.dll')}" />
              </references>
 +            <pkg-references>
-+                <package name="mono-nunit"/>
++                <package name="nunit"/>
 +            </pkg-references>
          </csc>
      </target>
@@ -144,7 +144,7 @@ diff -uNr nant-0.92.old/tests/NAnt.MSNet/NAnt.MSNet.build nant-0.92/tests/NAnt.M
 -                <include name="${nant::scan-probing-paths('nunit.framework.dll')}" />
              </references>
 +            <pkg-references>
-+                <package name="mono-nunit"/>
++                <package name="nunit"/>
 +            </pkg-references>
          </csc>
      </target>
@@ -160,7 +160,7 @@ diff -uNr nant-0.92.old/tests/NAnt.SourceControl/NAnt.SourceControl.build nant-0
 -            </references>
 +	    </references>
 +            <pkg-references>
-+                <package name="mono-nunit"/>
++                <package name="nunit"/>
 +            </pkg-references>
          </csc>
      </target>
@@ -175,7 +175,7 @@ diff -uNr nant-0.92.old/tests/NAnt.VisualCpp/NAnt.VisualCpp.build nant-0.92/test
 -                <include name="${nant::scan-probing-paths('nunit.framework.dll')}" />
              </references>
 +            <pkg-references>
-+                <package name="mono-nunit"/>
++                <package name="nunit"/>
 +            </pkg-references>
          </csc>
      </target>
@@ -190,7 +190,7 @@ diff -uNr nant-0.92.old/tests/NAnt.VSNet/NAnt.VSNet.build nant-0.92/tests/NAnt.V
 -                <include name="${nant::scan-probing-paths('nunit.framework.dll')}" />
              </references>
 +            <pkg-references>
-+                <package name="mono-nunit"/>
++                <package name="nunit"/>
 +            </pkg-references>
          </csc>
      </target>
@@ -205,7 +205,7 @@ diff -uNr nant-0.92.old/tests/NAnt.Win32/NAnt.Win32.build nant-0.92/tests/NAnt.W
 -                <include name="${nant::scan-probing-paths('nunit.framework.dll')}" />
              </references>
 +            <pkg-references>
-+                <package name="mono-nunit"/>
++                <package name="nunit"/>
 +            </pkg-references>
          </csc>
      </target>

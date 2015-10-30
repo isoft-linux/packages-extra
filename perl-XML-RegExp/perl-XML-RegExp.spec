@@ -1,9 +1,8 @@
 Name:           perl-XML-RegExp
 Version:        0.04
-Release:        8%{?dist}
+Release:        9%{?dist}
 Summary:        Regular expressions for XML tokens
 
-Group:          Development/Libraries
 License:        GPL+ or Artistic
 URL:            http://search.cpan.org/dist/XML-RegExp/
 Source0:        http://www.cpan.org/authors/id/T/TJ/TJMATHER/XML-RegExp-%{version}.tar.gz
@@ -53,5 +52,8 @@ rm -rf $RPM_BUILD_ROOT
 
 
 %changelog
+* Tue Oct 27 2015 Cjacker <cjacker@foxmail.com> - 0.04-9
+- Rebuild
+
 * Tue Oct 20 2015 Cjacker <cjacker@foxmail.com>
 - Initial build.

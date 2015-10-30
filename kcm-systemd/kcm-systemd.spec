@@ -1,6 +1,6 @@
 Name:           kcm-systemd
 Version:        1.2.0
-Release:        5 
+Release:        6 
 Summary:        Systemd control module for KDE
 
 License:        GPLv3+
@@ -54,6 +54,9 @@ rm -rf %{buildroot}%{_kf5_datadir}/kservices5/settings-system-administration.des
 %{_kf5_datadir}/polkit-1/actions/org.kde.kcontrol.kcmsystemd.policy
 
 %changelog
+* Tue Oct 27 2015 Cjacker <cjacker@foxmail.com> - 1.2.0-6
+- Rebuild
+
 * Wed Oct 14 2015 Cjacker <cjacker@foxmail.com>
 - move settings-system-administration.desktop to systemsettings package.
 

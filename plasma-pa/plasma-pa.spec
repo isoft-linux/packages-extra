@@ -1,6 +1,6 @@
 Name:           plasma-pa
 Version:        5.4.2
-Release:        7
+Release:        8
 Summary:        Plasma Volume Controller 
 
 License:        GPLv2+ and (GPLv2 or GPLv3)
@@ -103,6 +103,9 @@ fi
 %{_kf5_datadir}/plasma/plasmoids/org.kde.plasma.volume
 
 %changelog
+* Tue Oct 27 2015 Cjacker <cjacker@foxmail.com> - 5.4.2-8
+- Rebuild
+
 * Wed Oct 07 2015 Cjacker <cjacker@foxmail.com>
 - update to 5.4.2
 

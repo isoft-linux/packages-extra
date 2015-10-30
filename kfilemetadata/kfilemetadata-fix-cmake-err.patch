@@ -1,0 +1,11 @@
+diff -Nur kfilemetadata-4.14.3/CMakeLists.txt kfilemetadata-4.14.3n/CMakeLists.txt
+--- kfilemetadata-4.14.3/CMakeLists.txt	2014-07-18 08:06:55.000000000 +0000
++++ kfilemetadata-4.14.3n/CMakeLists.txt	2015-10-28 05:04:02.827439028 +0000
+@@ -1,5 +1,7 @@
+ project(kfilemetadata)
+ 
++cmake_minimum_required(VERSION 2.8)
++
+ set(CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/cmake/modules")
+ 
+ find_package(KDE4 REQUIRED)

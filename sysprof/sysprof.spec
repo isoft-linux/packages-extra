@@ -1,8 +1,7 @@
 Name:           sysprof
 Version:        1.2.0
-Release:        1 
+Release:        2 
 Summary:        A system-wide Linux profiler
-Group:          Development/System
 License:        GPLv2+
 URL:            http://www.sysprof.com
 Source0:        http://www.sysprof.com/sysprof-%{version}.tar.gz
@@ -137,3 +136,6 @@ update-desktop-database -q > /dev/null ||:
 %{_datadir}/applications/sysprof.desktop
 
 %changelog
+* Tue Oct 27 2015 Cjacker <cjacker@foxmail.com> - 1.2.0-2
+- Rebuild
+

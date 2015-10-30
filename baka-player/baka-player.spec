@@ -1,6 +1,6 @@
 Name:		baka-player
 Version:	2.0.3
-Release:	1
+Release:	2
 Summary:	A free and open source, cross-platform, libmpv based multimedia player
 
 License:    GPL	
@@ -57,6 +57,9 @@ xdg-icon-resource forceupdate --theme hicolor &> /dev/null
 %{_datadir}/pixmaps/baka-mplayer.svg
 
 %changelog
+* Tue Oct 27 2015 Cjacker <cjacker@foxmail.com> - 2.0.3-2
+- Rebuild
+
 * Mon Jul 20 2015 Cjacker <cjacker@foxmail.com>
 - add mime support to desktop file.
 * Sun Jul 19 2015 Cjacker <cjacker@foxmail.com>

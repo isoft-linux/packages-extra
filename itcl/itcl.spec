@@ -3,10 +3,9 @@
 
 Name:           itcl
 Version:        4.0.3
-Release:        3%{?dist}
+Release:        4%{?dist}
 Summary:        Object oriented extensions to Tcl and Tk
 
-Group:          Development/Libraries
 License:        TCL
 URL:            http://incrtcl.sourceforge.net/itcl/
 Source0:        https://downloads.sourceforge.net/incrtcl/itcl%{version}.tar.gz
@@ -22,7 +21,6 @@ missing from the Tcl language.
 
 %package devel
 Summary:  Development headers and libraries for linking against itcl
-Group: Development/Libraries
 Requires:       %{name} = %{version}-%{release}
 %description devel
 Development headers and libraries for linking against itcl.
@@ -60,3 +58,6 @@ make test
 %{_libdir}/itclConfig.sh
 
 %changelog
+* Tue Oct 27 2015 Cjacker <cjacker@foxmail.com> - 4.0.3-4
+- Rebuild
+

@@ -1,9 +1,8 @@
 Name:           gtk2-sharp
 Version:        2.12.26
-Release:        1
+Release:        2
 Summary:        GTK+ 2.0 bindings for Mono
 
-Group:          Extra/Runtime/Library
 License:        LGPL
 URL:            http://www.mono-project.org
 Source0:        http://download.mono-project.com/sources/gtk-sharp212/gtk-sharp-%{version}.tar.gz
@@ -19,7 +18,6 @@ toolkit used in GNOME. It includes bindings for Gtk, Atk,
 Pango, Gdk.
 
 %package gapi
-Group:        Development/Languages
 Summary:      Glib and GObject C binding generator for Mono.
 Requires:     perl-XML-LibXML-Common perl-XML-LibXML perl-XML-SAX
 Requires:     %{name} = %{version}-%{release}
@@ -32,7 +30,6 @@ the GAPI tools and found in Gtk# include Gtk, Atk, Pango, Gdk,
 libgnome, libgnomeui and libgnomecanvas.
 
 %package docs 
-Group:        Development/Languages
 Summary:      gtk2 sharp documents 
 Requires:     %{name} = %{version}-%{release}
 
@@ -84,4 +81,9 @@ mv $RPM_BUILD_ROOT%{_prefix}/lib/mono/gtk-sharp $RPM_BUILD_ROOT%{_prefix}/lib/mo
 %{_libdir}/monodoc/sources/gtk-sharp-docs.source
 %{_libdir}/monodoc/sources/gtk-sharp-docs.tree
 %{_libdir}/monodoc/sources/gtk-sharp-docs.zip
+
+
+%changelog
+* Tue Oct 27 2015 Cjacker <cjacker@foxmail.com> - 2.12.26-2
+- Rebuild
 

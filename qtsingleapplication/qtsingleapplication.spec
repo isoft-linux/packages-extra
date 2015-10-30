@@ -3,7 +3,7 @@
 Summary:    Qt library to start applications only once per user
 Name:       qtsingleapplication
 Version:    2.6.1
-Release:    17%{?dist}
+Release:    18%{?dist}
 
 License:    GPLv3 or LGPLv2 with exceptions
 URL:        http://doc.qt.digia.com/solutions/4/qtsingleapplication/qtsingleapplication.html
@@ -235,3 +235,6 @@ rm -rf %{buildroot}
 
 
 %changelog
+* Tue Oct 27 2015 Cjacker <cjacker@foxmail.com> - 2.6.1-18
+- Rebuild
+

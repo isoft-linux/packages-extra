@@ -1,10 +1,9 @@
 Name:           mono-debugger
 Summary:        Mono Debugger
 License:        GPL-2.0+ and LGPL-2.0+ and MIT
-Group:          Development/Languages/Mono
 Url:            http://www.mono-project.com/Debugger
 Version:        2.10
-Release:        52.6
+Release:        53.6
 Source:         http://download.mono-project.com/sources/mono-debugger/%{name}-%{version}.tar.bz2
 Source99:       mono-debugger-rpmlintrc
 Patch1:         mono-debugger-glib.patch
@@ -60,3 +59,6 @@ rm -f %{buildroot}%_libdir/*.a
 
 
 %changelog
+* Tue Oct 27 2015 Cjacker <cjacker@foxmail.com> - 2.10-53.6
+- Rebuild
+

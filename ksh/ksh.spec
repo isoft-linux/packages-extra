@@ -4,12 +4,11 @@
 Name:         ksh
 Summary:      The Original ATT Korn Shell
 URL:          http://www.kornshell.com/
-Group:        System Environment/Shells
 #zlib is used for INIT.2010-02-02.tgz/src/cmd/INIT/ratz.c - used only for build tool
 #CPL everywhere else (for KSH itself)
 License:      CPL
 Version:      %{releasedate}
-Release:      24%{?dist}
+Release:      25%{?dist}
 Source0:      http://www.research.att.com/~gsf/download/tgz/ast-ksh.%{release_date}.tgz
 Source1:      http://www.research.att.com/~gsf/download/tgz/INIT.%{release_date}.tgz
 Source2:      kshcomp.conf
@@ -318,3 +317,6 @@ fi
     rm -rf $RPM_BUILD_ROOT
 
 %changelog
+* Tue Oct 27 2015 Cjacker <cjacker@foxmail.com> - 20120801-25
+- Rebuild
+

@@ -2,10 +2,9 @@
 Summary: Graphical frontend for APT package manager.
 Name: synaptic
 Version: 0.57.2
-Release: 38%{?dist}
+Release: 39%{?dist}
 
 License: GPLv2+
-Group: Applications/System
 Source0: http://savannah.nongnu.org/download/synaptic/synaptic-%{version}.tar.gz
 Patch0: synaptic-0.57-desktop.patch
 Patch1: synaptic-0.57-firefox.patch
@@ -82,3 +81,6 @@ rm -rf $RPM_BUILD_ROOT
 %{_mandir}/man8/%{name}.8*
 
 %changelog
+* Tue Oct 27 2015 Cjacker <cjacker@foxmail.com> - 0.57.2-39
+- Rebuild
+

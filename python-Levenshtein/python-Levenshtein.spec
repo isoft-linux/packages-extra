@@ -3,9 +3,8 @@
 Name:         python-Levenshtein
 Summary:      Python extension computing string distances and similarities
 Version:      0.10.1
-Release:      21%{?dist}
+Release:      22%{?dist}
 
-Group:        Development/Libraries
 License:      GPLv2+
 
 # The original site: http://trific.ath.cx/python/levenshtein/
@@ -56,6 +55,9 @@ rm -rf $RPM_BUILD_ROOT
 %{python_sitearch}/Levenshtein.so
 
 %changelog
+* Tue Oct 27 2015 Cjacker <cjacker@foxmail.com> - 0.10.1-22
+- Rebuild
+
 * Tue Oct 20 2015 Cjacker <cjacker@foxmail.com>
 - Initial build.
 

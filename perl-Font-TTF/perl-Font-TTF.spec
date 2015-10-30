@@ -1,8 +1,7 @@
 Name:          perl-Font-TTF
 Version:       1.05
-Release:       3%{?dist}
+Release:       4%{?dist}
 Summary:       Perl library for modifying TTF font files
-Group:         Development/Libraries
 License:       Artistic 2.0
 URL:           http://search.cpan.org/dist/Font-TTF/
 Source0:       http://cpan.org/authors/id/M/MH/MHOSKEN/Font-TTF-%{version}.tar.gz
@@ -71,3 +70,6 @@ make test
 %exclude %{perl_vendorlib}/Font/TTF/Win32.pm
 
 %changelog
+* Tue Oct 27 2015 Cjacker <cjacker@foxmail.com> - 1.05-4
+- Rebuild
+

@@ -1,9 +1,8 @@
 Name:           ftgl
 Version:        2.1.3
-Release:        0.13.rc5%{?dist}
+Release:        0.14.rc5%{?dist}
 Summary:        OpenGL frontend to Freetype 2
 
-Group:          System Environment/Libraries
 License:        LGPLv2
 URL:            http://ftgl.wiki.sourceforge.net/
 Source0:        http://downloads.sourceforge.net/ftgl/ftgl-%{version}-rc5.tar.bz2
@@ -33,7 +32,6 @@ efficient for OpenGL rendering.
 
 %package        devel
 Summary:        Development files for %{name}
-Group:          Development/Libraries
 Requires:       %{name} = %{version}-%{release}
 Requires:       pkgconfig
 Requires:       freetype-devel
@@ -44,7 +42,6 @@ developing applications that use %{name}.
 
 %package docs
 Summary:        Documentation for %{name}
-Group:          Documentation
 
 %description docs
 This package contains documentation files for %{name}.
@@ -104,3 +101,6 @@ rm -rf $RPM_BUILD_ROOT%{_datadir}/doc
 
 
 %changelog
+* Tue Oct 27 2015 Cjacker <cjacker@foxmail.com> - 2.1.3-0.14.rc5
+- Rebuild
+

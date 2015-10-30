@@ -9,10 +9,9 @@
 
 Name:		v8
 Version:	%{somajor}.%{sominor}.%{sobuild}.%{sotiny}
-Release:	21%{?dist}
+Release:	22%{?dist}
 Epoch:		1
 Summary:	JavaScript Engine
-Group:		System Environment/Libraries
 License:	BSD
 URL:		http://code.google.com/p/v8
 Source0:	http://commondatastorage.googleapis.com/chromium-browser-official/v8-%{version}.tar.bz2
@@ -118,7 +117,6 @@ in Google Chrome, the open source browser from Google. V8 implements ECMAScript
 as specified in ECMA-262, 3rd edition.
 
 %package devel
-Group:		Development/Libraries
 Summary:	Development headers and libraries for v8
 Requires:	%{name} = %{epoch}:%{version}-%{release}
 
@@ -191,11 +189,7 @@ visibility=default \
 env=CCFLAGS:"-fPIC" \
 I_know_I_should_build_with_GYP=yes
 
-%if 0%{?fedora} >= 16
 export ICU_LINK_FLAGS=`pkg-config --libs-only-l icu-i18n`
-%else
-export ICU_LINK_FLAGS=`pkg-config --libs-only-l icu`
-%endif
 
 # When will people learn to create versioned shared libraries by default?
 # first, lets get rid of the old .so file
@@ -318,3 +312,6 @@ rm -rf %{buildroot}
 %{python_sitelib}/j*.py*
 
 %changelog
+* Tue Oct 27 2015 Cjacker <cjacker@foxmail.com> - 1:3.14.5.10-22
+- Rebuild
+

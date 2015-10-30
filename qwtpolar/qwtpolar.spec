@@ -1,6 +1,6 @@
 Name:          qwtpolar
 Version:       1.1.1
-Release:       4%{?dist}
+Release:       5%{?dist}
 Summary:       Qwt/Qt Polar Plot Library
 License:       LGPLv2 with exceptions
 URL:           http://qwtpolar.sourceforge.net
@@ -78,5 +78,8 @@ mv %{buildroot}/%{_qt4_docdir}/html/html \
 
 
 %changelog
+* Tue Oct 27 2015 Cjacker <cjacker@foxmail.com> - 1.1.1-5
+- Rebuild
+
 * Wed Oct 21 2015 Cjacker <cjacker@foxmail.com>
 - Initial build.

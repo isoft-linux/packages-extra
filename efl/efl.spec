@@ -3,7 +3,7 @@
 Summary: Enlightenment Foundation Libraries
 Name: efl
 Version: 1.15.2
-Release: 1
+Release: 2
 License: LGPLv2.1 GPLv2.1 BSD
 URL: http://www.enlightenment.org/
 Source: http://download.enlightenment.org/rel/libs/efl/efl-%{version}.tar.gz
@@ -207,6 +207,9 @@ update-mime-database /usr/share/mime >/dev/null 2>&1 ||:
 %{_datadir}/doc/efl-api/*
 
 %changelog
+* Tue Oct 27 2015 Cjacker <cjacker@foxmail.com> - 1.15.2-2
+- Rebuild
+
 * Fri Oct 09 2015 Cjacker <cjacker@foxmail.com>
 - update to 1.15.2
 * Tue Aug 04 2015 Cjacker <cjacker@foxmail.com>

@@ -1,9 +1,8 @@
 Name:		libucimf
 Version:	2.3.8
-Release:	1
+Release:	2
 Summary:	UCIMF, Unicode Console InputMethod Framework
 
-Group:		Core/Runtime/Library
 License:	GPLv2
 URL:		https://code.google.com/p/ucimf
 Source0:	https://ucimf.googlecode.com/files/libucimf-2.3.8.tar.gz
@@ -14,7 +13,6 @@ Patch0:     libucimf-fix-header.patch
 
 %package        devel
 Summary:        Development files for %{name}
-Group:          Development/Libraries
 Requires:       %{name} = %{version}-%{release}
 
 %description    devel
@@ -33,7 +31,6 @@ make %{?_smp_mflags}
 make install DESTDIR=%{buildroot}
 rm -rf %{buildroot}%{_libdir}/lib*.a
 rm -rf %{buildroot}%{_libdir}/ucimf/dummy.a
-rpmclean
 %files
 %{_sysconfdir}/ucimf.conf
 %{_bindir}/ucimf_keyboard
@@ -53,3 +50,8 @@ rpmclean
 %{_includedir}/ucimf.h
 %{_libdir}/libucimf.so
 %{_libdir}/pkgconfig/libucimf.pc
+
+%changelog
+* Tue Oct 27 2015 Cjacker <cjacker@foxmail.com> - 2.3.8-2
+- Rebuild
+

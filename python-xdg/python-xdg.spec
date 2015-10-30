@@ -2,9 +2,8 @@ Summary: Python library to access freedesktop.org standards
 %define real_name pyxdg
 Name: python-xdg
 Version: 0.25
-Release: 1
+Release: 2
 License: LGPL
-Group: Development/Libraries
 URL: http://freedesktop.org/Software/pyxdg
 Source: http://www.freedesktop.org/~lanius/pyxdg-%{version}.tar.gz
 
@@ -36,3 +35,8 @@ PyXDG is a python library to access freedesktop.org standards.
 %{python_sitearch}/xdg/
 %ghost %{python_sitearch}/xdg/*.pyo
 %{_libdir}/python2.7/site-packages/pyxdg-0.25-py2.7.egg-info
+
+%changelog
+* Tue Oct 27 2015 Cjacker <cjacker@foxmail.com> - 0.25-2
+- Rebuild
+

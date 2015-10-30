@@ -2,7 +2,7 @@
 
 Name:           kde-partitionmanager
 Version:        1.2.1
-Release:        6%{?dist}
+Release:        7%{?dist}
 Summary:        KDE Partition Manager
 
 License:        GPLv3+
@@ -95,3 +95,6 @@ fi
 %{_docdir}/HTML/*/partitionmanager/*
 
 %changelog
+* Tue Oct 27 2015 Cjacker <cjacker@foxmail.com> - 1.2.1-7
+- Rebuild
+

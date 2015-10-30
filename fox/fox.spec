@@ -2,7 +2,7 @@ Name:		fox
 # http://www.fox-toolkit.org/faq.html#VERSION
 # For now, use stable one
 Version:	1.6.50
-Release:	5%{?dist}
+Release:	6%{?dist}
 Summary:	C++ based Toolkit for developing Graphical User Interfaces
 
 License:	LGPLv2+ with exceptions
@@ -212,3 +212,6 @@ exit 0
 %doc	doc-files/html
 
 %changelog
+* Tue Oct 27 2015 Cjacker <cjacker@foxmail.com> - 1.6.50-6
+- Rebuild
+

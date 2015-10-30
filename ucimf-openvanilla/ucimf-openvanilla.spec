@@ -1,9 +1,8 @@
 Name:		ucimf-openvanilla
 Version:	2.10.11
-Release:	1
+Release:	2
 Summary:	ucimf openvanilla plugin
 
-Group:		Core/Runtime/Library
 License:	GPLv2+
 URL:		https://code.google.com/p/ucimf
 Source0:	https://ucimf.googlecode.com/files/ucimf-openvanilla-%{version}.tar.gz
@@ -17,7 +16,6 @@ Requires:	openvanilla-modules
 
 %package        devel
 Summary:        Development files for %{name}
-Group:          Development/Libraries
 Requires:       %{name} = %{version}-%{release}
 
 %description    devel
@@ -38,9 +36,11 @@ make %{?_smp_mflags}
 make install DESTDIR=%{buildroot}
 
 rm -rf %{buildroot}%{_libdir}/ucimf/openvanilla.a
-rpmclean
 %files
 %{_libdir}/ucimf/openvanilla.so
 
 %changelog
+* Tue Oct 27 2015 Cjacker <cjacker@foxmail.com> - 2.10.11-2
+- Rebuild
+
 

@@ -1,9 +1,8 @@
 Name:          geany
 Version:       1.24.1
-Release:       1
+Release:       2
 Summary:       A fast and lightweight IDE using GTK2
 
-Group:         Development/Tools
 License:       GPLv2+
 URL:           http://www.geany.org/
 Source:        http://download.geany.org/%{name}-%{version}.tar.bz2
@@ -46,7 +45,6 @@ Some features:
 
 %package devel
 Summary:   Header files for building Geany plug-ins
-Group:     Development/Tools
 Requires:  geany = %{version}-%{release}
 Requires:  pkgconfig gtk2-devel
 
@@ -118,3 +116,8 @@ touch --no-create /usr/share/icons/hicolor || :
 %defattr(-, root, root, -)
 %{_includedir}/geany
 %{_libdir}/pkgconfig/geany.pc
+
+%changelog
+* Tue Oct 27 2015 Cjacker <cjacker@foxmail.com> - 1.24.1-2
+- Rebuild
+

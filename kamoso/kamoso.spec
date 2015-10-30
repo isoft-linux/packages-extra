@@ -1,6 +1,6 @@
 Name:           kamoso
 Version:        3.0 
-Release:        23%{?dist}
+Release:        24%{?dist}
 Summary:        Application for taking pictures and videos from a webcam
 
 License:        GPLv2+
@@ -62,3 +62,6 @@ gtk-update-icon-cache %{_datadir}/icons/hicolor &> /dev/null || :
 /
 
 %changelog
+* Tue Oct 27 2015 Cjacker <cjacker@foxmail.com> - 3.0-24
+- Rebuild
+

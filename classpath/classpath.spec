@@ -1,14 +1,24 @@
 Name:           classpath 
 Version:        0.99 
-Release:        1
+Release:        2
 Summary:        A free replacement for Sun's proprietary core Java class libraries.
-Group:	        System Environment/Libraries
 License:        GPL
 Source0:        %{name}-%{version}.tar.gz
 Source1:        antlr-3.5.2-complete.jar
 Patch0:         classpath-fix-crossdevice-rename-in-gjar.patch
 Patch1:         classpath-fix-new-freetype-include.patch
-BuildRequires:  gtk2-devel
+
+BuildRequires: gtk2-devel
+BuildRequires: alsa-lib-devel
+BuildRequires: file-devel
+BuildRequires: fontconfig-devel
+BuildRequires: gmp-devel
+BuildRequires: libICE-devel
+BuildRequires: libSM-devel
+BuildRequires: libXrandr-devel
+BuildRequires: libXrender-devel
+BuildRequires: libXtst-devel
+
 BuildRequires:  ecj jamvm
 
 %description
@@ -16,7 +26,6 @@ A free replacement for Sun's proprietary core Java class libraries.
 
 %package        devel
 Summary:        Development files for %{name}
-Group:	        Development/Libraries
 Requires:       %{name} = %{version}-%{release}
 
 %description    devel
@@ -48,7 +57,6 @@ make %{?_smp_mflags}
 rm -rf $RPM_BUILD_ROOT
 make install DESTDIR=$RPM_BUILD_ROOT
 rm -rf $RPM_BUILD_ROOT%{_datadir}/info
-rpmclean
 
 %check
 make check
@@ -73,3 +81,8 @@ rm -rf $RPM_BUILD_ROOT
 %{_includedir}/*.h
 %dir %{_datadir}/classpath/examples
 %{_datadir}/classpath/examples/*
+
+%changelog
+* Tue Oct 27 2015 Cjacker <cjacker@foxmail.com> - 0.99-2
+- Rebuild
+

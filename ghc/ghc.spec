@@ -7,7 +7,7 @@
 
 Name: ghc	
 Version: 7.10.2	
-Release: 1
+Release: 2
 Summary: Glasgow Haskell Compiler	
 
 License: BSD and HaskellReport
@@ -19,6 +19,9 @@ Source4: ghc-doc-index
 
 BuildRequires: ghc
 BuildRequires: hscolour
+BuildRequires: gmp-devel
+BuildRequires: libffi-devel
+BuildRequires: ncurses-devel
 
 Provides: haddock
 
@@ -44,7 +47,6 @@ for the functional language Haskell. Highlights:
 
 %package        devel
 Summary:        Development files for %{name}
-Group:          Development/Libraries
 Requires:       %{name} = %{version}-%{release}
 
 %description    devel
@@ -98,5 +100,8 @@ install -p --mode=0755 %SOURCE4 %{buildroot}%{_bindir}/ghc-doc-index
 %{_docdir}/ghc
 
 %changelog
+* Tue Oct 27 2015 Cjacker <cjacker@foxmail.com> - 7.10.2-2
+- Rebuild
+
 * Fri Jul 31 2015 Cjacker <cjacker@foxmail.com>
 - first build.

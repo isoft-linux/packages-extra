@@ -1,6 +1,6 @@
 Name:		sha2
 Version:	1.0.1
-Release:	7%{?dist}
+Release:	8%{?dist}
 Summary:	SHA Implementation Library
 License:	BSD
 URL:		http://www.aarongifford.com/computers/sha.html
@@ -62,3 +62,6 @@ LD_PRELOAD=./libsha2.so ./sha2test.pl
 
 
 %changelog
+* Tue Oct 27 2015 Cjacker <cjacker@foxmail.com> - 1.0.1-8
+- Rebuild
+

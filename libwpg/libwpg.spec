@@ -2,7 +2,7 @@
 
 Name:           libwpg
 Version:        0.3.0
-Release:        5%{?dist}
+Release:        6%{?dist}
 Summary:        A library for import of WordPerfect Graphics images
 
 License:        LGPLv2+ or MPLv2.0
@@ -101,5 +101,8 @@ install -m 0644 wpg2*.1 %{buildroot}/%{_mandir}/man1
 %{_mandir}/man1/wpg2svgbatch.pl.1*
 
 %changelog
+* Tue Oct 27 2015 Cjacker <cjacker@foxmail.com> - 0.3.0-6
+- Rebuild
+
 * Wed Oct 21 2015 Cjacker <cjacker@foxmail.com>
 - Initial build.

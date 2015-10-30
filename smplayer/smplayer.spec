@@ -1,6 +1,6 @@
 Name:	    smplayer
 Version:    14.9.0.6690
-Release:	1
+Release:	2
 Summary:    A front-end for Mplayer.	
 
 License:    GPLv2	
@@ -33,5 +33,8 @@ make install PREFIX=%{buildroot}/usr
 /usr
 
 %changelog
+* Tue Oct 27 2015 Cjacker <cjacker@foxmail.com> - 14.9.0.6690-2
+- Rebuild
+
 * Fri Jul 17 2015 Cjacker <cjacker@foxmail.com>
 - first build.

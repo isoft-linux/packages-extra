@@ -1,0 +1,12 @@
+diff -Nur libkdcraw-15.08.1/CMakeLists.txt libkdcraw-15.08.1n/CMakeLists.txt
+--- libkdcraw-15.08.1/CMakeLists.txt	2015-05-15 04:54:16.000000000 +0800
++++ libkdcraw-15.08.1n/CMakeLists.txt	2015-10-21 15:45:27.344885509 +0800
+@@ -6,6 +6,8 @@
+ 
+ project(libkdcraw)
+ 
++cmake_minimum_required(VERSION 3.3)
++
+ set(CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/cmake/modules ${CMAKE_MODULE_PATH})
+ 
+ message(STATUS "----------------------------------------------------------------------------------")

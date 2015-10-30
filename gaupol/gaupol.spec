@@ -4,10 +4,9 @@
 
 Name:		gaupol
 Version:	0.25
-Release:	4%{?dist}
+Release:	5%{?dist}
 Summary:	Subtitle editor
 
-Group:		Applications/Multimedia
 License:	GPLv3+
 URL:		http://home.gna.org/gaupol
 Source0:	http://download.gna.org/gaupol/0.19/%{name}-%{version}.tar.xz
@@ -27,7 +26,6 @@ multiple documents and convenience of translating.
 
 %package -n aeidon
 Summary: Package for reading, writing and manipulating text-based subtitle files
-Group: Development/Libraries
 
 %description -n aeidon
 This is a Python package for reading, writing and manipulating
@@ -67,5 +65,8 @@ $RPM_BUILD_ROOT/%{_datadir}/applications/%{name}.desktop
 %{python3_sitelib}/aeidon
 
 %changelog
+* Tue Oct 27 2015 Cjacker <cjacker@foxmail.com> - 0.25-5
+- Rebuild
+
 * Tue Oct 20 2015 Cjacker <cjacker@foxmail.com>
 - Initial build.

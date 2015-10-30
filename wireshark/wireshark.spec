@@ -2,10 +2,9 @@
 
 Name:	    wireshark	
 Version:	1.12.7
-Release:	1
+Release:	2
 Summary:	Network Analyzer
 
-Group:		Extra/Runtime/Utility
 License:	GPLv2+
 URL:		http://www.wireshark.org
 Source0:	http://www.wireshark.org/download/src/%{name}-%{version}.tar.bz2
@@ -28,7 +27,6 @@ Requires(post):   desktop-file-utils
 
 %package        devel
 Summary:        Development files for %{name}
-Group:          Development/Libraries
 Requires:       %{name} = %{version}-%{release}
 
 %description    devel
@@ -86,7 +84,6 @@ install -m0644 wireshark.desktop $RPM_BUILD_ROOT%{_datadir}/applications/wiresha
 
 #rm -rf %{buildroot}%{_bindir}/wireshark-qt
 
-rpmclean
 
 
 %post
@@ -117,4 +114,9 @@ update-desktop-database -q > /dev/null ||:
 %{_datadir}/wireshark/*
 %{_mandir}/man1/*
 %{_mandir}/man4/*
+
+
+%changelog
+* Tue Oct 27 2015 Cjacker <cjacker@foxmail.com> - 1.12.7-2
+- Rebuild
 

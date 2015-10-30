@@ -1,14 +1,22 @@
+%global debug_package %{nil}
+
+%global _monodir /usr/lib/mono
+%global _monogacdir /usr/lib/mono/gac
+
 Name:           nunit
 Version:        2.6.4
-Release:        1.7
-License:        Zlib
-BuildRoot:      %{_tmppath}/%{name}-%{version}-build
-BuildArch:      noarch
+Release:        10%{?dist}
+Summary:        Unit test framework for CLI
+License:        MIT with advertising
 Url:            http://www.nunit.org/
-Source:         https://github.com/nunit/nunitv2/archive/%{version}.tar.gz
-BuildRequires:  mono-devel dos2unix strace libgdiplus fdupes
-Group:          Development/Libraries/Mono
-Summary:        Unit-testing framework for all .NET languages
+Source0:        https://github.com/nunit/nunitv2/archive/%{version}.tar.gz
+Source1:        nunit.pc
+Source2:        nunit-gui.sh
+Source3:        nunit-console.sh
+Source4:        nunit.desktop
+BuildRequires:  mono-devel libgdiplus desktop-file-utils
+Provides:       mono-nunit = 4.0.2-5
+Obsoletes:      mono-nunit < 4.0.2-6
 
 %description
 NUnit is a unit testing framework for all .NET languages. It serves the
@@ -16,84 +24,99 @@ same purpose as JUnit does in the Java world. It supports test
 categories, testing for exceptions and writing test results in plain
 text or XML.
 
-%package devel
+NUnit targets the CLI (Common Language Infrastructure) and supports Mono and
+the Microsoft .NET Framework.
+
+%package doc
+Summary:        Documentation package for NUnit
+Requires:       %{name} = %{version}-%{release}
+
+%description doc
+Documentation for NUnit
+
+%package        devel
 Summary:        Development files for NUnit
-Group:          Development/Languages/Mono
-Requires:       nunit = %{version}
+Requires:       %{name}%{?_isa} = %{version}-%{release}
+Requires:       pkgconfig
+Provides:       mono-nunit-devel = 4.0.2-5
+Obsoletes:      mono-nunit-devel < 4.0.2-6
 
 %description devel
-This package contains development files for NUnit integration.
-
-
-# require older mono runtime
-%filter_requires_in %{_prefix}/lib/nunit/
-# Also filter provides of the prebuilt DLLs
-%filter_provides_in %{_prefix}/lib/nunit/
-%filter_setup
-
+Development files for %{name}.
 
 %prep
-%setup -q -n nunitv2-%{version}
+%setup -qn nunitv2-%{version}
 
-# Remove prebuilt binaries
-#find . -name "*.dll" -not -path "./mcs/class/lib/monolite/*" -print -delete
-#find . -name "*.exe" -not -path "./mcs/class/lib/monolite/*" -print -delete
+%build
 
-#use mono .net 4.5 framework
+# fix compile with Mono4
 find . -name "*.sln" -print -exec sed -i 's/Format Version 10.00/Format Version 11.00/g' {} \;
 find . -name "*.csproj" -print -exec sed -i 's#ToolsVersion="3.5"#ToolsVersion="4.0"#g; s#<TargetFrameworkVersion>.*</TargetFrameworkVersion>##g; s#<PropertyGroup>#<PropertyGroup><TargetFrameworkVersion>v4.5</TargetFrameworkVersion>#g' {} \;
 
-
-%build
-xbuild nunit.sln /t:Rebuild /p:Configuration=Debug
+%{?exp_env}
+%{?env_options}
+xbuild /property:Configuration=Debug ./src/NUnitCore/core/nunit.core.dll.csproj
+xbuild /property:Configuration=Debug ./src/NUnitCore/interfaces/nunit.core.interfaces.dll.csproj
+xbuild /property:Configuration=Debug ./src/NUnitFramework/framework/nunit.framework.dll.csproj
+xbuild /property:Configuration=Debug ./src/NUnitMocks/mocks/nunit.mocks.csproj
+xbuild /property:Configuration=Debug ./src/ClientUtilities/util/nunit.util.dll.csproj
+xbuild /property:Configuration=Debug ./src/ConsoleRunner/nunit-console/nunit-console.csproj
+xbuild /property:Configuration=Debug ./src/ConsoleRunner/nunit-console-exe/nunit-console.exe.csproj
+xbuild /property:Configuration=Debug ./src/GuiRunner/nunit-gui/nunit-gui.csproj
+xbuild /property:Configuration=Debug ./src/GuiComponents/UiKit/nunit.uikit.dll.csproj
+xbuild /property:Configuration=Debug ./src/GuiException/UiException/nunit.uiexception.dll.csproj
+xbuild /property:Configuration=Debug ./src/GuiRunner/nunit-gui-exe/nunit-gui.exe.csproj
 
 %install
-mkdir -p "%{buildroot}%{_prefix}/lib/nunit"
-cp -a bin/Debug/* "%{buildroot}%{_prefix}/lib/nunit"
-mkdir -p "%{buildroot}%{_docdir}/%{name}"
-cp -a license.txt "%{buildroot}%{_docdir}/%{name}/"
-cp -a doc "%{buildroot}%{_docdir}/%{name}/"
-cp -a samples "%{buildroot}%{_docdir}/%{name}/"
-
-mkdir -p "%{buildroot}%{_bindir}"
-echo '#!/bin/sh
-exec /usr/bin/mono %{_prefix}/lib/nunit/nunit.exe "$@"' > "%{buildroot}%{_bindir}/nunit"
-chmod +x "%{buildroot}%{_bindir}/nunit"
-
-cd %{buildroot}%{_docdir}/%{name}/
-find . -type f -exec dos2unix {} \;
-
-for i in nunit.core.dll nunit.core.interfaces.dll nunit.framework.dll nunit.util.dll lib/nunit-console-runner.dll lib/nunit-gui-runner.dll lib/nunit.uiexception.dll lib/nunit.uikit.dll framework/nunit.mocks.dll ; do
-	gacutil -i %{buildroot}%{_prefix}/lib/nunit/$i -package nunit -root %{buildroot}%{_prefix}/lib
-	rm -f %{buildroot}%{_prefix}/lib/nunit/$i
+%{?env_options}
+%{__mkdir_p} %{buildroot}%{_monodir}/nunit
+%{__mkdir_p} %{buildroot}%{_libdir}/pkgconfig
+%{__mkdir_p} %{buildroot}%{_bindir}
+%{__mkdir_p} %{buildroot}%{_datadir}/applications
+%{__mkdir_p} %{buildroot}%{_datadir}/icons/NUnit
+%{__install} -m0644 %{SOURCE1} %{buildroot}%{_libdir}/pkgconfig/
+%{__install} -m0755 %{SOURCE2} %{buildroot}%{_bindir}/`basename -s .sh %{SOURCE2}`26
+%{__install} -m0755 %{SOURCE3} %{buildroot}%{_bindir}/`basename -s .sh %{SOURCE3}`26
+%{__install} -m0644 src/ConsoleRunner/nunit-console-exe/App.config %{buildroot}%{_monodir}/nunit/nunit-console.exe.config
+%{__install} -m0644 src/GuiRunner/nunit-gui-exe/App.config %{buildroot}%{_monodir}/nunit/nunit.exe.config
+find %{_builddir}/%{?buildsubdir}/bin -name \*.dll -exec %{__install} \-m0755 "{}" "%{buildroot}%{_monodir}/nunit/" \;
+find %{_builddir}/%{?buildsubdir}/bin -name \*.exe -exec %{__install} \-m0755 "{}" "%{buildroot}%{_monodir}/nunit/" \;
+for i in nunit-console-runner.dll nunit.core.dll nunit.core.interfaces.dll nunit.framework.dll nunit.mocks.dll nunit.util.dll ; do
+    gacutil -i %{buildroot}%{_monodir}/nunit/$i -package nunit -root %{buildroot}%{_monodir}/../
 done
-
-mkdir -p %{buildroot}%{_datadir}/pkgconfig
-cat <<EOF > %{buildroot}%{_datadir}/pkgconfig/nunit.pc
-prefix=%{_prefix}
-exec_prefix=\${prefix}
-libdir=\${exec_prefix}/lib
-pkglibdir=\${prefix}/lib/mono/nunit
-
-Name: NUnit
-Description: Testing framework for .NET
-Version: %{version}
-Libs: -r:\${pkglibdir}/nunit.core.dll -r:\${pkglibdir}/nunit.core.interfaces.dll -r:\${pkglibdir}/nunit.framework.dll -r:\${pkglibdir}/nunit.util.dll r:\${pkglibdir}/nunit-console-runner.dll r:\${pkglibdir}/nunit-gui-runner.dll r:\${pkglibdir}/nunit.uiexception.dll r:\${pkglibdir}/nunit.uikit.dll r:\${pkglibdir}/nunit.mocks.dll
-EOF
-
-%fdupes %{buildroot}%{_prefix}
-
-#rm -rf %{buildroot}/%{_libdir}/nunit/log4net.dll
+desktop-file-install --dir=%{buildroot}/%{_datadir}/applications %{SOURCE4}
+cp src/GuiRunner/nunit-gui-exe/App.ico %{buildroot}/%{_datadir}/icons/NUnit/nunit.ico
 
 %files
-%defattr(-,root,root)
-%{_prefix}/lib/nunit
-%{_prefix}/lib/mono/nunit
-%{_prefix}/lib/mono/gac/nunit*
-%{_bindir}/nunit
-%{_docdir}/nunit
+%license license.txt
+%{_monogacdir}/nunit*
+%{_monodir}/nunit
+%{_bindir}/*
+%{_datadir}/applications/nunit.desktop
+%{_datadir}/icons/NUnit
+
+%files doc
+%license doc/license.html
+%doc doc/*
 
 %files devel
-%defattr(-, root, root)
-%{_datadir}/pkgconfig/nunit.pc
+%{_libdir}/pkgconfig/nunit.pc
+
+%post
+/bin/touch --no-create %{_datadir}/icons/NUnit &>/dev/null || :
+/usr/bin/update-desktop-database &> /dev/null || :
+
+%postun
+if [ $1 -eq 0 ] ; then
+    /bin/touch --no-create %{_datadir}/icons/NUnit &>/dev/null
+    /usr/bin/gtk-update-icon-cache %{_datadir}/icons/NUnit &>/dev/null || :
+fi
+/usr/bin/update-desktop-database &> /dev/null || :
+
+%posttrans
+/usr/bin/gtk-update-icon-cache %{_datadir}/icons/NUnit &>/dev/null || :
+
 %changelog
+* Thu Oct 29 2015 Cjacker <cjacker@foxmail.com> - 2.6.4-10
+- Rebuild
+

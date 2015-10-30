@@ -1,9 +1,8 @@
 Name:           glpk
 Version:        4.55
-Release:        4%{?dist}
+Release:        5%{?dist}
 Summary:        GNU Linear Programming Kit
 
-Group:          System Environment/Libraries
 License:        GPLv3
 URL:            http://www.gnu.org/software/glpk/glpk.html
 Source0:        ftp://ftp.gnu.org/gnu/glpk/glpk-%{version}.tar.gz
@@ -38,7 +37,6 @@ The GLPK package includes the following main components:
 
 %package        doc
 Summary:        Documentation for %{name}
-Group:          Documentation
 
 %description    doc
 Documentation subpackage for %{name}.
@@ -46,7 +44,6 @@ Documentation subpackage for %{name}.
 
 %package devel
 Summary:        Development headers and files for GLPK
-Group:          Development/Libraries
 Requires:       %{name} = %{version}-%{release}
 
 %description devel
@@ -56,7 +53,6 @@ applications which use GLPK (GNU Linear Programming Kit).
 
 %package utils
 Summary:        GLPK-related utilities and examples
-Group:          Development/Libraries
 Requires:       %{name} = %{version}-%{release}
 
 %description utils
@@ -66,7 +62,6 @@ that uses GLPK (GNU Linear Programming Kit).
 
 %package static
 Summary:        Static version of GLPK libraries
-Group:          Development/Libraries
 Requires:       %{name}-devel = %{version}-%{release}
 
 %description static
@@ -135,3 +130,6 @@ rm -rf $RPM_BUILD_ROOT
 
 
 %changelog
+* Tue Oct 27 2015 Cjacker <cjacker@foxmail.com> - 4.55-5
+- Rebuild
+

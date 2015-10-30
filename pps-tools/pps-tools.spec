@@ -1,9 +1,8 @@
 Name:		pps-tools
 Version:	0
-Release:	0.11.20120407git0deb9c%{?dist}
+Release:	0.12.20120407git0deb9c%{?dist}
 Summary:	LinuxPPS user-space tools
 
-Group:		System Environment/Base
 License:	GPLv2+
 URL:		https://github.com/ago/pps-tools
 
@@ -16,7 +15,6 @@ This package includes the LinuxPPS user-space tools.
 
 %package devel
 Summary: LinuxPPS PPSAPI header file
-Group: Development/System
 
 %description devel
 This package includes the header needed to compile PPSAPI (RFC-2783)
@@ -42,3 +40,6 @@ install -p -m644 -t $RPM_BUILD_ROOT%{_includedir}/sys timepps.h
 %{_includedir}/sys/timepps.h
 
 %changelog
+* Tue Oct 27 2015 Cjacker <cjacker@foxmail.com> - 0-0.12.20120407git0deb9c
+- Rebuild
+

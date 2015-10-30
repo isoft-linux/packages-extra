@@ -1,9 +1,8 @@
 Name:		openbox
 Version:	3.6
-Release:    5 
+Release:    6 
 Summary:	A highly configurable and standards-compliant X11 window manager
 
-Group:		User Interface/Desktops
 License:	GPLv2+
 URL:		http://www.openbox.org
 Source0:	http://icculus.org/openbox/releases/%{name}-%{version}.tar.gz
@@ -44,7 +43,6 @@ package.
 
 %package	devel
 Summary:	Development files for %{name}
-Group:		Development/Libraries
 Requires:	%{name}-libs = %{version}-%{release}
 Requires:	pkgconfig
 Requires:	pango-devel
@@ -58,7 +56,6 @@ developing applications that use %{name}.
 
 %package	libs
 Summary:	Shared libraries for %{name}
-Group:		Development/Libraries
 
 %description	libs
 The %{name}-libs package contains shared libraries used by %{name}.
@@ -145,3 +142,6 @@ echo "DESKTOP=OPENBOX" >>/etc/sysconfig/desktop
 
 
 %changelog
+* Tue Oct 27 2015 Cjacker <cjacker@foxmail.com> - 3.6-6
+- Rebuild
+

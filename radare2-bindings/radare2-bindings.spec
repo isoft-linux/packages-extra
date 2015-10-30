@@ -1,6 +1,6 @@
 Name: radare2-bindings
 Version: 0.9.9
-Release: 1
+Release: 2
 Summary: radare2 language bindings for r2 api
 
 License: GPLv3
@@ -46,4 +46,7 @@ make install DESTDIR=%{buildroot}
 %files vala
 %{_datadir}/vala/vapi/*
 %changelog
+* Tue Oct 27 2015 Cjacker <cjacker@foxmail.com> - 0.9.9-2
+- Rebuild
+
 

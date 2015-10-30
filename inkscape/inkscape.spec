@@ -1,9 +1,8 @@
 Name:           inkscape
 Version:        0.91
-Release:        17%{?dist}
+Release:        18%{?dist}
 Summary:        Vector-based drawing program using SVG
 
-Group:          Applications/Productivity
 License:        GPLv2+
 URL:            http://inkscape.sourceforge.net/
 Source0:        http://downloads.sourceforge.net/inkscape/%{name}-%{version}.tar.bz2
@@ -68,7 +67,6 @@ trace bitmaps and much more.
 
 %package view
 Summary:        Viewing program for SVG files
-Group:          Applications/Productivity
 
 %description view
 Viewer for files in W3C standard Scalable Vector Graphics (SVG) file
@@ -77,7 +75,6 @@ format.
 
 %package docs
 Summary:        Documentation for Inkscape
-Group:          Documentation
 Requires:       inkscape
 
 %description docs
@@ -234,5 +231,8 @@ fi
 
 
 %changelog
+* Tue Oct 27 2015 Cjacker <cjacker@foxmail.com> - 0.91-18
+- Rebuild
+
 * Wed Oct 21 2015 Cjacker <cjacker@foxmail.com>
 - Initial build.

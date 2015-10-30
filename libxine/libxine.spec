@@ -1,15 +1,51 @@
 Name:           libxine 
 Summary:        A portable video/audio library for unix-like systems.
 Version:        1.2.6
-Release:        1 
+Release:        2 
 License:        GPL
-Group:          Development/Libraries
 URL:            http://xinehq.de
 Source:         http://xinehq.de/files/xine-lib-%{version}.tar.xz
 Provides:       xine
 Provides:       xine-lib
-BuildRequires:  ffmpeg-devel
-AutoReq: no
+BuildRequires: ffmpeg-devel
+BuildRequires: optipng
+BuildRequires: SDL-devel
+BuildRequires: a52dec-devel
+BuildRequires: alsa-lib-devel
+BuildRequires: faad2-devel
+BuildRequires: ffmpeg-devel
+BuildRequires: gdk-pixbuf2-devel
+BuildRequires: glib2-devel
+BuildRequires: ImageMagick-devel
+BuildRequires: libbluray-devel
+BuildRequires: libflac-devel
+BuildRequires: libGLU-devel
+BuildRequires: libgomp
+BuildRequires: libICE-devel
+BuildRequires: libjpeg-turbo-devel
+BuildRequires: libmad-devel
+BuildRequires: libmng-devel
+BuildRequires: libmpcdec-devel
+BuildRequires: libogg-devel
+BuildRequires: libsmbclient-devel
+BuildRequires: libSM-devel
+BuildRequires: libspeex-devel
+BuildRequires: libtheora-devel
+BuildRequires: libv4l-devel
+BuildRequires: libva-devel
+BuildRequires: libvdpau-devel
+BuildRequires: libvorbis-devel
+BuildRequires: libvpx-devel
+BuildRequires: libX11-devel
+BuildRequires: libxcb-devel
+BuildRequires: libXext-devel
+BuildRequires: libXinerama-devel
+BuildRequires: libXv-devel
+BuildRequires: libXvMC-devel
+BuildRequires: mesa-libGL-devel
+BuildRequires: pulseaudio-libs-devel
+BuildRequires: zlib-devel
+
 %description
 libxine is the beating heart of xine (a free gpl-licensed video player for
 unix-like systems) which among others provides support for decoding (and
@@ -24,7 +60,6 @@ http://www.gnu.org/licenses/gpl.html
 
 %package devel
 Summary:        Header files and documentation to develope programs with libxine.
-Group:	       Development/Libraries
 Requires:       %{name} = %{version}-%{release}
 
 %description devel
@@ -53,23 +88,34 @@ fi
 # certain automake produced configure scripts - depending on automake version.
 # Use BUILD_ARGS envvar to pass extra parameters to configure (like --enable-dha-mod/etc...)
 #
-./configure --build=%{_target_platform} --prefix=%{_prefix} \
-            --exec-prefix=%{_exec_prefix} --bindir=%{_bindir} \
-            --sbindir=%{_sbindir} --sysconfdir=%{_sysconfdir} \
-            --datadir=%{_datadir} --includedir=%{_includedir} \
-            --libdir=%{_libdir} --libexecdir=%{_libexecdir} \
-            --localstatedir=%{_localstatedir} \
-            --sharedstatedir=%{_sharedstatedir} --mandir=%{_mandir} \
-            --infodir=%{_infodir} \
-            --with-w32-path=/usr/lib/win32 --with-real-codecs-path=/usr/lib/win32 --with-freetype --with-pulseaudio --disable-vcd
+./configure \
+    --build=%{_target_platform} \
+    --prefix=%{_prefix} \
+    --exec-prefix=%{_exec_prefix} \
+    --bindir=%{_bindir} \
+    --sbindir=%{_sbindir} \
+    --sysconfdir=%{_sysconfdir} \
+    --datadir=%{_datadir} \
+    --includedir=%{_includedir} \
+    --libdir=%{_libdir} \
+    --libexecdir=%{_libexecdir} \
+    --localstatedir=%{_localstatedir} \
+    --sharedstatedir=%{_sharedstatedir} \
+    --mandir=%{_mandir} \
+    --infodir=%{_infodir} \
+    --with-w32-path=/usr/lib/win32 \
+    --with-real-codecs-path=/usr/lib/win32 \
+    --with-freetype \
+    --with-pulseaudio \
+    --disable-vcd \
+    XCB_LIBS="-lxcb -lxcb-shape -lxcb-shm"
 
-make
+make %{?_smp_mflags}
 
 %install
 rm -rf $RPM_BUILD_ROOT
 make DESTDIR=%{?buildroot:%{buildroot}} LIBRARY_PATH=%{?buildroot:%{buildroot}}%{_libdir} install
 
-rpmclean
 
 %clean
 [ "$RPM_BUILD_ROOT" != "/" ] && rm -rf $RPM_BUILD_ROOT
@@ -86,6 +132,9 @@ rpmclean
 %{_libdir}/xine/*
 %dir %{_datadir}/xine-lib
 %{_datadir}/xine-lib/*
+
+%{_mandir}/man5/*
+
 %{_datadir}/locale/*/*/*.mo
 
 
@@ -101,4 +150,9 @@ rpmclean
 %{_datadir}/aclocal/xine.m4
 %dir %{_docdir}/xine-lib
 %{_docdir}/xine-lib/*
+
+
+%changelog
+* Tue Oct 27 2015 Cjacker <cjacker@foxmail.com> - 1.2.6-2
+- Rebuild
 

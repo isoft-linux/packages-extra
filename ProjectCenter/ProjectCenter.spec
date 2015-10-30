@@ -1,9 +1,8 @@
 Summary: GNUstep Project Center 
 Name: ProjectCenter 
 Version: 0.6.2
-Release: 1
+Release: 2
 Source: ftp://ftp.gnustep.org/pub/gnustep/core/%{name}-%{version}.tar.gz
-Group:  Development/Tools
 License: see COPYING
 BuildRequires: clang
 Requires: clang
@@ -12,14 +11,12 @@ GNUstep Project Center
 
 %package -n ProjectCenter.framework 
 Summary: ProjectCenter framework runtime 
-Group:   System Environment/Libraries
 
 %description -n ProjectCenter.framework 
 This package contains the runtime libraries and resources of ProjectCenter framework.
 
 %package -n ProjectCenter.framework-devel 
 Summary: Development headers of ProjectCenter framework. 
-Group: Development/Libraries
 Requires: ProjectCenter.framework = %{version}-%{release}
 
 %description -n ProjectCenter.framework-devel
@@ -34,13 +31,11 @@ make CC=clang CXX=clang++
 %install
 mkdir -p $RPM_BUILD_ROOT
 make install DESTDIR=$RPM_BUILD_ROOT
-rpmclean
 %clean
 rm -rf $RPM_BUILD_ROOT
 
 %files
 %attr(-,root,root) 
-%doc COPYING README
 %dir %{_libdir}/GNUstep/Applications/ProjectCenter.app
 %{_libdir}/GNUstep/Applications/ProjectCenter.app/*
 %{_bindir}/ProjectCenter
@@ -58,5 +53,8 @@ rm -rf $RPM_BUILD_ROOT
 %{_includedir}/ProjectCenter
 
 %changelog
+* Tue Oct 27 2015 Cjacker <cjacker@foxmail.com> - 0.6.2-2
+- Rebuild
+
 * Tue Dec 10 2013 Cjacker <cjacker@gmail.com>
 - first build, prepare for the new release.

@@ -3,7 +3,7 @@
 Summary:	QFile extension with advisory locking functions
 Name:		qtlockedfile
 Version:	2.4
-Release:	16%{?dist}
+Release:	17%{?dist}
 
 License:	GPLv3 or LGPLv2 with exceptions
 URL:		http://doc.qt.digia.com/solutions/4/qtlockedfile/qtlockedfile.html
@@ -132,3 +132,6 @@ rm -rf %{buildroot}
 
 
 %changelog
+* Tue Oct 27 2015 Cjacker <cjacker@foxmail.com> - 2.4-17
+- Rebuild
+

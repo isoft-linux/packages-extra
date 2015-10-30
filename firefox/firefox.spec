@@ -1,34 +1,38 @@
 #NOTE: system-cairo disable in mozconfig, it will cause a flash blink problem.
-%define homepage about:blank
+
+#we do not provide debuginfo of firefox.
+%define debug_package %{nil}
+
+#do not use kde integration
+%global with_kde 0 
+
 %define desktop_file_utils_version 0.9
-%define firefox_app_id \{ec8030f7-c20a-464f-9b0e-13a3a9e97384\}
 
-%define version_internal    41.0 
-%define firefoxdir 		%{_libdir}/firefox
+%define version_internal 41.0.2
+%define firefoxdir %{_libdir}/firefox
 
-Summary:        Mozilla Firefox Web browser
-Name:           firefox
-Version:        %{version_internal} 
-Release:        12
-URL:            http://www.mozilla.org/projects/firefox/
-License:        MPLv1.1 or GPLv2+ or LGPLv2+
-Group:          Applications/Internet
-Source0:        firefox-%{version_internal}.source.tar.xz
+Summary: Mozilla Firefox Web browser
+Name: firefox
+Version: %{version_internal} 
+Release: 14
+URL: http://www.mozilla.org/projects/firefox/
+License: MPLv1.1 or GPLv2+ or LGPLv2+
+Source0: firefox-%{version_internal}.source.tar.xz
 
-Source10:       firefox-mozconfig
+Source10: firefox-mozconfig
 
-Source20:       vendor.js
-Source21:       firefox.desktop
+Source20: vendor.js
+Source21: firefox.desktop
 
-Source100:      find-external-requires
-
-
-Patch0:         firefox-install-dir.patch
-
-Patch1:         rhbz-966424.patch
-#hg clone http://www.rosenauer.org/hg/mozilla/ -r firefox41
+Source100: find-external-requires
 
 Source200: kde.js
+
+Patch0: firefox-install-dir.patch
+
+Patch1: rhbz-966424.patch
+#hg clone http://www.rosenauer.org/hg/mozilla/ -r firefox41
+
 Patch10: firefox-branded-icons.patch
 Patch11: firefox-kde.patch
 Patch12: firefox-no-default-ualocale.patch
@@ -40,17 +44,35 @@ Patch17: mozilla-icu-strncat.patch
 
 
 BuildRequires:  desktop-file-utils
-BuildRequires:  gtk3-devel
+BuildRequires:  yasm
+BuildRequires:  nspr-devel
+BuildRequires:  nss-devel
+BuildRequires:  libpng-devel
+BuildRequires:  libjpeg-devel
+BuildRequires:  zip
+BuildRequires:  bzip2-devel
+BuildRequires:  zlib-devel
+BuildRequires:  libIDL-devel
+BuildRequires:  gtk2-devel
+BuildRequires:  krb5-devel
 BuildRequires:  pango-devel
-BuildRequires:  freetype-devel >= 2.1.9
+BuildRequires:  freetype-devel
 BuildRequires:  libXt-devel
 BuildRequires:  libXrender-devel
+BuildRequires:  hunspell-devel
 BuildRequires:  startup-notification-devel
-BuildRequires:  yasm
-BuildRequires:  nss >= 3.17.1
+BuildRequires:  alsa-lib-devel
+BuildRequires:  libnotify-devel
+BuildRequires:  mesa-libGL-devel
+BuildRequires:  libcurl-devel
+BuildRequires:  libvpx-devel
+BuildRequires:  autoconf213
+BuildRequires:  pulseaudio-libs-devel
+BuildRequires:  sqlite-devel
+BuildRequires:  libffi-devel
+
 Requires:       desktop-file-utils >= %{desktop_file_utils_version}
 Requires:       hunspell
-Obsoletes:      mozilla <= 37:1.7.13
 Provides:       webclient
 
 %define _use_internal_dependency_generator 0
@@ -68,9 +90,17 @@ cd mozilla-release
 
 %patch1 -p1
 %patch10 -p1
+
+%if %{with_kde}
 %patch11 -p1
+%endif
+
 %patch12 -p1
+
+%if %{with_kde}
 %patch13 -p1
+%endif
+
 %patch14 -p1
 %patch15 -p1
 %patch16 -p1
@@ -127,12 +157,15 @@ install -Dm644 browser/branding/official/content/about-logo@2x.png \
 
 
 install -Dm644 %{SOURCE20} $RPM_BUILD_ROOT%{_libdir}/firefox/browser/defaults/preferences/vendor.js
+
+%if %{with_kde}
 install -Dm644 %{SOURCE200} $RPM_BUILD_ROOT%{_libdir}/firefox/browser/defaults/preferences/kde.js
+%endif
 
 install -Dm644 %{SOURCE21} $RPM_BUILD_ROOT%{_datadir}/applications/firefox.desktop
 
 
-  # Use system-provided dictionaries
+# Use system-provided dictionaries
 rm -rf %{buildroot}%{_libdir}/firefox/{dictionaries,hyphenation}
 ln -sf %{_datadir}/myspell %{buildroot}/usr/lib/firefox/dictionaries
 ln -sf %{_datadir}/hyphen %{buildroot}/usr/lib/firefox/hyphenation
@@ -143,27 +176,27 @@ ln -sf %{_datadir}/hyphen %{buildroot}/usr/lib/firefox/hyphenation
 
 popd #mozilla-release
 
-rpmclean
-
 %clean
 rm -rf $RPM_BUILD_ROOT
 
 #---------------------------------------------------------------------
-
 %post
+touch --no-create %{_datadir}/icons/hicolor || :
 update-desktop-database &> /dev/null || :
-touch --no-create %{_datadir}/icons/hicolor
+
+%posttrans
 if [ -x %{_bindir}/gtk-update-icon-cache ]; then
   %{_bindir}/gtk-update-icon-cache --quiet %{_datadir}/icons/hicolor || :
 fi
 
 %postun
-update-desktop-database &> /dev/null || :
-touch --no-create %{_datadir}/icons/hicolor
-if [ -x %{_bindir}/gtk-update-icon-cache ]; then
-  %{_bindir}/gtk-update-icon-cache --quiet %{_datadir}/icons/hicolor || :
+if [ $1 -eq 0 ] ; then
+    touch --no-create %{_datadir}/icons/hicolor &>/dev/null
+    if [ -x %{_bindir}/gtk-update-icon-cache ]; then
+      gtk-update-icon-cache %{_datadir}/icons/hicolor &>/dev/null || :
+    fi
 fi
-
+update-desktop-database ||:
 
 %files
 %defattr(-,root,root,-)
@@ -174,6 +207,12 @@ fi
 %{_datadir}/icons/hicolor/*/apps/firefox.png
 
 %changelog
+* Tue Oct 27 2015 Cjacker <cjacker@foxmail.com> - 41.0.2-14
+- Rebuild
+
+* Mon Oct 26 2015 Cjacker <cjacker@foxmail.com> - 41.0.2-13
+- Update to 41.0.2
+
 * Fri Sep 25 2015 Cjacker <cjacker@foxmail.com>
 - update to 41.0
 

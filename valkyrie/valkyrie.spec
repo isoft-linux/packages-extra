@@ -1,6 +1,6 @@
 Name:		valkyrie
 Version:	2.0.1
-Release:	1.svn20150713
+Release:	2.svn20150713
 Summary:	A Qt based GUI for valgrind
 
 License:    GPL	
@@ -15,7 +15,6 @@ Valkyrie is a Qt-based GUI for the Memcheck and Helgrind tools of Valgrind
 
 %package        devel
 Summary:        Development files for %{name}
-Group:          Development/Libraries
 Requires:       %{name} = %{version}-%{release}
 
 %description    devel
@@ -40,4 +39,7 @@ make install DESTDIR=%{buildroot} INSTALL_ROOT=%{buildroot}
 /
 
 %changelog
+* Tue Oct 27 2015 Cjacker <cjacker@foxmail.com> - 2.0.1-2.svn20150713
+- Rebuild
+
 

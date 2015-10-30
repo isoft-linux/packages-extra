@@ -6,10 +6,9 @@
 
 Name: rust
 Version: 1.3.0
-Release: 2 
+Release: 3 
 Summary: rust programming language	
 
-Group:   Software/Development/Language
 License: Apache 
 URL:	 http://www.rust-lang.org	
 
@@ -40,7 +39,6 @@ Rust is a systems programming language that runs blazingly fast, prevents nearly
 
 %package        devel
 Summary:        Development files for %{name}
-Group:          Development/Libraries
 Requires:       %{name} = %{version}-%{release}
 
 %description    devel
@@ -120,7 +118,7 @@ rm -rf %{buildroot}/%{_libdir}/rustlib/rust-installer-version
 rm -rf %{buildroot}/%{_libdir}/rustlib/uninstall.sh
 
 chmod 755 $RPM_BUILD_ROOT%{_libdir}/*.so
-chmod 755 $RPM_BUILD_ROOT%{_libdir}/rustlib/*/*/*.so
+#chmod 755 $RPM_BUILD_ROOT%{_libdir}/rustlib/*/*/*.so
 
 mkdir -p %{buildroot}/%{_docdir}/rust-doc
 cp -ra doc/* %{buildroot}/%{_docdir}/rust-doc
@@ -166,6 +164,9 @@ install -m 0755 %{SOURCE10} %{buildroot}%{_sysconfdir}/profile.d/rust-src.sh
 %{_prefix}/src/rust/
 
 %changelog
+* Tue Oct 27 2015 Cjacker <cjacker@foxmail.com> - 1.3.0-3
+- Rebuild
+
 * Fri Sep 18 2015 Cjacker <cjacker@foxmail.com>
 - update to 1.3.0
 

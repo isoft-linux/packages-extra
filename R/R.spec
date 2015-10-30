@@ -10,7 +10,7 @@
 
 Name: R
 Version: 3.2.1
-Release: 2%{?dist}
+Release: 3%{?dist}
 Summary: A language for data analysis and graphics
 URL: http://www.r-project.org
 Source0: ftp://cran.r-project.org/pub/R/src/base/R-3/R-%{version}.tar.gz
@@ -19,7 +19,6 @@ Source2: R-make-search-index.sh
 Patch0: R-fix-with-texinfo-6.0.patch
 
 License: GPLv2+
-Group: Applications/Engineering
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 BuildRequires: gcc-gfortran
 BuildRequires: gcc
@@ -71,7 +70,6 @@ and called at run time.
 
 %package core
 Summary: The minimal R components necessary for a functional runtime
-Group: Applications/Engineering
 Requires: xdg-utils, cups
 Requires: vim
 Requires: perl, sed, gawk, less, make, unzip
@@ -125,7 +123,6 @@ and called at run time.
 
 %package core-devel
 Summary: Core files for development of R packages (no Java)
-Group: Applications/Engineering
 Requires: R-core = %{version}-%{release}
 # You need all the BuildRequires for the development version
 Requires: gcc, gcc-gfortran
@@ -156,7 +153,6 @@ environment.
 
 %package java
 Summary: R with Fedora provided Java Runtime Environment
-Group: Applications/Engineering
 Requires(post): R-core = %{version}-%{release}
 Requires(post): openjdk 
 
@@ -179,7 +175,6 @@ Fedora's openJDK.
 
 %package java-devel
 Summary: Development package for use with Java enabled R components
-Group: Applications/Engineering
 Requires(post): R-core-devel = %{version}-%{release}
 Requires(post): openjdk
 
@@ -189,7 +184,6 @@ that assume java is present and configured on the system.
 
 %package -n libRmath
 Summary: Standalone math library from the R project
-Group: Development/Libraries
 
 %description -n libRmath
 A standalone library of mathematical and statistical functions derived
@@ -197,7 +191,6 @@ from the R project.  This package provides the shared libRmath library.
 
 %package -n libRmath-devel
 Summary: Headers from the R Standalone math library
-Group: Development/Libraries
 Requires: libRmath = %{version}-%{release}, pkgconfig
 
 %description -n libRmath-devel
@@ -206,7 +199,6 @@ from the R project.  This package provides the libRmath header files.
 
 %package -n libRmath-static
 Summary: Static R Standalone math library
-Group: Development/Libraries
 Requires: libRmath-devel = %{version}-%{release}
 
 %description -n libRmath-static
@@ -795,3 +787,6 @@ R CMD javareconf \
 %postun -n libRmath -p /sbin/ldconfig
 
 %changelog
+* Tue Oct 27 2015 Cjacker <cjacker@foxmail.com> - 3.2.1-3
+- Rebuild
+

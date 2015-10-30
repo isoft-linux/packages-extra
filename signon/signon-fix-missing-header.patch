@@ -1,0 +1,11 @@
+diff -Nur signon-8.57/lib/plugins/signon-plugins-common/SignOn/blobiohandler.cpp signon-8.57n/lib/plugins/signon-plugins-common/SignOn/blobiohandler.cpp
+--- signon-8.57/lib/plugins/signon-plugins-common/SignOn/blobiohandler.cpp	2014-08-25 14:33:29.000000000 +0000
++++ signon-8.57n/lib/plugins/signon-plugins-common/SignOn/blobiohandler.cpp	2015-10-28 08:29:47.225171770 +0000
+@@ -26,6 +26,7 @@
+ #include <QDBusArgument>
+ #include <QBuffer>
+ #include <QDebug>
++#include <QDataStream>
+ 
+ #include "SignOn/signonplugincommon.h"
+ 

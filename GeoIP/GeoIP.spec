@@ -3,9 +3,8 @@
 
 Name:		GeoIP
 Version:	1.6.5
-Release:	3%{?dist}
+Release:	4%{?dist}
 Summary:	Library for country/city/organization to IP address or hostname mapping
-Group:		Development/Libraries
 License:	LGPLv2+
 URL:		http://www.maxmind.com/app/c
 Source0:	https://github.com/maxmind/geoip-api-c/releases/download/v%{version}/GeoIP-%{version}.tar.gz
@@ -23,7 +22,6 @@ packages.
 
 %package devel
 Summary:	Development headers and libraries for GeoIP
-Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
 Provides:	geoip-devel = %{version}-%{release}
 Obsoletes:	geoip-devel < %{version}-%{release}
@@ -82,3 +80,6 @@ rm -rf %{buildroot}
 %{_libdir}/pkgconfig/geoip.pc
 
 %changelog
+* Tue Oct 27 2015 Cjacker <cjacker@foxmail.com> - 1.6.5-4
+- Rebuild
+

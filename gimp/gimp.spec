@@ -17,7 +17,7 @@ Summary:        GNU Image Manipulation Program
 Name:           gimp
 Epoch:          2
 Version:        2.8.14
-Release:        1 
+Release:        2 
 %define binver 2.8
 %define gimp_lang_ver 20
 %define interfacever 2.0
@@ -26,7 +26,6 @@ Release:        1
 #%define microver %(ver=%{version}; echo ${ver##*.*.})
 %define microver 0 
 License:        GPLv2+
-Group:          Applications/Multimedia
 URL:            http://www.gimp.org/
 BuildRoot:      %{_tmppath}/%{name}-%{version}-root-%(%__id_u -n)
 Obsoletes:      gimp-perl < 2:2.0
@@ -96,7 +95,6 @@ with multi-level undo.
 
 %package libs
 Summary:        GIMP libraries
-Group:          System Environment/Libraries
 License:        LGPLv2+
 Provides:       gimp-libs-%{_arch} = %{?epoch:%{epoch}:}%{version}-%{release}
 
@@ -106,7 +104,6 @@ Manipulation Program (GIMP).
 
 %package devel
 Summary:        GIMP plugin and extension development kit
-Group:          Development/Libraries
 License:        LGPLv2+
 Requires:       gimp-libs-%{_arch} = %{?epoch:%{epoch}:}%{version}-%{release}
 Requires:       gimp-devel-tools = %{?epoch:%{epoch}:}%{version}-%{release}
@@ -121,7 +118,6 @@ extensions.
 
 %package devel-tools
 Summary:        GIMP plugin and extension development tools
-Group:          Development/Tools
 License:        LGPLv2+
 Requires:       gimp-devel = %{?epoch:%{epoch}:}%{version}-%{release}
 
@@ -248,7 +244,6 @@ mkdir -p %{buildroot}%{_sbindir}
 install -m 0755 gimp-plugin-mgr %{buildroot}%{_sbindir}/gimp-plugin-mgr
 
 
-rpmclean
 %clean
 rm -rf %{buildroot}
 
@@ -412,3 +407,6 @@ fi
 #%{_libdir}/gimp/%{interfacever}/plug-ins/help-browser
 
 %changelog
+* Tue Oct 27 2015 Cjacker <cjacker@foxmail.com> - 2:2.8.14-2
+- Rebuild
+

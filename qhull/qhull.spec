@@ -1,9 +1,8 @@
 Summary: General dimension convex hull programs
 Name: qhull
 Version: 2003.1
-Release: 26%{?dist}
+Release: 27%{?dist}
 License: Qhull
-Group: System Environment/Libraries
 Source0: http://www.qhull.org/download/qhull-%{version}.tar.gz
 Patch0: qhull-2003.1-alias.patch
 Patch1: http://www.qhull.org/download/qhull-2003.1-qh_gethash.patch
@@ -30,7 +29,6 @@ diagrams, furthest-site Voronoi diagrams, and halfspace intersections
 about a point.
 
 %package devel
-Group: Development/Libraries
 Summary: Development files for qhull
 Requires: %{name} = %{version}-%{release}
 
@@ -92,3 +90,6 @@ install -m644 -D qhull.pc ${RPM_BUILD_ROOT}%{_libdir}/pkgconfig/qhull.pc
 
 
 %changelog
+* Tue Oct 27 2015 Cjacker <cjacker@foxmail.com> - 2003.1-27
+- Rebuild
+

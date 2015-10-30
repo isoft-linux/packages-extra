@@ -3,7 +3,7 @@
 Name: basket
 Summary: Note taking application
 Version: 2.10
-Release: 3%{?dist}
+Release: 4%{?dist}
 
 License: LGPLv2 or LGPLv3
 URL: https://github.com/basket-notepads/basket
@@ -61,5 +61,8 @@ make install/fast DESTDIR=%{buildroot} -C %{_target_platform}
 %{_datadir}/kde4/services/*.desktop
 
 %changelog
+* Tue Oct 27 2015 Cjacker <cjacker@foxmail.com> - 2.10-4
+- Rebuild
+
 * Sun Oct 18 2015 Cjacker <cjacker@foxmail.com>
 - initial build

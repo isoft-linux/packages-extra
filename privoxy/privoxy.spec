@@ -6,7 +6,7 @@
 
 Name: privoxy
 Version: 3.0.23
-Release: 2%{?dist}
+Release: 3%{?dist}
 Summary: Privacy enhancing proxy
 License: GPLv2+
 Source0: http://downloads.sourceforge.net/ijbswa/%{name}-%{version}-%{beta_or_stable}-src.tar.gz
@@ -15,7 +15,6 @@ Source2: privoxy.logrotate
 #Patch0:  privoxy-3.0.16-chkconfig.patch
 #Patch1:  privoxy-3.0.16-configdir.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
-Group: System Environment/Daemons
 URL: http://www.privoxy.org/
 Requires(pre): shadow-utils
 Requires(post): systemd-units
@@ -133,3 +132,6 @@ fi
 #doc/source/developer-manual doc/source/faq doc/source/user-manual
 
 %changelog
+* Tue Oct 27 2015 Cjacker <cjacker@foxmail.com> - 3.0.23-3
+- Rebuild
+

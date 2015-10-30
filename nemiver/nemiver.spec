@@ -1,9 +1,8 @@
 Name:	    nemiver	
 Version:    0.9.6
-Release:	1.git
+Release:	2.git
 Summary:    standalone C/C++ debugger
     
-Group:      Desktop/Gnome/Application		
 License:	GPL
 URL:		http://www.gnome.org
 Source0:	%{name}.tar.gz
@@ -21,7 +20,6 @@ Nemiver is an on going effort to write an easy to use standalone C/C++ debugger 
 %package devel
 Summary: Development files for %{name}
 Requires: %{name} = %{version}-%{release}
-Group:   Desktop/Gnome/Development libraries
 %description devel
 Nemiver is a standalone graphical debugger that integrates well in the
 GNOME desktop environment. It currently features a backend which uses
@@ -36,6 +34,8 @@ This package contains the development files to build debugger backend.
 %build
 export CC=cc
 export CXX=c++
+export CXXFLAGS="-std=c++11"
+
 intltoolize 
 autoreconf -ivf
 %configure --disable-static
@@ -47,17 +47,12 @@ make install DESTDIR=%{buildroot}
 
 %find_lang nemiver 
 
-rpmclean
 
 %post
 update-desktop-database -q> /dev/null ||:
 touch --no-create %{_datadir}/icons/hicolor
 if [ -x /usr/bin/gtk3-update-icon-cache ]; then
   /usr/bin/gtk3-update-icon-cache -q %{_datadir}/icons/hicolor;
-fi
-touch --no-create %{_datadir}/icons/HighContrast
-if [ -x /usr/bin/gtk3-update-icon-cache ]; then
-  /usr/bin/gtk3-update-icon-cache -q %{_datadir}/icons/HighContrast;
 fi
 glib-compile-schemas /usr/share/glib-2.0/schemas/ >/dev/null 2>&1 ||:
 
@@ -66,10 +61,6 @@ update-desktop-database -q> /dev/null ||:
 touch --no-create %{_datadir}/icons/hicolor
 if [ -x /usr/bin/gtk3-update-icon-cache ]; then
   /usr/bin/gtk3-update-icon-cache -q %{_datadir}/icons/hicolor;
-fi
-touch --no-create %{_datadir}/icons/HighContrast
-if [ -x /usr/bin/gtk3-update-icon-cache ]; then
-  /usr/bin/gtk3-update-icon-cache -q %{_datadir}/icons/HighContrast;
 fi
 glib-compile-schemas /usr/share/glib-2.0/schemas/ >/dev/null 2>&1 ||:
 
@@ -80,10 +71,14 @@ glib-compile-schemas /usr/share/glib-2.0/schemas/ >/dev/null 2>&1 ||:
 %{_datadir}/glib-2.0/schemas/org.nemiver.gschema.xml
 %{_datadir}/appdata/*.appdata.xml
 %{_datadir}/help/*/nemiver
-%{_datadir}/icons/HighContrast/*/apps/nemiver.*
-%{_datadir}/icons/hicolor/*/apps/nemiver.*
+%{_datadir}/icons/hicolor/*/apps/nemiver*
 %{_datadir}/nemiver
 %{_mandir}/man1/nemiver.1.gz
 
 %files devel
 %{_includedir}/nemiver
+
+%changelog
+* Tue Oct 27 2015 Cjacker <cjacker@foxmail.com> - 0.9.6-2.git
+- Rebuild
+

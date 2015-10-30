@@ -6,7 +6,7 @@
 
 Name:           uthash
 Version:        1.9.9
-Release:        9%{?dist}
+Release:        10%{?dist}
 Summary:        A hash table for C structures
 License:        BSD
 URL:            http://troydhanson.github.io/uthash
@@ -45,3 +45,6 @@ make %{?_smp_mflags} -C tests/
 %{_includedir}/ut*.h
 
 %changelog
+* Tue Oct 27 2015 Cjacker <cjacker@foxmail.com> - 1.9.9-10
+- Rebuild
+

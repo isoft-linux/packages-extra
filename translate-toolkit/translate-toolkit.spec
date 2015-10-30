@@ -2,10 +2,9 @@
 
 Name:           translate-toolkit
 Version:        1.9.0
-Release:        5%{?dist}
+Release:        6%{?dist}
 Summary:        Tools to assist with translation and software localization
 
-Group:          Development/Tools
 License:        GPLv2+
 URL:            http://translate.sourceforge.net/wiki/toolkit/index
 Source0:        http://downloads.sourceforge.net/project/translate/Translate%20Toolkit/%{version}/%{name}-%{version}.tar.bz2
@@ -57,7 +56,6 @@ Including:
 
 %package devel
 Summary:        Development API for %{name} applications
-Group:          Development/Tools
 License:        GPLv2+
 Requires:       %{name} = %{version}-%{release}
 
@@ -129,5 +127,8 @@ rm -rf $RPM_BUILD_ROOT
 
 
 %changelog
+* Tue Oct 27 2015 Cjacker <cjacker@foxmail.com> - 1.9.0-6
+- Rebuild
+
 * Sun Aug 04 2013 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 1.9.0-5
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_20_Mass_Rebuild

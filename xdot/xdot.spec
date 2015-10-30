@@ -1,8 +1,7 @@
 Name:   xdot 
 Version: 0.6
-Release: 1
+Release: 2
 Summary: xdot is an interactive viewer for graphs written in Graphviz's dot language.
-Group:   Development/Tools
 License: GPLv2+
 URL:     https://github.com/jrfonseca/xdot.py
 Source0: %{name}-%{version}.tar.gz
@@ -39,3 +38,6 @@ rm -rf $RPM_BUILD_ROOT
 %{_bindir}/xdot
 %{_datadir}/applications/xdot.desktop
 %changelog
+* Tue Oct 27 2015 Cjacker <cjacker@foxmail.com> - 0.6-2
+- Rebuild
+

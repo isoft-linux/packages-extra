@@ -2,11 +2,10 @@ Name:		GeoIP-GeoLite-data
 # The geolite databases are updated on the first Tuesday of each month,
 # hence we use a versioning scheme of YYYY.MM for the Fedora package
 Version:	2015.07
-Release:	1%{?dist}
+Release:	2%{?dist}
 Summary:	Free GeoLite IP geolocation country database
 # License specified at http://dev.maxmind.com/geoip/legacy/geolite/#License
 License:	CC-BY-SA
-Group:		Development/Libraries
 URL:		http://dev.maxmind.com/geoip/legacy/geolite/
 Source0:	http://geolite.maxmind.com/download/geoip/database/GeoLiteCountry/GeoIP.dat.gz
 Source1:	http://geolite.maxmind.com/download/geoip/database/GeoIPv6.dat.gz
@@ -26,7 +25,6 @@ http://www.maxmind.com/
 
 %package extra
 Summary:	Free GeoLite IP geolocation databases
-Group:		Development/Libraries
 License:	CC-BY-SA
 Requires:	%{name} = %{version}-%{release}
 
@@ -137,3 +135,6 @@ exit 0
 %{_datadir}/GeoIP/GeoLiteASNumv6.dat
 
 %changelog
+* Tue Oct 27 2015 Cjacker <cjacker@foxmail.com> - 2015.07-2
+- Rebuild
+

@@ -8,10 +8,9 @@
 
 Name:           ffcall
 Version:        1.10
-Release:        18.20120424cvs%{?dist}
+Release:        19.20120424cvs%{?dist}
 Summary:        Libraries for foreign function call interfaces
 
-Group:          System Environment/Libraries
 License:        GPLv2+
 URL:            http://www.gnu.org/software/libffcall/
 # There has been no official release for several years, and the project web
@@ -90,3 +89,6 @@ done
 
 
 %changelog
+* Tue Oct 27 2015 Cjacker <cjacker@foxmail.com> - 1.10-19.20120424cvs
+- Rebuild
+

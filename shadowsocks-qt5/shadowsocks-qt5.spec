@@ -1,6 +1,6 @@
 Name: shadowsocks-qt5
 Version: 2.5.1
-Release: 1
+Release: 2
 Summary: A cross-platform shadowsocks GUI client	
 
 License: GPL
@@ -66,6 +66,9 @@ install -m 0755 internal-bin/usr/lib/libzbar.so.* %{buildroot}%{_libdir}/shadows
 %{_datadir}/icons/hicolor/*/apps/*.png
 
 %changelog
+* Tue Oct 27 2015 Cjacker <cjacker@foxmail.com> - 2.5.1-2
+- Rebuild
+
 * Fri Oct 09 2015 Cjacker <cjacker@foxmail.com>
 - update to 2.5.1
 - long live shadowsocks.

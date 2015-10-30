@@ -3,7 +3,7 @@
 
 Name: tre
 Version: 0.8.0
-Release: 14.20140228git%{shortcommit}%{?dist}
+Release: 15.20140228git%{shortcommit}%{?dist}
 License: BSD
 Source0: https://github.com/laurikari/tre/archive/%{commit}/tre-%{commit}.tar.gz
 Patch0: %{name}-chicken.patch
@@ -105,3 +105,6 @@ rm $RPM_BUILD_ROOT%{_libdir}/*.la
 %{_mandir}/man1/agrep.1*
 
 %changelog
+* Tue Oct 27 2015 Cjacker <cjacker@foxmail.com> - 0.8.0-15.20140228gitc2f5d13
+- Rebuild
+

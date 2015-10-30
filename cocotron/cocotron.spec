@@ -1,9 +1,8 @@
 Name: cocotron
 Version: 20150727
-Release: 1
+Release: 2
 Summary: A cross platform implementation of the Apple Foundation API.	
 URL: http://www.cocotron.org
-Group:System Environment/Libraries	
 License: MIT
 #git clone https://github.com/cjwl/cocotron.git
 Source0: cocotron.tar.gz
@@ -25,13 +24,13 @@ Patch14: 014-add-readme.linux.patch
 Patch20: 020-improve-less-warning.patch
 Patch21: 021-improve-disable-block-selftest-output.patch
 
-BuildRequires: clang libBlocksRuntime-devel libobjc2-devel
+BuildRequires: clang libBlocksRuntime-devel libobjc2-devel openssl-devel
+
 %description
 A cross platform implementation of the Apple Cocoa API.
 
 %package devel
 Summary: Development headers for libFoundation 
-Group:   Development/Libraries
 Requires: %{name} = %{version}-%{release}
 Requires: libobjc2-devel
 
@@ -84,6 +83,9 @@ popd
 
 
 %changelog
+* Tue Oct 27 2015 Cjacker <cjacker@foxmail.com> - 20150727-2
+- Rebuild
+
 * Mon Jul 27 2015 Cjacker <cjacker@foxmail.com>
 - git head had merged a lot of contributions.
 - update to newest git

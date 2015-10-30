@@ -1,7 +1,7 @@
-diff -uNr nant-0.92.old/Makefile nant-0.92/Makefile
---- nant-0.92.old/Makefile	2012-06-09 16:05:52.000000000 +0200
-+++ nant-0.92/Makefile	2015-05-12 22:43:12.390025959 +0200
-@@ -109,7 +109,7 @@
+diff -Nur nant-master/Makefile nant-masterfix/Makefile
+--- nant-master/Makefile	2015-04-21 09:16:34.000000000 +0800
++++ nant-masterfix/Makefile	2015-10-29 11:32:06.554813853 +0800
+@@ -122,7 +122,7 @@
  bootstrap/NAnt.DotNetTasks.dll:
  	$(RESGEN)  src/NAnt.DotNet/Resources/Strings.resx bootstrap/NAnt.DotNet.Resources.Strings.resources
  	$(MCS) $(DEBUG) -target:library -warn:0 -define:$(DEFINE) -out:bootstrap/NAnt.DotNetTasks.dll \
@@ -10,9 +10,33 @@ diff -uNr nant-0.92.old/Makefile nant-0.92/Makefile
  		-recurse:src${DIRSEP}NAnt.DotNet${DIRSEP}*.cs -resource:bootstrap/NAnt.DotNet.Resources.Strings.resources \
  		src${DIRSEP}CommonAssemblyInfo.cs
  
-diff -uNr nant-0.92.old/src/NAnt.DotNet/NAnt.DotNet.build nant-0.92/src/NAnt.DotNet/NAnt.DotNet.build
---- nant-0.92.old/src/NAnt.DotNet/NAnt.DotNet.build	2012-06-09 16:05:53.000000000 +0200
-+++ nant-0.92/src/NAnt.DotNet/NAnt.DotNet.build	2015-05-12 22:43:12.390025959 +0200
+diff -Nur nant-master/NAnt.build nant-masterfix/NAnt.build
+--- nant-master/NAnt.build	2015-10-29 11:31:47.487814195 +0800
++++ nant-masterfix/NAnt.build	2015-10-29 11:32:54.411812996 +0800
+@@ -177,11 +177,6 @@
+         <nant buildfile="src/NAnt.MSBuild/NAnt.MSBuild.build" target="build" />
+     </target>
+ 
+-    <target name="build.ndoc" depends="build.core,build.ext">
+-        <!-- build NDoc.Documenter.NAnt assembly -->
+-        <nant buildfile="src/NDoc.Documenter.NAnt/NDoc.Documenter.NAnt.build" target="build" />
+-    </target>
+-
+     <target name="build.tests.core" depends="build.core">
+         <!-- build NAnt.Core.Tests assembly -->
+         <nant buildfile="tests/NAnt.Core/NAnt.Core.build" target="build" />
+@@ -200,7 +195,7 @@
+     </target>
+ 
+     <target name="build"
+-         depends="build.core,build.console,build.ext,build.msbuild,build.ndoc,build.tests.core,build.tests.console,build.tests.ext"
++         depends="build.core,build.console,build.ext,build.msbuild,build.tests.core,build.tests.console,build.tests.ext"
+          description="Builds current configuration"/>
+ 
+     <!-- test the newly built NAnt -->
+diff -Nur nant-master/src/NAnt.DotNet/NAnt.DotNet.build nant-masterfix/src/NAnt.DotNet/NAnt.DotNet.build
+--- nant-master/src/NAnt.DotNet/NAnt.DotNet.build	2015-04-21 09:16:34.000000000 +0800
++++ nant-masterfix/src/NAnt.DotNet/NAnt.DotNet.build	2015-10-29 11:32:06.554813853 +0800
 @@ -22,8 +22,6 @@
              </sources>
              <references>
@@ -22,10 +46,10 @@ diff -uNr nant-0.92.old/src/NAnt.DotNet/NAnt.DotNet.build nant-0.92/src/NAnt.Dot
              </references>
              <resources prefix="NAnt.DotNet" dynamicprefix="true">
                  <include name="Resources/**/*" />
-diff -uNr nant-0.92.old/src/NDoc.Documenter.NAnt/NDoc.Documenter.NAnt.build nant-0.92/src/NDoc.Documenter.NAnt/NDoc.Documenter.NAnt.build
---- nant-0.92.old/src/NDoc.Documenter.NAnt/NDoc.Documenter.NAnt.build	2012-06-09 16:05:55.000000000 +0200
-+++ nant-0.92/src/NDoc.Documenter.NAnt/NDoc.Documenter.NAnt.build	2015-05-12 22:44:20.867890861 +0200
-@@ -23,8 +23,6 @@
+diff -Nur nant-master/src/NDoc.Documenter.NAnt/NDoc.Documenter.NAnt.build nant-masterfix/src/NDoc.Documenter.NAnt/NDoc.Documenter.NAnt.build
+--- nant-master/src/NDoc.Documenter.NAnt/NDoc.Documenter.NAnt.build	2015-04-21 09:16:34.000000000 +0800
++++ nant-masterfix/src/NDoc.Documenter.NAnt/NDoc.Documenter.NAnt.build	2015-10-29 11:32:06.555813853 +0800
+@@ -24,8 +24,6 @@
              </sources>
              <references basedir="${build.dir}/bin" failonempty="true">
                  <include name="NAnt.Core.dll" />

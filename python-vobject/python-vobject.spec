@@ -2,10 +2,9 @@
 
 Name:           python-vobject 
 Version:        0.8.1c 
-Release:        12%{?dist}
+Release:        13%{?dist}
 Summary:        A python library for manipulating vCard and vCalendar files
 
-Group:          Development/Languages
 License:        ASL 2.0
 URL:            http://vobject.skyhouseconsulting.com/ 
 Source0:        http://vobject.skyhouseconsulting.com/vobject-%{version}.tar.gz
@@ -55,6 +54,9 @@ rm -rf $RPM_BUILD_ROOT
 
 
 %changelog
+* Tue Oct 27 2015 Cjacker <cjacker@foxmail.com> - 0.8.1c-13
+- Rebuild
+
 * Tue Oct 20 2015 Cjacker <cjacker@foxmail.com>
 - Initial build.
 

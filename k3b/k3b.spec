@@ -5,7 +5,7 @@ Name:    k3b
 Summary: CD/DVD/Blu-ray burning application
 Epoch:   1
 Version: 2.9.90
-Release: 5.git%{?dist}
+Release: 6.git%{?dist}
 
 License: GPLv2+
 URL:     http://www.k3b.org/
@@ -167,6 +167,9 @@ update-mime-database %{_kf5_datadir}/mime &> /dev/null || :
 
 
 %changelog
+* Tue Oct 27 2015 Cjacker <cjacker@foxmail.com> - 1:2.9.90-6.git
+- Rebuild
+
 
 
 

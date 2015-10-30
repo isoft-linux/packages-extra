@@ -1,9 +1,8 @@
 Summary: GNUstep GUI Library 
 Name: gnustep-gui
 Version: 0.24.1
-Release: 1
+Release: 2
 Source: http://ftpmain.gnustep.org/pub/gnustep/core/%{name}-%{version}.tar.gz
-Group:  System Environment/Libraries 
 License: see COPYING
 BuildRequires: clang 
 BuildRequires: gnustep-make 
@@ -24,7 +23,6 @@ pasteboards and images.
 
 %package devel
 Summary: Development tools for gnustep-gui
-Group: Development/Libraries
 Requires: %{name} = %{version}-%{release}
 
 %description devel
@@ -41,7 +39,6 @@ make CC=clang CXX=clang++
 %install
 mkdir -p $RPM_BUILD_ROOT
 make install DESTDIR=$RPM_BUILD_ROOT
-rpmclean
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -87,6 +84,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_includedir}/gnustep/gui/*
 
 %changelog
+* Tue Oct 27 2015 Cjacker <cjacker@foxmail.com> - 0.24.1-2
+- Rebuild
+
 * Tue Dec 10 2013 Cjacker <cjacker@gmail.com>
 - first build, prepare for the new release.
 

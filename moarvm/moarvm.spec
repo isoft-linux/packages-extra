@@ -4,11 +4,10 @@
 
 Name:           moarvm
 Version:        0.%{year}.%{month}
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        Meta-model On A Runtime Virtual Machine
 
 License:        Artistic 2.0
-Group:          Development/Libraries
 URL:            http://moarvm.org
 Source0:        http://moarvm.org/releases/MoarVM-%{year}.%{month}.tar.gz
 
@@ -37,7 +36,6 @@ targets by typically:
 
 %package        devel
 Summary:        Development files for %{name}
-Group:          Development/Libraries
 Requires:       %{name}%{?_isa} = %{version}-%{release}
 
 
@@ -114,6 +112,9 @@ pod2man --section=1 --name=moar docs/moar.pod | %{__gzip} -c > $RPM_BUILD_ROOT%{
 
 
 %changelog
+* Tue Oct 27 2015 Cjacker <cjacker@foxmail.com> - 0.2015.09-2
+- Rebuild
+
 * Wed Oct 07 2015 Cjacker <cjacker@foxmail.com>
 - initial build.
 

@@ -7,10 +7,9 @@
 Summary: A program for plotting mathematical expressions and data
 Name: gnuplot
 Version: %{major}.%{minor}.%{patchlevel}
-Release: 2%{?dist}
+Release: 3%{?dist}
 # MIT .. term/PostScript/aglfn.txt
 License: gnuplot and MIT
-Group: Applications/Engineering
 URL: http://www.gnuplot.info/
 Source: http://downloads.sourceforge.net/%{name}/%{name}-%{version}.tar.gz
 Source1: gnuplot-init.el
@@ -48,7 +47,6 @@ Install gnuplot if you need a graphics package for scientific data
 representation.
 
 %package common
-Group: Applications/Engineering
 Summary: The common gnuplot parts
 #lets obsolete emacs-gnuplot until new upstream is found and package reintroduced
 Obsoletes: emacs-gnuplot <= 5.0.0-3
@@ -63,7 +61,6 @@ dimensions and in many different formats.
 This subpackage contains common parts needed for arbitrary version of gnuplot
 
 %package minimal
-Group: Applications/Engineering
 Summary: Minimal version of program for plotting mathematical expressions and data
 Requires: %{name}-common = %{version}-%{release}
 Requires(post): %{_sbindir}/alternatives
@@ -186,3 +183,6 @@ fi
 %{_bindir}/gnuplot-minimal
 
 %changelog
+* Tue Oct 27 2015 Cjacker <cjacker@foxmail.com> - 5.0.1-3
+- Rebuild
+

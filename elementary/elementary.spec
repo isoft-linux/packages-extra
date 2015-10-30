@@ -1,9 +1,8 @@
 Summary: EFL toolkit for small touchscreens
 Name: elementary
 Version: 1.15.2
-Release: 2 
+Release: 3 
 License: Lesser GPL
-Group: System Environment/Libraries
 URL: http://trac.enlightenment.org/e/wiki/Elementary
 Source: http://download.enlightenment.org/rel/libs/elementary/%{name}-%{version}.tar.gz
 Patch0: elementary-add-adwaita-icon-theme.patch
@@ -25,7 +24,6 @@ Elementary.
 
 %package devel
 Summary: Elementary headers, static libraries, documentation and test programs
-Group: System Environment/Libraries
 Requires: %{name} = %{version}
 Requires: efl-devel
 
@@ -118,6 +116,9 @@ test "x$RPM_BUILD_ROOT" != "x/" && rm -rf $RPM_BUILD_ROOT
 #
 #
 %changelog
+* Tue Oct 27 2015 Cjacker <cjacker@foxmail.com> - 1.15.2-3
+- Rebuild
+
 * Fri Oct 09 2015 Cjacker <cjacker@foxmail.com>
 - update to 1.15.2
 * Tue Aug 04 2015 Cjacker <cjacker@foxmail.com>

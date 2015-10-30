@@ -1,9 +1,8 @@
 Name:           perl-XML-DOM
 Version:        1.45
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        DOM extension to XML::Parser
 
-Group:          Development/Libraries
 License:        GPL+ or Artistic
 URL:            http://search.cpan.org/dist/XML-DOM/
 Source0:        http://www.cpan.org/authors/id/T/TJ/TJMATHER/XML-DOM-%{version}.tar.gz
@@ -73,6 +72,9 @@ rm -rf $RPM_BUILD_ROOT
 
 
 %changelog
+* Tue Oct 27 2015 Cjacker <cjacker@foxmail.com> - 1.45-2
+- Rebuild
+
 * Tue Oct 20 2015 Cjacker <cjacker@foxmail.com>
 - Initial build. 
 

@@ -1,10 +1,9 @@
 %global srcname python-dateutil
 Name:           python-dateutil15
 Version:        1.5
-Release:        8%{?dist}
+Release:        9%{?dist}
 Summary:        Powerful extensions to the standard datetime module
 
-Group:          Development/Languages
 License:        Python
 URL:            http://labix.org/python-dateutil
 Source0:        http://labix.org/download/%{srcname}/%{srcname}-%{version}.tar.gz
@@ -41,5 +40,8 @@ chmod -x %{buildroot}%{python_sitelib}/python_dateutil-%{version}-py%{python2_ve
 
 
 %changelog
+* Tue Oct 27 2015 Cjacker <cjacker@foxmail.com> - 1.5-9
+- Rebuild
+
 * Tue Oct 20 2015 Cjacker <cjacker@foxmail.com>
 - Initial build.

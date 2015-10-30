@@ -1,9 +1,8 @@
 Name:           mono-tools
 Version:        3.10 
-Release:        4 
+Release:        5 
 Summary:        Mono Development Tools 
 
-Group:          System Environment/Utils
 License:        LGPL
 Source0:        %{name}-%{version}.tar.gz
 Patch0:         mono-tools-fix-with-sdk4.patch
@@ -20,6 +19,7 @@ Requires:   gtk2-webkit-sharp
 #API documents is always in devel package
 Requires:   mono-devel
 
+BuildArch:noarch
 %description
 Mono Development Tools 
 
@@ -87,3 +87,8 @@ update-desktop-database ||:
 %{_mandir}/man1/*
 %{_mandir}/man5/*
 %{_datadir}/pixmaps/*
+
+%changelog
+* Tue Oct 27 2015 Cjacker <cjacker@foxmail.com> - 3.10-5
+- Rebuild
+

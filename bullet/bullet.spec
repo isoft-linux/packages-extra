@@ -1,9 +1,8 @@
 %global svnrev 2704
 Name: bullet
-Version: 2.83.4
-Release: 1
+Version: 2.83.6
+Release: 2
 Summary: 3D Collision Detection and Rigid Body Dynamics Library
-Group: Development/Libraries
 License: zlib and MIT and BSD
 URL: http://www.bulletphysics.com
 
@@ -20,7 +19,6 @@ and animation.
 
 %package devel
 Summary: Development files for %{name}
-Group: Development/Libraries
 Requires: %{name} = %{version}-%{release}
 
 %description devel
@@ -29,7 +27,6 @@ Development headers and libraries for %{name}.
 
 %package extras
 Summary: Extra libraries for %{name}
-Group: Development/Libraries
 License: zlib and LGPLv2+
 
 %description extras
@@ -38,7 +35,6 @@ Extra libraries for %{name}.
 
 %package extras-devel
 Summary: Development files for %{name} extras
-Group: Development/Libraries
 License: zlib and LGPLv2+
 Requires: %{name}-extras = %{version}-%{release}
 Requires: %{name}-devel = %{version}-%{release}
@@ -54,9 +50,10 @@ Development headers and libraries for %{name} extra libraries.
 %build
 mkdir build-obj
 pushd build-obj
+# Do not use clang, longtime to build.
+    #-DCMAKE_C_COMPILER=clang \
+    #-DCMAKE_CXX_COMPILER=clang++ \
 %cmake \
-    -DCMAKE_C_COMPILER=clang \
-    -DCMAKE_CXX_COMPILER=clang++ \
     -DBUILD_DEMOS=OFF \
     -DBUILD_EXTRAS=ON \
     -DCMAKE_BUILD_TYPE=NONE \
@@ -99,11 +96,9 @@ rm -rf $RPM_BUILD_ROOT
 
 
 %post -p /sbin/ldconfig
-
 %postun -p /sbin/ldconfig
 
 %post extras -p /sbin/ldconfig
-
 %postun extras -p /sbin/ldconfig
 
 
@@ -115,7 +110,6 @@ rm -rf $RPM_BUILD_ROOT
 
 %files devel
 %defattr(-,root,root,-)
-%doc Bullet_User_Manual.pdf
 %{_includedir}/bullet
 %exclude %{_includedir}/bullet/Convex*.h
 %exclude %{_includedir}/bullet/vlookup.h
@@ -132,7 +126,6 @@ rm -rf $RPM_BUILD_ROOT
 
 %files extras-devel
 %defattr(-,root,root,-)
-%doc Extras/glui/readme.txt
 %{_includedir}/bullet/Convex*.h
 %{_includedir}/bullet/vlookup.h
 #%{_includedir}/bullet/GL
@@ -141,6 +134,9 @@ rm -rf $RPM_BUILD_ROOT
 
 
 %changelog
+* Tue Oct 27 2015 Cjacker <cjacker@foxmail.com> - 2.83.4-2
+- Rebuild
+
 * Tue Dec 10 2013 Cjacker <cjacker@gmail.com>
 - first build, prepare for the new release.
 

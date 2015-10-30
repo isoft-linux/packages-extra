@@ -1,6 +1,6 @@
 Name: cargo
 Version: 0.5.0	
-Release: 2
+Release: 3
 Summary: The Rust package manager 	
 
 License: Apache	
@@ -100,6 +100,9 @@ rm -rf %{buildroot}/usr/etc
 %{_docdir}/cargo
 
 %changelog
+* Tue Oct 27 2015 Cjacker <cjacker@foxmail.com> - 0.5.0-3
+- Rebuild
+
 * Thu Sep 17 2015 Cjacker <cjacker@foxmail.com>
 - update to 0.5.0
 

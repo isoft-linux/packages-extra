@@ -1,8 +1,7 @@
 Name:    argyllcms
 Version: 1.8.2
-Release: 1%{?dist}
+Release: 2%{?dist}
 Summary: ICC compatible color management system
-Group:   User Interface/X
 License: GPLv3 and MIT
 URL:     http://gitorious.org/hargyllcms
 Source0: http://people.freedesktop.org/~hughsient/releases/hargyllcms-%{version}.tar.xz
@@ -39,7 +38,6 @@ viewer.
 
 %package doc
 Summary: Argyll CMS documentation
-Group:   User Interface/X
 # Does not really make sense without Argyll CMS itself
 Requires: %{name} = %{version}-%{release}
 
@@ -90,5 +88,8 @@ rm -f $RPM_BUILD_ROOT/lib/udev/rules.d/55-Argyll.rules
 %doc doc/*.html doc/*.jpg doc/*.txt
 
 %changelog
+* Tue Oct 27 2015 Cjacker <cjacker@foxmail.com> - 1.8.2-2
+- Rebuild
+
 * Wed Oct 21 2015 Cjacker <cjacker@foxmail.com>
 - Initial build.

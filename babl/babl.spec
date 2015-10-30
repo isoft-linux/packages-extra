@@ -1,9 +1,8 @@
 Summary:	A dynamic, any to any, pixel format conversion library
 Name:		babl
 Version:	0.1.12
-Release:    2	
+Release:    3	
 License:	LGPLv3+ and GPLv3+
-Group:		System Environment/Libraries
 URL:		http://www.gegl.org/babl/
 Source0:	ftp://ftp.gtk.org/pub/babl/0.1/%{name}-%{version}.tar.bz2
 BuildRequires:	librsvg2-devel
@@ -16,7 +15,6 @@ facilitates creation of new and uncommon ones.
 
 %package devel
 Summary:	Headers for developing programs that will use %{name}
-Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
 Requires:	pkgconfig
 
@@ -45,7 +43,6 @@ rm -rf %{buildroot}%{_libdir}/*.la
 # fix timestamps for multilib
 touch -m --reference=docs/Makefile.am babl_docs/html{,/graphics}/*
 
-rpmclean
 
 %check
 make check
@@ -70,3 +67,6 @@ rm -rf %{buildroot}
 %{_libdir}/pkgconfig/%{name}.pc
 
 %changelog
+* Tue Oct 27 2015 Cjacker <cjacker@foxmail.com> - 0.1.12-3
+- Rebuild
+

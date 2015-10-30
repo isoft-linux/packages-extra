@@ -1,8 +1,7 @@
 Name:           monodevelop
 Version:        5.9.4.5
-Release:        6 
+Release:        7 
 Summary:       	Mono Development IDE
-Group:          System Environment/Libraries
 License:        LGPL
 URL:            http://www.monodevelop.com
 #git clone git://github.com/mono/monodevelop.git
@@ -31,6 +30,7 @@ Requires:   mono-tools
 Requires:   mono-addins
 Requires:   gtk2-sharp
 
+BuildArch: noarch
 %description
 MonoDevelop is a cross-platform IDE primarily designed for C# and other .NET languages. MonoDevelop enables developers to quickly write desktop and ASP.NET Web applications on Linux, Windows and Mac OSX. MonoDevelop makes it easy for developers to port .NET applications created with Visual Studio to Linux and Mac OSX maintaining a single code base for all platforms.
 
@@ -113,3 +113,6 @@ update-desktop-database -q ||:
 %{_datadir}/mime/packages/monodevelop.xml
 
 %changelog
+* Tue Oct 27 2015 Cjacker <cjacker@foxmail.com> - 5.9.4.5-7
+- Rebuild
+

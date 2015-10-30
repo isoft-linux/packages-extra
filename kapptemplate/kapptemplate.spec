@@ -1,7 +1,7 @@
 Name:    kapptemplate
 Summary: KDE Template generator
 Version: 15.08.2
-Release: 2%{?dist}
+Release: 3%{?dist}
 
 License: GPLv2+
 URL:     https://projects.kde.org/projects/kde/kdesdk/kapptemplate
@@ -99,6 +99,9 @@ update-mime-database %{_kf5_datadir}/mime >& /dev/null ||:
 
 
 %changelog
+* Tue Oct 27 2015 Cjacker <cjacker@foxmail.com> - 15.08.2-3
+- Rebuild
+
 * Sat Oct 17 2015 Cjacker <cjacker@foxmail.com>
 - update to 15.08.2
 

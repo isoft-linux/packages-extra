@@ -1,0 +1,11 @@
+diff -Nur calligra-l10n-zh_TW-2.9.8/CMakeLists.txt calligra-l10n-zh_TW-2.9.8n/CMakeLists.txt
+--- calligra-l10n-zh_TW-2.9.8/CMakeLists.txt	2015-10-08 00:19:28.000000000 +0800
++++ calligra-l10n-zh_TW-2.9.8n/CMakeLists.txt	2015-10-21 21:12:16.718136920 +0800
+@@ -1,5 +1,7 @@
+ project(kde-i18n-zh_TW)
+ 
++cmake_minimum_required(VERSION 2.8.9)
++
+ # Search KDE installation
+ find_package(KDE4 REQUIRED)
+ find_package(Gettext REQUIRED)

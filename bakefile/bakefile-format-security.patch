@@ -1,0 +1,13 @@
+diff --git a/src/bkl_c_wrap.c b/src/bkl_c_wrap.c
+index 44f857a..2120781 100644
+--- a/src/bkl_c_wrap.c
++++ b/src/bkl_c_wrap.c
+@@ -850,7 +850,7 @@ SWIG_Python_AddErrorMsg(const char* mesg)
+     Py_DECREF(old_str);
+     Py_DECREF(value);
+   } else {
+-    PyErr_Format(PyExc_RuntimeError, mesg);
++    PyErr_Format(PyExc_RuntimeError, "%s", mesg);
+   }
+ }
+ 

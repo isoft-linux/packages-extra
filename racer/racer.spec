@@ -1,6 +1,6 @@
 Name: racer 
 Version: 1.0.0 
-Release: 3 
+Release: 4 
 Summary: Code completion for Rust
 
 License: MIT
@@ -68,6 +68,9 @@ install -m 0644 %{SOURCE11} %{buildroot}%{_datadir}/emacs/site-lisp/site-start.d
 %{_datadir}/emacs/site-lisp/site-start.d/racer-init.el
 
 %changelog
+* Tue Oct 27 2015 Cjacker <cjacker@foxmail.com> - 1.0.0-4
+- Rebuild
+
 * Fri Sep 18 2015 Cjacker <cjacker@foxmail.com>
 - rebuild with rust 1.3.0
 * Mon Aug 17 2015 Cjacker <cjacker@foxmail.com>

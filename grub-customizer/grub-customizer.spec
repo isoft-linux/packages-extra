@@ -1,6 +1,6 @@
 Name:           grub-customizer
 Version:        4.0.6
-Release:        5%{?dist}
+Release:        6%{?dist}
 Summary:        Graphical GRUB2 settings manager
 
 License:        GPLv3
@@ -34,7 +34,7 @@ proxies (script output filter), if required.
 %setup -q
 
 %build
-%cmake .
+%cmake -DCMAKE_CXX_FLAGS="-std=c++11 " .
 make %{?_smp_mflags}
 
 
@@ -72,3 +72,6 @@ fi
 
 
 %changelog
+* Tue Oct 27 2015 Cjacker <cjacker@foxmail.com> - 4.0.6-6
+- Rebuild
+

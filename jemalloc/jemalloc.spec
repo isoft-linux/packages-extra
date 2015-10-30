@@ -1,10 +1,9 @@
 Name:           jemalloc
 Version:        4.0.0
 
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        General-purpose scalable concurrent malloc implementation
 
-Group:          System Environment/Libraries
 License:        BSD
 URL:            http://www.canonware.com/jemalloc/
 Source0:        http://www.canonware.com/download/jemalloc/%{name}-%{version}.tar.bz2
@@ -24,7 +23,6 @@ This distribution is the stand-alone "portable" implementation of %{name}.
 %package devel
 Summary:        Development files for %{name}
 Requires:       %{name} = %{version}-%{release}
-Group:          Development/Libraries
 
 %description devel
 The %{name}-devel package contains libraries and header files for
@@ -81,5 +79,8 @@ rm -rf %{buildroot}
 
 
 %changelog
+* Tue Oct 27 2015 Cjacker <cjacker@foxmail.com> - 4.0.0-2
+- Rebuild
+
 * Mon Aug 31 2015 Cjacker <cjacker@foxmail.com>
 - initial build.

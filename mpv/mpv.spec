@@ -1,6 +1,6 @@
 Name: mpv	
 Version: 0.11.0
-Release: 2 
+Release: 3 
 Summary: a free, open source, and cross-platform media player
 
 License: GPLv2
@@ -23,14 +23,12 @@ Requires: luajit
 
 %package -n libmpv
 Summary:        mpv client library
-Group:          System Environment/Libraries
 
 %description -n libmpv
 mpv client library.
 
 %package -n libmpv-devel
 Summary:        Development files for lib%{name}
-Group:          Development/Libraries
 Requires:       lib%{name} = %{version}-%{release}
 
 %description -n libmpv-devel
@@ -126,6 +124,9 @@ echo "NoDisplay=true" >> %{buildroot}%{_datadir}/applications/mpv.desktop
 %{_libdir}/pkgconfig/mpv.pc
 
 %changelog
+* Tue Oct 27 2015 Cjacker <cjacker@foxmail.com> - 0.11.0-3
+- Rebuild
+
 * Thu Sep 24 2015 Cjacker <cjacker@foxmail.com>
 - update to 0.11.0
 

@@ -1,9 +1,8 @@
 Summary:	A graph based image processing framework
 Name:		gegl
 Version:	0.2.0
-Release: 	1	
+Release: 	2	
 License:	LGPLv3+ and GPLv3+
-Group:		System Environment/Libraries
 URL:		http://www.gegl.org/
 Source0:	ftp://ftp.gtk.org/pub/gegl/0.1/%{name}-%{version}.tar.bz2
 Patch0:     gegl-0.2.0-ffmpeg2-1.patch
@@ -33,7 +32,6 @@ minimal dependencies. and a simple well defined API.
 
 %package devel
 Summary:	Headers for developing programs that will use %{name}
-Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
 Requires:	pkgconfig babl-devel glib2-devel
 
@@ -77,7 +75,6 @@ make %{?_smp_mflags}
 rm -rf %{buildroot}
 make DESTDIR=%{buildroot} install INSTALL='install -p'
 
-rpmclean
 #%check
 #make check
 
@@ -102,3 +99,6 @@ rm -rf %{buildroot}
 %{_libdir}/pkgconfig/%{name}*.pc
 #%{_datadir}/gtk-doc/html/gegl/*
 %changelog
+* Tue Oct 27 2015 Cjacker <cjacker@foxmail.com> - 0.2.0-2
+- Rebuild
+

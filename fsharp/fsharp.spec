@@ -1,9 +1,8 @@
 Name:           fsharp
 Version:        3.1.1.32
-Release:        4.1
+Release:        5.1
 Summary:        F# compiler, core library and core tools
 License:        Apache-2.0
-Group:          Development/Languages/Other
 Url:            http://fsharp.github.io
 Source:         https://github.com/%{name}/%{name}/archive/%{version}.tar.gz
 Source1:        fsharp.rpmlintrc
@@ -83,3 +82,6 @@ rm -rf ${RPM_BUILD_ROOT}%{_prefix}/lib/mono/xbuild
 %{_prefix}/lib/mono/gac/policy.4.3.FSharp.Core/
 
 %changelog
+* Tue Oct 27 2015 Cjacker <cjacker@foxmail.com> - 3.1.1.32-5.1
+- Rebuild
+

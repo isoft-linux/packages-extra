@@ -1,9 +1,8 @@
 Name:	    powertop	
 Version:	2.7
-Release:	1
+Release:	2
 Summary:	PowerTOP is a Linux tool to diagnose issues with power consumption and power management.
 
-Group:      Development/Debuggers	
 License:    GPL	
 URL:		https://01.org/zh/powertop
 Source0:	%{name}-%{version}.tar.gz
@@ -33,4 +32,7 @@ make install DESTDIR=%{buildroot}
 
 
 %changelog
+* Tue Oct 27 2015 Cjacker <cjacker@foxmail.com> - 2.7-2
+- Rebuild
+
 

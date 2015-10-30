@@ -3,10 +3,9 @@
 
 Name:	    webkitgtk4
 Version:    2.10.0
-Release:    1
+Release:    2
 Summary:    GTK Port of WebKit
 
-Group:		Core/Runtime
 License:	MIT
 URL:	    http://www.webkitgtk.org
 Source0:    webkitgtk-%{version}.tar.xz
@@ -27,7 +26,6 @@ WebKit/GTK is a project aiming at porting WebKit to GTK library.
 
 %package devel
 Summary: Development files for %{name} 
-Group:   Core/Develop/Library
 Requires: %{name} = %{version}-%{release}
 %description devel
 The header files and libraries for %{name} 
@@ -60,7 +58,6 @@ pushd build
 make install DESTDIR=%{buildroot}
 popd
 
-rpmclean
 
 %files
 %{_bindir}/*
@@ -76,3 +73,8 @@ rpmclean
 %{_libdir}/pkgconfig/*.pc
 %{_datadir}/gir-?.?/*.gir
 %{_datadir}/gtk-doc/html/*
+
+%changelog
+* Tue Oct 27 2015 Cjacker <cjacker@foxmail.com> - 2.10.0-2
+- Rebuild
+

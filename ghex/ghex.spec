@@ -1,9 +1,8 @@
 Name:           ghex
 Version:        3.10.1
-Release:        1
+Release:        2
 Summary:        Binary editor for GNOME
 
-Group:          Applications/Editors
 License:        GPLv2+
 URL:            http://ftp.gnome.org/pub/GNOME/sources/ghex/
 Source0:        http://ftp.gnome.org/pub/GNOME/sources/ghex/3.10/ghex-%{version}.tar.xz
@@ -25,7 +24,6 @@ A useful tool for working with raw data.
 
 %package        devel
 Summary:        Development files for %{name}
-Group:          Development/Libraries
 Requires:       %{name} = %{version}-%{release}
 
 %description    devel
@@ -51,7 +49,6 @@ desktop-file-validate $RPM_BUILD_ROOT%{_datadir}/applications/ghex.desktop
 
 %find_lang %{name}-3.0 --all-name --with-gnome
 
-rpmclean
 
 %post
 /sbin/ldconfig
@@ -94,3 +91,6 @@ gtk3-update-icon-cache %{_datadir}/icons/HighContrast &>/dev/null || :
 
 
 %changelog
+* Tue Oct 27 2015 Cjacker <cjacker@foxmail.com> - 3.10.1-2
+- Rebuild
+

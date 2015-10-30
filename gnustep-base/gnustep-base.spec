@@ -1,10 +1,9 @@
 Summary: GNUstep Base Library 
 Name: gnustep-base
 Version: 1.24.8
-Release: 1
+Release: 2
 Source: ftp://ftp.gnustep.org/pub/gnustep/core/gnustep-base-%{version}.tar.gz
 Patch0: gnustep-fix-objc++.patch
-Group:  System Environment/Libraries 
 License: see COPYING
 BuildRequires: clang gnustep-make libobjc2-devel
 BuildRequires: libxml2-devel libxslt-devel libffi-devel
@@ -27,7 +26,6 @@ came from the OpenStep standard.
 
 %package devel
 Summary: Development tools for gnustep-base 
-Group: Development/Libraries
 Requires: %{name} = %{version}-%{release}
 
 %description devel
@@ -49,7 +47,6 @@ make install DESTDIR=$RPM_BUILD_ROOT
 mkdir -p $RPM_BUILD_ROOT%{_libdir}/GNUstep/Applications
 mkdir -p $RPM_BUILD_ROOT%{_libdir}/GNUstep/Frameworks
 mkdir -p $RPM_BUILD_ROOT%{_libdir}/GNUstep/Bundles
-rpmclean
 
 %check
 make check ||:
@@ -81,6 +78,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_includedir}/* 
 %{_libdir}/*.so
 %changelog
+* Tue Oct 27 2015 Cjacker <cjacker@foxmail.com> - 1.24.8-2
+- Rebuild
+
 * Tue Dec 10 2013 Cjacker <cjacker@gmail.com>
 - first build, prepare for the new release.
 

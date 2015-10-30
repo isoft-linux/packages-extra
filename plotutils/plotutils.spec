@@ -1,9 +1,8 @@
 Name:      plotutils
 Version:   2.6
-Release:   14
+Release:   15
 Summary:   GNU vector and raster graphics utilities and libraries
 
-Group:     Applications/Productivity
 # libxmi is GPLv2+
 # rest is GPLv3+
 License:   GPLv2+ and GPLv3+
@@ -35,7 +34,6 @@ scientific data. Many of them use libplot to export graphics
 
 %package devel
 Summary:     Headers for developing programs that will use %{name}
-Group:       Development/Libraries
 Requires:    %{name} = %{version}-%{release}
 
 
@@ -103,3 +101,6 @@ rm -rf $RPM_BUILD_ROOT%{_infodir}
 
 
 %changelog
+* Tue Oct 27 2015 Cjacker <cjacker@foxmail.com> - 2.6-15
+- Rebuild
+

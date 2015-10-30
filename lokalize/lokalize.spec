@@ -1,7 +1,7 @@
 Name:    lokalize
 Summary: Computer-aided translation system
 Version: 15.08.2
-Release: 4 
+Release: 5 
 
 License: GPLv2+ and GFDL
 URL:     https://projects.kde.org/projects/kde/kdesdk/lokalize
@@ -114,6 +114,9 @@ gtk-update-icon-cache %{_kf5_datadir}/icons/hicolor &> /dev/null || :
 
 
 %changelog
+* Tue Oct 27 2015 Cjacker <cjacker@foxmail.com> - 15.08.2-5
+- Rebuild
+
 * Tue Oct 20 2015 Cjacker <cjacker@foxmail.com>
 - tune desktop file, remove submenu.
 - add translate-toolkit require.

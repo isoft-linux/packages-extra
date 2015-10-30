@@ -1,8 +1,7 @@
 Name:		potrace
 Version:	1.12
-Release:	2%{?dist}
+Release:	3%{?dist}
 Summary:	Transform bitmaps into vector graphics
-Group:		Applications/Multimedia
 # README defines license as GPLv2+
 License:	GPLv2+
 URL:		http://potrace.sourceforge.net
@@ -35,7 +34,6 @@ the input for better tracing behavior on greyscale and color images.
 
 %package devel
 Summary:	Potrace development library and headers
-Group:		Applications/Multimedia
 Requires:	%{name} = %{version}-%{release}
 
 %description devel
@@ -44,7 +42,6 @@ This package contains the potrace development library and headers.
 
 %package doc
 Summary:	Documentation on how to use the potrace library
-Group:		Documentation
 BuildArch:	noarch
 
 %description doc
@@ -91,5 +88,8 @@ rm -rf %{buildroot}
 %doc potrace.pdf potracelib.pdf
 
 %changelog
+* Tue Oct 27 2015 Cjacker <cjacker@foxmail.com> - 1.12-3
+- Rebuild
+
 * Wed Oct 21 2015 Cjacker <cjacker@foxmail.com>
 - Initial build.

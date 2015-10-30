@@ -1,9 +1,8 @@
 %define imlib2_version 1.4.6
 Name:		tint2	
 Version:	0.11
-Release:  3 
+Release:  4 
 Summary:	tint2 is a simple panel/taskbar intentionally made for openbox3
-Group:		User Interface/X
 License:	GPLv2+
 URL:		http://code.google.com/p/tint2/	
 Source0:    tint2-%{version}.tar.bz2
@@ -55,7 +54,6 @@ install -m 0644 %{SOURCE2} $RPM_BUILD_ROOT%{_sysconfdir}/xdg/tint2/
 mkdir -p $RPM_BUILD_ROOT/etc/xdg/autostart
 install -m 0644 %{SOURCE1} $RPM_BUILD_ROOT/etc/xdg/autostart/
 
-rpmclean
 %clean
 rm -rf %{buildroot}
 
@@ -75,3 +73,6 @@ rm -rf %{buildroot}
 
 
 %changelog
+* Tue Oct 27 2015 Cjacker <cjacker@foxmail.com> - 0.11-4
+- Rebuild
+

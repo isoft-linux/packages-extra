@@ -1,0 +1,33 @@
+--- src/writer.py.original	2011-01-02 13:42:00.447184758 -0200
++++ src/writer.py	2011-01-02 14:32:13.299004275 -0200
+@@ -198,20 +198,20 @@
+     return (rulesdir, template)
+ 
+ def invoke_em(writer, file, method):
+-    import empy.em
++    import em
+     rulesdir, template = __findWriter(writer)
+     
+     filename = portautils.mktemp('bakefile')
+     
+-    empy.em.invoke(['-I','mk',
+-                    '-I','writer',
+-                    '-I','utils',
+-                    '-I','os,os.path',
+-                    '-B',
+-                    '-o',filename,
+-                    '-E','globals().update(writer.__preparedMkVars)',
+-                    '-D','RULESDIR="%s"' % rulesdir.replace('\\','\\\\'),
+-                    template])
++    em.invoke(['-I','mk',
++               '-I','writer',
++               '-I','utils',
++               '-I','os,os.path',
++               '-B',
++               '-o',filename,
++               '-E','globals().update(writer.__preparedMkVars)',
++               '-D','RULESDIR="%s"' % rulesdir.replace('\\','\\\\'),
++               template])
+     txt = __readFile(filename)
+     os.remove(filename)
+     writeFile(file, txt, method)

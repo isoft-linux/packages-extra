@@ -1,8 +1,7 @@
 Name:           jamvm
 Version:        2.0.0 
-Release:        1
+Release:        2
 Summary:        A compact Java Virtual Machine
-Group:	        Development/Languages 
 License:        GPL
 Source0:        http://icedtea.wildebeest.org/download/drops/jamvm/%{name}-%{version}.tar.gz
 Patch0:         jamvm-fix-musl.patch
@@ -17,7 +16,6 @@ A compact Java Virtual Machine
 
 %package        devel
 Summary:        Development files for %{name}
-Group:          Development/Libraries
 Requires:       %{name} = %{version}-%{release}
 
 %description    devel
@@ -53,7 +51,6 @@ mv $RPM_BUILD_ROOT%{_libdir}/libjvm.a $RPM_BUILD_ROOT%{_libdir}/jamvm
 
 rm -rf $RPM_BUILD_ROOT%{_includedir}
 
-rpmclean
 
 %check
 make check
@@ -71,3 +68,8 @@ rm -rf $RPM_BUILD_ROOT
 %files devel
 %defattr(-,root,root,-)
 %{_libdir}/jamvm/*.a
+
+%changelog
+* Tue Oct 27 2015 Cjacker <cjacker@foxmail.com> - 2.0.0-2
+- Rebuild
+

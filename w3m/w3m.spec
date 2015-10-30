@@ -8,7 +8,7 @@
 
 Name:     w3m
 Version:  0.5.3
-Release:  22%{?dist}
+Release:  23%{?dist}
 # UCD is added for EastAsianWidth.txt source
 License:  MIT and UCD
 URL:      http://w3m.sourceforge.net/
@@ -173,3 +173,6 @@ rm -rf doc/CVS doc-jp/CVS
 %{_libexecdir}/w3m/w3mimgdisplay
 
 %changelog
+* Tue Oct 27 2015 Cjacker <cjacker@foxmail.com> - 0.5.3-23
+- Rebuild
+

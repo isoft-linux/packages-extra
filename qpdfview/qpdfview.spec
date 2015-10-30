@@ -1,6 +1,6 @@
 Name:		qpdfview
 Version:	0.4.15
-Release:	1%{?dist}
+Release:	2%{?dist}
 License:	GPLv2+
 Summary:	Tabbed PDF Viewer
 Url:		https://launchpad.net/qpdfview
@@ -58,3 +58,6 @@ rm -f %{buildroot}/%{_datadir}/%{name}/%{name}_ast.qm
 %{_mandir}/man?/*
 
 %changelog
+* Tue Oct 27 2015 Cjacker <cjacker@foxmail.com> - 0.4.15-2
+- Rebuild
+

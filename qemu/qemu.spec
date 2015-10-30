@@ -5,9 +5,8 @@
 Summary: QEMU is a FAST! processor emulator
 Name: qemu
 Version: 2.4.0
-Release: 1
+Release: 2
 License: GPLv2+ and LGPLv2+ and BSD
-Group: Development/Tools
 URL: http://www.qemu.org/
 
 Source0: qemu-%{version}.tar.bz2
@@ -195,6 +194,9 @@ getent passwd qemu >/dev/null || \
 #%{_datadir}/locale/*
 
 %changelog
+* Tue Oct 27 2015 Cjacker <cjacker@foxmail.com> - 2.4.0-2
+- Rebuild
+
 * Wed Aug 12 2015 Cjacker <cjacker@foxmail.com>
 - update to 2.4.0
 * Sun Aug 09 2015 Cjacker <cjacker@foxmail.com>

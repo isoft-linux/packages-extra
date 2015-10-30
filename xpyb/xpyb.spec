@@ -1,9 +1,8 @@
 Name:	    xpyb	
 Version:	1.3.1
-Release:	1
+Release:	2
 Summary:	XCB Python binding
 
-Group:		GUI/Runtime/Library
 License:    Public Domain	
 URL:	    http://xcb.freedesktop.org	
 Source0:	http://xcb.freedesktop.org/dist/xpyb-%{version}.tar.bz2
@@ -16,7 +15,6 @@ Requires:	libxcb
 
 %package        devel
 Summary:        Development files for %{name}
-Group:          Development/Libraries
 Requires:       %{name} = %{version}-%{release}
 
 %description    devel
@@ -35,7 +33,6 @@ make %{?_smp_mflags}
 make install DESTDIR=%{buildroot}
 
 rm -rf %{buildroot}%{_docdir}
-rpmclean
 
 %files
 %{python_sitearch}/xcb
@@ -44,4 +41,7 @@ rpmclean
 %{_includedir}/xpyb.h
 %{_libdir}/pkgconfig/xpyb.pc
 %changelog
+* Tue Oct 27 2015 Cjacker <cjacker@foxmail.com> - 1.3.1-2
+- Rebuild
+
 

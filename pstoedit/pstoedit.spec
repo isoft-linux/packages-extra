@@ -1,9 +1,8 @@
 Name:           pstoedit
 Version:        3.70
-Release:        3
+Release:        4
 Summary:        Translates PostScript and PDF graphics into other vector formats
 
-Group:          Applications/Productivity
 License:        GPLv2+
 URL:            http://www.pstoedit.net/
 Source0:        http://downloads.sourceforge.net/pstoedit/pstoedit-%{version}.tar.gz
@@ -27,7 +26,6 @@ drivers
 
 %package devel
 Summary:        Headers for developing programs that will use %{name}
-Group:          Development/Libraries
 Requires:       %{name} = %{version}-%{release}
 Requires:       libpng-devel
 
@@ -84,3 +82,6 @@ find $RPM_BUILD_ROOT -type f -name "*.la" -exec rm -f {} ';'
 
 
 %changelog
+* Tue Oct 27 2015 Cjacker <cjacker@foxmail.com> - 3.70-4
+- Rebuild
+

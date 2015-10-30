@@ -1,6 +1,6 @@
 Name: radare2
 Version: 0.9.9
-Release: 2%{?dist}
+Release: 3%{?dist}
 Summary: %{name} reverse engineering framework
 License: GPLv3+ 
 URL: http://www.radare.org
@@ -68,5 +68,8 @@ chmod 0755 %{buildroot}/%{_libdir}/%{name}/%{version}/*
 %{_datarootdir}/%{name}
 
 %changelog
+* Tue Oct 27 2015 Cjacker <cjacker@foxmail.com> - 0.9.9-3
+- Rebuild
+
 * Sat Oct 10 2015 Cjacker <cjacker@foxmail.com>
 - Initial package

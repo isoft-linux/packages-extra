@@ -3,10 +3,9 @@
 
 Name:           iwidgets
 Version:        4.0.2
-Release:        17%{?dist}
+Release:        18%{?dist}
 Summary:        A set of useful widgets based on itcl and itk
 
-Group:          Development/Libraries
 License:        MIT
 URL:            http://incrtcl.sourceforge.net/
 Source0:        http://downloads.sourceforge.net/sourceforge/incrtcl/iwidgets4.0.1.tar.gz
@@ -73,3 +72,6 @@ rm %{buildroot}/%{_mandir}/mann/datefield.n
 %doc README license.terms doc/iwidgets.ps
 
 %changelog
+* Tue Oct 27 2015 Cjacker <cjacker@foxmail.com> - 4.0.2-18
+- Rebuild
+

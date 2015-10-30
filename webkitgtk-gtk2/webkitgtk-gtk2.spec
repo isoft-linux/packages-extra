@@ -1,8 +1,7 @@
 Name:		webkitgtk-gtk2
 Version:    2.4.9
-Release:	1
+Release:	2
 Summary:	GTK+ Web content engine library
-Group:		Development/Libraries
 License:	LGPLv2+ and BSD
 URL:		http://www.webkitgtk.org/
 
@@ -39,7 +38,6 @@ GTK+ platform.
 
 %package	devel
 Summary:	Development files for %{name}
-Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
 Requires:	pkgconfig
 Requires:	gtk2-devel
@@ -92,7 +90,6 @@ mv $RPM_BUILD_ROOT/%{_datadir}/gtk-doc/html/webkitgtk $RPM_BUILD_ROOT/%{_datadir
 
 %find_lang WebKitGTK-2.0
 
-rpmclean
 %clean
 rm -rf %{buildroot}
 
@@ -120,3 +117,6 @@ rm -rf %{buildroot}
 
 
 %changelog
+* Tue Oct 27 2015 Cjacker <cjacker@foxmail.com> - 2.4.9-2
+- Rebuild
+

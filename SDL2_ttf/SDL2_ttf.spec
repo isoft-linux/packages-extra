@@ -1,9 +1,8 @@
 Name:		SDL2_ttf
 Version:    2.0.12
-Release:	1
+Release:	2
 Summary:	Truetype font library for SDL2
 
-Group:		System Environment/Libraries
 License:	LGPLv2+
 URL:		http://www.libsdl.org/projects/SDL2_ttf/
 Source0:	http://www.libsdl.org/projects/%{name}/release/%{name}-%{version}.tar.gz
@@ -19,7 +18,6 @@ device.  This library is a wrapper around the excellent FreeType 2.0 library.
 
 %package devel
 Summary:	Development files for %{name}
-Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
 Requires:	SDL2-devel >= 1.2.10
 Requires:	pkgconfig
@@ -49,7 +47,6 @@ mkdir -p $RPM_BUILD_ROOT%{_bindir}
 ./libtool --mode=install /usr/bin/install showfont $RPM_BUILD_ROOT%{_bindir}
 
 find $RPM_BUILD_ROOT -name '*.la' -exec rm -f {} ';'
-rpmclean
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -75,6 +72,9 @@ rm -rf $RPM_BUILD_ROOT
 
 
 %changelog
+* Tue Oct 27 2015 Cjacker <cjacker@foxmail.com> - 2.0.12-2
+- Rebuild
+
 * Tue Dec 10 2013 Cjacker <cjacker@gmail.com>
 - first build, prepare for the new release.
 

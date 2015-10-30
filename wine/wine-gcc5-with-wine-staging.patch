@@ -1,6 +1,6 @@
-diff -Nur wine-1.7.49/dlls/gdi32/font.c wine-1.7.49n/dlls/gdi32/font.c
---- wine-1.7.49/dlls/gdi32/font.c	2015-08-07 15:56:07.000000000 +0000
-+++ wine-1.7.49n/dlls/gdi32/font.c	2015-08-12 13:55:20.095669315 +0000
+diff -Nur wine-1.7.53/dlls/gdi32/font.c wine-1.7.53n/dlls/gdi32/font.c
+--- wine-1.7.53/dlls/gdi32/font.c	2015-10-16 22:02:06.000000000 +0800
++++ wine-1.7.53n/dlls/gdi32/font.c	2015-10-22 23:28:24.502849753 +0800
 @@ -1297,7 +1297,7 @@
   * Return the size of the string as it would be if it was output properly by
   * e.g. TextOut.
@@ -10,10 +10,10 @@ diff -Nur wine-1.7.49/dlls/gdi32/font.c wine-1.7.49n/dlls/gdi32/font.c
                                     LPINT nfit, LPINT dxs, LPSIZE size )
  {
      DC *dc;
-diff -Nur wine-1.7.49/dlls/gdi32/freetype.c wine-1.7.49n/dlls/gdi32/freetype.c
---- wine-1.7.49/dlls/gdi32/freetype.c	2015-08-07 15:56:07.000000000 +0000
-+++ wine-1.7.49n/dlls/gdi32/freetype.c	2015-08-12 13:55:20.090669315 +0000
-@@ -6432,7 +6432,7 @@
+diff -Nur wine-1.7.53/dlls/gdi32/freetype.c wine-1.7.53n/dlls/gdi32/freetype.c
+--- wine-1.7.53/dlls/gdi32/freetype.c	2015-10-22 23:27:52.904572032 +0800
++++ wine-1.7.53n/dlls/gdi32/freetype.c	2015-10-22 23:28:24.503849731 +0800
+@@ -6574,7 +6574,7 @@
  
  static const BYTE masks[8] = {0x80, 0x40, 0x20, 0x10, 0x08, 0x04, 0x02, 0x01};
  
@@ -22,9 +22,9 @@ diff -Nur wine-1.7.49/dlls/gdi32/freetype.c wine-1.7.49n/dlls/gdi32/freetype.c
                                 LPGLYPHMETRICS lpgm, ABC *abc, DWORD buflen, LPVOID buf,
                                 const MAT2* lpmat)
  {
-diff -Nur wine-1.7.49/dlls/gdi32/mapping.c wine-1.7.49n/dlls/gdi32/mapping.c
---- wine-1.7.49/dlls/gdi32/mapping.c	2015-08-07 15:56:07.000000000 +0000
-+++ wine-1.7.49n/dlls/gdi32/mapping.c	2015-08-12 13:55:20.095669315 +0000
+diff -Nur wine-1.7.53/dlls/gdi32/mapping.c wine-1.7.53n/dlls/gdi32/mapping.c
+--- wine-1.7.53/dlls/gdi32/mapping.c	2015-10-16 22:02:06.000000000 +0800
++++ wine-1.7.53n/dlls/gdi32/mapping.c	2015-10-22 23:28:24.504849708 +0800
 @@ -324,7 +324,7 @@
  /***********************************************************************
   *           DPtoLP    (GDI32.@)
@@ -43,9 +43,9 @@ diff -Nur wine-1.7.49/dlls/gdi32/mapping.c wine-1.7.49n/dlls/gdi32/mapping.c
  {
      DC * dc = get_dc_ptr( hdc );
      if (!dc) return FALSE;
-diff -Nur wine-1.7.49/dlls/kernel32/process.c wine-1.7.49n/dlls/kernel32/process.c
---- wine-1.7.49/dlls/kernel32/process.c	2015-08-12 13:54:26.946670267 +0000
-+++ wine-1.7.49n/dlls/kernel32/process.c	2015-08-12 13:55:47.903668817 +0000
+diff -Nur wine-1.7.53/dlls/kernel32/process.c wine-1.7.53n/dlls/kernel32/process.c
+--- wine-1.7.53/dlls/kernel32/process.c	2015-10-22 23:27:53.708553614 +0800
++++ wine-1.7.53n/dlls/kernel32/process.c	2015-10-22 23:28:24.504849708 +0800
 @@ -1088,7 +1088,7 @@
   *
   * Startup routine of a new process. Runs on the new process stack.
@@ -55,9 +55,9 @@ diff -Nur wine-1.7.49/dlls/kernel32/process.c wine-1.7.49n/dlls/kernel32/process
  {
      PEB *peb = NtCurrentTeb()->Peb;
  
-diff -Nur wine-1.7.49/dlls/kernel32/volume.c wine-1.7.49n/dlls/kernel32/volume.c
---- wine-1.7.49/dlls/kernel32/volume.c	2015-08-12 13:54:27.457670258 +0000
-+++ wine-1.7.49n/dlls/kernel32/volume.c	2015-08-12 13:55:20.081669316 +0000
+diff -Nur wine-1.7.53/dlls/kernel32/volume.c wine-1.7.53n/dlls/kernel32/volume.c
+--- wine-1.7.53/dlls/kernel32/volume.c	2015-10-22 23:27:54.021546443 +0800
++++ wine-1.7.53n/dlls/kernel32/volume.c	2015-10-22 23:28:24.504849708 +0800
 @@ -713,7 +713,7 @@
  /***********************************************************************
   *           GetVolumeInformationW   (KERNEL32.@)
@@ -67,10 +67,10 @@ diff -Nur wine-1.7.49/dlls/kernel32/volume.c wine-1.7.49n/dlls/kernel32/volume.c
                                     DWORD *serial, DWORD *filename_len, DWORD *flags,
                                     LPWSTR fsname, DWORD fsname_len )
  {
-diff -Nur wine-1.7.49/dlls/ntdll/directory.c wine-1.7.49n/dlls/ntdll/directory.c
---- wine-1.7.49/dlls/ntdll/directory.c	2015-08-12 13:54:27.525670257 +0000
-+++ wine-1.7.49n/dlls/ntdll/directory.c	2015-08-12 13:55:20.081669316 +0000
-@@ -3109,7 +3109,7 @@
+diff -Nur wine-1.7.53/dlls/ntdll/directory.c wine-1.7.53n/dlls/ntdll/directory.c
+--- wine-1.7.53/dlls/ntdll/directory.c	2015-10-22 23:27:54.064545458 +0800
++++ wine-1.7.53n/dlls/ntdll/directory.c	2015-10-22 23:28:24.505849685 +0800
+@@ -3119,7 +3119,7 @@
   * element doesn't have to exist; in that case STATUS_NO_SUCH_FILE is
   * returned, but the unix name is still filled in properly.
   */
@@ -79,10 +79,10 @@ diff -Nur wine-1.7.49/dlls/ntdll/directory.c wine-1.7.49n/dlls/ntdll/directory.c
                                            UINT disposition, BOOLEAN check_case )
  {
      static const WCHAR unixW[] = {'u','n','i','x'};
-diff -Nur wine-1.7.49/dlls/ntdll/sec.c wine-1.7.49n/dlls/ntdll/sec.c
---- wine-1.7.49/dlls/ntdll/sec.c	2015-08-07 15:56:07.000000000 +0000
-+++ wine-1.7.49n/dlls/ntdll/sec.c	2015-08-12 13:55:20.080669316 +0000
-@@ -1726,7 +1726,7 @@
+diff -Nur wine-1.7.53/dlls/ntdll/sec.c wine-1.7.53n/dlls/ntdll/sec.c
+--- wine-1.7.53/dlls/ntdll/sec.c	2015-10-22 23:27:53.732553064 +0800
++++ wine-1.7.53n/dlls/ntdll/sec.c	2015-10-22 23:28:24.505849685 +0800
+@@ -1739,7 +1739,7 @@
   * the native function returns something like
   * "S-1-5-21-0000000000-000000000-0000000000-500";
   */
@@ -91,21 +91,21 @@ diff -Nur wine-1.7.49/dlls/ntdll/sec.c wine-1.7.49n/dlls/ntdll/sec.c
         PUNICODE_STRING String,
         PSID pSid,
         BOOLEAN AllocateString)
-diff -Nur wine-1.7.49/dlls/ntdll/virtual.c wine-1.7.49n/dlls/ntdll/virtual.c
---- wine-1.7.49/dlls/ntdll/virtual.c	2015-08-12 13:54:28.686670236 +0000
-+++ wine-1.7.49n/dlls/ntdll/virtual.c	2015-08-12 13:55:20.082669316 +0000
-@@ -2348,7 +2348,7 @@
-  *             NtQueryVirtualMemory   (NTDLL.@)
+diff -Nur wine-1.7.53/dlls/ntdll/virtual.c wine-1.7.53n/dlls/ntdll/virtual.c
+--- wine-1.7.53/dlls/ntdll/virtual.c	2015-10-22 23:27:54.879526791 +0800
++++ wine-1.7.53n/dlls/ntdll/virtual.c	2015-10-22 23:29:12.445759622 +0800
+@@ -2335,7 +2335,7 @@
   *             ZwQueryVirtualMemory   (NTDLL.@)
   */
--NTSTATUS WINAPI NtQueryVirtualMemory( HANDLE process, LPCVOID addr,
-+NTSTATUS WINAPI __attribute__((optimize("O0"))) NtQueryVirtualMemory( HANDLE process, LPCVOID addr,
+ DEFINE_SYSCALL_ENTRYPOINT( NtQueryVirtualMemory, 6 );
+-NTSTATUS WINAPI SYSCALL(NtQueryVirtualMemory)( HANDLE process, LPCVOID addr,
++NTSTATUS WINAPI __attribute__((optimize("O0"))) SYSCALL(NtQueryVirtualMemory)( HANDLE process, LPCVOID addr,
                                        MEMORY_INFORMATION_CLASS info_class, PVOID buffer,
                                        SIZE_T len, SIZE_T *res_len )
  {
-diff -Nur wine-1.7.49/dlls/rpcrt4/rpc_binding.c wine-1.7.49n/dlls/rpcrt4/rpc_binding.c
---- wine-1.7.49/dlls/rpcrt4/rpc_binding.c	2015-08-07 15:56:07.000000000 +0000
-+++ wine-1.7.49n/dlls/rpcrt4/rpc_binding.c	2015-08-12 13:55:20.094669315 +0000
+diff -Nur wine-1.7.53/dlls/rpcrt4/rpc_binding.c wine-1.7.53n/dlls/rpcrt4/rpc_binding.c
+--- wine-1.7.53/dlls/rpcrt4/rpc_binding.c	2015-10-16 22:02:06.000000000 +0800
++++ wine-1.7.53n/dlls/rpcrt4/rpc_binding.c	2015-10-22 23:28:24.506849662 +0800
 @@ -984,7 +984,7 @@
  /***********************************************************************
   *             RpcBindingCopy (RPCRT4.@)
@@ -115,9 +115,9 @@ diff -Nur wine-1.7.49/dlls/rpcrt4/rpc_binding.c wine-1.7.49n/dlls/rpcrt4/rpc_bin
    RPC_BINDING_HANDLE SourceBinding,
    RPC_BINDING_HANDLE* DestinationBinding)
  {
-diff -Nur wine-1.7.49/dlls/user32/win.c wine-1.7.49n/dlls/user32/win.c
---- wine-1.7.49/dlls/user32/win.c	2015-08-12 13:54:29.119670228 +0000
-+++ wine-1.7.49n/dlls/user32/win.c	2015-08-12 13:55:20.096669315 +0000
+diff -Nur wine-1.7.53/dlls/user32/win.c wine-1.7.53n/dlls/user32/win.c
+--- wine-1.7.53/dlls/user32/win.c	2015-10-22 23:27:55.249518317 +0800
++++ wine-1.7.53n/dlls/user32/win.c	2015-10-22 23:28:24.507849640 +0800
 @@ -2960,7 +2960,7 @@
  /*****************************************************************
   *		SetParent (USER32.@)
@@ -127,10 +127,10 @@ diff -Nur wine-1.7.49/dlls/user32/win.c wine-1.7.49n/dlls/user32/win.c
  {
      HWND full_handle;
      HWND old_parent = 0;
-diff -Nur wine-1.7.49/dlls/winex11.drv/window.c wine-1.7.49n/dlls/winex11.drv/window.c
---- wine-1.7.49/dlls/winex11.drv/window.c	2015-08-12 13:54:32.317670171 +0000
-+++ wine-1.7.49n/dlls/winex11.drv/window.c	2015-08-12 13:55:20.088669315 +0000
-@@ -1312,7 +1312,7 @@
+diff -Nur wine-1.7.53/dlls/winex11.drv/window.c wine-1.7.53n/dlls/winex11.drv/window.c
+--- wine-1.7.53/dlls/winex11.drv/window.c	2015-10-22 23:27:56.923479983 +0800
++++ wine-1.7.53n/dlls/winex11.drv/window.c	2015-10-22 23:28:24.507849640 +0800
+@@ -1313,7 +1313,7 @@
   *
   * Synchronize the X client window position with the Windows one
   */
@@ -139,10 +139,10 @@ diff -Nur wine-1.7.49/dlls/winex11.drv/window.c wine-1.7.49n/dlls/winex11.drv/wi
                                    const RECT *old_client_rect, const RECT *old_whole_rect )
  {
      int mask = 0;
-diff -Nur wine-1.7.49/programs/winecfg/appdefaults.c wine-1.7.49n/programs/winecfg/appdefaults.c
---- wine-1.7.49/programs/winecfg/appdefaults.c	2015-08-07 15:56:07.000000000 +0000
-+++ wine-1.7.49n/programs/winecfg/appdefaults.c	2015-08-12 13:55:20.097669315 +0000
-@@ -77,7 +77,7 @@
+diff -Nur wine-1.7.53/programs/winecfg/appdefaults.c wine-1.7.53n/programs/winecfg/appdefaults.c
+--- wine-1.7.53/programs/winecfg/appdefaults.c	2015-10-16 22:02:06.000000000 +0800
++++ wine-1.7.53n/programs/winecfg/appdefaults.c	2015-10-22 23:28:24.508849617 +0800
+@@ -78,7 +78,7 @@
  static const char szKeyNT[] = "Software\\Microsoft\\Windows NT\\CurrentVersion";
  static const char szKeyProdNT[] = "System\\CurrentControlSet\\Control\\ProductOptions";
  
@@ -151,9 +151,9 @@ diff -Nur wine-1.7.49/programs/winecfg/appdefaults.c wine-1.7.49n/programs/winec
  {
      int i, best = -1, platform, major, minor = 0, build = 0;
      char *p, *ver, *type = NULL;
-diff -Nur wine-1.7.49/programs/winemenubuilder/winemenubuilder.c wine-1.7.49n/programs/winemenubuilder/winemenubuilder.c
---- wine-1.7.49/programs/winemenubuilder/winemenubuilder.c	2015-08-12 13:54:31.904670178 +0000
-+++ wine-1.7.49n/programs/winemenubuilder/winemenubuilder.c	2015-08-12 13:55:20.098669315 +0000
+diff -Nur wine-1.7.53/programs/winemenubuilder/winemenubuilder.c wine-1.7.53n/programs/winemenubuilder/winemenubuilder.c
+--- wine-1.7.53/programs/winemenubuilder/winemenubuilder.c	2015-10-22 23:27:56.692485273 +0800
++++ wine-1.7.53n/programs/winemenubuilder/winemenubuilder.c	2015-10-22 23:28:24.508849617 +0800
 @@ -2323,7 +2323,7 @@
      return ret;
  }

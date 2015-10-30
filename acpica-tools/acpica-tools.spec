@@ -1,9 +1,8 @@
 Name:           acpica-tools
 Version:        20150619
-Release:        5
+Release:        6
 Summary:        ACPICA tools for the development and debug of ACPI tables
 
-Group:          Development/Languages
 License:        GPLv2
 URL:            https://www.acpica.org/
 
@@ -133,3 +132,6 @@ mv %{buildroot}%{_mandir}/man1/acpidump.1 \
 
 
 %changelog
+* Tue Oct 27 2015 Cjacker <cjacker@foxmail.com> - 20150619-6
+- Rebuild
+

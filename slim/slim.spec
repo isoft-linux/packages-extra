@@ -1,8 +1,7 @@
 Name:           slim
 Version:        1.3.6
-Release:        1 
+Release:        2 
 Summary:        Simple Login Manager
-Group:          User Interface/X
 License:        GPLv2+
 URL:            http://slim.berlios.de/
 Source0:        http://download.berlios.de/slim/%{name}-%{version}.tar.gz
@@ -88,4 +87,9 @@ install -m 644 %{SOURCE7} %{buildroot}%{_unitdir}/%{name}.service
 %{_libdir}/lib%{name}.so.%{version}
 
 %config(noreplace) %{_sysconfdir}/tmpfiles.d/%{name}.conf
+
+
+%changelog
+* Tue Oct 27 2015 Cjacker <cjacker@foxmail.com> - 1.3.6-2
+- Rebuild
 

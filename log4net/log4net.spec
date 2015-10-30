@@ -4,9 +4,8 @@
 Name:	 	log4net
 URL:		http://logging.apache.org/log4net/
 License:	ASL 2.0
-Group:		System Environment/Libraries
 Version:	1.2.13
-Release:	5%{?dist}
+Release:	6%{?dist}
 Summary:	A .NET framework for logging
 Source:		http://mirror.reverse.net/pub/apache/logging/log4net/source/%{name}-%{version}-src.zip
 
@@ -25,7 +24,6 @@ framework to the .NET runtime
 
 %package devel
 Summary:	A .NET framework for logging
-Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
 Requires:	pkgconfig
 
@@ -84,3 +82,6 @@ gacutil -i build/bin/net/2.0/debug/log4net.dll -f -package log4net -root ${RPM_B
 %{_libdir}/pkgconfig/log4net.pc
 
 %changelog
+* Tue Oct 27 2015 Cjacker <cjacker@foxmail.com> - 1.2.13-6
+- Rebuild
+

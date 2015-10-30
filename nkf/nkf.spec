@@ -1,7 +1,7 @@
 Name:		nkf
 Epoch:		1
 Version:	2.1.3
-Release:	7%{?dist}
+Release:	8%{?dist}
 License:	BSD
 URL:		http://nkf.sourceforge.jp/
 Source0:	http://osdn.dl.sourceforge.jp/nkf/59912/%{name}-%{version}.tar.gz
@@ -19,7 +19,6 @@ EUC.
 
 %package -n perl-NKF
 Summary:	Perl extension for Network Kanji Filter
-Group:		Applications/Text
 Requires:	perl(:MODULE_COMPAT_%(eval "`%{__perl} -V:version`"; echo $version))
 
 %description -n perl-NKF
@@ -75,3 +74,6 @@ make test
 %{_mandir}/man3/NKF.3pm.gz
 
 %changelog
+* Tue Oct 27 2015 Cjacker <cjacker@foxmail.com> - 1:2.1.3-8
+- Rebuild
+

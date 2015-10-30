@@ -1,10 +1,9 @@
 Summary: 		scrot is a commandline screen capture util like "import", but using imlib2
 Name:          	scrot 
 Version:        0.8.13
-Release:       	1 
+Release:       	2 
 License:       	GPL
 URL:            http://scrot.sourcearchive.com/ 
-Group:          User Interface/Desktops 
 Source0:        http://scrot.sourcearchive.com/downloads/0.8-13/scrot_0.8.orig.tar.gz
 Source1:        http://scrot.sourcearchive.com/downloads/0.8-13/scrot_0.8-13.debian.tar.gz
  
@@ -41,4 +40,9 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(-,root,root,0755)
 %{_bindir}/scrot
 %{_mandir}/man1/scrot.1*
+
+
+%changelog
+* Tue Oct 27 2015 Cjacker <cjacker@foxmail.com> - 0.8.13-2
+- Rebuild
 

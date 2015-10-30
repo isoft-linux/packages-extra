@@ -3,7 +3,7 @@
 Name: libwpd
 Summary: A library for import of WordPerfect documents
 Version: 0.10.0
-Release: 5%{?dist}
+Release: 6%{?dist}
 Source: http://downloads.sourceforge.net/%{name}/%{name}-%{version}.tar.xz
 URL: http://libwpd.sf.net/
 License: LGPLv2+ or MPLv2.0
@@ -92,5 +92,8 @@ install -m 0644 wpd2*.1 %{buildroot}/%{_mandir}/man1
 %doc docs/%{name}.png
 
 %changelog
+* Tue Oct 27 2015 Cjacker <cjacker@foxmail.com> - 0.10.0-6
+- Rebuild
+
 * Wed Oct 21 2015 Cjacker <cjacker@foxmail.com>
 - Initial build.

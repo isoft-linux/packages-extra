@@ -1,0 +1,505 @@
+--- FreeImage/FreeImage.2003.vcproj	2007-11-15 20:08:30.000000000 +0100
++++ FreeImage.new/FreeImage.2003.vcproj	2008-03-18 13:19:41.000000000 +0100
+@@ -206,9 +206,6 @@
+ 					RelativePath=".\Source\FreeImage\PluginEXR.cpp">
+ 				</File>
+ 				<File
+-					RelativePath="Source\FreeImage\PluginG3.cpp">
+-				</File>
+-				<File
+ 					RelativePath="Source\FreeImage\PluginGIF.cpp">
+ 				</File>
+ 				<File
+@@ -442,9 +439,6 @@
+ 				RelativePath="Source\FreeImageToolkit\Flip.cpp">
+ 			</File>
+ 			<File
+-				RelativePath="Source\FreeImageToolkit\JPEGTransform.cpp">
+-			</File>
+-			<File
+ 				RelativePath=".\Source\FreeImageToolkit\MultigridPoissonSolver.cpp">
+ 			</File>
+ 			<File
+--- FreeImage/Makefile.gnu	2007-08-25 18:44:24.000000000 +0200
++++ FreeImage.new/Makefile.gnu	2008-03-18 13:21:55.000000000 +0100
+@@ -14,8 +14,8 @@
+ # Converts cr/lf to just lf
+ DOS2UNIX = dos2unix
+ 
+-COMPILERFLAGS = -O3 -fPIC -fexceptions -fvisibility=hidden
+-LIBRARIES = -lstdc++
++COMPILERFLAGS = -O3 -fPIC -fexceptions -fvisibility=hidden `pkgconfig --cflags libopenjpeg` -I/usr/include/OpenEXR
++LIBRARIES = -lstdc++ -lz -lmng -lpng -ltiff -ljpeg `pkg-config --libs libopenjpeg` `pkg-config --libs OpenEXR`
+ 
+ MODULES = $(SRCS:.c=.o)
+ MODULES := $(MODULES:.cpp=.o)
+--- FreeImage/Source/FreeImage/J2KHelper.cpp	2007-05-08 20:04:18.000000000 +0200
++++ FreeImage.new/Source/FreeImage/J2KHelper.cpp	2008-03-13 22:06:02.000000000 +0100
+@@ -21,7 +21,7 @@
+ 
+ #include "FreeImage.h"
+ #include "Utilities.h"
+-#include "../LibOpenJPEG/openjpeg.h"
++#include <openjpeg.h>
+ 
+ /**
+ Divide an integer by a power of 2 and round upwards
+--- FreeImage/Source/FreeImage/Plugin.cpp	2007-05-08 20:04:18.000000000 +0200
++++ FreeImage.new/Source/FreeImage/Plugin.cpp	2008-03-18 13:24:16.000000000 +0100
+@@ -248,7 +248,12 @@
+ 			s_plugins->AddNode(InitDDS);
+ 	        s_plugins->AddNode(InitGIF);
+ 	        s_plugins->AddNode(InitHDR);
++/* The G3 fax format plugin is deliberately disabled in the Fedora build of
++   FreeImage as it requires that FreeImage uses a private copy of libtiff
++   which is a no no because of security reasons */
++#if 0
+ 			s_plugins->AddNode(InitG3);
++#endif
+ 			s_plugins->AddNode(InitSGI);
+ 			s_plugins->AddNode(InitEXR);
+ 			s_plugins->AddNode(InitJ2K);
+--- FreeImage/Source/FreeImage/PluginBMP.cpp	2007-10-21 16:50:08.000000000 +0200
++++ FreeImage.new/Source/FreeImage/PluginBMP.cpp	2008-03-12 23:14:51.000000000 +0100
+@@ -189,6 +189,8 @@
+ #endif
+ }
+ 
++#define MIN(a, b) ( ((a) < (b))? (a):(b) )
++
+ /**
+ Load image pixels for 4-bit RLE compressed dib
+ @param io FreeImage IO
+--- FreeImage/Source/FreeImage/PluginEXR.cpp	2007-05-08 20:04:18.000000000 +0200
++++ FreeImage.new/Source/FreeImage/PluginEXR.cpp	2008-03-13 20:36:07.000000000 +0100
+@@ -21,15 +21,15 @@
+ 
+ #include "FreeImage.h"
+ #include "Utilities.h"
+-#include "../OpenEXR/IlmImf/ImfIO.h"
+-#include "../OpenEXR/Iex/Iex.h"
+-#include "../OpenEXR/IlmImf/ImfOutputFile.h"
+-#include "../OpenEXR/IlmImf/ImfInputFile.h"
+-#include "../OpenEXR/IlmImf/ImfRgbaFile.h"
+-#include "../OpenEXR/IlmImf/ImfChannelList.h"
+-#include "../OpenEXR/IlmImf/ImfRgba.h"
+-#include "../OpenEXR/IlmImf/ImfArray.h"
+-#include "../OpenEXR/Half/half.h"
++#include <ImfIO.h>
++#include <Iex.h>
++#include <ImfOutputFile.h>
++#include <ImfInputFile.h>
++#include <ImfRgbaFile.h>
++#include <ImfChannelList.h>
++#include <ImfRgba.h>
++#include <ImfArray.h>
++#include <half.h>
+ 
+ 
+ // ==========================================================
+--- FreeImage/Source/FreeImage/PluginJ2K.cpp	2007-05-08 20:04:18.000000000 +0200
++++ FreeImage.new/Source/FreeImage/PluginJ2K.cpp	2008-03-13 22:06:36.000000000 +0100
+@@ -21,7 +21,7 @@
+ 
+ #include "FreeImage.h"
+ #include "Utilities.h"
+-#include "../LibOpenJPEG/openjpeg.h"
++#include <openjpeg.h>
+ 
+ // ==========================================================
+ // Plugin Interface
+--- FreeImage/Source/FreeImage/PluginJP2.cpp	2007-05-08 20:04:18.000000000 +0200
++++ FreeImage.new/Source/FreeImage/PluginJP2.cpp	2008-03-13 22:07:03.000000000 +0100
+@@ -21,7 +21,7 @@
+ 
+ #include "FreeImage.h"
+ #include "Utilities.h"
+-#include "../LibOpenJPEG/openjpeg.h"
++#include <openjpeg.h>
+ 
+ // ==========================================================
+ // Plugin Interface
+--- FreeImage/Source/FreeImage/PluginJPEG.cpp	2007-08-11 01:57:28.000000000 +0200
++++ FreeImage.new/Source/FreeImage/PluginJPEG.cpp	2008-03-13 21:58:24.000000000 +0100
+@@ -34,9 +34,9 @@
+ #undef FAR
+ #include <setjmp.h>
+ 
+-#include "../LibJPEG/jinclude.h"
+-#include "../LibJPEG/jpeglib.h"
+-#include "../LibJPEG/jerror.h"
++#include <stdio.h>
++#include <jpeglib.h>
++#include <jerror.h>
+ }
+ 
+ #include "FreeImage.h"
+@@ -158,7 +158,7 @@
+ 
+ 	dest->buffer = (JOCTET *)
+ 	  (*cinfo->mem->alloc_small) ((j_common_ptr) cinfo, JPOOL_IMAGE,
+-				  OUTPUT_BUF_SIZE * SIZEOF(JOCTET));
++				  OUTPUT_BUF_SIZE * sizeof(JOCTET));
+ 
+ 	dest->pub.next_output_byte = dest->buffer;
+ 	dest->pub.free_in_buffer = OUTPUT_BUF_SIZE;
+@@ -333,12 +333,12 @@
+ 
+ 	if (cinfo->src == NULL) {
+ 		cinfo->src = (struct jpeg_source_mgr *) (*cinfo->mem->alloc_small)
+-			((j_common_ptr) cinfo, JPOOL_PERMANENT, SIZEOF(SourceManager));
++			((j_common_ptr) cinfo, JPOOL_PERMANENT, sizeof(SourceManager));
+ 
+ 		src = (freeimage_src_ptr) cinfo->src;
+ 
+ 		src->buffer = (JOCTET *) (*cinfo->mem->alloc_small)
+-			((j_common_ptr) cinfo, JPOOL_PERMANENT, INPUT_BUF_SIZE * SIZEOF(JOCTET));
++			((j_common_ptr) cinfo, JPOOL_PERMANENT, INPUT_BUF_SIZE * sizeof(JOCTET));
+ 	}
+ 
+ 	// initialize the jpeg pointer struct with pointers to functions
+@@ -366,7 +366,7 @@
+ 
+ 	if (cinfo->dest == NULL) {
+ 		cinfo->dest = (struct jpeg_destination_mgr *)(*cinfo->mem->alloc_small)
+-			((j_common_ptr) cinfo, JPOOL_PERMANENT, SIZEOF(DestinationManager));
++			((j_common_ptr) cinfo, JPOOL_PERMANENT, sizeof(DestinationManager));
+ 	}
+ 
+ 	dest = (freeimage_dst_ptr) cinfo->dest;
+--- FreeImage/Source/FreeImage/PluginMNG.cpp	2007-08-11 01:57:28.000000000 +0200
++++ FreeImage.new/Source/FreeImage/PluginMNG.cpp	2008-03-13 20:16:48.000000000 +0100
+@@ -22,7 +22,7 @@
+ #include "FreeImage.h"
+ #include "Utilities.h"
+ 
+-#include "../LibMNG/libmng.h"
++#include <libmng.h>
+ 
+ // ----------------------------------------------------------
+ //   Constants + headers
+--- FreeImage/Source/FreeImage/PluginPNG.cpp	2007-08-11 01:57:28.000000000 +0200
++++ FreeImage.new/Source/FreeImage/PluginPNG.cpp	2008-03-13 20:29:31.000000000 +0100
+@@ -37,7 +37,7 @@
+ 
+ // ----------------------------------------------------------
+ 
+-#include "../LibPNG/png.h"
++#include <png.h>
+ 
+ // ----------------------------------------------------------
+ 
+@@ -101,8 +101,11 @@
+ 			tag = FreeImage_CreateTag();
+ 			if(!tag) return FALSE;
+ 
++#ifdef PNG_iTXt_SUPPORTED
+ 			DWORD tag_length = MAX(text_ptr[i].text_length, text_ptr[i].itxt_length);
+-
++#else
++			DWORD tag_length = text_ptr[i].text_length;
++#endif
+ 			FreeImage_SetTagLength(tag, tag_length);
+ 			FreeImage_SetTagCount(tag, tag_length);
+ 			FreeImage_SetTagType(tag, FIDT_ASCII);
+@@ -148,10 +151,11 @@
+ 			text_metadata.key = (char*)FreeImage_GetTagKey(tag);	// keyword, 1-79 character description of "text"
+ 			text_metadata.text = (char*)FreeImage_GetTagValue(tag);	// comment, may be an empty string (ie "")
+ 			text_metadata.text_length = FreeImage_GetTagLength(tag);// length of the text string
++#ifdef PNG_iTXt_SUPPORTED
+ 			text_metadata.itxt_length = FreeImage_GetTagLength(tag);// length of the itxt string
+ 			text_metadata.lang = 0;		 // language code, 0-79 characters or a NULL pointer
+ 			text_metadata.lang_key = 0;	 // keyword translated UTF-8 string, 0 or more chars or a NULL pointer
+-
++#endif
+ 			// set the tag 
+ 			png_set_text(png_ptr, info_ptr, &text_metadata, 1);
+ 
+@@ -170,10 +174,11 @@
+ 		text_metadata.key = g_png_xmp_keyword;					// keyword, 1-79 character description of "text"
+ 		text_metadata.text = (char*)FreeImage_GetTagValue(tag);	// comment, may be an empty string (ie "")
+ 		text_metadata.text_length = FreeImage_GetTagLength(tag);// length of the text string
++#ifdef PNG_iTXt_SUPPORTED
+ 		text_metadata.itxt_length = FreeImage_GetTagLength(tag);// length of the itxt string
+ 		text_metadata.lang = 0;		 // language code, 0-79 characters or a NULL pointer
+ 		text_metadata.lang_key = 0;	 // keyword translated UTF-8 string, 0 or more chars or a NULL pointer
+-
++#endif
+ 		// set the tag 
+ 		png_set_text(png_ptr, info_ptr, &text_metadata, 1);
+ 		bResult &= TRUE;
+--- FreeImage/Source/FreeImage/PluginTIFF.cpp	2007-08-15 04:01:02.000000000 +0200
++++ FreeImage.new/Source/FreeImage/PluginTIFF.cpp	2008-03-13 19:16:25.000000000 +0100
+@@ -34,7 +34,7 @@
+ #undef __unix
+ #endif
+ 
+-#include "../LibTIFF/tiffiop.h"
++#include <tiffio.h>
+ 
+ #include "FreeImage.h"
+ #include "Utilities.h"
+@@ -172,8 +172,7 @@
+ //   Open a TIFF file descriptor for read/writing.
+ // ----------------------------------------------------------
+ 
+-TIFF *
+-TIFFFdOpen(thandle_t handle, const char *name, const char *mode) {
++static TIFF *FdOpen(thandle_t handle, const char *name, const char *mode) {
+ 	TIFF *tif;
+ 
+     // Set up the callback for extended TIFF directory tag support
+@@ -185,85 +184,10 @@
+ 	    _tiffReadProc, _tiffWriteProc, _tiffSeekProc, _tiffCloseProc,
+ 	    _tiffSizeProc, _tiffMapProc, _tiffUnmapProc);
+ 
+-	// Warning: tif_fd is declared as 'int' currently (see libTIFF), 
+-    // may result in incorrect file pointers inside libTIFF on 
+-    // 64bit machines (sizeof(int) != sizeof(long)). 
+-    // Needs to be fixed within libTIFF.
+-    if (tif)
+-		tif->tif_fd = (long)handle;
+-
+ 	return tif;
+ }
+ 
+ // ----------------------------------------------------------
+-//   Open a TIFF file for read/writing.
+-// ----------------------------------------------------------
+-
+-TIFF*
+-TIFFOpen(const char* name, const char* mode) {
+-	return 0;
+-}
+-
+-// ----------------------------------------------------------
+-//   TIFF library FreeImage-specific routines.
+-// ----------------------------------------------------------
+-
+-tdata_t
+-_TIFFmalloc(tsize_t s) {
+-	return malloc(s);
+-}
+-
+-void
+-_TIFFfree(tdata_t p) {
+-	free(p);
+-}
+-
+-tdata_t
+-_TIFFrealloc(tdata_t p, tsize_t s) {
+-	return realloc(p, s);
+-}
+-
+-void
+-_TIFFmemset(tdata_t p, int v, tsize_t c) {
+-	memset(p, v, (size_t) c);
+-}
+-
+-void
+-_TIFFmemcpy(tdata_t d, const tdata_t s, tsize_t c) {
+-	memcpy(d, s, (size_t) c);
+-}
+-
+-int
+-_TIFFmemcmp(const tdata_t p1, const tdata_t p2, tsize_t c) {
+-	return (memcmp(p1, p2, (size_t) c));
+-}
+-
+-// ----------------------------------------------------------
+-//   in FreeImage warnings and errors are disabled
+-// ----------------------------------------------------------
+-
+-static void
+-msdosWarningHandler(const char* module, const char* fmt, va_list ap) {
+-}
+-
+-TIFFErrorHandler _TIFFwarningHandler = msdosWarningHandler;
+-
+-static void
+-msdosErrorHandler(const char* module, const char* fmt, va_list ap) {
+-	
+-	// use this for diagnostic only (do not use otherwise, even in DEBUG mode)
+-	/*
+-	if (module != NULL) {
+-		char msg[1024];
+-		vsprintf(msg, fmt, ap);
+-		FreeImage_OutputMessageProc(s_format_id, "%s: %s", module, msg);
+-	}
+-	*/
+-}
+-
+-TIFFErrorHandler _TIFFerrorHandler = msdosErrorHandler;
+-
+-// ----------------------------------------------------------
+ 
+ #define CVT(x)      (((x) * 255L) / ((1L<<16)-1))
+ #define	SCALE(x)	(((x)*((1L<<16)-1))/255)
+@@ -988,9 +912,9 @@
+ 	fio->handle = handle;
+ 
+ 	if (read) {
+-		fio->tif = TIFFFdOpen((thandle_t)fio, "", "r");
++		fio->tif = FdOpen((thandle_t)fio, "", "r");
+ 	} else {
+-		fio->tif = TIFFFdOpen((thandle_t)fio, "", "w");
++		fio->tif = FdOpen((thandle_t)fio, "", "w");
+ 	}
+ 	if(fio->tif == NULL) {
+ 		free(fio);
+--- FreeImage/Source/FreeImage/ZLibInterface.cpp	2007-11-14 16:01:44.000000000 +0100
++++ FreeImage.new/Source/FreeImage/ZLibInterface.cpp	2008-03-13 20:23:00.000000000 +0100
+@@ -19,10 +19,9 @@
+ // Use at your own risk!
+ // ==========================================================
+ 
+-#include "../ZLib/zlib.h"
++#include <zlib.h>
+ #include "FreeImage.h"
+ #include "Utilities.h"
+-#include "../ZLib/zutil.h"	/* must be the last header because of error C3163 in VS2008 (_vsnprintf defined in stdio.h) */
+ 
+ /**
+ Compresses a source buffer into a target buffer, using the ZLib library. 
+@@ -115,7 +114,7 @@
+ 			return 0;
+         case Z_OK: {
+             // patch header, setup crc and length (stolen from mod_trace_output)
+-            BYTE *p = target + 8; *p++ = 2; *p = OS_CODE; // xflags, os_code
++            BYTE *p = target + 8; *p++ = 2; *p = 0x03; // xflags, os_code (unix)
+  	        crc = crc32(crc, source, source_size);
+ 	        memcpy(target + 4 + dest_len, &crc, 4);
+ 	        memcpy(target + 8 + dest_len, &source_size, 4);
+--- FreeImage/Source/FreeImage.h	2007-11-12 16:10:00.000000000 +0100
++++ FreeImage.new/Source/FreeImage.h	2008-03-18 13:24:14.000000000 +0100
+@@ -406,7 +406,12 @@
+ 	FIF_DDS		= 24,
+ 	FIF_GIF     = 25,
+ 	FIF_HDR		= 26,
++/* The G3 fax format plugin is deliberately disabled in the Fedora build of
++   FreeImage as it requires that FreeImage uses a private copy of libtiff
++   which is a no no because of security reasons */
++#if 0
+ 	FIF_FAXG3	= 27,
++#endif
+ 	FIF_SGI		= 28,
+ 	FIF_EXR		= 29,
+ 	FIF_J2K		= 30,
+@@ -463,6 +468,11 @@
+ 	FID_BAYER16x16	= 6		// Bayer ordered dispersed dot dithering (order 4 dithering matrix)
+ };
+ 
++/* The FreeImage_JPEGTransform functions are deliberately disabled in the
++   Fedora build of FreeImage as they require that FreeImage uses a private copy
++   of libjpeg which is a no no because of security reasons */
++#if 0 
++
+ /** Lossless JPEG transformations
+ Constants used in FreeImage_JPEGTransform
+ */
+@@ -477,6 +487,8 @@
+ 	FIJPEG_OP_ROTATE_270	= 7		// 270-degree clockwise (or 90 ccw)
+ };
+ 
++#endif
++
+ /** Tone mapping operators.
+ Constants used in FreeImage_ToneMapping.
+ */
+@@ -998,7 +1010,12 @@
+ DLL_API FIBITMAP *DLL_CALLCONV FreeImage_RotateEx(FIBITMAP *dib, double angle, double x_shift, double y_shift, double x_origin, double y_origin, BOOL use_mask);
+ DLL_API BOOL DLL_CALLCONV FreeImage_FlipHorizontal(FIBITMAP *dib);
+ DLL_API BOOL DLL_CALLCONV FreeImage_FlipVertical(FIBITMAP *dib);
++/* The FreeImage_JPEGTransform functions are deliberately disabled in the
++   Fedora build of FreeImage as they require that FreeImage uses a private copy
++   of libjpeg which is a no no because of security reasons */
++#if 0
+ DLL_API BOOL DLL_CALLCONV FreeImage_JPEGTransform(const char *src_file, const char *dst_file, FREE_IMAGE_JPEG_OPERATION operation, BOOL perfect FI_DEFAULT(FALSE));
++#endif
+ 
+ // upsampling / downsampling
+ DLL_API FIBITMAP *DLL_CALLCONV FreeImage_Rescale(FIBITMAP *dib, int dst_width, int dst_height, FREE_IMAGE_FILTER filter);
+@@ -1028,7 +1045,12 @@
+ DLL_API FIBITMAP *DLL_CALLCONV FreeImage_Copy(FIBITMAP *dib, int left, int top, int right, int bottom);
+ DLL_API BOOL DLL_CALLCONV FreeImage_Paste(FIBITMAP *dst, FIBITMAP *src, int left, int top, int alpha);
+ DLL_API FIBITMAP *DLL_CALLCONV FreeImage_Composite(FIBITMAP *fg, BOOL useFileBkg FI_DEFAULT(FALSE), RGBQUAD *appBkColor FI_DEFAULT(NULL), FIBITMAP *bg FI_DEFAULT(NULL));
++/* The FreeImage_JPEGTransform functions are deliberately disabled in the
++   Fedora build of FreeImage as they require that FreeImage uses a private copy
++   of libjpeg which is a no no because of security reasons */
++#if 0
+ DLL_API BOOL DLL_CALLCONV FreeImage_JPEGCrop(const char *src_file, const char *dst_file, int left, int top, int right, int bottom);
++#endif
+ DLL_API BOOL DLL_CALLCONV FreeImage_PreMultiplyWithAlpha(FIBITMAP *dib);
+ 
+ // miscellaneous algorithms
+--- FreeImage/Source/Metadata/Exif.cpp	2007-07-17 03:28:26.000000000 +0200
++++ FreeImage.new/Source/Metadata/Exif.cpp	2008-03-13 19:19:07.000000000 +0100
+@@ -495,7 +495,7 @@
+ 		}
+ 
+ 		// remember that we've visited this directory so that we don't visit it again later
+-		DWORD visited = (((DWORD)ifdp & 0xFFFF) << 16) | (DWORD)de;
++		DWORD visited = (((DWORD)((long)ifdp) & 0xFFFF) << 16) | (DWORD)de;
+ 		if(visitedIFD.find(visited) != visitedIFD.end()) {
+ 			continue;
+ 		} else {
+--- FreeImage/Source/Metadata/XTIFF.cpp	2007-05-08 20:04:20.000000000 +0200
++++ FreeImage.new/Source/Metadata/XTIFF.cpp	2008-03-18 13:25:14.000000000 +0100
+@@ -27,7 +27,7 @@
+ #pragma warning (disable : 4786) // identifier was truncated to 'number' characters
+ #endif
+ 
+-#include "../LibTIFF/tiffiop.h"
++#include <tiffio.h>
+ 
+ #include "FreeImage.h"
+ #include "Utilities.h"
+@@ -196,14 +196,21 @@
+ //   EXIF tag reading 
+ // ----------------------------------------------------------
+ 
++/*
++ * Caveat emperor this is a private libtiff functions which we need,
++ * there is no better solution I'm afraid
++ */
++extern "C"
++{
++    int _TIFFDataSize(TIFFDataType type);
++}
++
+ BOOL tiff_read_exif_tags(TIFF *tif, TagLib::MDMODEL md_model, FIBITMAP *dib) {
+     int  i;
+     short count;
+ 
+ 	TagLib& tagLib = TagLib::instance();
+ 
+-	TIFFDirectory *td = &tif->tif_dir;
+-    
+ 	count = (short) TIFFGetTagListCount(tif);
+     for(i = 0; i < count; i++) {
+         ttag_t tag = TIFFGetTagListEntry(tif, i);
+@@ -228,8 +235,12 @@
+ 		} else {
+ 			if (fip->field_readcount == TIFF_VARIABLE || fip->field_readcount == TIFF_VARIABLE2)
+ 				value_count = 1;
+-			else if (fip->field_readcount == TIFF_SPP)
+-				value_count = td->td_samplesperpixel;
++			else if (fip->field_readcount == TIFF_SPP) {
++			        uint16 spp; 
++				TIFFGetFieldDefaulted(tif,
++					TIFFTAG_SAMPLESPERPIXEL, &spp);
++				value_count = spp;
++			}
+ 			else
+ 				value_count = fip->field_readcount;
+ 			if (fip->field_type == TIFF_ASCII 
+--- FreeImage/gensrclist.sh	2007-08-11 03:09:24.000000000 +0200
++++ FreeImage.new/gensrclist.sh	2008-03-18 13:39:48.000000000 +0100
+@@ -1,6 +1,6 @@
+ #!/bin/sh
+ 
+-DIRLIST=". Source Source/Metadata Source/FreeImageToolkit Source/LibJPEG Source/LibMNG Source/LibPNG Source/LibTIFF Source/ZLib Source/LibOpenJPEG Source/OpenEXR Source/OpenEXR/Half Source/OpenEXR/Iex Source/OpenEXR/IlmImf Source/OpenEXR/IlmThread Source/OpenEXR/Imath"
++DIRLIST=". Source Source/Metadata Source/FreeImageToolkit"
+ 
+ echo "VER_MAJOR = 3" > Makefile.srcs
+ echo "VER_MINOR = 10.0" >> Makefile.srcs

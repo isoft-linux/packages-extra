@@ -1,7 +1,7 @@
 Summary: Screencasting
 Name: vokoscreen
 Version: 2.4.3
-Release: 1.git
+Release: 2.git
 License: GPL-2.0
 URL: http://www.kohaupt-online.de/hp
 #https://github.com/vkohaupt/vokoscreen
@@ -36,5 +36,8 @@ install -D -m 644 man/man1/%{name}.1.gz %{buildroot}%{_mandir}/man1/%{name}.1.gz
 %{_mandir}/man1/%{name}.1.gz
 
 %changelog
+* Tue Oct 27 2015 Cjacker <cjacker@foxmail.com> - 2.4.3-2.git
+- Rebuild
+
 * Sun Mar 21 2012 Volker Kohaupt <vkohaupt@freenet.de> 1.6.3
 - new Version

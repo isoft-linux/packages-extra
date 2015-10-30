@@ -2,7 +2,7 @@ Name:		sha
 #Upstream will continue in the next version 
 #with the behavior of shared libraries (specifically version 1.2)
 Version:	1.0.4b
-Release:	7%{?dist}
+Release:	8%{?dist}
 Summary:	File hashing utility
 License:	BSD
 URL:		http://hg.saddi.com/sha-asaddi
@@ -19,7 +19,6 @@ can be useful in other projects too
 
 %package devel
 Summary:	Development files for sha
-Group:		Development/Libraries
 Requires:	%{name}%{?_isa} = %{version}-%{release}
 %description devel
 This package contains the libraries needed to develop applications
@@ -61,3 +60,6 @@ install -pm 644 *.h %{buildroot}/%{_includedir}/sha
 %{_libdir}/*.so
 
 %changelog
+* Tue Oct 27 2015 Cjacker <cjacker@foxmail.com> - 1.0.4b-8
+- Rebuild
+

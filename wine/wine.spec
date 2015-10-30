@@ -1,90 +1,92 @@
 %global _binfmtdir /usr/lib/binfmt.d
 %global binfmt_apply() \
-/usr/lib/systemd/systemd-binfmt  %{?*} >/dev/null 2>&1 || : \
+/usr/lib/systemd/systemd-binfmt %{?*} >/dev/null 2>&1 || : \
 %{nil}
 
 
-Summary:    A Windows 16/32/64 bit emulator
-Name:       wine 
-Version:    1.7.52
-Release:    2 
-License:    GPL
-URL:        https://www.winehq.org
-Group:      Applications/Emulators
-Source0:    http://mirrors.ibiblio.org/wine/source/1.7/%{name}-%{version}.tar.bz2
-Source1:    wine-staging-%{version}.tar.gz
+Summary: A Windows 16/32/64 bit emulator
+Name: wine 
+Version: 1.7.53
+Release: 4 
+License: GPL
+URL: https://www.winehq.org
+Source0: http://mirrors.ibiblio.org/wine/source/1.7/%{name}-%{version}.tar.bz2
+Source1: wine-staging-%{version}.tar.gz
 
-Source2:    wine.systemd
+Source2: wine.systemd
 
-Patch0:     wine-fix-xim-cursor-follow.patch
+Patch0: wine-fix-xim-cursor-follow.patch
 
-Patch10:    wine-cjk.patch
+Patch10: wine-cjk.patch
 # temporary workaround for GCC 5.0 optimization regressions
-Patch11:    wine-gcc5.patch
+Patch11: wine-gcc5.patch
 #patch 12 is patch11 rebased with wine-staging.
-Patch12:    wine-gcc5-with-wine-staging.patch
+Patch12: wine-gcc5-with-wine-staging.patch
 
-Patch13:    wine-disable-menubuilder-to-avoid-pollute-the-system-mime-and-menu.patch
+Patch13: wine-disable-menubuilder-to-avoid-pollute-the-system-mime-and-menu.patch
 
 ExclusiveArch: %{ix86} x86_64
 
 
-BuildRequires:  bison
-BuildRequires:  flex
-BuildRequires:  autoconf
-BuildRequires:  desktop-file-utils
-BuildRequires:  alsa-lib-devel
-BuildRequires:  freeglut-devel
-BuildRequires:  lcms2-devel
-BuildRequires:  libieee1284-devel
-BuildRequires:  libjpeg-devel
-BuildRequires:  libpng-devel
-BuildRequires:  librsvg2
-BuildRequires:  librsvg2-devel
-BuildRequires:  libstdc++-devel
-BuildRequires:  libusb-devel
-BuildRequires:  libxml2-devel
-BuildRequires:  libxslt-devel
-BuildRequires:  ncurses-devel
-BuildRequires:  opencl-headers
-BuildRequires:  openldap-devel
-BuildRequires:  sane-backends-devel
-BuildRequires:  zlib-devel
-BuildRequires:  freetype-devel
-BuildRequires:  libgphoto2-devel
-BuildRequires:  libpcap-devel
-BuildRequires:  gtk3-devel
-BuildRequires:  opencl-headers
-BuildRequires:  libva-devel 
-BuildRequires:  libX11-devel
-BuildRequires:  mesa-libGL-devel libGLU-devel
-BuildRequires:  libXxf86dga-devel libXxf86vm-devel
-BuildRequires:  libXrandr-devel libXrender-devel
-BuildRequires:  libXext-devel
-BuildRequires:  libXinerama-devel
-BuildRequires:  libXcomposite-devel
-BuildRequires:  fontconfig-devel
-BuildRequires:  giflib-devel
-BuildRequires:  cups-devel
-BuildRequires:  libXmu-devel
-BuildRequires:  libXi-devel
-BuildRequires:  libXcursor-devel
-BuildRequires:  dbus-devel
-BuildRequires:  gnutls-devel
-BuildRequires:  pulseaudio-libs-devel
-BuildRequires:  libv4l-devel
-BuildRequires:  ImageMagick-devel
-BuildRequires:  libtiff-devel
-BuildRequires:  gettext-devel
+BuildRequires: bison
+BuildRequires: flex
+BuildRequires: autoconf
+BuildRequires: desktop-file-utils
+BuildRequires: alsa-lib-devel
+BuildRequires: freeglut-devel
+BuildRequires: lcms2-devel
+BuildRequires: libieee1284-devel
+BuildRequires: libjpeg-devel
+BuildRequires: libpng-devel
+BuildRequires: librsvg2-devel
+BuildRequires: libstdc++-devel
+BuildRequires: libusb-devel
+BuildRequires: libxml2-devel
+BuildRequires: libxslt-devel
+BuildRequires: ncurses-devel
+BuildRequires: opencl-headers
+BuildRequires: openldap-devel
+BuildRequires: sane-backends-devel
+BuildRequires: zlib-devel
+BuildRequires: freetype-devel
+BuildRequires: libgphoto2-devel
+BuildRequires: libpcap-devel
+BuildRequires: gtk3-devel
+BuildRequires: opencl-headers
+BuildRequires: libva-devel 
+BuildRequires: libX11-devel
+BuildRequires: mesa-libGL-devel libGLU-devel
+BuildRequires: libXxf86dga-devel libXxf86vm-devel
+BuildRequires: libXrandr-devel libXrender-devel
+BuildRequires: libXext-devel
+BuildRequires: libXinerama-devel
+BuildRequires: libXcomposite-devel
+BuildRequires: fontconfig-devel
+BuildRequires: giflib-devel
+BuildRequires: cups-devel
+BuildRequires: libXmu-devel
+BuildRequires: libXi-devel
+BuildRequires: libXcursor-devel
+BuildRequires: dbus-devel
+BuildRequires: gnutls-devel
+BuildRequires: pulseaudio-libs-devel
+BuildRequires: libv4l-devel
+BuildRequires: ImageMagick-devel
+BuildRequires: libtiff-devel
+BuildRequires: gettext-devel
+BuildRequires: libexif-devel
+BuildRequires: libgphoto2-devel
+BuildRequires: libmpg123-devel
+BuildRequires: ocl-icd-devel
+BuildRequires: openal-devel
 
 
 %description
 A Windows 16/32/64 bit emulator
 
 %package devel
-Group:      Development/Libraries
-Summary:    Libraries, includes, etc to develop applications with wine emulators
-Requires:   %{name} = %{version}-%{release}
+Summary: Libraries, includes, etc to develop applications with wine emulators
+Requires: %{name} = %{version}-%{release}
 
 %description devel
 Libraries and include files that can be used to develop applications with wine emulators.
@@ -151,6 +153,7 @@ autoreconf -ivf
     --without-ldap
 
 make %{?_smp_mflags}
+
 %install
 rm -rf $RPM_BUILD_ROOT
 make install DESTDIR=$RPM_BUILD_ROOT
@@ -172,7 +175,6 @@ install -p -c -m 644 %{SOURCE2} %{buildroot}%{_binfmtdir}/wine.conf
 
 %clean
 rm -rf $RPM_BUILD_ROOT
-
 
 %post
 %binfmt_apply wine.conf
@@ -220,6 +222,12 @@ fi
 %{_includedir}/wine/*
 
 %changelog
+* Tue Oct 27 2015 Cjacker <cjacker@foxmail.com> - 1.7.53-4
+- Rebuild
+
+* Thu Oct 22 2015 Cjacker <cjacker@foxmail.com> - 1.7.53-3
+- update
+
 * Mon Oct 05 2015 Cjacker <cjacker@foxmail.com>
 - update to 1.7.52
 

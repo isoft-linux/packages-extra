@@ -1,6 +1,6 @@
 Name:		axel		
 Version:	2.4
-Release:	12%{?dist}
+Release:	13%{?dist}
 Summary:	Accelerated download client
 
 License:	GPLv2+
@@ -47,3 +47,6 @@ rm -rf %{buildroot}
 %{_mandir}/zh_CN/man1/axel.1*
 
 %changelog
+* Tue Oct 27 2015 Cjacker <cjacker@foxmail.com> - 2.4-13
+- Rebuild
+

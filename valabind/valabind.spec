@@ -1,6 +1,6 @@
 Name: valabind 
 Version: 0.9.2
-Release: 1
+Release: 2
 Summary: A tool to parse vala or vapi files to swig interface files
 
 License: GPLv3 
@@ -26,5 +26,8 @@ make install DESTDIR=%{buildroot}
 %{_mandir}/man*/*
 
 %changelog
+* Tue Oct 27 2015 Cjacker <cjacker@foxmail.com> - 0.9.2-2
+- Rebuild
+
 * Sat Oct 10 2015 Cjacker <cjacker@foxmail.com>
 - initial package

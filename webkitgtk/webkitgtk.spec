@@ -1,8 +1,7 @@
 Name:		webkitgtk
 Version:    2.4.9
-Release:	1
+Release:	2
 Summary:	GTK+ Web content engine library
-Group:		Development/Libraries
 License:	LGPLv2+ and BSD
 URL:		http://www.webkitgtk.org/
 
@@ -39,7 +38,6 @@ GTK+ platform.
 
 %package	devel
 Summary:	Development files for %{name}
-Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
 Requires:	pkgconfig
 Requires:	gtk3-devel
@@ -86,7 +84,6 @@ rm -rf %{buildroot}
 make install DESTDIR=%{buildroot}
 
 %find_lang WebKitGTK-3.0
-rpmclean
 
 %clean
 rm -rf %{buildroot}
@@ -111,3 +108,6 @@ rm -rf %{buildroot}
 %{_datadir}/gtk-doc/*
 
 %changelog
+* Tue Oct 27 2015 Cjacker <cjacker@foxmail.com> - 2.4.9-2
+- Rebuild
+

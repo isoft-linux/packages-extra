@@ -1,9 +1,8 @@
 Summary: Extra image decoders.  
 Name: evas_generic_loaders
 Version: 1.15.0
-Release: 2 
+Release: 4 
 License: LGPLv2.1 GPLv2.1 BSD
-Group: System Environment/Libraries
 URL: http://www.enlightenment.org/
 Source: http://download.enlightenment.org/releases/%{name}-%{version}.tar.gz
 
@@ -22,7 +21,6 @@ in as a loader.
 
 %package devel
 Summary:headers, static libraries, documentation and test programs
-Group: System Environment/Libraries
 Requires: %{name} = %{version}
 
 %description devel
@@ -44,7 +42,6 @@ make %{?_smp_mflags}
 %install
 make DESTDIR=$RPM_BUILD_ROOT install
 
-rpmclean
 %clean
 test "x$RPM_BUILD_ROOT" != "x/" && rm -rf $RPM_BUILD_ROOT
 
@@ -62,5 +59,11 @@ test "x$RPM_BUILD_ROOT" != "x/" && rm -rf $RPM_BUILD_ROOT
 %{_libdir}/evas/utils/evas_*
 
 %changelog
+* Tue Oct 27 2015 Cjacker <cjacker@foxmail.com> - 1.15.0-4
+- Rebuild
+
+* Thu Oct 22 2015 Cjacker <cjacker@foxmail.com> - 1.15.0-3
+- Rebuild with libraw update
+
 * Tue Aug 04 2015 Cjacker <cjacker@foxmail.com>
 - update to 1.15.0

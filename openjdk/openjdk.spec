@@ -6,7 +6,7 @@
 
 Name: openjdk	
 Version: 8u%{update_version}b%{build_number}
-Release: 1
+Release: 2
 Summary: Oracle OpenJDK via IcedTea
 License: ASL 1.1 and ASL 2.0 and GPL+ and GPLv2 and GPLv2 with exceptions and LGPL+ and LGPLv2 and MPLv1.0 and MPLv1.1 and Public Domain and W3C
 URL: http://openjdk.java.net/
@@ -196,6 +196,9 @@ popd
 %{_libdir}/jvm/openjdk8/*
 
 %changelog
+* Tue Oct 27 2015 Cjacker <cjacker@foxmail.com> - 8u60b24-2
+- Rebuild
+
 * Thu Aug 06 2015 Cjacker <cjacker@foxmail.com>
 - update openjdk to 8u60b24.
 

@@ -7,7 +7,7 @@
 
 Name: octave	
 Version: 4.0.0	
-Release: 1
+Release: 2
 Summary: A high-level interpreted language primarily intended for numerical computations.	
 
 License: GPLv2	
@@ -66,7 +66,6 @@ GNU Octave is a high-level interpreted language, primarily intended for numerica
 
 %package devel
 Summary:        Development headers and files for Octave
-Group:          Development/Libraries
 Requires:       %{name} = %{version}-%{release}
 Requires:       readline-devel fftw-devel hdf5-devel zlib-devel
 Requires:       atlas-devel gcc gcc-gfortran
@@ -78,7 +77,6 @@ applications which use GNU Octave.
 
 %package doc
 Summary:        Documentation for Octave
-Group:          Documentation
 BuildArch:      noarch
 
 %description doc
@@ -231,5 +229,8 @@ fi
 %{_pkgdocdir}/liboctave.pdf
 
 %changelog
+* Tue Oct 27 2015 Cjacker <cjacker@foxmail.com> - 4.0.0-2
+- Rebuild
+
 * Mon Aug 03 2015 Cjacker <cjacker@foxmail.com>
 - initial build.
