@@ -1,6 +1,6 @@
 Name:		pocl
 Version:	0.12
-Release:	7.git
+Release:	8.git
 Summary:	Portable Computing Language
 
 License:	BSD
@@ -13,7 +13,7 @@ BuildRequires: ocl-icd-devel, libhwloc-devel
 BuildRequires: libllvm-devel, libllvm-static, libclang-static, libclang-devel, libltdl-devel, ncurses-devel
 BuildRequires: clang llvm
 BuildRequires: pkgconfig sed grep
-BuildRequires: mesa-libGL-devel
+BuildRequires: mesa-libGL-devel libGLU-devel libglew-devel
 BuildRequires: opencl-filesystem
 BuildRequires: opencl-headers
 BuildRequires: uthash-devel
@@ -70,6 +70,10 @@ make check
 %{_libdir}/libpocl*.so.*
 %dir %{_datadir}/pocl
 %{_datadir}/pocl/kernel-*-linux-gnu.bc
+#these files belong to runtime, not devel package.
+%dir %{_libdir}/pocl
+%{_libdir}/pocl/*
+%{_datadir}/pocl/include
 
 %files devel
 %defattr(-,root,root,-)
@@ -77,11 +81,11 @@ make check
 %{_libdir}/*.a
 %{_libdir}/*.so
 %{_libdir}/pkgconfig/pocl.pc
-%dir %{_libdir}/pocl
-%{_libdir}/pocl/*
-%{_datadir}/pocl/include
 
 %changelog
+* Mon Nov 02 2015 Cjacker <cjacker@foxmail.com> - 0.12-8.git
+- add more build requires
+
 * Mon Nov 02 2015 Cjacker <cjacker@foxmail.com> - 0.12-7.git
 - update to git 953cdd7, fix image/samplers test failed issue.
 
