@@ -15,7 +15,6 @@ BuildRequires: clang llvm
 BuildRequires: pkgconfig sed grep
 BuildRequires: mesa-libGL-devel libGLU-devel libglew-devel
 BuildRequires: opencl-headers
-BuildRequires: uthash-devel
 BuildRequires: zlib-devel
 BuildRequires: libedit-devel
 
