@@ -14,7 +14,6 @@ BuildRequires: libllvm-devel, libllvm-static, libclang-static, libclang-devel, l
 BuildRequires: clang llvm
 BuildRequires: pkgconfig sed grep
 BuildRequires: mesa-libGL-devel libGLU-devel libglew-devel
-BuildRequires: opencl-filesystem
 BuildRequires: opencl-headers
 BuildRequires: uthash-devel
 BuildRequires: zlib-devel
