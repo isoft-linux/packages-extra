@@ -1,0 +1,130 @@
+Based on upstream commits f7e596e and a925fdf, fixed in 3.0.1
+
+--- a/doc/asdf.texinfo
++++ b/doc/asdf.texinfo
+@@ -6,19 +6,19 @@
+ 
+ @c We use @&key, etc to escape & from TeX in lambda lists --
+ @c so we need to define them for info as well.
+-@macro &allow-other-keys
++@macro Aallow-other-keys
+ &allow-other-keys
+ @end macro
+-@macro &optional
++@macro Aoptional
+ &optional
+ @end macro
+-@macro &rest
++@macro Arest
+ &rest
+ @end macro
+-@macro &key
++@macro Akey
+ &key
+ @end macro
+-@macro &body
++@macro Abody
+ &body
+ @end macro
+ 
+@@ -846,7 +846,7 @@ simple-component-name := string
+ 
+ pathname-specifier := pathname | string | symbol
+ 
+-method-form := (operation-name qual lambda-list @&rest body)
++method-form := (operation-name qual lambda-list @Arest body)
+ qual := method qualifier
+ 
+ component-dep-fail-option := :fail | :try-next | :ignore
+@@ -1137,8 +1137,8 @@ and easier than having them all be @code{EQL} methods.
+ 
+ Operations are invoked on systems via @code{operate}.
+ @anchor{operate}
+-@deffn {Generic function} @code{operate} @var{operation} @var{system} @&rest @var{initargs}
+-@deffnx {Generic function} @code{oos} @var{operation} @var{system} @&rest @var{initargs}
++@deffn {Generic function} @code{operate} @var{operation} @var{system} @Arest @var{initargs}
++@deffnx {Generic function} @code{oos} @var{operation} @var{system} @Arest @var{initargs}
+ @code{operate} invokes @var{operation} on @var{system}.
+ @code{oos} is a synonym for @code{operate}.
+ 
+@@ -1171,7 +1171,7 @@ They are invoked via the @code{operate} generic function.
+ (asdf:operate 'asdf:@var{operation-name} :@var{system-name} @{@var{operation-options ...}@})
+ @end lisp
+ 
+-@deffn Operation @code{compile-op} @&key @code{proclamations}
++@deffn Operation @code{compile-op} @Akey @code{proclamations}
+ 
+ This operation compiles the specified component.
+ If proclamations are supplied, they will be proclaimed.
+@@ -1188,7 +1188,7 @@ does not necessarily load all the parts of the system, though;
+ use @code{load-op} to load a system.
+ @end deffn
+ 
+-@deffn Operation @code{load-op} @&key @code{proclamations}
++@deffn Operation @code{load-op} @Akey @code{proclamations}
+ 
+ This operation loads a system.
+ 
+@@ -1228,7 +1228,7 @@ in a way that is compatible with all of the various test libraries
+ and test techniques in use in the community.
+ @end deffn
+ 
+-@c @deffn Operation test-system-version @&key minimum
++@c @deffn Operation test-system-version @Akey minimum
+ 
+ @c Asks the system whether it satisfies a version requirement.
+ 
+@@ -1971,7 +1971,7 @@ The specified functions are exported from your build system's package.
+ Thus for ASDF the corresponding functions are in package ASDF,
+ and for XCVB the corresponding functions are in package XCVB.
+ 
+-@defun initialize-source-registry @&optional PARAMETER
++@defun initialize-source-registry @Aoptional PARAMETER
+    will read the configuration and initialize all internal variables.
+    You may extend or override configuration
+    from the environment and configuration files
+@@ -1996,7 +1996,7 @@ and for XCVB the corresponding functions are in package XCVB.
+    where to look for systems not yet defined.
+ @end defun
+ 
+-@defun ensure-source-registry @&optional PARAMETER
++@defun ensure-source-registry @Aoptional PARAMETER
+    checks whether a source registry has been initialized.
+    If not, initialize it with the given @var{PARAMETER}.
+ @end defun
+@@ -2221,7 +2221,7 @@ as configured by the system distributor, or by default.
+ Nevertheless, if you are a fan of @code{ASDF-Binary-Locations},
+ we provide a limited emulation mode:
+ 
+-@defun asdf:enable-asdf-binary-locations-compatibility @&key centralize-lisp-binaries default-toplevel-directory include-per-user-information map-all-source-files source-to-target-mappings
++@defun asdf:enable-asdf-binary-locations-compatibility @Akey centralize-lisp-binaries default-toplevel-directory include-per-user-information map-all-source-files source-to-target-mappings
+ This function will initialize the new @code{asdf-output-translations} facility in a way
+ that emulates the behavior of the old @code{ASDF-Binary-Locations} facility.
+ Where you would previously set global variables
+@@ -2458,7 +2458,7 @@ To explicitly flush any information cached by the system, use the API below.
+ 
+ The specified functions are exported from package ASDF.
+ 
+-@defun initialize-output-translations @&optional PARAMETER
++@defun initialize-output-translations @Aoptional PARAMETER
+    will read the configuration and initialize all internal variables.
+    You may extend or override configuration
+    from the environment and configuration files
+@@ -2489,7 +2489,7 @@ The specified functions are exported from package ASDF.
+    where to look for systems not yet defined.
+ @end defun
+ 
+-@defun ensure-output-translations @&optional PARAMETER
++@defun ensure-output-translations @Aoptional PARAMETER
+    checks whether output translations have been initialized.
+    If not, initialize them with the given @var{PARAMETER}.
+    This function will be called before any attempt to operate on a system.
+@@ -2582,7 +2582,7 @@ The valid values for these variables are
+ ASDF includes several additional features that are generally
+ useful for system definition and development. These include:
+ 
+-@defun system-relative-pathname system name @&key type
++@defun system-relative-pathname system name @Akey type
+ 
+ It's often handy to locate a file relative to some system.
+ The @code{system-relative-pathname} function meets this need.

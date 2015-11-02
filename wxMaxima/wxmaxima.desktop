@@ -1,0 +1,11 @@
+[Desktop Entry]
+Name=wxMaxima
+Comment=A graphical user interface that allows symbolic and numeric calculations using Maxima
+Comment[de]=Eine grafische Oberfläche für Maxima, ein Programm für Symbolische und Numerische Berechnungen
+Comment[uk]=Виконання аналітичних перетворень та обчислень за допомогою Maxima
+Exec=wxmaxima %f
+Icon=wxmaxima
+Terminal=false
+Type=Application
+Categories=Education;Science;Math;Development;
+MimeType=text/x-wxmathml;text/x-wxmaxima-batch;
