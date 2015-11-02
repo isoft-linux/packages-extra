@@ -64,9 +64,9 @@ Summary: PHP scripting language for creating dynamic web sites
 Name: php
 Version: 5.6.14
 %if 0%{?rcver:1}
-Release: 0.%{rpmrel}.%{rcver}%{?dist}.2
+Release: 0.%{rpmrel}.%{rcver}%{?dist}.3
 %else
-Release: %{rpmrel}%{?dist}.2
+Release: %{rpmrel}%{?dist}.3
 %endif
 # All files licensed under PHP version 3.01, except
 # Zend is licensed under Zend
@@ -1410,6 +1410,9 @@ rm -f README.{Zeus,QNX,CVS-RULES}
 
 
 %changelog
+* Sun Nov 01 2015 Cjacker <cjacker@foxmail.com> - 5.6.14-1.3
+- Rebuild with icu 56.1
+
 * Thu Oct 29 2015 Cjacker <cjacker@foxmail.com> - 5.6.14-1.2
 - Rebuild
 

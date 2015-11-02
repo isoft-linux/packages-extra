@@ -2,24 +2,40 @@
 %global _build_with_clang 1 
 
 Name:	    webkitgtk4
-Version:    2.10.0
-Release:    2
+Version:    2.10.3
+Release:    3
 Summary:    GTK Port of WebKit
 
 License:	MIT
 URL:	    http://www.webkitgtk.org
 Source0:    webkitgtk-%{version}.tar.xz
 
-BuildRequires:  libsoup-devel
-BuildRequires:  enchant-devel
-BuildRequires:  gtk3-devel
-BuildRequires:  gstreamer-devel
-BuildRequires:  freetype-devel
-BuildRequires:  harfbuzz-devel
-BuildRequires:  chrpath
+BuildRequires: cmake ninja-build make
+BuildRequires: bison flex gperf perl python ruby pkgconfig
+BuildRequires: gettext
+BuildRequires: cairo-devel fontconfig-devel freetype-devel
+BuildRequires: gtk3-devel
+BuildRequires: harfbuzz-devel
+BuildRequires: libicu-devel libjpeg-turbo-devel libsoup-devel libxml2-devel libxslt-devel
+BuildRequires: zlib-devel libpng-devel sqlite-devel
+BuildRequires: atk-devel libwebp-devel at-spi2-core-devel 
+BuildRequires: pkgconfig(gl) pkgconfig(egl) pkgconfig(glesv2)
+BuildRequires: libsecret-devel geoclue2-devel
+BuildRequires: gobject-introspection-devel
+#yes, still need it.
+BuildRequires: gtk2-devel
+BuildRequires: enchant-devel
+BuildRequires: gstreamer-devel
+BuildRequires: gstreamer-plugins-base-devel
+BuildRequires: libX11-devel libXext-devel
+BuildRequires: pkgconfig(wayland-client) pkgconfig(wayland-egl) pkgconfig(wayland-server)
+BuildRequires: libnotify-devel hyphen-devel hunspell-devel
 
-BuildRequires:  ruby
-BuildRequires:  cmake, ninja-build
+BuildRequires: chrpath
+
+%if %_build_with_clang
+BuildRequires: clang
+%endif
 
 %description
 WebKit/GTK is a project aiming at porting WebKit to GTK library.
@@ -27,6 +43,7 @@ WebKit/GTK is a project aiming at porting WebKit to GTK library.
 %package devel
 Summary: Development files for %{name} 
 Requires: %{name} = %{version}-%{release}
+
 %description devel
 The header files and libraries for %{name} 
 
@@ -75,6 +92,9 @@ popd
 %{_datadir}/gtk-doc/html/*
 
 %changelog
+* Sun Nov 01 2015 Cjacker <cjacker@foxmail.com> - 2.10.3-3
+- Update and rebuild with icu 56.1
+
 * Tue Oct 27 2015 Cjacker <cjacker@foxmail.com> - 2.10.0-2
 - Rebuild
 

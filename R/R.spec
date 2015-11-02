@@ -10,7 +10,7 @@
 
 Name: R
 Version: 3.2.1
-Release: 3%{?dist}
+Release: 4%{?dist}
 Summary: A language for data analysis and graphics
 URL: http://www.r-project.org
 Source0: ftp://cran.r-project.org/pub/R/src/base/R-3/R-%{version}.tar.gz
@@ -787,6 +787,9 @@ R CMD javareconf \
 %postun -n libRmath -p /sbin/ldconfig
 
 %changelog
+* Sun Nov 01 2015 Cjacker <cjacker@foxmail.com> - 3.2.1-4
+- Rebuild with icu 56.1
+
 * Tue Oct 27 2015 Cjacker <cjacker@foxmail.com> - 3.2.1-3
 - Rebuild
 

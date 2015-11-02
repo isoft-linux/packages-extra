@@ -1,6 +1,6 @@
 Name: nodejs
-Version: 4.1.2
-Release: 2
+Version: 4.2.1
+Release: 3
 Summary: Easily building fast, scalable network applications	
 
 License: MIT
@@ -8,7 +8,10 @@ URL: http://nodejs.org/
 Source0: https://nodejs.org/dist/v%{version}/node-v%{version}.tar.gz
 
 #skip cpplint
-Patch0:     node-disable-cpplint.patch
+Patch0: node-disable-cpplint.patch
+
+#use system cert by default.
+Patch1: nodejs-use-system-certs.patch
 
 BuildRequires: zlib-devel, openssl-devel
 BuildRequires: clang 
@@ -35,6 +38,7 @@ developing applications that use %{name}.
 %prep
 %setup -q -n node-v%{version}
 %patch0 -p1
+%patch1 -p1
 
 %build
 export CC=clang
@@ -74,6 +78,9 @@ make test ||:
 %{_docdir}/node/gdbinit
 
 %changelog
+* Sat Oct 31 2015 Cjacker <cjacker@foxmail.com> - 4.2.1-3
+- Update to LTS version
+
 * Tue Oct 27 2015 Cjacker <cjacker@foxmail.com> - 4.1.2-2
 - Rebuild
 

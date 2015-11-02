@@ -2,7 +2,7 @@
 
 Name: libvisio
 Version: 0.1.3
-Release: 6%{?dist}
+Release: 7%{?dist}
 Summary: A library for import of Microsoft Visio diagrams
 
 License: MPLv2.0
@@ -117,6 +117,9 @@ make check %{?_smp_mflags}
 %{_mandir}/man1/vss2xhtml.1*
 
 %changelog
+* Sun Nov 01 2015 Cjacker <cjacker@foxmail.com> - 0.1.3-7
+- Rebuild with icu 56.1
+
 * Tue Oct 27 2015 Cjacker <cjacker@foxmail.com> - 0.1.3-6
 - Rebuild
 

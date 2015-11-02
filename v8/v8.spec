@@ -9,7 +9,7 @@
 
 Name:		v8
 Version:	%{somajor}.%{sominor}.%{sobuild}.%{sotiny}
-Release:	22%{?dist}
+Release:	23%{?dist}
 Epoch:		1
 Summary:	JavaScript Engine
 License:	BSD
@@ -312,6 +312,9 @@ rm -rf %{buildroot}
 %{python_sitelib}/j*.py*
 
 %changelog
+* Sun Nov 01 2015 Cjacker <cjacker@foxmail.com> - 1:3.14.5.10-23
+- Rebuild with icu 56.1
+
 * Tue Oct 27 2015 Cjacker <cjacker@foxmail.com> - 1:3.14.5.10-22
 - Rebuild
 

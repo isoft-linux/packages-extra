@@ -4,7 +4,7 @@
 Summary: An ImageMagick fork, offering faster image generation and better quality
 Name: GraphicsMagick
 Version: 1.3.22
-Release: 2%{?dist}
+Release: 3%{?dist}
 
 License: MIT
 Source0: http://downloads.sourceforge.net/sourceforge/graphicsmagick/GraphicsMagick-%{version}.tar.xz
@@ -13,7 +13,8 @@ Url: http://www.graphicsmagick.org/
 ## upstreamable patches
 Patch50: GraphicsMagick-1.3.14-perl_linkage.patch
 
-## upstream patches
+#remove la files of modules.
+Patch51: GraphicsMagick-modules-use-so-suffix.patch
 
 BuildRequires: bzip2-devel
 BuildRequires: cups-client
@@ -114,6 +115,7 @@ however.
 %prep
 %setup -q
 %patch50 -p1 -b .perl_linkage
+%patch51 -p1
 
 for f in ChangeLog.{2006,2008,2009,2012} NEWS.txt ; do
     iconv -f iso-8859-2 -t utf8 < $f > $f.utf8
@@ -240,6 +242,9 @@ rm -rf %{buildroot}
 
 
 %changelog
+* Fri Oct 30 2015 Cjacker <cjacker@foxmail.com> - 1.3.22-3
+- Patch51, Remove .la file of modules
+
 * Tue Oct 27 2015 Cjacker <cjacker@foxmail.com> - 1.3.22-2
 - Rebuild
 

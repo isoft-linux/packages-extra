@@ -1,6 +1,6 @@
 Name: cargo
-Version: 0.5.0	
-Release: 3
+Version: 0.6.0
+Release: 4
 Summary: The Rust package manager 	
 
 License: Apache	
@@ -17,8 +17,8 @@ Source3: https://github.com/rust-lang/rust-installer/archive/e54d4823d26cdb3f98e
 #Generally, every cargo release need update this tarball.
 Source4: cargo-crates.tar.gz
 
-Patch0: cargo-0.5.0-crates-local-deps.patch
-Patch1: cargo-0.5.0-local-deps.patch
+Patch0: cargo-0.6.0-crates-local-deps.patch
+Patch1: cargo-0.6.0-local-deps.patch
 
 #only support amd64/x86
 ExclusiveArch: x86_64 %{ix86}
@@ -100,6 +100,9 @@ rm -rf %{buildroot}/usr/etc
 %{_docdir}/cargo
 
 %changelog
+* Sat Oct 31 2015 Cjacker <cjacker@foxmail.com> - 0.6.0-4
+- Rebuild with rust 1.4.0 and update related components
+
 * Tue Oct 27 2015 Cjacker <cjacker@foxmail.com> - 0.5.0-3
 - Rebuild
 

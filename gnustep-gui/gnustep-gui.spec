@@ -1,13 +1,26 @@
 Summary: GNUstep GUI Library 
 Name: gnustep-gui
 Version: 0.24.1
-Release: 2
+Release: 3
 Source: http://ftpmain.gnustep.org/pub/gnustep/core/%{name}-%{version}.tar.gz
 License: see COPYING
 BuildRequires: clang 
 BuildRequires: gnustep-make 
 BuildRequires: libobjc2-devel
 BuildRequires: gnustep-base-devel
+BuildRequires: aspell-devel
+BuildRequires: cups-devel
+BuildRequires: giflib-devel
+BuildRequires: krb5-devel
+BuildRequires: libao-devel
+BuildRequires: libcom_err-devel
+BuildRequires: libicns-devel
+BuildRequires: libjpeg-turbo-devel
+BuildRequires: libpng-devel
+BuildRequires: libsndfile-devel
+BuildRequires: libtiff-devel
+BuildRequires: zlib-devel
+
 #build gnustep-back depend on gnustep-gui
 #but gnustep-gui need gnustep-back installed to display widgets correctly.
 Requires: gnustep-back
@@ -24,13 +37,15 @@ pasteboards and images.
 %package devel
 Summary: Development tools for gnustep-gui
 Requires: %{name} = %{version}-%{release}
-
+Requires: gnustep-make
+Requires: gnustep-base-devel
+Requires: clang
 %description devel
 The gnustep-gui-devel package contains header files and documentation necessary
 for developing programs using gnustep.
 
 %prep
-%setup
+%setup -q
 
 %build
 %configure CC=clang CXX=clang++ 
@@ -84,6 +99,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_includedir}/gnustep/gui/*
 
 %changelog
+* Sun Nov 01 2015 Cjacker <cjacker@foxmail.com> - 0.24.1-3
+- Rebuild with icu 56.1
+
 * Tue Oct 27 2015 Cjacker <cjacker@foxmail.com> - 0.24.1-2
 - Rebuild
 

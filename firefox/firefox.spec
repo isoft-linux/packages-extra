@@ -14,7 +14,7 @@
 Summary: Mozilla Firefox Web browser
 Name: firefox
 Version: %{version_internal} 
-Release: 14
+Release: 15
 URL: http://www.mozilla.org/projects/firefox/
 License: MPLv1.1 or GPLv2+ or LGPLv2+
 Source0: firefox-%{version_internal}.source.tar.xz
@@ -207,6 +207,9 @@ update-desktop-database ||:
 %{_datadir}/icons/hicolor/*/apps/firefox.png
 
 %changelog
+* Mon Nov 02 2015 Cjacker <cjacker@foxmail.com> - 41.0.2-15
+- Rebuild with icu 56.1
+
 * Tue Oct 27 2015 Cjacker <cjacker@foxmail.com> - 41.0.2-14
 - Rebuild
 

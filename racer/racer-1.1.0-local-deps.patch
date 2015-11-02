@@ -1,0 +1,210 @@
+diff -Nur racer-1.0.0/aho-corasick-0.3.4/Cargo.toml racer-1.0.0n/aho-corasick-0.3.4/Cargo.toml
+--- racer-1.0.0/aho-corasick-0.3.4/Cargo.toml	2015-10-17 11:58:22.000000000 +0800
++++ racer-1.0.0n/aho-corasick-0.3.4/Cargo.toml	2015-10-31 13:57:10.622422219 +0800
+@@ -20,14 +20,7 @@
+ bench = false
+ 
+ [dependencies]
+-memchr = "0.1.*"
+-
+-[dev-dependencies]
+-csv = "0.14"
+-docopt = "0.6"
+-quickcheck = "0.2"
+-rand = "0.3"
+-rustc-serialize = "0.3"
++memchr =  { version = "0.1.6", path = "../memchr-0.1.6" }
+ 
+ [[bench]]
+ name = "bench"
+diff -Nur racer-1.0.0/env_logger-0.3.1/Cargo.toml racer-1.0.0n/env_logger-0.3.1/Cargo.toml
+--- racer-1.0.0/env_logger-0.3.1/Cargo.toml	2015-05-18 23:48:21.000000000 +0800
++++ racer-1.0.0n/env_logger-0.3.1/Cargo.toml	2015-10-31 13:57:10.621422219 +0800
+@@ -11,9 +11,6 @@
+ variable.
+ """
+ 
+-[dependencies.log]
+-version = "0.3"
+-path = ".."
+-
+ [dependencies]
+-regex = "0.1"
++regex = { version = "0.1.41", path = "../regex-0.1.41" }
++log = { version = "0.3.3", path = "../log-0.3.3" } 
+diff -Nur racer-1.0.0/log-0.3.3/Cargo.toml racer-1.0.0n/log-0.3.3/Cargo.toml
+--- racer-1.0.0/log-0.3.3/Cargo.toml	2015-10-28 03:16:44.000000000 +0800
++++ racer-1.0.0n/log-0.3.3/Cargo.toml	2015-10-31 13:57:10.623422219 +0800
+@@ -17,7 +17,7 @@
+ harness = false
+ 
+ [dependencies]
+-libc = "0.1"
++libc = { version = "0.1.12", path = "../libc-0.1.12" }
+ 
+ [features]
+ max_level_off   = []
+diff -Nur racer-1.0.0/regex-0.1.41/Cargo.toml racer-1.0.0n/regex-0.1.41/Cargo.toml
+--- racer-1.0.0/regex-0.1.41/Cargo.toml	2015-07-15 06:08:35.000000000 +0800
++++ racer-1.0.0n/regex-0.1.41/Cargo.toml	2015-10-31 13:57:08.084422264 +0800
+@@ -34,12 +34,9 @@
+ bench = true
+ 
+ [dependencies]
+-aho-corasick = "0.3"
+-memchr = "0.1"
+-regex-syntax = { path = "regex-syntax", version = "0.2" }
+-
+-[dev-dependencies]
+-rand = "0.3"
++aho-corasick = { version = "0.3.4", path = "../aho-corasick-0.3.4" } 
++memchr = { version = "0.1.6", path = "../memchr-0.1.6" } 
++regex-syntax = { version = "0.2.2", path = "../regex-syntax-0.2.2" }
+ 
+ [features]
+ pattern = []
+diff -Nur racer-1.0.0/racer/Cargo.toml racer-1.0.0n/racer/Cargo.toml
+--- racer-1.0.0/racer/Cargo.toml	2015-10-31 14:02:01.456417010 +0800
++++ racer-1.0.0n/racer/Cargo.toml	2015-10-31 14:03:27.462415470 +0800
+@@ -18,11 +18,8 @@
+ debug = true
+ 
+ [dependencies]
+-log = "*"
+-syntex_syntax = "*"
+-toml = "*"
+-env_logger = "*"
+-typed-arena = "*"
+-
+-[features]
+-nightly = []
++log = { version = "0.3.3", path = "../log-0.3.3" } 
++syntex_syntax = { version = "0.17.0", path = "../syntex_syntax-0.17.0" }
++toml = { version = "0.1.23", path = "../toml-0.1.23" } 
++env_logger = { version = "0.3.1", path = "../env_logger-0.3.1" }
++typed-arena = { version = "1.0.1", path = "../typed-arena-1.0.1" }
+diff -Nur racer-1.0.0/kernel32-sys-0.1.4/Cargo.toml racer-1.0.0n/kernel32-sys-0.1.4/Cargo.toml
+--- racer-1.0.0/kernel32-sys-0.1.4/Cargo.toml	2015-08-13 07:56:09.000000000 +0800
++++ racer-1.0.0n/kernel32-sys-0.1.4/Cargo.toml	2015-10-31 14:43:22.270372584 +0800
+@@ -15,6 +15,7 @@
+ name = "kernel32"
+ 
+ [dependencies]
+-winapi = { version = "*", path = "../.." }
++winapi = { version = "0.2.4", path = "../winapi-0.2.4" }
+ [build-dependencies]
+-winapi-build = { version = "*", path = "../../build" }
++winapi-build = { version = "0.1.0", path = "../winapi-build-0.1.0" }
++
+diff -Nur racer-1.0.0/memchr-0.1.6/Cargo.toml racer-1.0.0n/memchr-0.1.6/Cargo.toml
+--- racer-1.0.0/memchr-0.1.6/Cargo.toml	2015-08-30 23:29:46.000000000 +0800
++++ racer-1.0.0n/memchr-0.1.6/Cargo.toml	2015-10-31 14:44:56.060370904 +0800
+@@ -14,7 +14,4 @@
+ name = "memchr"
+ 
+ [dependencies]
+-libc = "0.1"
+-
+-[dev-dependencies]
+-quickcheck = "0.2"
++libc = { version = "0.1.12", path = "../libc-0.1.12" }
+diff -Nur racer-1.0.0/regex-syntax-0.2.2/Cargo.toml racer-1.0.0n/regex-syntax-0.2.2/Cargo.toml
+--- racer-1.0.0/regex-syntax-0.2.2/Cargo.toml	2015-09-10 10:40:09.000000000 +0800
++++ racer-1.0.0n/regex-syntax-0.2.2/Cargo.toml	2015-10-31 14:45:33.299370237 +0800
+@@ -7,7 +7,3 @@
+ documentation = "http://doc.rust-lang.org/regex/regex_syntax/index.html"
+ homepage = "https://github.com/rust-lang/regex"
+ description = "A regular expression parser."
+-
+-[dev-dependencies]
+-quickcheck = "0.2"
+-rand = "0.3"
+diff -Nur racer-1.0.0/syntex_syntax-0.17.0/Cargo.toml racer-1.0.0n/syntex_syntax-0.17.0/Cargo.toml
+--- racer-1.0.0/syntex_syntax-0.17.0/Cargo.toml	2015-10-05 23:17:21.000000000 +0800
++++ racer-1.0.0n/syntex_syntax-0.17.0/Cargo.toml	2015-10-31 14:46:14.452369500 +0800
+@@ -7,9 +7,9 @@
+ repository = "https://github.com/erickt/rust-syntex"
+ 
+ [dependencies]
+-bitflags = "*"
+-libc = "*"
+-log = "*"
+-rustc-serialize = "*"
+-term = "*"
+-unicode-xid = "*"
++bitflags = { version = "0.3.2", path = "../bitflags-0.3.2" } 
++libc = { version = "0.1.12", path = "../libc-0.1.12" }
++log = { version = "0.3.3", path = "../log-0.3.3" }
++rustc-serialize = { version = "0.3.16", path = "../rustc-serialize-0.3.16" }
++term = { version = "0.2.12", path = "../term-0.2.12" }
++unicode-xid = { version = "0.0.3", path = "../unicode-xid-0.0.3" }
+diff -Nur racer-1.0.0/term-0.2.12/Cargo.toml racer-1.0.0n/term-0.2.12/Cargo.toml
+--- racer-1.0.0/term-0.2.12/Cargo.toml	2015-10-05 07:10:16.000000000 +0800
++++ racer-1.0.0n/term-0.2.12/Cargo.toml	2015-10-31 14:43:50.408372080 +0800
+@@ -13,5 +13,5 @@
+ """
+ 
+ [dependencies]
+-winapi = "0.2"
+-kernel32-sys = "0.1"
++winapi = { version = "0.2.4", path = "../winapi-0.2.4" } 
++kernel32-sys = { version = "0.1.4", path = "../kernel32-sys-0.1.4" } 
+diff -Nur racer-1.0.0/toml-0.1.23/Cargo.toml racer-1.0.0n/toml-0.1.23/Cargo.toml
+--- racer-1.0.0/toml-0.1.23/Cargo.toml	2015-10-08 00:50:57.000000000 +0800
++++ racer-1.0.0n/toml-0.1.23/Cargo.toml	2015-10-31 14:47:22.677368278 +0800
+@@ -16,11 +16,7 @@
+ """
+ 
+ [dependencies]
+-rustc-serialize = { optional = true, version = "0.3.0" }
+-serde = { optional = true, version = "0.5" }
++rustc-serialize = { optional = true, version = "0.3.16", path = "../rustc-serialize-0.3.16" }
+ 
+ [features]
+ default = ["rustc-serialize"]
+-
+-[dev-dependencies]
+-rustc-serialize = "0.3"
+diff -Nur racer-1.0.0/winapi-0.2.4/Cargo.toml racer-1.0.0n/winapi-0.2.4/Cargo.toml
+--- racer-1.0.0/winapi-0.2.4/Cargo.toml	2015-09-18 01:52:45.000000000 +0800
++++ racer-1.0.0n/winapi-0.2.4/Cargo.toml	2015-10-31 14:42:43.237373283 +0800
+@@ -8,39 +8,3 @@
+ readme = "README.md"
+ keywords = ["windows", "ffi", "win32", "winapi", "win64"]
+ license = "MIT"
+-
+-[dev-dependencies]
+-advapi32-sys = { version = "*", path = "lib/advapi32-sys" }
+-bcrypt-sys = { version = "*", path = "lib/bcrypt-sys" }
+-comctl32-sys = { version = "*", path = "lib/comctl32-sys" }
+-comdlg32-sys = { version = "*", path = "lib/comdlg32-sys" }
+-credui-sys = { version = "*", path = "lib/credui-sys" }
+-crypt32-sys = { version = "*", path = "lib/crypt32-sys" }
+-d2d1-sys = { version = "*", path = "lib/d2d1-sys" }
+-d3d9-sys = { version = "*", path = "lib/d3d9-sys" }
+-dbghelp-sys = { version = "*", path = "lib/dbghelp-sys" }
+-dsound-sys = { version = "*", path = "lib/dsound-sys" }
+-dwmapi-sys = { version = "*", path = "lib/dwmapi-sys" }
+-dwrite-sys = { version = "*", path = "lib/dwrite-sys" }
+-dxgi-sys = { version = "*", path = "lib/dxgi-sys" }
+-gdi32-sys = { version = "*", path = "lib/gdi32-sys" }
+-httpapi-sys = { version = "*", path = "lib/httpapi-sys" }
+-kernel32-sys = { version = "*", path = "lib/kernel32-sys" }
+-ktmw32-sys = { version = "*", path = "lib/ktmw32-sys" }
+-mpr-sys = { version = "*", path = "lib/mpr-sys" }
+-ole32-sys = { version = "*", path = "lib/ole32-sys" }
+-oleaut32-sys = { version = "*", path = "lib/oleaut32-sys" }
+-opengl32-sys = { version = "*", path = "lib/opengl32-sys" }
+-psapi-sys = { version = "*", path = "lib/psapi-sys" }
+-secur32-sys = { version = "*", path = "lib/secur32-sys" }
+-setupapi-sys = { version = "*", path = "lib/setupapi-sys" }
+-shell32-sys = { version = "*", path = "lib/shell32-sys" }
+-user32-sys = { version = "*", path = "lib/user32-sys" }
+-usp10-sys = { version = "*", path = "lib/usp10-sys" }
+-uuid-sys = { version = "*", path = "lib/uuid-sys" }
+-vssapi-sys = { version = "*", path = "lib/vssapi-sys" }
+-winhttp-sys = { version = "*", path = "lib/winhttp-sys" }
+-winmm-sys = { version = "*", path = "lib/winmm-sys" }
+-winspool-sys = { version = "*", path = "lib/winspool-sys" }
+-ws2_32-sys = { version = "*", path = "lib/ws2_32-sys" }
+-xinput-sys = { version = "*", path = "lib/xinput-sys" }

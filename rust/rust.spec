@@ -5,8 +5,8 @@
 %global with_system_llvm 0
 
 Name: rust
-Version: 1.3.0
-Release: 3 
+Version: 1.4.0
+Release: 4 
 Summary: rust programming language	
 
 License: Apache 
@@ -14,8 +14,8 @@ URL:	 http://www.rust-lang.org
 
 Source0: https://static.rust-lang.org/dist/rustc-%{version}-src.tar.gz
 #see src/snapshots.txt
-Source1: http://static.rust-lang.org/stage0-snapshots/rust-stage0-2015-07-26-a5c12f4-linux-x86_64-e451e3bd6e5fcef71e41ae6f3da9fb1cf0e13a0c.tar.bz2
-Source2: https://static.rust-lang.org/stage0-snapshots/rust-stage0-2015-07-26-a5c12f4-linux-i386-3459275cdf3896f678e225843fa56f0d9fdbabe8.tar.bz2
+Source1: http://static.rust-lang.org/stage0-snapshots/rust-stage0-2015-08-11-1af31d4-linux-x86_64-7df8ba9dec63ec77b857066109d4b6250f3d222f.tar.bz2
+Source2: https://static.rust-lang.org/stage0-snapshots/rust-stage0-2015-08-11-1af31d4-linux-i386-e2553bf399cd134a08ef3511a0a6ab0d7a667216.tar.bz2
 
 Source10: rust-src.sh
 
@@ -164,6 +164,9 @@ install -m 0755 %{SOURCE10} %{buildroot}%{_sysconfdir}/profile.d/rust-src.sh
 %{_prefix}/src/rust/
 
 %changelog
+* Fri Oct 30 2015 Cjacker <cjacker@foxmail.com> - 1.4.0-4
+- Update
+
 * Tue Oct 27 2015 Cjacker <cjacker@foxmail.com> - 1.3.0-3
 - Rebuild
 

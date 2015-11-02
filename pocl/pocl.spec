@@ -1,6 +1,6 @@
 Name:		pocl
-Version:	0.12
-Release:	8.git
+Version:	0.13
+Release:	9.git
 Summary:	Portable Computing Language
 
 License:	BSD
@@ -47,7 +47,11 @@ export LLC_HOST_CPU="x86-64"
 %endif
 
 if [ ! -f "configure" ]; then ./autogen.sh; fi
-%configure
+%configure \
+    --disable-static \
+    --enable-icd \
+    --enable-tests-with-icd=default
+
 make %{?_smp_mflags}
 
 
@@ -76,11 +80,13 @@ make check
 %files devel
 %defattr(-,root,root,-)
 %{_includedir}/*.h
-%{_libdir}/*.a
 %{_libdir}/*.so
 %{_libdir}/pkgconfig/pocl.pc
 
 %changelog
+* Mon Nov 02 2015 Cjacker <cjacker@foxmail.com> - 0.13-9.git
+- Rebuild, bump version to 0.13 git.
+
 * Mon Nov 02 2015 Cjacker <cjacker@foxmail.com> - 0.12-8.git
 - add more build requires
 
