@@ -1,17 +1,26 @@
 Name:		pocl
 Version:	0.12
-Release:	6.git
+Release:	7.git
 Summary:	Portable Computing Language
 
 License:	BSD
 URL:		http://portablecl.org/
 #git clone https://github.com/pocl/pocl
-Source0:    %{name}.tar.gz
+Source0:    %{name}-953cdd7.tar.gz
 
-BuildRequires:  ocl-icd-devel, libhwloc-devel	
-BuildRequires:  libllvm-devel
+BuildRequires: autoconf automake libtool
+BuildRequires: ocl-icd-devel, libhwloc-devel	
+BuildRequires: libllvm-devel, libllvm-static, libclang-static, libclang-devel, libltdl-devel, ncurses-devel
+BuildRequires: clang llvm
+BuildRequires: pkgconfig sed grep
+BuildRequires: mesa-libGL-devel
+BuildRequires: opencl-filesystem
+BuildRequires: opencl-headers
+BuildRequires: uthash-devel
+BuildRequires: zlib-devel
+BuildRequires: libedit-devel
 
-Requires:	ocl-icd, libhwloc
+Requires: ocl-icd, libhwloc
 
 %description
 Portable Computing Language (pocl) aims to become a MIT-licensed open source implementation of the OpenCL standard which can be easily adapted for new targets and devices, both for homogeneous CPU and heterogenous GPUs/accelerators.
@@ -48,9 +57,11 @@ make %{?_smp_mflags}
 make install DESTDIR=%{buildroot}
 
 %check
+#from git 953cdd7, these two test failure fixed.
+#https://github.com/pocl/pocl/pull/271 
 #24: Sampler address clamp                           FAILED (testsuite.at:264)
 #25: Image query functions                           FAILED (testsuite.at:272)
-make check ||:
+make check
 
 %files
 %defattr(-,root,root,-)
@@ -71,6 +82,9 @@ make check ||:
 %{_datadir}/pocl/include
 
 %changelog
+* Mon Nov 02 2015 Cjacker <cjacker@foxmail.com> - 0.12-7.git
+- update to git 953cdd7, fix image/samplers test failed issue.
+
 * Tue Oct 27 2015 Cjacker <cjacker@foxmail.com> - 0.12-6.git
 - Rebuild
 
