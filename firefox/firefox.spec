@@ -76,6 +76,7 @@ BuildRequires: libicu-devel
 BuildRequires: yasm
 BuildRequires: gstreamer-devel
 BuildRequires: gstreamer-plugins-base-devel
+BuildRequires: GConf2-devel
 
 Requires:       desktop-file-utils >= %{desktop_file_utils_version}
 Requires:       hunspell
