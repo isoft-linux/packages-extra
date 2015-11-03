@@ -6,8 +6,8 @@
 
 Summary: A Windows 16/32/64 bit emulator
 Name: wine 
-Version: 1.7.53
-Release: 4 
+Version: 1.7.54
+Release: 2 
 License: GPL
 URL: https://www.winehq.org
 Source0: http://mirrors.ibiblio.org/wine/source/1.7/%{name}-%{version}.tar.bz2
@@ -222,6 +222,9 @@ fi
 %{_includedir}/wine/*
 
 %changelog
+* Tue Nov 03 2015 Cjacker <cjacker@foxmail.com> - 1.7.54-2
+- Update
+
 * Tue Oct 27 2015 Cjacker <cjacker@foxmail.com> - 1.7.53-4
 - Rebuild
 
