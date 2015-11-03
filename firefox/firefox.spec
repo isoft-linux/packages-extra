@@ -8,13 +8,13 @@
 
 %define desktop_file_utils_version 0.9
 
-%define version_internal 41.0.2
+%define version_internal 42.0
 %define firefoxdir %{_libdir}/firefox
 
 Summary: Mozilla Firefox Web browser
 Name: firefox
 Version: %{version_internal} 
-Release: 15
+Release: 2
 URL: http://www.mozilla.org/projects/firefox/
 License: MPLv1.1 or GPLv2+ or LGPLv2+
 Source0: firefox-%{version_internal}.source.tar.xz
@@ -40,36 +40,42 @@ Patch13: mozilla-kde.patch
 Patch14: mozilla-language.patch
 Patch15: mozilla-nongnome-proxies.patch
 Patch16: toolkit-download-folder.patch
-Patch17: mozilla-icu-strncat.patch
 
 
-BuildRequires:  desktop-file-utils
-BuildRequires:  yasm
-BuildRequires:  nspr-devel
-BuildRequires:  nss-devel
-BuildRequires:  libpng-devel
-BuildRequires:  libjpeg-devel
-BuildRequires:  zip
-BuildRequires:  bzip2-devel
-BuildRequires:  zlib-devel
-BuildRequires:  libIDL-devel
-BuildRequires:  gtk2-devel
-BuildRequires:  krb5-devel
-BuildRequires:  pango-devel
-BuildRequires:  freetype-devel
-BuildRequires:  libXt-devel
-BuildRequires:  libXrender-devel
-BuildRequires:  hunspell-devel
-BuildRequires:  startup-notification-devel
-BuildRequires:  alsa-lib-devel
-BuildRequires:  libnotify-devel
-BuildRequires:  mesa-libGL-devel
-BuildRequires:  libcurl-devel
-BuildRequires:  libvpx-devel
-BuildRequires:  autoconf213
-BuildRequires:  pulseaudio-libs-devel
-BuildRequires:  sqlite-devel
-BuildRequires:  libffi-devel
+BuildRequires: desktop-file-utils
+BuildRequires: nspr-devel
+BuildRequires: nss-devel
+BuildRequires: libpng-devel
+BuildRequires: libjpeg-devel
+BuildRequires: zip
+BuildRequires: bzip2-devel
+BuildRequires: zlib-devel
+BuildRequires: libIDL-devel
+
+BuildRequires: glib2-devel
+BuildRequires: gtk2-devel
+BuildRequires: krb5-devel
+BuildRequires: pango-devel
+BuildRequires: freetype-devel
+BuildRequires: libXt-devel
+BuildRequires: libXrender-devel
+BuildRequires: libXinerama-devel
+BuildRequires: libXcomposite-devel libXfixes-devel
+BuildRequires: hunspell-devel
+BuildRequires: startup-notification-devel
+BuildRequires: alsa-lib-devel
+BuildRequires: libnotify-devel
+BuildRequires: mesa-libGL-devel
+BuildRequires: libcurl-devel
+BuildRequires: libvpx-devel
+BuildRequires: autoconf213
+BuildRequires: pulseaudio-libs-devel
+BuildRequires: sqlite-devel
+BuildRequires: libffi-devel
+BuildRequires: libicu-devel
+BuildRequires: yasm
+BuildRequires: gstreamer-devel
+BuildRequires: gstreamer-plugins-base-devel
 
 Requires:       desktop-file-utils >= %{desktop_file_utils_version}
 Requires:       hunspell
@@ -85,7 +91,7 @@ compliance, performance and portability.
 
 %prep
 %setup -q -c
-cd mozilla-release
+cd firefox-%{version} 
 %patch0 -p1
 
 %patch1 -p1
@@ -104,7 +110,6 @@ cd mozilla-release
 %patch14 -p1
 %patch15 -p1
 %patch16 -p1
-%patch17 -p1
 
 rm  -rf .mozconfig
 cp %{SOURCE10} .mozconfig
@@ -112,7 +117,7 @@ cp %{SOURCE10} .mozconfig
 sed -i '/ac_cpp=/s/$CPPFLAGS/& -O2/' configure
 
 %build
-pushd mozilla-release
+pushd firefox-%{version} 
 
 MOZ_OPT_FLAGS=$(echo $RPM_OPT_FLAGS | \
                      %{__sed} -e 's/-Wall//' -e 's/-fexceptions/-fno-exceptions/g')
@@ -135,7 +140,7 @@ popd
 
 %install
 rm -rf $RPM_BUILD_ROOT
-pushd mozilla-release
+pushd firefox-%{version} 
 #avoid make install failed.
 DISTDIR=`find . -name obj-*-gnu`
 install -D -m0644 %{SOURCE200} $DISTDIR/dist/bin/defaults/pref/kde.js
@@ -207,6 +212,9 @@ update-desktop-database ||:
 %{_datadir}/icons/hicolor/*/apps/firefox.png
 
 %changelog
+* Tue Nov 03 2015 Cjacker <cjacker@foxmail.com> - 42.0-2
+- Update to 42.0
+
 * Mon Nov 02 2015 Cjacker <cjacker@foxmail.com> - 41.0.2-15
 - Rebuild with icu 56.1
 
