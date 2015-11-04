@@ -1,7 +1,7 @@
 #we use prebuilt version of electron.
 Name: electron
-Version: 0.33.8
-Release: 2
+Version: 0.34.2
+Release: 2 
 Summary: Build cross platform desktop apps with web technologies
 
 License: MIT
@@ -65,6 +65,9 @@ gtk-update-icon-cache %{_datadir}/icons/hicolor &> /dev/null || :
 %{_datadir}/icons/hicolor/scalable/apps/*.svg
 
 %changelog
+* Wed Nov 04 2015 Cjacker <cjacker@foxmail.com> - 0.34.2-2
+- Update
+
 * Tue Oct 27 2015 Cjacker <cjacker@foxmail.com> - 0.33.8-2
 - Rebuild
 
