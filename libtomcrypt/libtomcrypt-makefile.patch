@@ -1,0 +1,16 @@
+diff -Nur libtomcrypt/makefile.include libtomcryptn/makefile.include
+--- libtomcrypt/makefile.include	2015-11-04 13:34:56.794687650 +0800
++++ libtomcryptn/makefile.include	2015-11-04 13:39:56.564682282 +0800
+@@ -56,10 +56,10 @@
+ 
+ ifndef IGNORE_SPEED
+ # optimize for SPEED
+-CFLAGS += -O3 -funroll-loops
++#CFLAGS += -O3 -funroll-loops
+ 
+ # add -fomit-frame-pointer.  hinders debugging!
+-CFLAGS += -fomit-frame-pointer
++#CFLAGS += -fomit-frame-pointer
+ endif
+ 
+ endif # COMPILE_SMALL

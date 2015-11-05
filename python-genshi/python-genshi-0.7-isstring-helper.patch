@@ -1,0 +1,30 @@
+------------------------------------------------------------------------
+r1248 | hodgestar | 2014-02-16 19:43:20 +0100 (So, 16. Feb 2014) | 1 Zeile
+
+Add isstring helper.
+------------------------------------------------------------------------
+Index: genshi/compat.py
+===================================================================
+--- genshi/compat.py	(Revision 1247)
++++ genshi/compat.py	(Revision 1248)
+@@ -35,6 +35,15 @@
+                 'Python 2 compatibility function. Not usable in Python 3.')
+ 
+ 
++# We need to test if an object is an instance of a string type in places
++
++if IS_PYTHON2:
++    def isstring(obj):
++        return isinstance(obj, basestring)
++else:
++    def isstring(obj):
++        return isinstance(obj, str)
++
+ # We need to differentiate between StringIO and BytesIO in places
+ 
+ if IS_PYTHON2:
+@@ -112,4 +121,3 @@
+             if not x:
+                 return False
+         return True
+-

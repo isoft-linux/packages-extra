@@ -1,0 +1,23 @@
+diff -up podofo-0.9.1/CMakeLists.txt.freetype podofo-0.9.1/CMakeLists.txt
+--- podofo-0.9.1/CMakeLists.txt.freetype	2011-04-26 20:02:47.000000000 +0200
++++ podofo-0.9.1/CMakeLists.txt	2014-06-10 13:53:44.563899433 +0200
+@@ -351,8 +351,8 @@ ENDIF(CppUnit_FOUND)
+ 
+ FIND_PACKAGE(OpenSSL)
+ 
+-FIND_PACKAGE(FREETYPE REQUIRED)
+-MESSAGE("Found freetype library at ${FREETYPE_LIBRARIES}, headers ${FREETYPE_INCLUDE_DIR}")
++FIND_PACKAGE(Freetype REQUIRED)
++MESSAGE("Found freetype library at ${FREETYPE_LIBRARIES}, headers ${FREETYPE_INCLUDE_DIRS}")
+ 
+ FIND_PACKAGE(LIBSTLPORT)
+ SET(stlport_libraries_if_use_stlport)
+@@ -448,7 +448,7 @@ INCLUDE_DIRECTORIES(
+     ${PoDoFo_BINARY_DIR}
+     ${PoDoFo_SOURCE_DIR}
+     ${PoDoFo_SOURCE_DIR}/src
+-    ${FREETYPE_INCLUDE_DIR}
++    ${FREETYPE_INCLUDE_DIRS}
+     ${ZLIB_INCLUDE_DIR}
+     ${EXTRA_INCLUDES}
+      )

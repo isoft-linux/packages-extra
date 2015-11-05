@@ -1,0 +1,100 @@
+diff -up podofo-0.9.1/tools/podofocolor/lua_compat.h.lua52 podofo-0.9.1/tools/podofocolor/lua_compat.h
+--- podofo-0.9.1/tools/podofocolor/lua_compat.h.lua52	2010-12-29 18:36:59.000000000 +0100
++++ podofo-0.9.1/tools/podofocolor/lua_compat.h	2013-08-20 16:23:00.356712464 +0200
+@@ -11,14 +11,38 @@ extern "C" {
+ #define LUA_VERSION_NUM 0
+ #endif
+ 
+-// Handle an API difference in the dofile call between
++// Handle an API difference in the lua_open call between
++// Lua 5.1 and Lua 5.2.
++#if LUA_VERSION_NUM >= 502
++inline lua_State* imp_lua_open(void) {
++    return luaL_newstate();
++}
++inline size_t imp_lua_objlen(lua_State *L, int index) {
++    return lua_rawlen(L, index);
++}
++#else
++inline lua_State* imp_lua_open(void) {
++    return lua_open();
++}
++inline size_t imp_lua_objlen(lua_State *L, int index) {
++    return lua_objlen(L, index);
++}
++#endif
++
++// Handle an API difference in the dofile and getn calls between
+ // Lua 5.0 and Lua 5.1.
+ #if LUA_VERSION_NUM >= 501
+ inline int imp_lua_dofile(lua_State* L, const char * path) {
+     return luaL_dofile(L, path);
+ }
++inline int imp_lua_getn(lua_State *L, int t) {
++    return imp_lua_objlen(L, t);
++}
+ #else
+ inline int imp_lua_dofile(lua_State* L, const char * path) {
+     return lua_dofile(L, path);
+ }
++inline int imp_lua_getn(lua_State *L, int t) {
++    return luaL_getn(L, t);
++}
+ #endif
+diff -up podofo-0.9.1/tools/podofocolor/luaconverter.cpp.lua52 podofo-0.9.1/tools/podofocolor/luaconverter.cpp
+--- podofo-0.9.1/tools/podofocolor/luaconverter.cpp.lua52	2010-12-29 19:08:31.000000000 +0100
++++ podofo-0.9.1/tools/podofocolor/luaconverter.cpp	2013-08-20 16:23:00.356712464 +0200
+@@ -44,7 +44,7 @@ using namespace PoDoFo;
+ LuaMachina::LuaMachina()
+ {
+ 	/* Init the Lua interpreter */
+-	L = lua_open();
++	L = imp_lua_open();
+ 	if (!L)
+ 	{
+ 		throw std::runtime_error("Whoops! Failed to open lua!");
+@@ -117,7 +117,7 @@ PdfColor LuaConverter::GetColorFromRetur
+     size_t len;
+ 
+     luaL_checktype(m_machina.State(), 1, LUA_TTABLE);
+-    len = luaL_getn( m_machina.State(), -1 );
++    len = imp_lua_getn( m_machina.State(), -1 );
+     // Lua 5.1 only
+     //len = lua_objlen( m_machina.State(), -1 );
+ 
+diff -up podofo-0.9.1/tools/podofoimpose/lua_compat.h.lua52 podofo-0.9.1/tools/podofoimpose/lua_compat.h
+--- podofo-0.9.1/tools/podofoimpose/lua_compat.h.lua52	2008-10-16 11:10:18.000000000 +0200
++++ podofo-0.9.1/tools/podofoimpose/lua_compat.h	2013-08-20 16:23:00.357712447 +0200
+@@ -11,7 +11,19 @@ extern "C" {
+ #define LUA_VERSION_NUM 0
+ #endif
+ 
+-// Handle an API difference in the dofile call between
++// Handle an API difference in the lua_open call between
++// Lua 5.1 and Lua 5.2.
++#if LUA_VERSION_NUM >= 502
++inline lua_State* imp_lua_open(void) {
++    return luaL_newstate();
++}
++#else
++inline lua_State* imp_lua_open(void) {
++    return lua_open();
++}
++#endif
++
++// Handle an API difference in the dofile and getn calls between
+ // Lua 5.0 and Lua 5.1.
+ #if LUA_VERSION_NUM >= 501
+ inline int imp_lua_dofile(lua_State* L, const char * path) {
+diff -up podofo-0.9.1/tools/podofoimpose/planreader_lua.cpp.lua52 podofo-0.9.1/tools/podofoimpose/planreader_lua.cpp
+--- podofo-0.9.1/tools/podofoimpose/planreader_lua.cpp.lua52	2013-08-20 16:23:00.357712447 +0200
++++ podofo-0.9.1/tools/podofoimpose/planreader_lua.cpp	2013-08-20 16:24:50.856848739 +0200
+@@ -24,7 +24,7 @@ LuaMachina::LuaMachina()
+ {
+ 	int error;
+ 	/* Init the Lua interpreter */
+-	L = lua_open();
++	L = imp_lua_open();
+ 	if (!L)
+ 	{
+ 		throw std::runtime_error("Whoops! Failed to open lua!");
