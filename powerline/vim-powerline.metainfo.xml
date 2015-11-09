@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Copyright 2015 Andreas Schneider <asn@redhat.com> -->
+<component type="addon">
+    <id>vim-powerline</id>
+    <extends>gvim.desktop</extends>
+    <name>powerline</name>
+    <summary>Provides a statusline plugin for vim</summary>
+    <url type="homepage">https://github.com/powerline/powerline</url>
+    <metadata_license>CC0-1.0</metadata_license>
+    <project_license>MIT</project_license>
+    <updatecontact>asn@redhat.com</updatecontact>
+</component>
