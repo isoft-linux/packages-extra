@@ -26,6 +26,7 @@ Patch11: synaptic-0.57.2-drop-help.patch
 Patch12: synaptic-detect-rpm-lib-fix.patch
 
 Requires: usermode-gtk
+BuildRequires: autoconf automake libtool
 BuildRequires: apt-devel >= 0.5.15lorg3.92, librpm-devel >= 4.0
 BuildRequires: gtk2-devel, libglade2-devel, desktop-file-utils
 BuildRequires: libstdc++-devel, gettext
