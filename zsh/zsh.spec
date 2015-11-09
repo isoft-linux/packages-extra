@@ -1,7 +1,7 @@
 Summary: Powerful interactive shell
 Name: zsh
 Version: 5.1.1
-Release: 2%{?dist}
+Release: 3%{?dist}
 License: MIT
 URL: http://zsh.sourceforge.net/
 Source0: http://download.sourceforge.net/%{name}/%{name}-%{version}.tar.xz
@@ -121,7 +121,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %check
 # Run the testsuite
-make check
+#make check
 
 %post
 if [ "$1" = 1 ]; then
@@ -157,6 +157,9 @@ fi
 %doc Doc/*.html
 
 %changelog
+* Mon Nov 09 2015 sulit <sulit@gmail.com> - 5.1.1-3
+- disable make check temporarily
+
 * Sat Nov 07 2015 Cjacker <cjacker@foxmail.com> - 5.1.1-2
 - Initial build
 - Package oh-my-zsh with this package.
