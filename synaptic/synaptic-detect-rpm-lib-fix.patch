@@ -1,0 +1,18 @@
+diff -Nur synaptic-0.57.2/configure.in synaptic-0.57.2n/configure.in
+--- synaptic-0.57.2/configure.in	2005-07-04 20:54:58.000000000 +0800
++++ synaptic-0.57.2n/configure.in	2015-11-08 19:06:31.465986776 +0800
+@@ -78,12 +78,12 @@
+ SAVE_CPPFLAGS="$CPPFLAGS"
+ 
+ RPM_HDRS=""
+-LIBS="$SAVE_LIBS -lrpmio -lrpmdb -lpopt"
++LIBS="$SAVE_LIBS -lrpmio -lpopt"
+ CPPFLAGS="$SAVE_CPPFLAGS -I/usr/include/rpm"
+ AC_CHECK_HEADER(rpm/rpmlib.h,
+       [AC_CHECK_LIB(rpm,rpmdbInitIterator,
+         [AC_DEFINE(HAVE_RPM, 1, [whether RPM is present]) 
+-         RPM_LIBS="-lrpm -lrpmio -lrpmdb -lpopt"
++         RPM_LIBS="-lrpm -lrpmio -lpopt"
+          SAVE_CPPFLAGS="$SAVE_CPPFLAGS -I/usr/include/rpm"
+ 	 RPM_HDRS="-I/usr/include/rpm"
+          rpm_version="4"])])
