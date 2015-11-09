@@ -2,17 +2,17 @@
 
 Name:           python-genshi
 Version:        0.7
-Release:        9%{?dist}
+Release:        10%{?dist}
 Summary:        Toolkit for stream-based generation of output for the web
 
 License:        BSD
 URL:            http://genshi.edgewall.org/
 
 Source0:        http://ftp.edgewall.com/pub/genshi/Genshi-%{version}.tar.gz
-Patch0:         python-genshi-0.7-sanitizer-test-fixes.patch
-Patch1:         python-genshi-0.7-disable-speedups-for-python34.patch
-Patch2:         python-genshi-0.7-isstring-helper.patch
-Patch3:         python-genshi-0.7-python34-ast-support.patch
+Patch0: fix_tests_failure_with_python27.patch  
+Patch1: issue566.patch  
+Patch2: issue582.patch  
+Patch3: issue602.patch
 
 BuildRequires:  python2-devel
 BuildRequires:  python-setuptools
@@ -45,10 +45,10 @@ a template language, which is heavily inspired by Kid.
 
 %prep
 %setup0 -q -n Genshi-%{version}
-%patch0 -p0
-%patch1 -p0
-%patch2 -p0
-%patch3 -p0
+%patch0 -p1
+%patch1 -p1
+%patch2 -p1
+%patch3 -p1
 
 # Remove bundled egg-info in case it exists
 rm -rf %{modname}.egg-info
@@ -96,6 +96,9 @@ popd
 %endif
 
 %changelog
+* Fri Nov 06 2015 Cjacker <cjacker@foxmail.com> - 0.7-10
+- Rebuild with python 3.5
+
 * Wed Nov 04 2015 Cjacker <cjacker@foxmail.com> - 0.7-9
 - Initial build
 

@@ -6,7 +6,7 @@
 Summary:	Cryptography library for Python
 Name:		python-crypto
 Version:	2.6.1
-Release:	8%{?dist}
+Release:	9%{?dist}
 # Mostly Public Domain apart from parts of HMAC.py and setup.py, which are Python
 License:	Public Domain and Python
 URL:		http://www.pycrypto.org/
@@ -123,6 +123,9 @@ rm -rf %{buildroot}
 %endif
 
 %changelog
+* Fri Nov 06 2015 Cjacker <cjacker@foxmail.com> - 2.6.1-9
+- Rebuild with python 3.5
+
 * Wed Nov 04 2015 Cjacker <cjacker@foxmail.com> - 2.6.1-8
 - Initial build
 

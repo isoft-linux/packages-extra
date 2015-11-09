@@ -10,7 +10,7 @@
 
 Name:           python-dns
 Version:        1.12.0GIT465785f
-Release:        2%{?dist}
+Release:        3%{?dist}
 Summary:        DNS toolkit for Python
 
 License:        MIT
@@ -153,6 +153,9 @@ rm -rf %{buildroot}
 %endif
 
 %changelog
+* Fri Nov 06 2015 Cjacker <cjacker@foxmail.com> - 1.12.0GIT465785f-3
+- Rebuild with python 3.5
+
 * Wed Nov 04 2015 Cjacker <cjacker@foxmail.com> - 1.12.0GIT465785f-2
 - Initial build
 

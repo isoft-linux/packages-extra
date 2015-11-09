@@ -7,7 +7,7 @@
 
 Name:           python-feedparser
 Version:        5.2.0
-Release:        2%{?dist}
+Release:        3%{?dist}
 Summary:        Parse RSS and Atom feeds in Python
 
 License:        BSD
@@ -153,6 +153,9 @@ rm -rf %{buildroot}
 %endif
 
 %changelog
+* Fri Nov 06 2015 Cjacker <cjacker@foxmail.com> - 5.2.0-3
+- Rebuild with python 3.5
+
 * Wed Nov 04 2015 Cjacker <cjacker@foxmail.com> - 5.2.0-2
 - Initial build
 

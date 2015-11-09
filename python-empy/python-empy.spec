@@ -3,7 +3,7 @@
 
 Name:           python-empy
 Version:        3.3.2
-Release:        7%{?dist}
+Release:        8%{?dist}
 Summary:        A powerful and robust template system for Python
 License:        LGPLv2+
 URL:            http://www.alcyone.com/software/empy/
@@ -81,6 +81,9 @@ rm -rf $RPM_BUILD_ROOT
 
 
 %changelog
+* Fri Nov 06 2015 Cjacker <cjacker@foxmail.com> - 3.3.2-8
+- Rebuild with python 3.5
+
 * Tue Oct 27 2015 Cjacker <cjacker@foxmail.com> - 3.3.2-7
 - Rebuild
 

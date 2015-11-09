@@ -1,6 +1,6 @@
 Name:           capstone
 Version:        3.0.4
-Release:        3%{?dist}
+Release:        4%{?dist}
 Summary:        A lightweight multi-platform, multi-architecture disassembly framework
 
 License:        BSD
@@ -130,6 +130,9 @@ make check LD_LIBRARY_PATH="`pwd`"
 #%{_javadir}/
 
 %changelog
+* Fri Nov 06 2015 Cjacker <cjacker@foxmail.com> - 3.0.4-4
+- Rebuild with python 3.5
+
 * Tue Oct 27 2015 Cjacker <cjacker@foxmail.com> - 3.0.4-3
 - Rebuild
 

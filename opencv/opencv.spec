@@ -2,7 +2,7 @@
 
 Name:           opencv
 Version:        3.0.0 
-Release:        2%{?dist}
+Release:        3%{?dist}
 Summary:        Collection of algorithms for computer vision
 License:        BSD
 URL:            http://opencv.org
@@ -193,6 +193,9 @@ popd
 %{python3_sitearch}/cv2*.so
 
 %changelog
+* Fri Nov 06 2015 Cjacker <cjacker@foxmail.com> - 3.0.0-3
+- Rebuild with python 3.5
+
 * Tue Oct 27 2015 Cjacker <cjacker@foxmail.com> - 3.0.0-2
 - Rebuild
 

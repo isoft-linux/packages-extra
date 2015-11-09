@@ -10,7 +10,7 @@
 
 Name:               python-apsw
 Version:            3.8.11.1 
-Release:            3%{?dist}
+Release:            4%{?dist}
 Summary:            Another Python SQLite Wrapper
 License:            zlib
 URL:                http://code.google.com/p/apsw/
@@ -85,6 +85,9 @@ python2 setup.py install --root %{buildroot}
 %endif # with_python3
 
 %changelog
+* Fri Nov 06 2015 Cjacker <cjacker@foxmail.com> - 3.8.11.1-4
+- Rebuild with python 3.5
+
 * Wed Nov 04 2015 Cjacker <cjacker@foxmail.com> - %{pkg_version}-3
 - Initial build
 

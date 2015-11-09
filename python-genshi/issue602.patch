@@ -1,0 +1,94 @@
+Description: Fix Python 3.5 compatibility issues.
+Origin: http://genshi.edgewall.org/attachment/ticket/602/t602.diff
+Bug: http://genshi.edgewall.org/ticket/602
+Forwarded: not-needed
+
+--- a/genshi/filters/i18n.py
++++ b/genshi/filters/i18n.py
+@@ -1187,8 +1187,10 @@
+                 elif arg:
+                     strings.append(None)
+             [_add(arg) for arg in node.args]
+-            _add(node.starargs)
+-            _add(node.kwargs)
++            if hasattr(node, 'starargs'):
++                _add(node.starargs)
++            if hasattr(node, 'kwargs'):
++                _add(node.kwargs)
+             if len(strings) == 1:
+                 strings = strings[0]
+             else:
+--- a/genshi/template/astutil.py
++++ b/genshi/template/astutil.py
+@@ -135,6 +135,10 @@
+         def visit_arg(self, node):
+             self._write(node.arg)
+ 
++    def visit_Starred(self, node):
++        self._write('*')
++        self.visit(node.value)
++
+     # FunctionDef(identifier name, arguments args,
+     #                           stmt* body, expr* decorator_list)
+     def visit_FunctionDef(self, node):
+@@ -648,9 +652,13 @@
+             if not first:
+                 self._write(', ')
+             first = False
+-            # keyword = (identifier arg, expr value)
+-            self._write(keyword.arg)
+-            self._write('=')
++            if not keyword.arg:
++                # Python 3.5+ star-star args
++                self._write('**')
++            else:
++                # keyword = (identifier arg, expr value)
++                self._write(keyword.arg)
++                self._write('=')
+             self.visit(keyword.value)
+         if getattr(node, 'starargs', None):
+             if not first:
+--- a/genshi/template/directives.py
++++ b/genshi/template/directives.py
+@@ -266,13 +266,21 @@
+         if isinstance(ast, _ast.Call):
+             self.name = ast.func.id
+             for arg in ast.args:
+-                # only names
+-                self.args.append(arg.id)
++                if hasattr(_ast, 'Starred') and isinstance(arg, _ast.Starred):
++                    # Python 3.5+
++                    self.star_args = arg.value.id
++                else:
++                    # only names
++                    self.args.append(arg.id)
+             for kwd in ast.keywords:
+-                self.args.append(kwd.arg)
+-                exp = Expression(kwd.value, template.filepath,
+-                                 lineno, lookup=template.lookup)
+-                self.defaults[kwd.arg] = exp
++                if kwd.arg is None:
++                    # Python 3.5+
++                    self.dstar_args = kwd.value.id
++                else:
++                    self.args.append(kwd.arg)
++                    exp = Expression(kwd.value, template.filepath,
++                                     lineno, lookup=template.lookup)
++                    self.defaults[kwd.arg] = exp
+             if getattr(ast, 'starargs', None):
+                 self.star_args = ast.starargs.id
+             if getattr(ast, 'kwargs', None):
+--- a/genshi/template/eval.py
++++ b/genshi/template/eval.py
+@@ -593,6 +593,11 @@
+         finally:
+             self.locals.pop()
+ 
++    # Only used in Python 3.5+
++    def visit_Starred(self, node):
++        node.value = self.visit(node.value)
++        return node
++
+     def visit_Name(self, node):
+         # If the name refers to a local inside a lambda, list comprehension, or
+         # generator expression, leave it alone

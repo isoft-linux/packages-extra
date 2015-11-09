@@ -4,7 +4,7 @@
 
 Name:		gaupol
 Version:	0.25
-Release:	5%{?dist}
+Release:	6%{?dist}
 Summary:	Subtitle editor
 
 License:	GPLv3+
@@ -65,6 +65,9 @@ $RPM_BUILD_ROOT/%{_datadir}/applications/%{name}.desktop
 %{python3_sitelib}/aeidon
 
 %changelog
+* Fri Nov 06 2015 Cjacker <cjacker@foxmail.com> - 0.25-6
+- Rebuild with python 3.5
+
 * Tue Oct 27 2015 Cjacker <cjacker@foxmail.com> - 0.25-5
 - Rebuild
 
