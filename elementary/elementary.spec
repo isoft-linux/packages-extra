@@ -1,15 +1,18 @@
 Summary: EFL toolkit for small touchscreens
 Name: elementary
-Version: 1.15.2
-Release: 3 
+Version: 1.16.0
+Release: 2
 License: Lesser GPL
 URL: http://trac.enlightenment.org/e/wiki/Elementary
 Source: http://download.enlightenment.org/rel/libs/elementary/%{name}-%{version}.tar.gz
 Patch0: elementary-add-adwaita-icon-theme.patch
 
+BuildRequires: clang
+BuildRequires: doxygen gettext desktop-file-utils
 BuildRequires: efl-devel
 #for convert
 BuildRequires: ImageMagick
+
 %description
 Elementary is a widget set. It is a new-style of widget set much more canvas
 object based than anything else. Why not ETK? Why not EWL? Well they both
@@ -116,6 +119,9 @@ test "x$RPM_BUILD_ROOT" != "x/" && rm -rf $RPM_BUILD_ROOT
 #
 #
 %changelog
+* Tue Nov 10 2015 Cjacker <cjacker@foxmail.com> - 1.16.0-2
+- Update
+
 * Tue Oct 27 2015 Cjacker <cjacker@foxmail.com> - 1.15.2-3
 - Rebuild
 
