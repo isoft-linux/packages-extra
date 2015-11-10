@@ -1,7 +1,7 @@
 Summary: Powerful interactive shell
 Name: zsh
 Version: 5.1.1
-Release: 3%{?dist}
+Release: 4%{?dist}
 License: MIT
 URL: http://zsh.sourceforge.net/
 Source0: http://download.sourceforge.net/%{name}/%{name}-%{version}.tar.xz
@@ -17,6 +17,8 @@ Source7: zshprompt.pl
 #Since zsh will be better with oh-my-zsh.
 #https://github.com/robbyrussell/oh-my-zsh
 Source20: oh-my-zsh.tar.gz
+#to install oh-my-zsh to /usr/share, we had to disable write action to this dir.
+Patch2001: oh-my-zsh-installation.patch
 
 # legacy downstream patches, TODO: either get them upstream or drop them
 Patch0: zsh-serial.patch
@@ -115,6 +117,10 @@ sed -i "s!$RPM_BUILD_ROOT%{_datadir}/%{name}/%{version}/help!%{_datadir}/%{name}
 tar zxf %{SOURCE20} -C %{buildroot}%{_datadir}/zsh
 rm -rf %{buildroot}%{_datadir}/zsh/oh-my-zsh/.git*
 
+pushd %{buildroot}%{_datadir}/zsh/oh-my-zsh
+cat %{PATCH2001} |patch -p1
+popd
+
 %clean
 rm -rf $RPM_BUILD_ROOT
 
@@ -157,6 +163,9 @@ fi
 %doc Doc/*.html
 
 %changelog
+* Tue Nov 10 2015 Cjacker <cjacker@foxmail.com> - 5.1.1-4
+- Fix oh-my-zsh global installtion issue.
+
 * Mon Nov 09 2015 sulit <sulit@gmail.com> - 5.1.1-3
 - disable make check temporarily
 

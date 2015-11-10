@@ -1,0 +1,34 @@
+diff -Nur oh-my-zsh/oh-my-zsh.sh oh-my-zshn/oh-my-zsh.sh
+--- oh-my-zsh/oh-my-zsh.sh	2015-11-07 20:09:27.000000000 +0800
++++ oh-my-zshn/oh-my-zsh.sh	2015-11-11 00:00:11.919689374 +0800
+@@ -1,8 +1,11 @@
+-# Check for updates on initial load...
+-if [ "$DISABLE_AUTO_UPDATE" != "true" ]; then
+-  env ZSH=$ZSH DISABLE_UPDATE_PROMPT=$DISABLE_UPDATE_PROMPT zsh -f $ZSH/tools/check_for_upgrade.sh
++if [ ! -d "$HOME/.zsh" ]; then
++  mkdir -p $HOME/.zsh
++  mkdir -p $HOME/.zsh/custom
++  mkdir -p $HOME/.zsh/cache
+ fi
+ 
++ZSH_USER=$HOME/.zsh
++
+ # Initializes Oh My Zsh
+ 
+ # add a function path
+@@ -16,13 +19,13 @@
+ # Set ZSH_CUSTOM to the path where your custom config files
+ # and plugins exists, or else we will use the default custom/
+ if [[ -z "$ZSH_CUSTOM" ]]; then
+-    ZSH_CUSTOM="$ZSH/custom"
++    ZSH_CUSTOM="$ZSH_USER/custom"
+ fi
+ 
+ # Set ZSH_CACHE_DIR to the path where cache files should be created
+ # or else we will use the default cache/
+ if [[ -z "$ZSH_CACHE_DIR" ]]; then
+-  ZSH_CACHE_DIR="$ZSH/cache/"
++  ZSH_CACHE_DIR="$ZSH_USER/cache/"
+ fi
+ 
+ 
