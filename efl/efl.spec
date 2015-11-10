@@ -2,21 +2,54 @@
 
 Summary: Enlightenment Foundation Libraries
 Name: efl
-Version: 1.15.2
+Version: 1.16.0
 Release: 2
 License: LGPLv2.1 GPLv2.1 BSD
 URL: http://www.enlightenment.org/
 Source: http://download.enlightenment.org/rel/libs/efl/efl-%{version}.tar.gz
 Patch0: efl-ecore-wayland-should-depend-on-wayland.patch
+Patch1: efl-1.11.4-tslibfix.patch
 
-BuildRequires: libjpeg-devel, zlib-devel, giflib-devel
-BuildRequires: mesa-libGL-devel
-BuildRequires: libX11-devel, libXinerama-devel, libXrender-devel, libXScrnSaver-devel, libXp-devel
+BuildRequires: clang
+
+BuildRequires: avahi-devel dbus-devel fontconfig-devel freetype-devel fribidi-devel harfbuzz-devel
+BuildRequires: giflib-devel libpng-devel libtiff-devel libjpeg-turbo-devel libwebp-devel openjpeg2-devel
+
+BuildRequires: gstreamer-devel gstreamer-plugins-base-devel libsndfile-devel pulseaudio-libs-devel
+BuildRequires: glib2-devel ibus-devel libmount-devel
+
 BuildRequires: bullet-devel
-BuildRequires: luajit-devel >= 2.0
-BuildRequires: fribidi-devel
-BuildRequires: libsndfile-devel
+BuildRequires: libcurl-devel
 
+BuildRequires: libdrm-devel
+BuildRequires: mesa-libGL-devel mesa-libEGL-devel mesa-libgbm-devel libinput-devel mesa-libGLES-devel
+
+BuildRequires: libwayland-client-devel libwayland-cursor-devel libwayland-server-devel
+
+BuildRequires: libX11-devel
+BuildRequires: libXcomposite-devel
+BuildRequires: libXcursor-devel
+BuildRequires: libXdamage-devel
+BuildRequires: libXext-devel
+BuildRequires: libXfixes-devel
+BuildRequires: libXi-devel
+BuildRequires: libXinerama-devel
+BuildRequires: libxkbcommon-devel
+BuildRequires: libXp-devel
+BuildRequires: libXrandr-devel
+BuildRequires: libXrender-devel
+BuildRequires: libXScrnSaver-devel
+BuildRequires: libXtst-devel
+
+BuildRequires: luajit-devel
+
+BuildRequires: openssl-devel systemd-devel zlib-devel
+
+BuildRequires:	autoconf automake libtool gettext-devel
+
+BuildRequires:  tslib-devel SDL2-devel SDL-devel c-ares-devel
+
+BuildRequires: doxygen
 Requires(post): shared-mime-info
 Requires(postun): shared-mime-info
 
@@ -30,6 +63,7 @@ and more.
 %package devel
 Summary: EFL headers, static libraries,and test programs
 Requires: %{name} = %{version}
+Requires:	pkgconfig, libX11-devel
 
 %description devel
 Headers, static libraries, test programs for EFL.
@@ -44,17 +78,25 @@ EFL API documents.
 %prep
 %setup -q 
 %patch0 -p1
-
+%patch1 -p1
 
 %build
+autoreconf -ivf
 export CC=clang
 export CXX=clang++
 %configure \
+    --enable-xinput22 \
     --enable-systemd \
-    --enable-wayland \
-    --enable-egl \
+    --with-systemdunitdir=%{_unitdir} \
     --enable-image-loader-webp \
     --enable-harfbuzz \
+    --enable-sdl \
+    --enable-ibus \
+    --enable-fb \
+    --enable-wayland \
+    --enable-drm \
+    --enable-drm-hw-accel \
+    --enable-egl \
     %if %with_x11
     --with-opengl=full \
     --with-x11=xlib \
@@ -83,11 +125,21 @@ test "x$RPM_BUILD_ROOT" != "x/" && rm -rf $RPM_BUILD_ROOT
 
 %post
 /sbin/ldconfig
-update-mime-database /usr/share/mime >/dev/null 2>&1 ||:
+%systemd_post ethumb.service
+/bin/touch --no-create %{_datadir}/mime/packages &>/dev/null || :
 
 %postun
+if [ $1 -eq 0 ] ; then
+  /usr/bin/update-mime-database %{_datadir}/mime &> /dev/null || :
+fi
 /sbin/ldconfig
-update-mime-database /usr/share/mime >/dev/null 2>&1 ||:
+%systemd_postun_with_restart ethumb.service
+
+%posttrans
+/usr/bin/update-mime-database %{_datadir}/mime &> /dev/null || :
+
+%preun
+%systemd_preun ethumb.service
 
 %files -f %{name}.lang
 %{_bindir}/ecore_evas_convert
@@ -122,9 +174,7 @@ update-mime-database /usr/share/mime >/dev/null 2>&1 ||:
 
 
 %{_libdir}/lib*.so.*
-#%{_libdir}/systemd/user/efreet.service
-%{_libdir}/systemd/user/ethumb.service
-#%{_datadir}/dbus-1/services/org.enlightenment.Efreet.service
+%{_unitdir}/ethumb.service
 %{_datadir}/dbus-1/services/org.enlightenment.Ethumb.service
 %dir %{_datadir}/ecore
 %dir %{_datadir}/ecore_imf
