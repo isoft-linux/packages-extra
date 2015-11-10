@@ -1,7 +1,7 @@
 Summary: Graphical frontend for APT package manager.
 Name: synaptic
 Version: 0.57.2
-Release: 43%{?dist}
+Release: 44%{?dist}
 License: GPLv2+
 URL: http://www.nongnu.org/synaptic/
 
@@ -60,6 +60,7 @@ intltoolize --force
 
 #remove origial desktop ,force to re-generate.
 rm -rf data/*.desktop
+
 %configure --disable-dependency-tracking
 find . -type f -exec sed -i 's:-Werror=format-security ::g' {} \;
 
@@ -69,6 +70,9 @@ make %{?_smp_mflags}
 rm -fr $RPM_BUILD_ROOT
 make install DESTDIR=$RPM_BUILD_ROOT
 
+
+#use console helper, but it's only for non-kde desktop
+#under kde, we use kdesu.
 mkdir -p $RPM_BUILD_ROOT%{_bindir}
 ln -s consolehelper $RPM_BUILD_ROOT%{_bindir}/synaptic
 
@@ -102,7 +106,6 @@ fi
 # remove uninstalled files
 rm -rf %{buildroot}/%{_localstatedir}/scrollkeeper
 rm -rf %{buildroot}/%{_sysconfdir}/X11
-rm -rf %{buildroot}/%{_datadir}/applications/%{name}-kde.desktop
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -120,6 +123,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_mandir}/man8/%{name}.8*
 
 %changelog
+* Tue Nov 10 2015 Cjacker <cjacker@foxmail.com> - 0.57.2-44
+- Use kdesu in desktop file under KDE
+
 * Sun Nov 08 2015 Cjacker <cjacker@foxmail.com> - 0.57.2-43
 - Fix librpm detection with new rpm
 

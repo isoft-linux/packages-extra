@@ -1,6 +1,7 @@
---- synaptic-0.57/data/synaptic.desktop.in.dt	2005-06-08 18:59:14.000000000 +0300
-+++ synaptic-0.57/data/synaptic.desktop.in	2005-07-07 15:25:00.000000000 +0300
-@@ -2,11 +2,10 @@
+diff -Nur synaptic-0.57.2/data/synaptic.desktop.in synaptic-0.57.2n/data/synaptic.desktop.in
+--- synaptic-0.57.2/data/synaptic.desktop.in	2005-05-21 02:24:45.000000000 +0800
++++ synaptic-0.57.2n/data/synaptic.desktop.in	2015-11-11 00:26:38.755653664 +0800
+@@ -2,11 +2,11 @@
  _Name=Synaptic Package Manager
  _GenericName=Package Manager
  _Comment=Install, remove and upgrade software packages
@@ -11,7 +12,26 @@
  MultipleArgs=false
  Type=Application
  Encoding=UTF-8
--Categories=PackageManager;GTK;System;Application
+ Categories=PackageManager;GTK;System;Application
 -NotShowIn=KDE
 \ No newline at end of file
-+Categories=PackageManager;GTK;System;Application;
++NotShowIn=KDE
+diff -Nur synaptic-0.57.2/data/synaptic-kde.desktop.in synaptic-0.57.2n/data/synaptic-kde.desktop.in
+--- synaptic-0.57.2/data/synaptic-kde.desktop.in	2005-05-21 02:24:45.000000000 +0800
++++ synaptic-0.57.2n/data/synaptic-kde.desktop.in	2015-11-11 00:27:04.666653081 +0800
+@@ -2,7 +2,7 @@
+ _Name=Synaptic Package Manager
+ _GenericName=Package Manager
+ _Comment=Install, remove and upgrade software packages
+-Exec=synaptic
++Exec=kdesu /usr/sbin/synaptic
+ Icon=synaptic
+ Terminal=false
+ MultipleArgs=false
+@@ -10,4 +10,4 @@
+ Encoding=UTF-8
+ Categories=PackageManager;System;Application
+ X-KDE-SubstituteUID=true
+-OnlyShowIn=KDE
+\ No newline at end of file
++OnlyShowIn=KDE
