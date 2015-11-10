@@ -1,14 +1,18 @@
 Summary: Extra image decoders.  
 Name: evas_generic_loaders
-Version: 1.15.0
-Release: 4 
+Version: 1.16.0
+Release: 2
 License: LGPLv2.1 GPLv2.1 BSD
 URL: http://www.enlightenment.org/
 Source: http://download.enlightenment.org/releases/%{name}-%{version}.tar.gz
 
-BuildRequires: poppler-devel, libspectre-devel, efl-devel, librsvg2-devel 
+BuildRequires: clang
+BuildRequires: cairo-devel gdk-pixbuf2-devel lcms2-devel
+BuildRequires: poppler-devel, libspectre-devel, efl-devel, librsvg2-devel libRaw-devel 
 BuildRequires: gstreamer-devel >= 1.0
 BuildRequires: gstreamer-plugins-base-devel >= 1.0
+BuildRequires: libgomp
+BuildRequires: zlib-devel
 
 %description
 These are additional "generic" loaders for Evas that are stand-alone
@@ -59,6 +63,9 @@ test "x$RPM_BUILD_ROOT" != "x/" && rm -rf $RPM_BUILD_ROOT
 %{_libdir}/evas/utils/evas_*
 
 %changelog
+* Tue Nov 10 2015 Cjacker <cjacker@foxmail.com> - 1.16.0-2
+- Update
+
 * Tue Oct 27 2015 Cjacker <cjacker@foxmail.com> - 1.15.0-4
 - Rebuild
 
