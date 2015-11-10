@@ -8,7 +8,7 @@ Source: http://download.enlightenment.org/releases/%{name}-%{version}.tar.gz
 
 BuildRequires: clang
 BuildRequires: cairo-devel gdk-pixbuf2-devel lcms2-devel
-BuildRequires: poppler-devel, libspectre-devel, efl-devel, librsvg2-devel libRaw-devel 
+BuildRequires: poppler-devel, libspectre-devel, efl-devel, librsvg2-devel LibRaw-devel 
 BuildRequires: gstreamer-devel >= 1.0
 BuildRequires: gstreamer-plugins-base-devel >= 1.0
 BuildRequires: libgomp
