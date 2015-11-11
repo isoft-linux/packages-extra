@@ -1,12 +1,16 @@
 Name:           sysprof
 Version:        1.2.0
-Release:        2 
+Release:        3 
 Summary:        A system-wide Linux profiler
 License:        GPLv2+
 URL:            http://www.sysprof.com
 Source0:        http://www.sysprof.com/sysprof-%{version}.tar.gz
 
+#use consolehelper for non-KDE envoironment.
 Source1:        sysprof.desktop
+
+#use X-KDE-SubstituteUID in desktop, it works very well under KDE.
+Source2:        sysprof-kde.desktop
 
 BuildRequires:  binutils-devel
 BuildRequires:  gtk2-devel
@@ -40,6 +44,7 @@ make install DESTDIR=${RPM_BUILD_ROOT}
 #install desktop file
 mkdir -p $RPM_BUILD_ROOT%{_datadir}/applications
 install -m 0644 %{SOURCE1} $RPM_BUILD_ROOT%{_datadir}/applications/
+install -m 0644 %{SOURCE2} $RPM_BUILD_ROOT%{_datadir}/applications/
 
 #correct icons installation
 for i in 16 24 32 48
@@ -134,8 +139,12 @@ update-desktop-database -q > /dev/null ||:
 %{_datadir}/icons/hicolor/*/apps/sysprof.*
 %{_datadir}/sysprof/sysprof.glade
 %{_datadir}/applications/sysprof.desktop
+%{_datadir}/applications/sysprof-kde.desktop
 
 %changelog
+* Wed Nov 11 2015 Cjacker <cjacker@foxmail.com> - 1.2.0-3
+- Add kde desktop file to use X-KDE-SubstituteUID
+
 * Tue Oct 27 2015 Cjacker <cjacker@foxmail.com> - 1.2.0-2
 - Rebuild
 
