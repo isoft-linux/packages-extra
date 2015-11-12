@@ -1,9 +1,9 @@
-Name:           kaccounts-integration
-Version: 15.04.3
+Name: kaccounts-integration
+Version: 15.08.3
 Release: 2%{?dist}
-Summary:        Small system to administer web accounts across the KDE desktop
-License:        GPLv2+
-URL:            https://projects.kde.org/projects/kde/kdenetwork/kaccounts-integration
+Summary: Small system to administer web accounts across the KDE desktop
+License: GPLv2+
+URL: https://projects.kde.org/projects/kde/kdenetwork/kaccounts-integration
 
 %global revision %(echo %{version} | cut -d. -f3)
 %if %{revision} >= 50
@@ -11,11 +11,12 @@ URL:            https://projects.kde.org/projects/kde/kdenetwork/kaccounts-integ
 %else
 %global stable stable
 %endif
-Source0:        http://download.kde.org/%{stable}/applications/%{version}/src/%{name}-%{version}.tar.xz
+Source0: http://download.kde.org/%{stable}/applications/%{version}/src/%{name}-%{version}.tar.xz
 
+BuildRequires:  cmake
 BuildRequires:  extra-cmake-modules
 BuildRequires:  kf5-rpm-macros
-BuildRequires:  qt5-qtbase-devel
+BuildRequires:  qt5-qtbase-devel qt5-qtdeclarative-devel
 
 BuildRequires:  kf5-kcmutils-devel
 BuildRequires:  kf5-kio-devel
@@ -84,6 +85,9 @@ make install/fast DESTDIR=%{buildroot} -C %{_target_platform}
 %{_includedir}/KAccounts
 
 %changelog
+* Thu Nov 12 2015 Cjacker <cjacker@foxmail.com> - 15.08.3-2
+- Update
+
 * Tue Oct 27 2015 Cjacker <cjacker@foxmail.com> - 15.04.3-2
 - Rebuild
 
