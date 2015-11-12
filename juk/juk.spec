@@ -19,6 +19,7 @@ Source0: http://download.kde.org/%{stable}/applications/%{version}/src/%{name}-%
 Patch0: juk-fix-cmake-error.patch
 
 BuildRequires: desktop-file-utils
+BuildRequires: kde-filesystem
 BuildRequires: kdelibs-devel >= 4.14
 BuildRequires: taglib-devel
 BuildRequires: appstream-glib
