@@ -1,8 +1,8 @@
 %global _kde4_build_tests -DKDE4_BUILD_TESTS:BOOL=ON
 Name:    libkdcraw
 Summary: A C++ interface around LibRaw library
-Version: 15.08.1
-Release: 3%{?dist}
+Version: 15.08.3
+Release: 2%{?dist}
 
 # libkdcraw is GPLv2+,
 # LibRaw(bundled) is LGPLv2
@@ -20,6 +20,7 @@ Patch0: libkdcraw-fix-cmake-error.patch
 
 ## upstream patches
 
+BuildRequires: kde-filesystem
 BuildRequires: kdelibs4-devel
 BuildRequires: pkgconfig(libraw) >= 0.15
 
@@ -91,6 +92,9 @@ fi
 
 
 %changelog
+* Thu Nov 12 2015 Cjacker <cjacker@foxmail.com> - 15.08.3-2
+- Update
+
 * Tue Oct 27 2015 Cjacker <cjacker@foxmail.com> - 15.08.1-3
 - Rebuild
 
