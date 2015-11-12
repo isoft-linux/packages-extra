@@ -33,6 +33,7 @@ BuildRequires: kf5-kservice-devel
 BuildRequires: kf5-kwidgetsaddons-devel
 BuildRequires: kf5-kxmlgui-devel
 BuildRequires: kf5-kdoctools-devel
+BuildRequires: kf5-kparts-devel
 
 Requires:       diffutils
 
