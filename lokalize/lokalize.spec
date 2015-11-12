@@ -1,7 +1,7 @@
 Name:    lokalize
 Summary: Computer-aided translation system
-Version: 15.08.2
-Release: 5 
+Version: 15.08.3
+Release: 2
 
 License: GPLv2+ and GFDL
 URL:     https://projects.kde.org/projects/kde/kdesdk/lokalize
@@ -19,29 +19,16 @@ BuildRequires: desktop-file-utils
 BuildRequires: extra-cmake-modules
 BuildRequires: gettext
 BuildRequires: kf5-rpm-macros
-BuildRequires: kf5-kcompletion-devel
+
 BuildRequires: kf5-kconfig-devel
-BuildRequires: kf5-kconfigwidgets-devel
-BuildRequires: kf5-kcoreaddons-devel
-BuildRequires: kf5-kcrash-devel
 BuildRequires: kf5-kdbusaddons-devel
-BuildRequires: kf5-kdeclarative-devel
+BuildRequires: kf5-kcoreaddons-devel
 BuildRequires: kf5-kdoctools-devel
-BuildRequires: kf5-kguiaddons-devel
 BuildRequires: kf5-ki18n-devel
-BuildRequires: kf5-kiconthemes-devel
-BuildRequires: kf5-kitemviews-devel
 BuildRequires: kf5-kio-devel
-BuildRequires: kf5-kjobwidgets-devel
-BuildRequires: kf5-knewstuff-devel
-BuildRequires: kf5-knotifications-devel
-BuildRequires: kf5-knotifyconfig-devel
-BuildRequires: kf5-knewstuff-devel
-BuildRequires: kf5-kross-devel
-BuildRequires: kf5-kservice-devel
-BuildRequires: kf5-kwindowsystem-devel
-BuildRequires: kf5-kwidgetsaddons-devel
 BuildRequires: kf5-kxmlgui-devel
+BuildRequires: kf5-knotifications-devel
+BuildRequires: kf5-kross-devel
 BuildRequires: kf5-sonnet-devel
 BuildRequires: pkgconfig(hunspell)
 BuildRequires: pkgconfig(Qt5Widgets) pkgconfig(Qt5DBus) pkgconfig(Qt5Script) pkgconfig(Qt5Sql)
@@ -114,6 +101,9 @@ gtk-update-icon-cache %{_kf5_datadir}/icons/hicolor &> /dev/null || :
 
 
 %changelog
+* Thu Nov 12 2015 Cjacker <cjacker@foxmail.com> - 15.08.3-2
+- Update
+
 * Tue Oct 27 2015 Cjacker <cjacker@foxmail.com> - 15.08.2-5
 - Rebuild
 
