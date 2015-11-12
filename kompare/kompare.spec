@@ -1,6 +1,6 @@
 Name:    kompare
 Summary: Diff tool
-Version: 15.08.2
+Version: 15.08.3
 Release: 2%{?dist}
 
 License: GPLv2+ and GFDL
@@ -122,6 +122,9 @@ fi
 
 
 %changelog
+* Thu Nov 12 2015 Cjacker <cjacker@foxmail.com> - 15.08.3-2
+- Update
+
 * Wed Oct 28 2015 Cjacker <cjacker@foxmail.com> - 15.08.2-2
 - Update
 
