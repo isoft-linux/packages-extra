@@ -1,7 +1,7 @@
 Name:    poxml
 Summary: Text utilities from kdesdk
-Version: 15.08.2
-Release: 3
+Version: 15.08.3
+Release: 2
 
 License: GPLv2+
 URL:     http://www.kde.org/
@@ -13,6 +13,10 @@ URL:     http://www.kde.org/
 %endif
 Source0: http://download.kde.org/%{stable}/applications/%{version}/src/%{name}-%{version}.tar.xz
 Patch0: poxml-fix-cmake.patch
+
+BuildRequires:  cmake
+#for kde4 rpm macros
+BuildRequires:  kde-filesystem
 
 BuildRequires:  kdelibs-devel >= 4.14
 BuildRequires:  gettext-devel
@@ -61,6 +65,9 @@ make install/fast DESTDIR=%{buildroot} -C %{_target_platform}
 
 
 %changelog
+* Thu Nov 12 2015 Cjacker <cjacker@foxmail.com> - 15.08.3-2
+- Update
+
 * Tue Oct 27 2015 Cjacker <cjacker@foxmail.com> - 15.08.2-3
 - Rebuild
 
