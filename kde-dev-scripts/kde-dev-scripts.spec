@@ -1,6 +1,6 @@
 Name:    kde-dev-scripts
 Summary: KDE SDK scripts
-Version: 15.08.2
+Version: 15.08.3
 Release: 2%{?dist}
 
 License: GPLv2+ and GPLv2+ and BSD
@@ -17,7 +17,16 @@ Source0: http://download.kde.org/%{stable}/applications/%{version}/src/%{name}-%
 Source1: kde-dev-scripts.sh 
 
 BuildRequires:  desktop-file-utils
+
+#for kde4 rpm macros
+BuildRequires:  kde-filesystem
+
 BuildRequires:  kdelibs-devel >= 4.14
+
+# for python macros
+BuildRequires:  python-devel
+# for env replacement in %%install
+BuildRequires:  sed
 
 Requires:       advancecomp
 Requires:       optipng
@@ -139,9 +148,12 @@ install -m 0755 %{SOURCE1} %{buildroot}%{_sysconfdir}/profile.d/
 
 
 %changelog
+* Thu Nov 12 2015 Cjacker <cjacker@foxmail.com> - 15.08.3-2
+- Update
+
 * Tue Oct 27 2015 Cjacker <cjacker@foxmail.com> - 15.08.2-2
 - Rebuild
 
-* Thu Oct 20 2015 Cjacker <cjacker@foxmail.com>
+* Tue Oct 20 2015 Cjacker <cjacker@foxmail.com>
 - 15.08.2
 
