@@ -1,7 +1,7 @@
 Name:    okteta
 Summary: Binary/hex editor
-Version: 15.08.2
-Release: 4%{?dist}
+Version: 15.08.3
+Release: 2%{?dist}
 
 License: GPLv2+ and GFDL
 URL:     https://projects.kde.org/projects/kde/kdesdk/okteta
@@ -160,6 +160,9 @@ fi
 
 
 %changelog
+* Thu Nov 12 2015 Cjacker <cjacker@foxmail.com> - 15.08.3-2
+- Update
+
 * Tue Oct 27 2015 Cjacker <cjacker@foxmail.com> - 15.08.2-4
 - Rebuild
 
