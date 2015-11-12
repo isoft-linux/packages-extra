@@ -16,10 +16,11 @@ BuildRequires:  binutils-devel
 BuildRequires:  gtk2-devel
 BuildRequires:  libglade2-devel
 
-Requires:       usermode
-Requires:       usermode-gtk
+Requires: desktop-file-utils
+Requires: usermode
+Requires: usermode-gtk
 
-Requires:       kernel => 2.6.31
+Requires: kernel => 2.6.31
 
 ExclusiveArch:  %{ix86} x86_64
 
