@@ -1,10 +1,10 @@
-Name:           signon-kwallet-extension
-Version: 15.04.3
+Name: signon-kwallet-extension
+Version: 15.08.3
 Release: 2%{?dist}
-Summary:        KWallet integration for Sign-on framework
+Summary: KWallet integration for Sign-on framework
 
-License:        GPLv2+
-URL:            https://projects.kde.org/projects/kde/kdenetwork/signon-kwallet-extension
+License: GPLv2+
+URL: https://projects.kde.org/projects/kde/kdenetwork/signon-kwallet-extension
 
 %global revision %(echo %{version} | cut -d. -f3)
 %if %{revision} >= 50
@@ -12,10 +12,7 @@ URL:            https://projects.kde.org/projects/kde/kdenetwork/signon-kwallet-
 %else
 %global stable stable
 %endif
-Source0:        http://download.kde.org/%{stable}/applications/%{version}/src/%{name}-%{version}.tar.xz
-
-# Upstream patches (https://git.reviewboard.kde.org/r/123148/)
-Patch0:         signon-kwallet-extension-drop-lib-soname.patch
+Source0: http://download.kde.org/%{stable}/applications/%{version}/src/%{name}-%{version}.tar.xz
 
 BuildRequires:  kf5-rpm-macros
 BuildRequires:  extra-cmake-modules
@@ -30,8 +27,6 @@ BuildRequires:  signon-devel
 
 %prep
 %setup -q -n %{name}-%{version}
-
-%patch0 -p1 -b .soname
 
 %build
 mkdir -p %{_target_platform}
@@ -53,6 +48,9 @@ make install/fast DESTDIR=%{buildroot} -C %{_target_platform}
 %{_libdir}/signon/extensions/libkeyring-kwallet.so
 
 %changelog
+* Thu Nov 12 2015 Cjacker <cjacker@foxmail.com> - 15.08.3-2
+- Update
+
 * Tue Oct 27 2015 Cjacker <cjacker@foxmail.com> - 15.04.3-2
 - Rebuild
 
