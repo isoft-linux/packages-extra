@@ -1,7 +1,7 @@
 Name:    gwenview 
 Summary: An image viewer
-Version: 15.08.2
-Release: 5 
+Version: 15.08.3
+Release: 2
 
 License: GPLv2+
 URL:     https://projects.kde.org/projects/kde/kdegraphics/gwenview
@@ -24,17 +24,19 @@ BuildRequires: kf5-rpm-macros
 BuildRequires: kf5-kactivities-devel
 buildRequires: kf5-kdelibs4support-devel
 BuildRequires: kf5-kio-devel
+BuildRequires: kf5-baloo-devel
 ## frameworks soon to come (hopefully) -- rex
 #BuildRequires: kf5-kdcraw-devel
 #BuildRequires: kf5-kipi-devel
 BuildRequires: appstream-glib
-BuildRequires: libjpeg-devel
+BuildRequires: libjpeg-turbo-devel
 BuildRequires: pkgconfig(exiv2)
 BuildRequires: pkgconfig(lcms2)
 BuildRequires: pkgconfig(libpng)
 BuildRequires: pkgconfig(phonon4qt5)
 BuildRequires: pkgconfig(Qt5DBus) pkgconfig(Qt5Widgets) pkgconfig(Qt5Script) pkgconfig(Qt5Test)
 BuildRequires: pkgconfig(Qt5Concurrent) pkgconfig(Qt5Svg) pkgconfig(Qt5OpenGL)
+BuildRequires: libX11-devel
 BuildRequires: pkgconfig(Qt5X11Extras)
 
 Requires: %{name}-libs%{?_isa} = %{version}-%{release}
@@ -109,6 +111,9 @@ gtk-update-icon-cache %{_kf5_datadir}/icons/hicolor &> /dev/null || :
 
 
 %changelog
+* Thu Nov 12 2015 Cjacker <cjacker@foxmail.com> - 15.08.3-2
+- Update
+
 * Tue Oct 27 2015 Cjacker <cjacker@foxmail.com> - 15.08.2-5
 - Rebuild
 
