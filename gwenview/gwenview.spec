@@ -74,7 +74,7 @@ make install/fast DESTDIR=%{buildroot} -C %{_target_platform}
 
 %check
 appstream-util validate-relax --nonet %{buildroot}%{_kf5_datadir}/appdata/%{name}.appdata.xml ||:
-desktop-file-validate %{buildroot}%{_kde4_datadir}/applications/org.kde.%{name}.desktop
+desktop-file-validate %{buildroot}%{_kf5_datadir}/applications/org.kde.%{name}.desktop
 
 
 %post
