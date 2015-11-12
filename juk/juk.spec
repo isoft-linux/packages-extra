@@ -2,8 +2,8 @@
 
 Name:    juk 
 Summary: Music player 
-Version: 15.08.2
-Release: 3%{?dist}
+Version: 15.08.3
+Release: 2%{?dist}
 
 # code: KDE e.V. may determine that future GPL versions are accepted
 # handbook doc: GFDL
@@ -20,7 +20,9 @@ Patch0: juk-fix-cmake-error.patch
 
 BuildRequires: desktop-file-utils
 BuildRequires: kdelibs-devel >= 4.14
+BuildRequires: taglib-devel
 BuildRequires: appstream-glib
+
 %if 0%{?tunepimp}
 BuildRequires: libtunepimp-devel
 %endif
@@ -88,6 +90,9 @@ fi
 
 
 %changelog
+* Thu Nov 12 2015 Cjacker <cjacker@foxmail.com> - 15.08.3-2
+- Update
+
 * Tue Oct 27 2015 Cjacker <cjacker@foxmail.com> - 15.08.2-3
 - Rebuild
 
