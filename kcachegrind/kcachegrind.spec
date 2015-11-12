@@ -1,7 +1,7 @@
 Name:    kcachegrind
 Summary: GUI to profilers such as Valgrind
-Version: 15.08.2
-Release: 3
+Version: 15.08.3
+Release: 2
 
 License: GPLv2 and GFDL
 URL:     https://projects.kde.org/projects/kde/kdesdk/kcachegrind
@@ -14,7 +14,14 @@ URL:     https://projects.kde.org/projects/kde/kdesdk/kcachegrind
 Source0: http://download.kde.org/%{stable}/applications/%{version}/src/%{name}-%{version}.tar.xz
 
 BuildRequires:  desktop-file-utils
-BuildRequires: kdelibs-devel >= 4.14
+
+BuildRequires:  cmake
+#for kde4 rpm macros.
+BuildRequires:  kde-filesystem
+BuildRequires:  kdelibs-devel >= 4.14
+
+Requires: desktop-file-utils
+Requires: shared-mime-info
 
 Conflicts:      kdesdk-common < 4.10.80
 Provides:       kdesdk-kcachegrind = %{version}-%{release}
@@ -75,6 +82,9 @@ fi
 %{_kde4_iconsdir}/hicolor/*/apps/kcachegrind.*
 
 %changelog
+* Thu Nov 12 2015 Cjacker <cjacker@foxmail.com> - 15.08.3-2
+- Update
+
 * Tue Oct 27 2015 Cjacker <cjacker@foxmail.com> - 15.08.2-3
 - Rebuild
 
