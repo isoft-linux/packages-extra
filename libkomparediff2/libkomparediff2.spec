@@ -3,7 +3,7 @@
 
 Name:    libkomparediff2
 Summary: Library to compare files and strings
-Version: 15.08.2
+Version: 15.08.3
 Release: 2%{?dist}
 
 # Library: GPLv2+ (some files LGPLv2+), CMake scripts: BSD
@@ -17,18 +17,22 @@ URL:     https://projects.kde.org/projects/kde/kdesdk/libkomparediff2
 %endif
 Source0: http://download.kde.org/%{stable}/applications/%{version}/src/%{name}-%{version}.tar.xz
 
-BuildRequires:  cmake
-BuildRequires:  gcc-c++
-BuildRequires:  kf5-rpm-macros
-BuildRequires:  extra-cmake-modules
-BuildRequires:  qt5-qtbase-devel
-BuildRequires:  kf5-kcoreaddons-devel
-BuildRequires:  kf5-kcodecs-devel
-BuildRequires:  kf5-kconfig-devel
-BuildRequires:  kf5-kxmlgui-devel
-BuildRequires:  kf5-ki18n-devel
-BuildRequires:  kf5-kio-devel
-BuildRequires:  kf5-kparts-devel
+BuildRequires: cmake
+BuildRequires: gcc-c++
+BuildRequires: kf5-rpm-macros
+BuildRequires: extra-cmake-modules
+BuildRequires: qt5-qtbase-devel
+BuildRequires: kf5-kauth-devel
+BuildRequires: kf5-kcodecs-devel
+BuildRequires: kf5-kconfig-devel
+BuildRequires: kf5-kconfigwidgets-devel
+BuildRequires: kf5-kcoreaddons-devel
+BuildRequires: kf5-ki18n-devel
+BuildRequires: kf5-kio-devel
+BuildRequires: kf5-kservice-devel
+BuildRequires: kf5-kwidgetsaddons-devel
+BuildRequires: kf5-kxmlgui-devel
+BuildRequires: kf5-kdoctools-devel
 
 Requires:       diffutils
 
@@ -95,6 +99,9 @@ make test/fast -C %{_target_platform}
 
 
 %changelog
+* Thu Nov 12 2015 Cjacker <cjacker@foxmail.com> - 15.08.3-2
+- Update
+
 * Wed Oct 28 2015 Cjacker <cjacker@foxmail.com> - 15.08.2-2
 - Update
 
