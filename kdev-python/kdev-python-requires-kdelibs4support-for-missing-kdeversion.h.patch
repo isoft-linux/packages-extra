@@ -1,0 +1,43 @@
+diff -Nur kdev-python-4.90.90/CMakeLists.txt kdev-python-4.90.90n/CMakeLists.txt
+--- kdev-python-4.90.90/CMakeLists.txt	2015-10-23 23:45:09.000000000 +0800
++++ kdev-python-4.90.90n/CMakeLists.txt	2015-11-13 13:36:15.967223097 +0800
+@@ -32,7 +32,7 @@
+ configure_file( "${kdevpython_SOURCE_DIR}/kdevpythonversion.h.cmake" "${kdevpython_BINARY_DIR}/kdevpythonversion.h" @ONLY )
+ 
+ find_package(Qt5 ${QT_MIN_VERSION} CONFIG REQUIRED Widgets Test)
+-find_package(KF5 REQUIRED I18n NewStuff ItemModels ThreadWeaver TextEditor KCMUtils)
++find_package(KF5 REQUIRED I18n NewStuff ItemModels ThreadWeaver TextEditor KCMUtils KDELibs4Support)
+ find_package(KDevPlatform ${KDEVPLATFORM_VERSION} REQUIRED)
+ find_package(KDevelop REQUIRED)
+ 
+--- kdev-python-4.90.90n/duchain/CMakeLists.txt	2015-10-23 23:45:05.000000000 +0800
++++ kdev-python-4.90.90/duchain/CMakeLists.txt	2015-11-13 13:40:04.840218998 +0800
+@@ -39,6 +39,7 @@
+ 
+ target_link_libraries( kdevpythonduchain LINK_PRIVATE
+     KF5::TextEditor
++    KF5::KDELibs4Support
+     KDev::Interfaces
+     KDev::Language
+     KDev::Project
+--- kdev-python-4.90.90n/CMakeLists.txt	2015-11-13 13:36:15.967223097 +0800
++++ kdev-python-4.90.90/CMakeLists.txt	2015-11-13 13:48:43.207209715 +0800
+@@ -94,6 +94,7 @@
+     KF5::ThreadWeaver
+     KF5::TextEditor
+     KF5::NewStuff
++    KF5::KDELibs4Support
+     kdevpythoncompletion
+     kdevpythonparser
+     kdevpythonduchain
+diff -Nur kdev-python-4.90.90/debugger/CMakeLists.txt kdev-python-4.90.90n/debugger/CMakeLists.txt
+--- kdev-python-4.90.90/debugger/CMakeLists.txt	2015-10-23 23:45:05.000000000 +0800
++++ kdev-python-4.90.90n/debugger/CMakeLists.txt	2015-11-13 13:55:22.552202564 +0800
+@@ -32,6 +32,7 @@
+     KDev::Project    
+     KDev::Util
+     KF5::TextEditor
++    KF5::KDELibs4Support
+     ${KDE4WORKSPACE_PROCESSUI_LIBS}
+ )
+ 
