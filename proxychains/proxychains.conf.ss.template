@@ -1,0 +1,13 @@
+#This is a template for special usage with ss, you know.
+#If you need to use this, you should rename it to /etc/proxychains.conf
+strict_chain
+proxy_dns 
+remote_dns_subnet 224
+tcp_read_time_out 15000
+tcp_connect_time_out 8000
+localnet 127.0.0.0/255.0.0.0
+quiet_mode
+
+#Change the server you used.
+[ProxyList]
+socks5  127.0.0.1 2015
