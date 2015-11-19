@@ -1,0 +1,14 @@
+--- wireshark-2.0.0/wsutil/ws_version_info.c	2015-11-19 06:21:00.000000000 +0800
++++ wireshark-2.0.0n/wsutil/ws_version_info.c	2015-11-19 13:47:07.574161221 +0800
+@@ -351,11 +351,7 @@
+ const char *
+ get_ws_vcs_version_info(void)
+ {
+-#ifdef VCSVERSION
+-	return VERSION " (" VCSVERSION " from " VCSBRANCH ")";
+-#else
+ 	return VERSION;
+-#endif
+ }
+ 
+ /*
