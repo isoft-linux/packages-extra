@@ -1,0 +1,13 @@
+diff --git a/src/themesmodel.cpp b/src/themesmodel.cpp
+index 5af9c54..995873c 100644
+--- a/src/themesmodel.cpp
++++ b/src/themesmodel.cpp
+@@ -99,7 +99,7 @@ void ThemesModel::populate()
+     foreach (const QString &theme, dir.entryList(QDir::AllDirs | QDir::Readable)) {
+         QString path = themesBaseDir + '/' + theme;
+ 
+-        if (QFile::exists(path + "/metadata.desktop" )) {
++        if (theme == "breeze" && QFile::exists(path + "/metadata.desktop" )) {
+             add(theme, path);
+         }
+     }

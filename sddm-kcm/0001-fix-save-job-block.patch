@@ -1,0 +1,33 @@
+diff --git a/src/sddmkcm.cpp b/src/sddmkcm.cpp
+index be07230..7e56727 100644
+--- a/src/sddmkcm.cpp
++++ b/src/sddmkcm.cpp
+@@ -83,17 +83,17 @@ void SddmKcm::save()
+     saveAction.setArguments(args);
+     
+     auto job = saveAction.execute();
+-    job->exec();
+-
+-    if (job->error()){
+-        qDebug() << "Save Failed";
+-        qDebug() << job->errorString();
+-        qDebug() << job->errorText();
+-    } else {
+-        changed(false);
+-        qDebug() << "Option saved";
+-    }
+-    
++    connect(job, &KJob::result, [this](KJob *job){
++                if (job->error()) {
++                    qDebug() << "Save Failed";
++                    qDebug() << job->errorString();
++                    qDebug() << job->errorText();
++                } else {
++                    changed(false);
++                    qDebug() << "Option saved";
++                }
++            });
++    job->start();
+ }
+ 
+ void SddmKcm::prepareUi()

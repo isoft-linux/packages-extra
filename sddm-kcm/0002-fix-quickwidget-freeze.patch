@@ -1,0 +1,66 @@
+diff --git a/src/themeconfig.cpp b/src/themeconfig.cpp
+index bdd6dd2..81d013f 100644
+--- a/src/themeconfig.cpp
++++ b/src/themeconfig.cpp
+@@ -112,23 +112,11 @@ QModelIndex ThemeConfig::findThemeIndex(const QString &id) const
+ 
+ void ThemeConfig::themeSelected(const QModelIndex &index)
+ {
+-    if (!configUi->quickWidget->source().isValid()) {
+-        const QString mainQmlPath = QStandardPaths::locate(QStandardPaths::GenericDataLocation, "sddm-kcm/main.qml");
+-        configUi->quickWidget->setSource(mainQmlPath);
+-    }
+-
+     QString themePath = index.model()->data(index, ThemesModel::PathRole).toString();
+     QString previewFilename = themePath + index.model()->data(index, ThemesModel::PreviewRole).toString();
+-
+-    configUi->quickWidget->rootObject()->setProperty("themeName", index.data().toString());
+-    configUi->quickWidget->rootObject()->setProperty("previewPath", previewFilename);
+-    configUi->quickWidget->rootObject()->setProperty("authorName", index.data(ThemesModel::AuthorRole).toString());
+-    configUi->quickWidget->rootObject()->setProperty("description", index.data(ThemesModel::DescriptionRole).toString());
+-    configUi->quickWidget->rootObject()->setProperty("license", index.data(ThemesModel::LicenseRole).toString());
+-    configUi->quickWidget->rootObject()->setProperty("email", index.data(ThemesModel::EmailRole).toString());
+-    configUi->quickWidget->rootObject()->setProperty("website", index.data(ThemesModel::WebsiteRole).toString());
+-    configUi->quickWidget->rootObject()->setProperty("copyright", index.data(ThemesModel::CopyrightRole).toString());
+-    configUi->quickWidget->rootObject()->setProperty("version", index.data(ThemesModel::VersionRole).toString());
++    configUi->previewWidget->setPixmap(QPixmap(previewFilename));
++    configUi->previewWidget->setScaledContents(true);
++    configUi->previewWidget->setSizePolicy(QSizePolicy::Ignored, QSizePolicy::Ignored);
+ 
+     //Check if we need to display configuration group
+     QString configPath = themePath + index.data(ThemesModel::ConfigFileRole).toString();
+diff --git a/src/ui/themeconfig.ui b/src/ui/themeconfig.ui
+index 36896da..318dd02 100644
+--- a/src/ui/themeconfig.ui
++++ b/src/ui/themeconfig.ui
+@@ -51,7 +51,7 @@
+        </property>
+        <layout class="QVBoxLayout" name="verticalLayout_2">
+         <item>
+-         <widget class="QQuickWidget" name="quickWidget">
++         <widget class="QLabel" name="previewWidget">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
+             <horstretch>0</horstretch>
+@@ -64,9 +64,6 @@
+             <height>300</height>
+            </size>
+           </property>
+-          <property name="resizeMode">
+-           <enum>QQuickWidget::SizeRootObjectToView</enum>
+-          </property>
+          </widget>
+         </item>
+         <item>
+@@ -112,11 +109,6 @@
+  </widget>
+  <customwidgets>
+   <customwidget>
+-   <class>QQuickWidget</class>
+-   <extends>QWidget</extends>
+-   <header>QQuickWidget</header>
+-  </customwidget>
+-  <customwidget>
+    <class>SelectImageButton</class>
+    <extends>QToolButton</extends>
+    <header>selectimagebutton.h</header>
