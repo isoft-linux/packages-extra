@@ -1,6 +1,6 @@
 Name:    kde-dev-scripts
 Summary: KDE SDK scripts
-Version: 15.08.3
+Version: 15.11.80
 Release: 2%{?dist}
 
 License: GPLv2+ and GPLv2+ and BSD
@@ -148,6 +148,9 @@ install -m 0755 %{SOURCE1} %{buildroot}%{_sysconfdir}/profile.d/
 
 
 %changelog
+* Sat Nov 21 2015 Cjacker <cjacker@foxmail.com> - 15.11.80-2
+- Update
+
 * Thu Nov 12 2015 Cjacker <cjacker@foxmail.com> - 15.08.3-2
 - Update
 

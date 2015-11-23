@@ -1,5 +1,5 @@
 Name: kaccounts-integration
-Version: 15.08.3
+Version: 15.11.80
 Release: 2%{?dist}
 Summary: Small system to administer web accounts across the KDE desktop
 License: GPLv2+
@@ -79,12 +79,19 @@ make install/fast DESTDIR=%{buildroot} -C %{_target_platform}
 %{_kf5_datadir}/kservices5/kded/accounts.desktop
 %{_kf5_libdir}/libkaccounts.so.*
 
+%{_libdir}/qt5/qml/org/kde/kaccounts/libkaccountsdeclarativeplugin.so
+%{_libdir}/qt5/qml/org/kde/kaccounts/qmldir
+
+
 %files devel
 %{_kf5_libdir}/libkaccounts.so
 %{_kf5_libdir}/cmake/KAccounts
 %{_includedir}/KAccounts
 
 %changelog
+* Sat Nov 21 2015 Cjacker <cjacker@foxmail.com> - 15.11.80-2
+- Update
+
 * Thu Nov 12 2015 Cjacker <cjacker@foxmail.com> - 15.08.3-2
 - Update
 

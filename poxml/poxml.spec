@@ -1,7 +1,7 @@
 Name:    poxml
 Summary: Text utilities from kdesdk
-Version: 15.08.3
-Release: 2
+Version: 15.11.80
+Release: 2 
 
 License: GPLv2+
 URL:     http://www.kde.org/
@@ -65,6 +65,9 @@ make install/fast DESTDIR=%{buildroot} -C %{_target_platform}
 
 
 %changelog
+* Sat Nov 21 2015 Cjacker <cjacker@foxmail.com> - 15.11.80-2
+- Update
+
 * Thu Nov 12 2015 Cjacker <cjacker@foxmail.com> - 15.08.3-2
 - Update
 

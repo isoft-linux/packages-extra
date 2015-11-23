@@ -1,6 +1,6 @@
 Name: yakuake
 Version: 2.9.9
-Release: 13.git
+Release: 14.git
 Summary: A drop-down terminal emulator
 
 License: GPLv2 or GPLv3
@@ -104,6 +104,9 @@ gtk-update-icon-cache %{_kf5_datadir}/icons/hicolor &> /dev/null || :
 %{_kf5_datadir}/yakuake/*
 
 %changelog
+* Sat Nov 21 2015 Cjacker <cjacker@foxmail.com> - 2.9.9-14.git
+- Update
+
 * Tue Oct 27 2015 Cjacker <cjacker@foxmail.com> - 2.9.9-13.git
 - Rebuild
 

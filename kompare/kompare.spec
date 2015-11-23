@@ -1,6 +1,6 @@
 Name:    kompare
 Summary: Diff tool
-Version: 15.08.3
+Version: 15.11.80
 Release: 2%{?dist}
 
 License: GPLv2+ and GFDL
@@ -78,7 +78,7 @@ make %{?_smp_mflags} -C %{_target_platform}
 make install/fast DESTDIR=%{buildroot} -C %{_target_platform}
 
 %check
-desktop-file-validate %{buildroot}%{_datadir}/applications/%{name}.desktop
+desktop-file-validate %{buildroot}%{_datadir}/applications/org.kde.%{name}.desktop
 
 
 %post
@@ -103,7 +103,7 @@ fi
 %{_datadir}/kservicetypes5/kompare*.desktop
 %{_kf5_qtplugindir}/komparenavtreepart.so
 %{_kf5_qtplugindir}/komparepart.so
-%{_datadir}/applications/kompare.desktop
+%{_datadir}/applications/org.kde.kompare.desktop
 %{_datadir}/icons/hicolor/*/apps/kompare.*
 %{_datadir}/kservices5/komparenavtreepart.desktop
 %{_datadir}/kservices5/komparepart.desktop
@@ -122,6 +122,9 @@ fi
 
 
 %changelog
+* Sat Nov 21 2015 Cjacker <cjacker@foxmail.com> - 15.11.80-2
+- Update
+
 * Thu Nov 12 2015 Cjacker <cjacker@foxmail.com> - 15.08.3-2
 - Update
 

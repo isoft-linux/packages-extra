@@ -1,6 +1,6 @@
 Name:    kapptemplate
 Summary: KDE Template generator
-Version: 15.08.3
+Version: 15.11.80
 Release: 2%{?dist}
 
 License: GPLv2+
@@ -86,6 +86,9 @@ update-mime-database %{_kf5_datadir}/mime >& /dev/null ||:
 
 
 %changelog
+* Sat Nov 21 2015 Cjacker <cjacker@foxmail.com> - 15.11.80-2
+- Update
+
 * Thu Nov 12 2015 Cjacker <cjacker@foxmail.com> - 15.08.3-2
 - Update
 

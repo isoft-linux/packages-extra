@@ -1,10 +1,9 @@
 Name: kaccounts-providers
-Version: 15.08.3
+Version: 15.11.80
 Release: 2%{?dist}
 Summary: Additional service providers for KAccounts framework
 License: GPLv2
 URL: https://projects.kde.org/projects/kde/kdenetwork/kaccounts-providers
-BuildArch:      noarch
 
 %global revision %(echo %{version} | cut -d. -f3)
 %if %{revision} >= 50
@@ -45,8 +44,13 @@ make install/fast DESTDIR=%{buildroot} -C %{_target_platform}
 %license COPYING
 %{_datadir}/accounts/providers/*.provider
 %config %{_sysconfdir}/signon-ui/webkit-options.d/*
+%{_libdir}/plugins/kaccounts/ui/owncloud_plugin_kaccounts.so
+%{_kf5_datadir}/kpackage/genericqml/org.kde.kaccounts.owncloud
 
 %changelog
+* Sat Nov 21 2015 Cjacker <cjacker@foxmail.com> - 15.11.80-2
+- Update
+
 * Thu Nov 12 2015 Cjacker <cjacker@foxmail.com> - 15.08.3-2
 - Update
 

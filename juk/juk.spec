@@ -2,7 +2,7 @@
 
 Name:    juk 
 Summary: Music player 
-Version: 15.08.3
+Version: 15.11.80
 Release: 2%{?dist}
 
 # code: KDE e.V. may determine that future GPL versions are accepted
@@ -91,6 +91,9 @@ fi
 
 
 %changelog
+* Sat Nov 21 2015 Cjacker <cjacker@foxmail.com> - 15.11.80-2
+- Update
+
 * Thu Nov 12 2015 Cjacker <cjacker@foxmail.com> - 15.08.3-2
 - Update
 
