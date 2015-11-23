@@ -1,0 +1,9 @@
+diff -Nur kshisen-15.11.80/org.kde.kshisen.desktop kshisen-15.11.80n/org.kde.kshisen.desktop
+--- kshisen-15.11.80/org.kde.kshisen.desktop	2015-11-12 01:49:16.000000000 +0800
++++ kshisen-15.11.80n/org.kde.kshisen.desktop	2015-11-21 19:40:05.413564346 +0800
+@@ -136,4 +136,4 @@
+ Icon=kshisen
+ X-KDE-StartupNotify=true
+ X-DBUS-StartupType=Multi
+-Categories=Qt;KDE;Game;BoardGame;
++Categories=Qt;KDE;Game;
