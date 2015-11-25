@@ -1,18 +1,17 @@
-#TODO: stop using local copy of libdnet, once system distributed version supports sctp (grep sctp /usr/include/dnet.h)
 Summary: Network exploration tool and security scanner
 Name: nmap
 Epoch: 2
-Version: 6.47
-#global prerelease TEST5
-Release: 6%{?dist}
-# Uses combination of licenses based on GPL license, but with extra modification
-# so it got its own license tag rhbz#1055861
+Version: 7.00 
+Release: 2%{?dist}
 License: Nmap
 Requires: %{name}-ncat = %{epoch}:%{version}-%{release}
 Source0: http://nmap.org/dist/%{name}-%{version}%{?prerelease}.tar.bz2
 Source1: zenmap.desktop
 Source2: zenmap-root.pamd
 Source3: zenmap-root.consoleapps
+
+#use KDE SUID desktop
+Source4: zenmap-kde.desktop
 
 #prevent possible race condition for shtool, rhbz#158996
 Patch1: nmap-4.03-mktemp.patch
@@ -24,18 +23,10 @@ Patch2: nmap-4.52-noms.patch
 Patch5: ncat_reg_stdin.diff
 Patch6: nmap-6.25-displayerror.patch
 
-#rhbz#994376
-Patch7: nmap-6.40-logdebug.patch
-#sent upstream, rhbz#978964
-Patch8: nmap-6.40-allresolve.patch
-
 URL: http://nmap.org/
-BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 BuildRequires: openssl-devel, gtk2-devel, lua-devel, libpcap-devel, pcre-devel
 BuildRequires: desktop-file-utils, dos2unix
 BuildRequires: libtool, automake, autoconf, gettext-devel
-
-%define pixmap_srcdir zenmap/share/pixmaps
 
 %description
 Nmap is a utility for network exploration or security auditing.  It supports
@@ -78,8 +69,6 @@ uses.
 %patch2 -p1 -b .noms
 %patch5 -p1 -b .ncat_reg_stdin
 %patch6 -p1 -b .displayerror
-%patch7 -p1 -b .logdebug
-%patch8 -p1 -b .allresolve
 
 # for aarch64 support, not needed with autotools 2.69+
 for f in acinclude.m4 configure.ac nping/configure.ac
@@ -90,7 +79,7 @@ autoreconf -I . -fiv --no-recursive
 cd nping; autoreconf -I .. -fiv --no-recursive; cd ..
 
 #be sure we're not using tarballed copies of some libraries
-#rm -rf liblua libpcap libpcre macosx mswin32 ###TODO###
+#rm -rf liblua libpcap libpcre macosx mswin32
 rm -rf libpcap libpcre macosx mswin32
 
 #fix locale dir
@@ -102,7 +91,6 @@ sed -i 's|^LOCALE_DIR = .*|LOCALE_DIR = join(prefix, "share", "locale")|' zenmap
 %build
 export CFLAGS="$RPM_OPT_FLAGS -fno-strict-aliasing"
 export CXXFLAGS="$RPM_OPT_FLAGS -fno-strict-aliasing"
-#%configure  --with-libpcap=/usr ###TODO###
 %configure  --with-libpcap=/usr --with-liblua=included
 make %{?_smp_mflags}
 
@@ -140,10 +128,13 @@ popd
 ln -s ncat.1.gz $RPM_BUILD_ROOT%{_mandir}/man1/nc.1.gz
 ln -s ncat $RPM_BUILD_ROOT%{_bindir}/nc
 
-desktop-file-install --vendor nmap \
+desktop-file-install \
 	--dir $RPM_BUILD_ROOT%{_datadir}/applications \
-	--add-category X-Red-Hat-Base \
 	%{SOURCE1};
+
+desktop-file-install \
+	--dir $RPM_BUILD_ROOT%{_datadir}/applications \
+	%{SOURCE4};
 
 #for .desktop and app icon
 mkdir -p $RPM_BUILD_ROOT%{_datadir}/icons/hicolor/256x256/apps
@@ -207,7 +198,8 @@ rm -rf $RPM_BUILD_ROOT
 %{_bindir}/nmapfe
 %{_bindir}/xnmap
 %{python_sitelib}/*
-%{_datadir}/applications/nmap-zenmap.desktop
+%{_datadir}/applications/zenmap.desktop
+%{_datadir}/applications/zenmap-kde.desktop
 %{_datadir}/icons/hicolor/256x256/apps/*
 %{_datadir}/zenmap
 %{_mandir}/man1/zenmap.1.gz
@@ -215,6 +207,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_mandir}/man1/xnmap.1.gz
 
 %changelog
+* Wed Nov 25 2015 Cjacker <cjacker@foxmail.com> - 2:7.00-2
+- Update
+
 * Fri Oct 30 2015 Cjacker <cjacker@foxmail.com> - 2:6.47-6
 - Initial build
 

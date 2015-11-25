@@ -3,10 +3,12 @@ Name=Zenmap
 GenericName=Nmap Security Scanner
 Comment=GUI frontend for Nmap security/port scanner
 Version=1.0
-TryExec=zenmap-root
-Exec=zenmap-root
+TryExec=zenmap
+Exec=zenmap
 Icon=zenmap
 Terminal=false
 Type=Application
 Categories=System;Security;GTK;
-NotShowIn=KDE
+X-KDE-SubstituteUID=true
+OnlyShowIn=KDE
+
