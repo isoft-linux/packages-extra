@@ -1,0 +1,38 @@
+From 16bb181ca0b6b92b6a1dde40a610d640e9031c57 Mon Sep 17 00:00:00 2001
+From: Scott Talbert <swt@techie.net>
+Date: Wed, 15 Oct 2014 23:54:05 -0400
+Subject: [PATCH] Use Fedora system miniz library
+
+---
+ src/C/miniz/Makefile        | 2 +-
+ src/C/miniz/tinfl_wrapper.c | 2 +-
+ 2 files changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/src/C/miniz/Makefile b/src/C/miniz/Makefile
+index 9930e7f..0196818 100644
+--- a/src/C/miniz/Makefile
++++ b/src/C/miniz/Makefile
+@@ -3,7 +3,7 @@ LIBNAME=libtinfl.$(SOEXT)
+ all: $(LIBNAME)
+ 
+ $(LIBNAME): tinfl_wrapper.o
+-	$(CC) $(CFLAGS) -shared -Wl,$(SONAME),$(LIBNAME) tinfl_wrapper.o -o $(LIBNAME) $(LDFLAGS)
++	$(CC) $(CFLAGS) -shared -Wl,$(SONAME),$(LIBNAME) tinfl_wrapper.o -o $(LIBNAME) $(LDFLAGS) -lminiz
+ 	chmod +x $(LIBNAME)
+ 
+ tinfl_wrapper.o:
+diff --git a/src/C/miniz/tinfl_wrapper.c b/src/C/miniz/tinfl_wrapper.c
+index f942853..8192c39 100644
+--- a/src/C/miniz/tinfl_wrapper.c
++++ b/src/C/miniz/tinfl_wrapper.c
+@@ -1,6 +1,6 @@
+ #include <stdio.h>
+ #include <string.h>
+-#include "tinfl.c"
++#include "miniz.h"
+ 
+ // Checks to see if the first block of data in in_buf is valid zlib compressed data.
+ // Returns 1 if valid, 0 if invalid.
+-- 
+1.9.3
+
