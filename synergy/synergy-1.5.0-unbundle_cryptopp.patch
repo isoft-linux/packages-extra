@@ -1,0 +1,97 @@
+diff -uNrp synergy-1.5.0-Source.orig/CMakeLists.txt synergy-1.5.0-Source/CMakeLists.txt
+--- synergy-1.5.0-Source.orig/CMakeLists.txt	2014-05-23 17:43:58.000000000 +0200
++++ synergy-1.5.0-Source/CMakeLists.txt	2014-07-25 00:32:19.871694004 +0200
+@@ -144,6 +144,11 @@ if (UNIX)
+ 	check_type_size(long SIZEOF_LONG)
+ 	check_type_size(short SIZEOF_SHORT)
+ 
++	set(CMAKE_REQUIRED_LIBRARIES crypto++)
++	set(CMAKE_REQUIRED_LIBRARIES)
++	set(CMAKE_INCLUDE_DIRECTORIES)
++
++
+ 	# pthread is used on both Linux and Mac
+ 	check_library_exists("pthread" pthread_create "" HAVE_PTHREAD)
+ 	if (HAVE_PTHREAD)
+diff -uNrp synergy-1.5.0-Source.orig/ext/CMakeLists.txt synergy-1.5.0-Source/ext/CMakeLists.txt
+--- synergy-1.5.0-Source.orig/ext/CMakeLists.txt	2014-03-20 20:24:24.000000000 +0100
++++ synergy-1.5.0-Source/ext/CMakeLists.txt	2014-07-25 00:35:54.256013831 +0200
+@@ -16,43 +16,6 @@
+ set(cryptopp_dir cryptopp562)
+ 
+ # only compile the crypto++ files we need.
+-set(cryptopp_src
+-	${cryptopp_dir}/3way.cpp
+-	${cryptopp_dir}/algparam.cpp
+-	${cryptopp_dir}/asn.cpp
+-	${cryptopp_dir}/authenc.cpp
+-	${cryptopp_dir}/basecode.cpp
+-	${cryptopp_dir}/cpu.cpp
+-	${cryptopp_dir}/cryptlib.cpp
+-	${cryptopp_dir}/des.cpp
+-	${cryptopp_dir}/dessp.cpp
+-	${cryptopp_dir}/dll.cpp
+-	${cryptopp_dir}/ec2n.cpp
+-	${cryptopp_dir}/ecp.cpp
+-	${cryptopp_dir}/filters.cpp
+-	${cryptopp_dir}/fips140.cpp
+-	${cryptopp_dir}/gcm.cpp
+-	${cryptopp_dir}/gf2n.cpp
+-	${cryptopp_dir}/gfpcrypt.cpp
+-	${cryptopp_dir}/hex.cpp
+-	${cryptopp_dir}/hmac.cpp
+-	${cryptopp_dir}/hrtimer.cpp
+-	${cryptopp_dir}/integer.cpp
+-	${cryptopp_dir}/iterhash.cpp
+-	${cryptopp_dir}/misc.cpp
+-	${cryptopp_dir}/modes.cpp
+-	${cryptopp_dir}/mqueue.cpp
+-	${cryptopp_dir}/nbtheory.cpp
+-	${cryptopp_dir}/oaep.cpp
+-	${cryptopp_dir}/osrng.cpp
+-	${cryptopp_dir}/pubkey.cpp
+-	${cryptopp_dir}/queue.cpp
+-	${cryptopp_dir}/randpool.cpp
+-	${cryptopp_dir}/rdtables.cpp
+-	${cryptopp_dir}/rijndael.cpp
+-	${cryptopp_dir}/rng.cpp
+-	${cryptopp_dir}/sha.cpp
+-)
+ 
+ # if 64-bit windows, compile asm file.
+ if (CMAKE_CL_64)
+@@ -88,9 +51,7 @@ if (UNIX)
+ 	endif()
+ endif()
+ 
+-add_library(cryptopp STATIC ${cryptopp_src})
+-
+ if (UNIX)
+ 	# ignore warnings in crypto++
+-	set_target_properties(cryptopp PROPERTIES COMPILE_FLAGS "-w")
++	#set_target_properties(cryptopp PROPERTIES COMPILE_FLAGS "-w")
+ endif()
+diff -uNrp synergy-1.5.0-Source.orig/src/lib/io/CryptoMode_cryptopp.h synergy-1.5.0-Source/src/lib/io/CryptoMode_cryptopp.h
+--- synergy-1.5.0-Source.orig/src/lib/io/CryptoMode_cryptopp.h	2014-02-28 13:36:45.000000000 +0100
++++ synergy-1.5.0-Source/src/lib/io/CryptoMode_cryptopp.h	2014-07-25 00:26:37.424975177 +0200
+@@ -25,6 +25,6 @@
+ #	pragma GCC system_header
+ #endif 
+ 
+-#include <cryptopp562/gcm.h>
+-#include <cryptopp562/modes.h>
+-#include <cryptopp562/aes.h>
++#include <cryptopp/gcm.h>
++#include <cryptopp/modes.h>
++#include <cryptopp/aes.h>
+diff -uNrp synergy-1.5.0-Source.orig/src/lib/io/CryptoStream_cryptopp.h synergy-1.5.0-Source/src/lib/io/CryptoStream_cryptopp.h
+--- synergy-1.5.0-Source.orig/src/lib/io/CryptoStream_cryptopp.h	2014-02-28 13:36:45.000000000 +0100
++++ synergy-1.5.0-Source/src/lib/io/CryptoStream_cryptopp.h	2014-07-25 00:26:08.521336522 +0200
+@@ -25,5 +25,5 @@
+ #	pragma GCC system_header
+ #endif
+ 
+-#include <cryptopp562/osrng.h>
+-#include <cryptopp562/sha.h>
++#include <cryptopp/osrng.h>
++#include <cryptopp/sha.h>

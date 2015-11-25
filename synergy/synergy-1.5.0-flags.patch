@@ -1,0 +1,12 @@
+diff -uNrp synergy-1.5.0-Source.orig/CMakeLists.txt synergy-1.5.0-Source/CMakeLists.txt
+--- synergy-1.5.0-Source.orig/CMakeLists.txt	2014-05-23 17:43:58.000000000 +0200
++++ synergy-1.5.0-Source/CMakeLists.txt	2014-07-25 00:44:02.231913293 +0200
+@@ -76,7 +76,7 @@ if (UNIX)
+ 
+ 	# warnings as errors:
+ 	# we have a problem with people checking in code with warnings.
+-	set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Werror")
++	set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS}")
+ 
+ 	# For config.h, detect the libraries, functions, etc.
+ 	include(CheckIncludeFiles)
