@@ -1,6 +1,6 @@
 Summary:	Library to create ISO 9660 disk images
 Name:		libisofs
-Version:	1.3.6
+Version:	1.4.0
 Release:	2
 License:	GPLv2+ and LGPLv2+
 URL:		http://libburnia-project.org/
