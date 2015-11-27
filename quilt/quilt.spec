@@ -3,9 +3,8 @@
 Name:		quilt
 Summary:	Scripts for working with series of patches
 License:	GPLv2
-Group:		Development/Tools
 Version:	0.64
-Release:	4
+Release:	5
 Source:		http://savannah.nongnu.org/download/quilt/quilt-%{version}.tar.gz
 URL:		http://savannah.nongnu.org/projects/quilt
 BuildRequires: gettext gawk util-linux-ng
@@ -57,6 +56,9 @@ rm -rf $RPM_BUILD_ROOT/%{_pkgdocdir}
 %{_mandir}/man1/*
 
 %changelog
+* Fri Nov 27 2015 xiaotian.wu@i-soft.com.cn - 0.64-5
+- remove GROUP info.
+
 * Thu Nov 26 2015 xiaotian.wu@i-soft.com.cn - 0.64-4
 - rebuilt
 
