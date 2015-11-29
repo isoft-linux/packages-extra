@@ -4,8 +4,6 @@ Name:		mkinitcpio
 Version:	18
 Release:	1
 Summary:	mkinitcpio
-
-Group:		core
 License:	GPL
 URL:		https://projects.archlinux.org/mkinitcpio.git/
 Source0:	https://projects.archlinux.org/mkinitcpio.git/%{name}-%{version}.tar.gz
