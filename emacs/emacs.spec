@@ -41,6 +41,7 @@ BuildRequires: libtiff-devel
 BuildRequires: libxml2-devel
 BuildRequires: ncurses-devel
 BuildRequires: zlib-devel
+BuildRequires: automake
 
 Requires: ctags ctags-etags
 
@@ -81,7 +82,7 @@ export CXX=clang++
 make %{?_smp_mflags}
 
 # remove emacs item from kickoff(start menu) development group
-sed -e 's/Categories=.*$/Categories=TextEditor;' -i \
+sed -e 's/Categories=.*$/Categories=TextEditor;/' -i \
 etc/emacs.desktop
 
 %install
@@ -129,6 +130,7 @@ update-desktop-database >/dev/null 2>&1 ||:
 %changelog
 * Tue Dec 01 2015 sulit <sulitsrc@gmail.com> - 24.5-4
 - remove emacs item from kickoff(start menu) development group
+- add automake buildrequire
 - ** the tar package isn't upstream's tar package **
 
 * Tue Oct 27 2015 Cjacker <cjacker@foxmail.com> - 24.5-3
