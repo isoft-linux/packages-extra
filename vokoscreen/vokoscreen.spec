@@ -1,7 +1,7 @@
 Summary: Screencasting
 Name: vokoscreen
 Version: 2.4.8
-Release: 3 
+Release: 4 
 License: GPL-2.0
 URL: http://www.kohaupt-online.de/hp
 #https://github.com/vkohaupt/vokoscreen
@@ -10,7 +10,7 @@ Source0: vokoscreen-%{version}-beta.tar.gz
 #Updated zh CN translation
 Source1: vokoscreen_zh_CN.ts
 
-Patch0: we-do-not-have-mp3lame.patch
+#Patch0: we-do-not-have-mp3lame.patch
 Patch1: vokoscreen-add-our-bomi-player.patch
 Patch2: vokoscreen-really-quit.patch
 Patch3: vokoscreen-update-hide-show-window-status.patch
@@ -54,6 +54,9 @@ install -D -m 644 man/man1/%{name}.1.gz %{buildroot}%{_mandir}/man1/%{name}.1.gz
 %{_mandir}/man1/%{name}.1.gz
 
 %changelog
+* Wed Dec 02 2015 Cjacker <cjacker@foxmail.com> - 2.4.8-4
+- Restore mp3lame support
+
 * Wed Dec 02 2015 Cjacker <cjacker@foxmail.com> - 2.4.8-3
 - Rebuilt
 
