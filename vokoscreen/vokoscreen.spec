@@ -21,7 +21,8 @@ Patch6: vokoscreen-change-window-title.patch
 Requires: ffmpeg 
 Requires: bomi
 
-BuildRequires: qt5-qtbase-devel qt5-qtx11extras-devel
+BuildRequires: qt5-qtbase-devel qt5-qtx11extras-devel qt5-qttools-devel
+
 BuildRequires: alsa-lib-devel libv4l-devel
 
 %description
