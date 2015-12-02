@@ -23,6 +23,8 @@ Requires: bomi
 
 BuildRequires: qt5-qtbase-devel qt5-qtx11extras-devel qt5-qttools-devel
 
+BuildRequires: libXrandr-devel
+
 BuildRequires: alsa-lib-devel libv4l-devel
 
 %description
