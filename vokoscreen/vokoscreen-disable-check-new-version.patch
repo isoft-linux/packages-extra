@@ -1,0 +1,11 @@
+--- vokoscreen-2.4.8-betan/vokoscreen.pro	2015-12-02 13:02:57.615692454 +0800
++++ vokoscreen-2.4.8-beta/vokoscreen.pro	2015-12-02 13:07:05.066688022 +0800
+@@ -1,6 +1,8 @@
+ TEMPLATE = app
+ TARGET = vokoscreen
+ 
++DEFINES+=NO_NEW_VERSION_CHECK
++
+ # Input
+ HEADERS += screencast.h
+ 

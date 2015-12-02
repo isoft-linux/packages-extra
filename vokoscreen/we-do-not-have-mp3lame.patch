@@ -1,0 +1,33 @@
+diff -Nur vokoscreen-2.4.8-beta/screencast.cpp vokoscreen-2.4.8-betan/screencast.cpp
+--- vokoscreen-2.4.8-beta/screencast.cpp	2015-11-22 16:14:56.000000000 +0800
++++ vokoscreen-2.4.8-betan/screencast.cpp	2015-12-02 09:37:52.914912807 +0800
+@@ -274,7 +274,6 @@
+     AudiocodecComboBox = new QComboBox( TabWidgetVideoOptionFrame );
+     AudiocodecComboBox->setGeometry( 100, 70, 100, 25 );
+     AudiocodecComboBox->show();
+-    AudiocodecComboBox->addItem( "libmp3lame" );
+     AudiocodecComboBox->addItem( "libvorbis" );
+     AudiocodecComboBox->addItem( "pcm_s16le" );    
+     
+@@ -1484,7 +1483,7 @@
+  */
+ void screencast::setAudiocodecStandardComboBox()
+ {
+-  AudiocodecComboBox ->setCurrentIndex( AudiocodecComboBox->findText( "libmp3lame", Qt::MatchExactly )  );
++  AudiocodecComboBox ->setCurrentIndex( AudiocodecComboBox->findText( "libvorbis", Qt::MatchExactly )  );
+ }
+ 
+ 
+@@ -2560,10 +2559,10 @@
+ {
+   QString acodec;
+   if ( ( AudioOnOffCheckbox->checkState() == Qt::Checked ) and ( AlsaRadioButton->isChecked() ) and ( AlsaHwComboBox->currentText() > "" ) )
+-     return "-c:a " + AudiocodecComboBox->currentText(); //"-c:a libmp3lame";
++     return "-c:a " + AudiocodecComboBox->currentText(); //"-c:a libvorbis";
+   
+   if ( ( AudioOnOffCheckbox->checkState() == Qt::Checked ) and ( PulseDeviceRadioButton->isChecked() ) and ( myPulseDevice() > "" ) )
+-     return "-c:a " + AudiocodecComboBox->currentText(); //"-c:a libmp3lame";
++     return "-c:a " + AudiocodecComboBox->currentText(); //"-c:a libvorbis";
+ 
+   return "";
+ }

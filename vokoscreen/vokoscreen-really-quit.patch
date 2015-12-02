@@ -1,0 +1,15 @@
+--- vokoscreen-2.4.8-betan/screencast.cpp	2015-12-02 09:39:03.650911541 +0800
++++ vokoscreen-2.4.8-beta/screencast.cpp	2015-12-02 11:29:59.711792343 +0800
+@@ -923,9 +923,10 @@
+   if ( data == "Go" )
+     PauseButton->click();
+   
+-  if ( data == "Exit" )
++  if ( data == "Exit" ) {
+     close();
+-
++    qApp->exit();
++  }
+   if ( data == "Hide" )
+   {
+     hideAction->setText( tr( "Show window" ) );

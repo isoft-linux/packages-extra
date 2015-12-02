@@ -1,0 +1,11 @@
+diff -Nur vokoscreen-2.4.8-beta/screencast.cpp vokoscreen-2.4.8-betan/screencast.cpp
+--- vokoscreen-2.4.8-beta/screencast.cpp	2015-11-22 16:14:56.000000000 +0800
++++ vokoscreen-2.4.8-betan/screencast.cpp	2015-12-02 09:39:03.650911541 +0800
+@@ -647,6 +646,7 @@
+   
+     qDebug() << "[vokoscreen]" << "---Begin search Videoplayer---";
+     QStringList playerList = QStringList()  << "kaffeine"
++                                            << "bomi"
+                                             << "vlc"
+                                             << "gnome-mplayer"
+                                             << "totem"

@@ -1,0 +1,12 @@
+diff -Nur vokoscreen-2.4.8-beta/screencast.cpp vokoscreen-2.4.8-betan/screencast.cpp
+--- vokoscreen-2.4.8-beta/screencast.cpp	2015-12-02 13:13:59.639680598 +0800
++++ vokoscreen-2.4.8-betan/screencast.cpp	2015-12-02 13:14:06.457680476 +0800
+@@ -32,7 +32,7 @@
+     QString emaildeveloper = "<a href ='mailto:vkohaupt@freenet.de?subject=vokoscreen ";
+     emaildeveloper = emaildeveloper.append( vkSettings.getVersion() ).append( "'" ).append( ">" + tr( "Developer" ) + "</a>" );
+     
+-    screencast::setWindowTitle( vkSettings.getProgName() + " " + vkSettings.getVersion() );
++    screencast::setWindowTitle( tr("Voko Screen Cast"));
+ 
+     QIcon icon;
+     icon.addFile( QString::fromUtf8( ":/pictures/vokoscreen.png" ), QSize(), QIcon::Normal, QIcon::Off );

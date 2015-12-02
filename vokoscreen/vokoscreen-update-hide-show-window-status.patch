@@ -1,0 +1,20 @@
+--- vokoscreen-2.4.8-beta/screencast.cpp	2015-12-02 12:23:47.955734532 +0800
++++ vokoscreen-2.4.8-betan/screencast.cpp	2015-12-02 12:59:18.209696383 +0800
+@@ -1254,6 +1254,8 @@
+ void screencast::WindowMinimized()
+ {
+   setWindowState( Qt::WindowMinimized );
++  hideAction->setText( tr( "Show window" ) );
++  hideAction->setData("NoHide");
+ }
+ 
+ 
+@@ -1270,6 +1272,8 @@
+   myregionselection->close();
+   magnifier->close();
+   webcamController->webcamCloseEvent();  
++  hideAction->setText( tr( "Show window" ) );
++  hideAction->setData("NoHide");
+ }
+ 
+ 

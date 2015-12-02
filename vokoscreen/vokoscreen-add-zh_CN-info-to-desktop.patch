@@ -1,0 +1,14 @@
+diff -Nur vokoscreen-2.4.8-beta/applications/vokoscreen.desktop vokoscreen-2.4.8-betan/applications/vokoscreen.desktop
+--- vokoscreen-2.4.8-beta/applications/vokoscreen.desktop	2015-11-22 16:14:56.000000000 +0800
++++ vokoscreen-2.4.8-betan/applications/vokoscreen.desktop	2015-12-02 13:04:46.106690511 +0800
+@@ -1,8 +1,10 @@
+ [Desktop Entry]
+ Comment=screencast
++Comment[zh_CN]=录制屏幕各种操作的视频
+ Exec=vokoscreen
+ Icon=vokoscreen
+ Name=vokoscreen
++Name[zh_CN]=voko屏幕录制
+ StartupNotify=false
+ Terminal=false
+ Type=Application
