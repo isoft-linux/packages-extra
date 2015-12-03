@@ -1,0 +1,27 @@
+#!/bin/bash
+if [ ! -d $HOME/.local ]; then
+  mkdir -p $HOME/.local
+fi
+
+#detect whether it's outdated or not.
+if [ -d $HOME/.local/QQLite ]; then
+  LOCALVER=`cat $HOME/.local/QQLite/ver`
+  NEWVER=`cat /usr/share/QQLite/ver`
+  if [ "$LOCALVER"x != "$NEWVER"x ]; then
+    rm -rf $HOME/.local/QQLite
+  fi
+fi
+
+if [ ! -d $HOME/.local/QQLite ]; then
+  /bin/cp -r /usr/share/QQLite $HOME/.local/
+fi
+
+if [ ! -f $HOME/.local/QQLite/info ]; then 
+  kdialog -title "Wine QQ 轻聊版" -msgbox "<p>这是普华使用<b>Wine技术模拟运行的Windows QQ轻聊版</b><br></p>QQ是腾讯针对微软Windows系统开发设计的 即时通讯软件，官方并没有提供Linux版本，为了您的使用便利，我们使用了wine技术进行了跨平台移植，在使用过程中可能存在一定的稳定性问题，请谅解。<br><p align="right">— 普华基础软件股份有限公司</p>"
+  touch $HOME/.local/QQLite/info
+fi
+
+pushd $HOME/.local/QQLite
+./qq $@
+popd
+

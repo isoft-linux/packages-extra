@@ -1,0 +1,13 @@
+[Desktop Entry]
+Categories=Network;InstantMessaging;
+Exec=qq
+Icon=qq
+Name=Wine QQ Lite
+Name[zh_CN]=Wine QQ 轻聊版
+Comment=Run QQ Lite with Wine
+Comment[zh_CN]=使用 Wine 运行 QQ 轻聊版
+NoDisplay=false
+StartupNotify=true
+Terminal=0
+Type=Application
+MimeType=x-scheme-handler/tencent;

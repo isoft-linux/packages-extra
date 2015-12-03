@@ -1,0 +1,16 @@
+19332d2fac7a4dd3280d704aed7d6846  mingw32-wine-gecko-2.40-1.fc24.noarch.rpm
+ac6eb75de16937226e054f2971745c7d  wine-1.7.55-4.src.rpm
+c3763729317a09bcffa17ed1c67f8b18  wine-alsa-1.7.55-4.i686.rpm
+8f96a610835181b165c5959154d13f8c  wine-arial-fonts-1.7.55-4.noarch.rpm
+53720164d9f87d825973e401a6d6d1b7  wine-capi-1.7.55-4.i686.rpm
+52e5a26794e7a534754488e04c510aa0  wine-cms-1.7.55-4.i686.rpm
+cd2af9302733f1a74d942cc5f9014a61  wine-common-1.7.55-4.noarch.rpm
+55ff4a174d2fc2f89b91001e15341967  wine-core-1.7.55-4.i686.rpm
+cd0fd201cfe55f202d42fa287a98739b  wine-desktop-1.7.55-4.noarch.rpm
+77fcba03d945260841eecf98ad6997da  wine-filesystem-1.7.55-4.noarch.rpm
+9cd089892db748694397945381448699  wine-ldap-1.7.55-4.i686.rpm
+5267c9d883861e7a0ccfa88c1bde3e31  wine-mono-4.5.6-4.fc23.noarch.rpm
+1ce5c2b5df07dea41fd38af5f8f2b4ae  wine-openal-1.7.55-4.i686.rpm
+f37a56450629b62cd1b5082575a10c4d  wine-opencl-1.7.55-4.i686.rpm
+09a2a6bfb6f3f5041ac5f8bd7518fc9a  wine-pulseaudio-1.7.55-4.i686.rpm
+eb3c38f47f23d4afafe319aa41888164  wine-systemd-1.7.55-4.noarch.rpm
