@@ -5,7 +5,7 @@ Name:		gajim
 %global		majorver 0.16
 #global		prever -rcX
 Version:	0.16.4
-Release:	4%{?dist}
+Release:	5%{?dist}
 License:	GPLv3
 Group:		Applications/Internet
 URL:		http://gajim.org/
@@ -15,7 +15,7 @@ BuildArch:	noarch
 Requires:	dbus-python
 #  Audio/Video calls:
 # Requires:	farstream-python
-# Requires:	gstreamer-python
+Requires:	gstreamer-python
 # XXX: Gajim does not import bonobo directly, but some module does and
 # prints an error if it's not available.
 # Requires:	gnome-python2-bonobo
@@ -119,6 +119,11 @@ gtk-update-icon-cache %{_datadir}/icons/hicolor &>/dev/null || :
 %{_datadir}/%{name}/src
 
 %changelog
+* Thu Dec 03 2015 sulit <sulitsrc@gmail.com> - 0.16.4-5
+- uncomment Requires:	gstreamer-python, because koji
+- repo gstreamer-python compile should use gstreamer0
+- it's repaired by teacher Wu.
+
 * Wed Dec 02 2015 sulit <sulitsrc@gmail.com> - 0.16.4-4
 - Init for isoft4.0
 - comment Requires:	farstream-python, because koji 
