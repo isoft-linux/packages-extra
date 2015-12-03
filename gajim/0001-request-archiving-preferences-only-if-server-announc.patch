@@ -1,0 +1,69 @@
+From 095bfc00c5de2bbfe063965ca84278f461a61e51 Mon Sep 17 00:00:00 2001
+From: Yann Leboulanger <asterix@lagaule.org>
+Date: Wed, 30 Sep 2015 20:00:48 +0200
+Subject: [PATCH 1/5] request archiving preferences only if server announce it
+ supports it, and don't think it supports it while it's buggy. Fixes #7839
+
+---
+ src/common/connection.py        | 18 +++++++++---------
+ src/common/message_archiving.py |  8 ++++++++
+ 2 files changed, 17 insertions(+), 9 deletions(-)
+
+diff --git a/src/common/connection.py b/src/common/connection.py
+index 7ad2d9c..b98d22a 100644
+--- a/src/common/connection.py
++++ b/src/common/connection.py
+@@ -1899,7 +1899,6 @@ class Connection(CommonConnection, ConnectionHandlers):
+         # If we are not resuming, we ask for discovery info
+         # and archiving preferences
+         if not self.sm.supports_sm or (not self.sm.resuming and self.sm.enabled):
+-            self.request_message_archiving_preferences()
+             self.discoverInfo(gajim.config.get_per('accounts', self.name,
+                 'hostname'), id_prefix='Gajim_')
+ 
+@@ -2006,14 +2005,15 @@ class Connection(CommonConnection, ConnectionHandlers):
+                 if nbxmpp.NS_ARCHIVE in obj.features:
+                     self.archiving_supported = True
+                     self.archiving_136_supported = True
+-                if nbxmpp.NS_ARCHIVE_AUTO in obj.features:
+-                    self.archive_auto_supported = True
+-                if nbxmpp.NS_ARCHIVE_MANAGE in obj.features:
+-                    self.archive_manage_supported = True
+-                if nbxmpp.NS_ARCHIVE_MANUAL in obj.features:
+-                    self.archive_manual_supported = True
+-                if nbxmpp.NS_ARCHIVE_PREF in obj.features:
+-                    self.archive_pref_supported = True
++                    self.request_message_archiving_preferences()
++                    if nbxmpp.NS_ARCHIVE_AUTO in obj.features:
++                        self.archive_auto_supported = True
++                    if nbxmpp.NS_ARCHIVE_MANAGE in obj.features:
++                        self.archive_manage_supported = True
++                    if nbxmpp.NS_ARCHIVE_MANUAL in obj.features:
++                        self.archive_manual_supported = True
++                    if nbxmpp.NS_ARCHIVE_PREF in obj.features:
++                        self.archive_pref_supported = True
+                 if nbxmpp.NS_BLOCKING in obj.features:
+                     self.blocking_supported = True
+                 if nbxmpp.NS_ADDRESS in obj.features:
+diff --git a/src/common/message_archiving.py b/src/common/message_archiving.py
+index d372f9c..630f452 100644
+--- a/src/common/message_archiving.py
++++ b/src/common/message_archiving.py
+@@ -334,6 +334,14 @@ class ConnectionArchive136(ConnectionArchive):
+     def _nec_archiving_changed_received(self, obj):
+         if obj.conn.name != self.name:
+             return
++        for key in ('auto', 'default'):
++            if key not in obj.conf:
++                self.archiving_136_supported = False
++                self.archive_auto_supported = False
++                self.archive_manage_supported = False
++                self.archive_manual_supported = False
++                self.archive_pref_supported = False
++                return True
+         for key in ('auto', 'method_auto', 'method_local', 'method_manual',
+         'default'):
+             if key in obj.conf:
+-- 
+2.5.0
+

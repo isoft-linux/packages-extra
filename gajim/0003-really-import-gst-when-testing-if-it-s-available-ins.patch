@@ -1,0 +1,26 @@
+From b017b7d2302f28df804efb1f075c3c2b2fe52337 Mon Sep 17 00:00:00 2001
+From: Yann Leboulanger <asterix@lagaule.org>
+Date: Sun, 1 Nov 2015 14:01:45 +0100
+Subject: [PATCH 3/5] really import gst when testing if it's available instead
+ of depending on demandimport. Fixes #7836
+
+---
+ src/common/gajim.py | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/src/common/gajim.py b/src/common/gajim.py
+index dd871ec..0f4a11e 100644
+--- a/src/common/gajim.py
++++ b/src/common/gajim.py
+@@ -190,7 +190,7 @@ try:
+         os.environ['FS_PLUGIN_PATH'] = 'gtk\\lib\\farstream-0.1'
+         os.environ['GST_PLUGIN_PATH'] = 'gtk\\lib\\gstreamer-0.10'
+     farstream = __import__('farstream')
+-    import gst
++    gst = __import__('gst')
+     import glib
+     try:
+         conference = gst.element_factory_make('fsrtpconference')
+-- 
+2.5.0
+

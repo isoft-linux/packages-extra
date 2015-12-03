@@ -1,0 +1,26 @@
+From 59862e41864a0b72fc7b1b13f06cb500051f9f95 Mon Sep 17 00:00:00 2001
+From: Yann Leboulanger <asterix@lagaule.org>
+Date: Wed, 4 Nov 2015 21:54:24 +0100
+Subject: [PATCH 5/5] do not delay the import of libxml2, it's needed by gst.
+ Fixes #7836
+
+---
+ src/gajim.py | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/src/gajim.py b/src/gajim.py
+index f3f5234..9ac46b6 100644
+--- a/src/gajim.py
++++ b/src/gajim.py
+@@ -96,7 +96,7 @@ demandimport.ignore += ['gobject._gobject', 'libasyncns', 'i18n',
+     'logging.NullHandler', 'dbus.service', 'OpenSSL.SSL', 'OpenSSL.crypto',
+     'common.sleepy', 'DLFCN', 'dl', 'xml.sax', 'xml.sax.handler', 'ic',
+     'Crypto.PublicKey', 'IPython', 'contextlib', 'imp', 'gst.interfaces',
+-    'monotonic', 'gtkexcepthook']
++    'libxml2', 'libxml2mod', 'monotonic', 'gtkexcepthook']
+ 
+ if os.name == 'nt':
+     import locale
+-- 
+2.5.0
+

@@ -1,0 +1,61 @@
+From 1bcdb61c01c38081d6414b609472f7ee16ebb61b Mon Sep 17 00:00:00 2001
+From: Yann Leboulanger <asterix@lagaule.org>
+Date: Sun, 1 Nov 2015 16:30:27 +0100
+Subject: [PATCH 4/5] Correctly check and handle the case when we don't trust
+ our own key. Fixes #8122
+
+---
+ src/common/connection.py | 5 +++--
+ src/common/gpg.py        | 6 +++++-
+ 2 files changed, 8 insertions(+), 3 deletions(-)
+
+diff --git a/src/common/connection.py b/src/common/connection.py
+index b98d22a..58f12df 100644
+--- a/src/common/connection.py
++++ b/src/common/connection.py
+@@ -320,7 +320,7 @@ class CommonConnection:
+                         always_trust)
+                 def _on_encrypted(output):
+                     msgenc, error = output
+-                    if error == 'NOT_TRUSTED':
++                    if error.startswith( 'NOT_TRUSTED'):
+                         def _on_always_trust(answer):
+                             if answer:
+                                 gajim.thread_interface(encrypt_thread, [msg, keyID,
+@@ -333,7 +333,8 @@ class CommonConnection:
+                                     form_node, user_nick, keyID, attention,
+                                     correction_msg, callback)
+                         gajim.nec.push_incoming_event(GPGTrustKeyEvent(None,
+-                            conn=self, keyID=keyID, callback=_on_always_trust))
++                            conn=self, keyID=error.split(' ')[-1],
++                            callback=_on_always_trust))
+                     else:
+                         self._message_encrypted_cb(output, type_, msg, msgtxt,
+                             original_message, fjid, resource, jid, xhtml,
+diff --git a/src/common/gpg.py b/src/common/gpg.py
+index 4e9b0f0..f405b5d 100644
+--- a/src/common/gpg.py
++++ b/src/common/gpg.py
+@@ -50,6 +50,7 @@ if HAVE_GPG:
+         def encrypt(self, str_, recipients, always_trust=False):
+             trust = always_trust
+             if not trust:
++                # check if we trust all keys
+                 trust = True
+                 for key in recipients:
+                     if key not in self.always_trust:
+@@ -59,7 +60,10 @@ if HAVE_GPG:
+                 result = super(GnuPG, self).list_keys(keys=recipients)
+                 for key in result:
+                     if key['trust'] not in ('f', 'u'):
+-                        return '', 'NOT_TRUSTED'
++                        if key['keyid'][-8:] not in self.always_trust:
++                            return '', 'NOT_TRUSTED ' + key['keyid'][-8:]
++                        else:
++                            trust = True
+             result = super(GnuPG, self).encrypt(str_, recipients,
+                 always_trust=trust, passphrase=self.passphrase)
+ 
+-- 
+2.5.0
+

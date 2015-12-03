@@ -1,0 +1,28 @@
+From 200aeeac0a0887ae4646701585e08bd27980ab35 Mon Sep 17 00:00:00 2001
+From: Yann Leboulanger <asterix@lagaule.org>
+Date: Sat, 24 Oct 2015 13:32:07 +0200
+Subject: [PATCH 2/5] stop requesting MAM archive when we get the
+ complete='true' attribute. Fixes #8170
+
+---
+ src/common/message_archiving.py | 4 +++-
+ 1 file changed, 3 insertions(+), 1 deletion(-)
+
+diff --git a/src/common/message_archiving.py b/src/common/message_archiving.py
+index 630f452..5c5a262 100644
+--- a/src/common/message_archiving.py
++++ b/src/common/message_archiving.py
+@@ -103,7 +103,9 @@ class ConnectionArchive313(ConnectionArchive):
+                 last = set_.getTagData('last')
+                 if last:
+                     gajim.config.set_per('accounts', self.name, 'last_mam_id', last)
+-                    self.request_archive(after=last)
++                    complete = fin_.getAttr('complete')
++                    if complete != 'true':
++                        self.request_archive(after=last)
+ 
+             del self.awaiting_answers[queryid_]
+ 
+-- 
+2.5.0
+
