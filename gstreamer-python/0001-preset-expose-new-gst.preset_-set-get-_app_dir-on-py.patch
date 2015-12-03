@@ -1,0 +1,36 @@
+From 574275e773f3fbbbc0f980d541eb0d477cdf476e Mon Sep 17 00:00:00 2001
+From: Stefan Sauer <ensonic@users.sf.net>
+Date: Fri, 9 Dec 2011 14:05:12 +0100
+Subject: [PATCH] preset: expose new gst.preset_{set,get}_app_dir() on python
+
+---
+ gst/gst.defs |   13 +++++++++++++
+ 1 file changed, 13 insertions(+)
+
+diff --git a/gst/gst.defs b/gst/gst.defs
+index b39e7eb..5942596 100644
+--- a/gst/gst.defs
++++ b/gst/gst.defs
+@@ -5888,6 +5888,19 @@
+   )
+ )
+ 
++(define-function preset_set_app_dir
++  (c-name "gst_preset_set_app_dir")
++  (return-type "gboolean")
++  (parameters
++    '("const-gchar*" "app_dir")
++  )
++)
++
++(define-function preset_get_app_dir
++  (c-name "gst_preset_get_app_dir")
++  (return-type "const-gchar*")
++)
++
+ 
+ ;; From ../gstreamer/gst/gstquery.h
+ 
+-- 
+1.7.10.4
+
