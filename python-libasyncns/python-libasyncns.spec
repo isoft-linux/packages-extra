@@ -5,7 +5,6 @@ Version:        0.7.1
 Release:        13%{?dist}
 Summary:        Python binding for libasyncns
 
-Group:          Development/Languages
 License:        LGPLv2+
 URL:            https://launchpad.net/libasyncns-python
 Source0:        http://launchpad.net/libasyncns-python/trunk/%{version}/+download/libasyncns-python-%{version}.tar.bz2

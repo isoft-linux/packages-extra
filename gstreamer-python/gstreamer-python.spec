@@ -4,8 +4,6 @@ Name:           gstreamer-python
 Version:        0.10.22
 Release:        10%{?dist}
 Summary:        Python bindings for GStreamer
-
-Group:          Development/Languages
 License:        LGPLv2+
 URL:            http://gstreamer.freedesktop.org/
 Source:         http://gstreamer.freedesktop.org/src/gst-python/gst-python-%{version}.tar.bz2
@@ -15,16 +13,16 @@ Patch1:         0001-preset-expose-new-gst.preset_-set-get-_app_dir-on-py.patch
 Requires:       python >= 2.3
 Requires:       pygtk2 >= 2.8.0
 Requires:       python-libxml2
-Requires:       gstreamer >= 0.10.36
-Requires:       gstreamer-plugins-base >= 0.10.36
+Requires:       gstreamer0 >= 0.10.36
+Requires:       gstreamer0-plugins-base >= 0.10.36
 
 BuildRequires:  python >= 2.3
 BuildRequires:  python-devel >= 2.3
 BuildRequires:  pygtk2-devel >= 2.8.0
 # xwindowlistener needs X11 headers
 BuildRequires:  libX11-devel
-BuildRequires:  gstreamer-devel >= 0.10.36
-BuildRequires:  gstreamer-plugins-base-devel >= 0.10.36
+BuildRequires:  gstreamer0-devel >= 0.10.36
+BuildRequires:  gstreamer0-plugins-base-devel >= 0.10.36
 BuildRequires:  pygobject2-devel >= 2.11.2
 
 

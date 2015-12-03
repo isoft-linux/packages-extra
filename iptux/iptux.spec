@@ -3,7 +3,6 @@ Name:           iptux
 Version:        0.5.1
 Release:        16
 Summary:        A software for sharing in LAN
-Group:          Applications/Internet
 License:        GPLv2+
 URL:            http://code.google.com/p/iptux/
 Source0:        http://iptux.googlecode.com/files/%{name}-%{version}-%{?bugfix}.tar.gz

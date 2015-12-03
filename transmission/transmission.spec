@@ -5,7 +5,6 @@ Version:        2.84
 Release:        9%{?dist}
 Summary:        A lightweight GTK+ BitTorrent client
 
-Group:          Applications/Internet
 # See COPYING. This licensing situation is... special.
 License:        MIT and GPLv2
 URL:            http://www.transmissionbt.com

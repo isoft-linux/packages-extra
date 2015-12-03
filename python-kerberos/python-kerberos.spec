@@ -5,7 +5,6 @@ Version:        1.1
 Release:        19%{?dist}
 Summary:        A high-level wrapper for Kerberos (GSSAPI) operations
 
-Group:          System Environment/Libraries
 License:        ASL 2.0
 URL:            http://trac.calendarserver.org/projects/calendarserver/browser/PyKerberos
 # Pull from SVN

@@ -5,7 +5,6 @@ Version:        0.1.1
 Release:        30%{?dist}
 Summary:        Python bindings for libnotify
 
-Group:          Development/Languages
 # No version specified, just COPYING.
 License:        LGPLv2+
 URL:            http://www.galago-project.org
