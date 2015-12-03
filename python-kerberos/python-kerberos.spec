@@ -2,7 +2,7 @@
 %{!?python_sitearch: %define python_sitearch %(%{__python} -c "from distutils.sysconfig import get_python_lib; print get_python_lib(1)")}
 Name:           python-kerberos
 Version:        1.1
-Release:        19%{?dist}
+Release:        20%{?dist}
 Summary:        A high-level wrapper for Kerberos (GSSAPI) operations
 
 License:        ASL 2.0
@@ -59,6 +59,9 @@ rm -rf $RPM_BUILD_ROOT
 
 
 %changelog
+* Thu Dec 03 2015 sulit <sulitsrc@gmail.com> - 1.1-20
+- update release
+
 * Thu Dec 03 2015 sulit <sulitsrc@gmai.com> - 1.1-19
 - Init for isoft4
 

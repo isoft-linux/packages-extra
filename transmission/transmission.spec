@@ -2,7 +2,7 @@
 
 Name:           transmission
 Version:        2.84
-Release:        9%{?dist}
+Release:        10%{?dist}
 Summary:        A lightweight GTK+ BitTorrent client
 
 # See COPYING. This licensing situation is... special.
@@ -247,7 +247,10 @@ fi
 %doc %{_mandir}/man1/transmission-qt.*
 
 %changelog
-* Thu Dec 03 2015 sulit - 2.84-9
+* Thu Dec 03 2015 sulit <sulitsrc@gmail.com> - 2.84-10
+- update release
+
+* Thu Dec 03 2015 sulit <sulitsrc@gmail.com> - 2.84-9
 - Init for isoft4
 - qt:	1. functions support ok
 -	2. support session

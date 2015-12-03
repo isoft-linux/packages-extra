@@ -2,7 +2,7 @@
 
 Name:           python-libasyncns
 Version:        0.7.1
-Release:        13%{?dist}
+Release:        14%{?dist}
 Summary:        Python binding for libasyncns
 
 License:        LGPLv2+
@@ -42,6 +42,9 @@ rm -rf $RPM_BUILD_ROOT
 
 
 %changelog
+* Thu Dec 03 2015 sulit <sulitsrc@gmail.com> - 0.7.1-14
+- update release
+
 * Thu Dec 03 2015 sulit <sulitsrc@gmail.com> - 0.7.1-13
 - Init for isoft4
 

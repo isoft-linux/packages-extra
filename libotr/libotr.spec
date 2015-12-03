@@ -2,7 +2,7 @@
 Summary: Off-The-Record Messaging library and toolkit
 Name: libotr
 Version: 4.1.0
-Release: 3%{?dist}
+Release: 4%{?dist}
 License: GPLv2 and LGPLv2
 Source0: http://otr.cypherpunks.ca/%{name}-%{version}.tar.gz
 Url: http://otr.cypherpunks.ca/
@@ -79,6 +79,9 @@ rm -rf $RPM_BUILD_ROOT
 
 
 %changelog
+* Thu Dec 03 2015 sulit <sulitsrc@gmail.com> - 4.1.0-4
+- update release
+
 * Wed Dec 02 2015 sulit <sulitsrc@gmail.com> - 4.1.0-3
 - Init for isoft4
 

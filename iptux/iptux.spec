@@ -1,7 +1,7 @@
 %define bugfix 2
 Name:           iptux
 Version:        0.5.1
-Release:        16
+Release:        17
 Summary:        A software for sharing in LAN
 License:        GPLv2+
 URL:            http://code.google.com/p/iptux/
@@ -61,5 +61,8 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/icons/hicolor/48x48/apps/ip-tux.png
 
 %changelog
+* Thu Dec 03 2015 sulit <sulitsrc@gmail.com> - 0.5.1-17
+- update release
+
 * Wed Dec 02 2015 sulit <sulitsrc@gmail.com> - 0.5.1-16
 - Init for isoft4

@@ -2,7 +2,7 @@
 
 Name:           notify-python
 Version:        0.1.1
-Release:        30%{?dist}
+Release:        31%{?dist}
 Summary:        Python bindings for libnotify
 
 # No version specified, just COPYING.
@@ -64,6 +64,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/pkgconfig/%{name}.pc
 
 %changelog
+* Thu Dec 03 2015 sulit - 0.1.1-31
+- update release
+
 * Thu Dec 03 2015 sulit <sulitsrc@gmail.com> - 0.1.1-30
 - Init for isoft4
 
