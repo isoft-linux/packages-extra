@@ -1,33 +1,79 @@
-diff -Nur llvm/tools/clang/lib/Driver/ToolChains.cpp llvm-n/tools/clang/lib/Driver/ToolChains.cpp
---- llvm/tools/clang/lib/Driver/ToolChains.cpp	2013-12-05 13:02:19.379441563 +0800
-+++ llvm-n/tools/clang/lib/Driver/ToolChains.cpp	2013-12-05 13:01:20.527437694 +0800
-@@ -1114,7 +1114,7 @@
-   static const char *const ARMHFTriples[] = { "arm-linux-gnueabihf",
-                                               "armv7hl-redhat-linux-gnueabi" };
+diff -Nur llvm-static-3.7.0rc1/tools/clang/lib/Driver/ToolChains.cpp llvm-static-3.7.0rc1n/tools/clang/lib/Driver/ToolChains.cpp
+--- llvm-static-3.7.0rc1/tools/clang/lib/Driver/ToolChains.cpp	2015-07-24 22:13:54.376930391 +0000
++++ llvm-static-3.7.0rc1n/tools/clang/lib/Driver/ToolChains.cpp	2015-07-24 22:16:59.755927071 +0000
+@@ -1263,7 +1263,7 @@
+   // Declare a bunch of static data sets that we'll select between below. These
+   // are specifically designed to always refer to string literals to avoid any
+   // lifetime or initialization issues.
+-  static const char *const AArch64LibDirs[] = {"/lib64", "/lib"};
++  static const char *const AArch64LibDirs[] = {"/lib", "/lib64"};
+   static const char *const AArch64Triples[] = {
+       "aarch64-none-linux-gnu", "aarch64-linux-gnu", "aarch64-linux-android",
+       "aarch64-redhat-linux"};
+@@ -1282,7 +1282,7 @@
+   static const char *const ARMebHFTriples[] = {
+       "armeb-linux-gnueabihf", "armebv7hl-redhat-linux-gnueabi"};
  
--  static const char *const X86_64LibDirs[] = { "/lib64", "/lib" };
-+  static const char *const X86_64LibDirs[] = { "/lib", "/lib64" };
+-  static const char *const X86_64LibDirs[] = {"/lib64", "/lib"};
++  static const char *const X86_64LibDirs[] = {"/lib", "/lib64"};
    static const char *const X86_64Triples[] = {
-     "x86_64-linux-gnu", "x86_64-unknown-linux-gnu", "x86_64-pc-linux-gnu",
-     "x86_64-redhat-linux6E", "x86_64-redhat-linux", "x86_64-suse-linux",
-@@ -2354,7 +2354,7 @@
-       Triple.getArch() == llvm::Triple::ppc)
-     return "lib32";
+       "x86_64-linux-gnu",       "x86_64-unknown-linux-gnu",
+       "x86_64-pc-linux-gnu",    "x86_64-redhat-linux6E",
+@@ -1312,11 +1312,11 @@
+   static const char *const MIPSELTriples[] = {
+       "mipsel-linux-gnu", "mipsel-linux-android", "mips-img-linux-gnu"};
+ 
+-  static const char *const MIPS64LibDirs[] = {"/lib64", "/lib"};
++  static const char *const MIPS64LibDirs[] = {"/lib", "/lib64"};
+   static const char *const MIPS64Triples[] = {
+       "mips64-linux-gnu", "mips-mti-linux-gnu", "mips-img-linux-gnu",
+       "mips64-linux-gnuabi64"};
+-  static const char *const MIPS64ELLibDirs[] = {"/lib64", "/lib"};
++  static const char *const MIPS64ELLibDirs[] = {"/lib", "/lib64"};
+   static const char *const MIPS64ELTriples[] = {
+       "mips64el-linux-gnu", "mips-mti-linux-gnu", "mips-img-linux-gnu",
+       "mips64el-linux-android", "mips64el-linux-gnuabi64"};
+@@ -1325,11 +1325,11 @@
+   static const char *const PPCTriples[] = {
+       "powerpc-linux-gnu", "powerpc-unknown-linux-gnu", "powerpc-linux-gnuspe",
+       "powerpc-suse-linux", "powerpc-montavista-linuxspe"};
+-  static const char *const PPC64LibDirs[] = {"/lib64", "/lib"};
++  static const char *const PPC64LibDirs[] = {"/lib", "/lib64"};
+   static const char *const PPC64Triples[] = {
+       "powerpc64-linux-gnu", "powerpc64-unknown-linux-gnu",
+       "powerpc64-suse-linux", "ppc64-redhat-linux"};
+-  static const char *const PPC64LELibDirs[] = {"/lib64", "/lib"};
++  static const char *const PPC64LELibDirs[] = {"/lib", "/lib64"};
+   static const char *const PPC64LETriples[] = {
+       "powerpc64le-linux-gnu", "powerpc64le-unknown-linux-gnu",
+       "powerpc64le-suse-linux", "ppc64le-redhat-linux"};
+@@ -3101,7 +3101,7 @@
+     // code for N32 ABI only.
+     if (tools::mips::hasMipsAbiArg(Args, "n32"))
+       return "lib32";
+-    return Triple.isArch32Bit() ? "lib" : "lib64";
++    return Triple.isArch32Bit() ? "lib" : "lib";
+   }
+ 
+   // It happens that only x86 and PPC use the 'lib32' variant of oslibdir, and
+@@ -3121,7 +3121,7 @@
+       Triple.getEnvironment() == llvm::Triple::GNUX32)
+     return "libx32";
  
 -  return Triple.isArch32Bit() ? "lib" : "lib64";
-+  return Triple.isArch32Bit() ? "lib32" : "lib";
++  return Triple.isArch32Bit() ? "lib" : "lib";
  }
  
  Linux::Linux(const Driver &D, const llvm::Triple &Triple, const ArgList &Args)
-diff -Nur llvm/tools/clang/lib/Driver/Tools.cpp llvm-n/tools/clang/lib/Driver/Tools.cpp
---- llvm/tools/clang/lib/Driver/Tools.cpp	2013-12-05 12:44:18.000000000 +0800
-+++ llvm-n/tools/clang/lib/Driver/Tools.cpp	2013-12-05 13:01:59.929440284 +0800
-@@ -6306,7 +6306,7 @@
-            ToolChain.getArch() == llvm::Triple::systemz)
-     return "/lib64/ld64.so.1";
+diff -Nur llvm-static-3.7.0rc1/tools/clang/lib/Driver/Tools.cpp llvm-static-3.7.0rc1n/tools/clang/lib/Driver/Tools.cpp
+--- llvm-static-3.7.0rc1/tools/clang/lib/Driver/Tools.cpp	2015-07-24 22:11:49.308932630 +0000
++++ llvm-static-3.7.0rc1n/tools/clang/lib/Driver/Tools.cpp	2015-07-24 22:17:29.374926540 +0000
+@@ -7913,7 +7913,7 @@
+            ToolChain.getTriple().getEnvironment() == llvm::Triple::GNUX32)
+     return "/libx32/ld-linux-x32.so.2";
    else
 -    return "/lib64/ld-linux-x86-64.so.2";
 +    return "/lib/ld-linux-x86-64.so.2";
  }
  
- void gnutools::Link::ConstructJob(Compilation &C, const JobAction &JA,
+ static void AddRunTimeLibs(const ToolChain &TC, const Driver &D,

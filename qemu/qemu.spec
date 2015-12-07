@@ -6,11 +6,11 @@
 Summary: QEMU is a FAST! processor emulator
 Name: qemu
 Version: 2.5.0
-Release: 3
+Release: 4
 License: GPLv2+ and LGPLv2+ and BSD
 URL: http://www.qemu.org/
 
-Source0: qemu-%{version}-rc0.tar.bz2
+Source0: qemu-%{version}-rc2.tar.bz2
 
 Source1: qemu-kvm.sh
 
@@ -115,7 +115,7 @@ As QEMU requires no host kernel patches to run, it is safe and easy to use.
 
 
 %prep
-%setup -q -n qemu-%{version}-rc0
+%setup -q -n qemu-%{version}-rc2
 
 %build
 buildarch="i386-softmmu x86_64-softmmu alpha-softmmu arm-softmmu \
@@ -260,6 +260,9 @@ getent passwd qemu >/dev/null || \
 %{_datadir}/qemu/*
 
 %changelog
+* Sat Dec 05 2015 Cjacker <cjacker@foxmail.com> - 2.5.0-4
+- Update to rc2
+
 * Sun Nov 15 2015 Cjacker <cjacker@foxmail.com> - 2.5.0-3
 - Update to qemu 2.5.0rc0
 

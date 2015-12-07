@@ -1,6 +1,6 @@
 Name: wineqq
 Version: 6.7
-Release: 3
+Release: 4
 Summary: Wine QQ Light Edition
 
 License: Commercial
@@ -21,12 +21,11 @@ Wine QQ Light
 %prep
 %build
 %install
-mkdir -p %{buildroot}%{_datadir}
+mkdir -p %{buildroot}%{_datadir}/QQLite
 mkdir -p %{buildroot}%{_datadir}/applications
 mkdir -p %{buildroot}%{_datadir}/icons/hicolor/256x256/apps
 mkdir -p %{buildroot}%{_bindir}
-tar Jxf %{SOURCE0} -C %{buildroot}%{_datadir}
-mv %{buildroot}%{_datadir}/QQLite-6.7 %{buildroot}%{_datadir}/QQLite
+tar Jxf %{SOURCE0} -C %{buildroot}%{_datadir}/QQLite --strip-component=1 
 
 #we need copy QQLite to ~/.local
 #so we have to add a file here to detect whether ~/.local/QQLite is outdated or not after update.
@@ -56,6 +55,9 @@ gtk-update-icon-cache %{_datadir}/icons/hicolor &> /dev/null || :
 %{_datadir}/applications/*.desktop
 
 %changelog
+* Sat Dec 05 2015 Cjacker <cjacker@foxmail.com> - 6.7-4
+- Update source, remove qqloginfix, we hack it in wine now.
+
 * Tue Dec 01 2015 Cjacker <cjacker@foxmail.com> - 6.7-3
 - Add qqloginfix to tarball
 

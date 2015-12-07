@@ -1,5 +1,5 @@
 Name: wine32 
-Version: 1.7.55
+Version: 1.8
 Release: 4 
 Summary: A compatibility layer for windows applications
 
@@ -94,6 +94,13 @@ done
 %{_datadir}/icons/hicolor/scalable/apps/*.svg
 
 %changelog
+* Sat Dec 05 2015 Cjacker <cjacker@foxmail.com> - 1.8-4
+- Update to 1.8-4
+- Hack winex11drv to fix QQ Login dialog input issue.
+
+* Thu Dec 03 2015 Cjacker <cjacker@foxmail.com> - 1.7.55-5
+- Correct mic support issue.
+
 * Wed Dec 02 2015 Cjacker <cjacker@foxmail.com> - 1.7.55-4
 - Backport pulseaudio fix from wine 1.8
 - Hack winex11drv to handle special shadow window of netease cloudmusic.exe

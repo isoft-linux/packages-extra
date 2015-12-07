@@ -1,12 +1,13 @@
 Name:		pocl
 Version:	0.13
-Release:	9.git
+Release:	10.llvm37.git
 Summary:	Portable Computing Language
 
 License:	BSD
 URL:		http://portablecl.org/
 #git clone https://github.com/pocl/pocl
-Source0:    %{name}-953cdd7.tar.gz
+Source0:    %{name}.tar.xz
+Patch0: pocl-build-with-llvm-3.8.patch
 
 BuildRequires: autoconf automake libtool
 BuildRequires: ocl-icd-devel, libhwloc-devel	
@@ -34,7 +35,7 @@ documentation for %{name}.
 
 %prep
 %setup -q -n %{name} 
-
+%patch0 -p1
 
 %build
 export CC=clang
@@ -84,6 +85,9 @@ make check
 %{_libdir}/pkgconfig/pocl.pc
 
 %changelog
+* Sat Dec 05 2015 Cjacker <cjacker@foxmail.com> - 0.13-10.llvm38.git
+- Update, build with llvm-3.8
+
 * Mon Nov 02 2015 Cjacker <cjacker@foxmail.com> - 0.13-9.git
 - Rebuild, bump version to 0.13 git.
 

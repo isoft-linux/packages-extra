@@ -1,6 +1,6 @@
 Name: emscripten 
-Version: 1.34.11
-Release: 3 
+Version: 1.35.12
+Release: 2 
 Summary: LLVM-based project that compiles C and C++ into highly-optimizable JavaScript in asm.js format
 
 License: Custom
@@ -18,11 +18,10 @@ Source10: emscripten.sh
 Patch0: emscripten-clang-lib64-to-lib.patch
 Patch1: emscripten-clang-isoft-gcc-toolchain.patch
 
-#already upstream.
-Patch10: emscripten-add-sdl-ttf.patch
- 
 BuildRequires: cmake libxml2 gcc ninja-build
 BuildRequires: glibc-devel ncurses-devel
+#Test required
+BuildRequires: nodejs
 
 Requires: python nodejs
 
@@ -53,13 +52,11 @@ sed '1s|#!/usr/local/bin/python2|#!env python2|' -i $(find third_party tools -na
 sed -e "s|getenv('LLVM')|getenv('EMSCRIPTEN_FASTCOMP')|" \
     -e 's|{{{ LLVM_ROOT }}}|/usr/lib/emscripten-fastcomp|' \
     -i tools/settings_template_readonly.py
-
-%patch10 -p1
 popd
 
 
 %build
-#build, not the TARGETS supported here.
+#build, note the TARGETS settings.
 pushd emscripten-fastcomp-%{version}/build
 CC=gcc CXX=g++ cmake .. -G Ninja -DPYTHON_EXECUTABLE=/usr/bin/python2 \
     -DCMAKE_BUILD_TYPE=Release \
@@ -121,6 +118,9 @@ popd
 %{_docdir}/%{name}
 
 %changelog
+* Sat Dec 05 2015 Cjacker <cjacker@foxmail.com> - 1.35.12-2
+- Update to 1.35.12
+
 * Tue Oct 27 2015 Cjacker <cjacker@foxmail.com> - 1.34.11-3
 - Rebuild
 

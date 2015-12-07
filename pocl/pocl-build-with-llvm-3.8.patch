@@ -1,0 +1,19 @@
+diff -Nur pocl/configure.ac pocln/configure.ac
+--- pocl/configure.ac	2015-12-06 01:21:03.000000000 +0800
++++ pocln/configure.ac	2015-12-06 01:29:40.992309563 +0800
+@@ -102,10 +102,14 @@
+      AC_DEFINE([LLVM_3_7], [], "Using LLVM svn, upcoming 3.7")
+      LLVM_LDFLAGS="$LLVM_LDFLAGS `$LLVM_CONFIG --system-libs`"
+    ;;
++     3.8*)
++     AC_DEFINE([LLVM_3_8], [], "Using LLVM svn, upcoming 3.8")
++     LLVM_LDFLAGS="$LLVM_LDFLAGS `$LLVM_CONFIG --system-libs`"
++   ;;
+      *)
+    AC_MSG_ERROR(
+    [
+-Unsupported LLVM version. Please use LLVM version 3.6 or 3.7.
++Unsupported LLVM version. Please use LLVM version 3.6, 3.7 or 3.8.
+    ])
+    LLVM_VERSION=
+    ;;

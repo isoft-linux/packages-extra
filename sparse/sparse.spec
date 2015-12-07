@@ -1,6 +1,6 @@
 Name: sparse
 Version: 0.5.1
-Release: 4.llvm37.git 
+Release: 6.llvm37.git 
 Epoch: 2 
 Summary: C semantic parser
 
@@ -30,7 +30,7 @@ developing applications that use %{name}.
 sed -i "s@-finline-functions@@g" Makefile
 
 %build
-make %{?_smp_mflags} CC=clang LD=clang
+make %{?_smp_mflags} CC=clang CXX=clang++
 
 %install
 make install DESTDIR=%{buildroot} PREFIX=/usr
@@ -54,6 +54,9 @@ sed -i "s@gcc@clang@g" $RPM_BUILD_ROOT%{_bindir}/sparsec
 %{_libdir}/pkgconfig/sparse.pc
 
 %changelog
+* Sat Dec 05 2015 Cjacker <cjacker@foxmail.com> - 2:0.5.1-6.llvm37.git
+- Build with new llvm-3.7
+
 * Tue Oct 27 2015 Cjacker <cjacker@foxmail.com> - 2:0.5.1-4.llvm37.git
 - Rebuild
 
