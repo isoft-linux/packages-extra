@@ -1,6 +1,6 @@
 Name: wine32 
 Version: 1.8
-Release: 4 
+Release: 5 
 Summary: A compatibility layer for windows applications
 
 License: LGPLv2+ 
@@ -94,6 +94,9 @@ done
 %{_datadir}/icons/hicolor/scalable/apps/*.svg
 
 %changelog
+* Mon Dec 07 2015 Cjacker <cjacker@foxmail.com> - 1.8-5
+- Update to 1.8 git, aka. 1.8 rc3, update wine-staging to match it
+
 * Sat Dec 05 2015 Cjacker <cjacker@foxmail.com> - 1.8-4
 - Update to 1.8-4
 - Hack winex11drv to fix QQ Login dialog input issue.
