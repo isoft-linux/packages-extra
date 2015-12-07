@@ -1,0 +1,11 @@
+--- llvm/lib/Support/Host.cpp    2015-10-14 07:13:52.381374679 +0200
++++ llvmn/lib/Support/Host.cpp   2015-10-14 07:13:28.224708323 +0200
+@@ -332,6 +332,8 @@
+                // 17h. All processors are manufactured using the 45 nm process.
+                //
+                // 45nm: Penryn , Wolfdale, Yorkfield (XE)
++        // Not all Penryn processors support SSE 4.1 (such as the Pentium brand)
++        return HasSSE41 ? "penryn" : "core2";          
+       case 29: // Intel Xeon processor MP. All processors are manufactured using
+                // the 45 nm process.
+         return "penryn";

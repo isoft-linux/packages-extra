@@ -1,0 +1,24 @@
+diff -Nur swift/utils/build-presets.ini swiftn/utils/build-presets.ini
+--- swift/utils/build-presets.ini	2015-12-04 01:46:52.000000000 +0800
++++ swiftn/utils/build-presets.ini	2015-12-04 16:30:42.195765283 +0800
+@@ -505,6 +505,20 @@
+ # Path to the .tar.gz package we would create.
+ installable-package=%(installable_package)s
+ 
++# iSoft preset
++[preset: buildbot_linux_isoft]
++mixin-preset=mixin_linux_installation
++build-subdir=buildbot_linux
++
++lldb
++release
++foundation
++
++dash-dash
++
++install-foundation
++reconfigure
++
+ # This preset builds foundation
+ [preset: buildbot_linux_1510]
+ mixin-preset=mixin_linux_installation

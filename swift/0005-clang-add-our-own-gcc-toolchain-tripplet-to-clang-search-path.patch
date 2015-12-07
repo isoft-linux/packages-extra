@@ -1,6 +1,6 @@
-diff -Nur llvm-static-3.5.0/tools/clang/lib/Driver/ToolChains.cpp llvm-static-3.5.0n/tools/clang/lib/Driver/ToolChains.cpp
---- llvm-static-3.5.0/tools/clang/lib/Driver/ToolChains.cpp	2014-09-09 16:29:42.940828052 +0800
-+++ llvm-static-3.5.0n/tools/clang/lib/Driver/ToolChains.cpp	2014-09-09 16:32:29.186837626 +0800
+diff -Nur clang/lib/Driver/ToolChains.cpp clangn/lib/Driver/ToolChains.cpp
+--- clang/lib/Driver/ToolChains.cpp	2015-12-04 21:49:24.044422847 +0800
++++ clangn/lib/Driver/ToolChains.cpp	2015-12-04 21:56:33.931528296 +0800
 @@ -1427,6 +1427,9 @@
    static const char *const X86_64LibDirs[] = {"/lib", "/lib64"};
    static const char *const X86_64Triples[] = {

@@ -1,18 +1,19 @@
 Name: devhelp
 Version: 3.18.1
-Release: 6 
+Release: 7 
 License: GPLv2+
 Summary: API document browser
 URL: http://www.gnome.org
 Source: http://download.gnome.org/sources/devhelp/%{version}/devhelp-%{version}.tar.xz
 
-Requires: webkitgtk
-
 BuildRequires: desktop-file-utils >= 0.3
-BuildRequires: webkitgtk-devel
+BuildRequires: webkitgtk4-devel
 BuildRequires: gettext
 BuildRequires: intltool
-BuildRequires: gtk3-devel
+BuildRequires: pkgconfig(gtk+-3.0)
+BuildRequires: pkgconfig(webkit2gtk-4.0)
+BuildRequires: libappstream-glib
+BuildRequires: chrpath
 
 %description
 An API document browser
@@ -87,6 +88,9 @@ glib-compile-schemas /usr/share/glib-2.0/schemas >/dev/null 2>&1 || :
 %{_libdir}/pkgconfig/*
 
 %changelog
+* Mon Dec 07 2015 Cjacker <cjacker@foxmail.com> - 3.18.1-7
+- Rebuild, depend on webkitgtk4 now
+
 * Wed Oct 28 2015 Cjacker <cjacker@foxmail.com> - 3.18.1-6
 - Update
 

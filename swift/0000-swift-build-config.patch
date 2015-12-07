@@ -1,0 +1,20 @@
+diff -Nur swift/utils/build-script-impl swiftn/utils/build-script-impl
+--- swift/utils/build-script-impl	2015-12-04 01:46:52.000000000 +0800
++++ swiftn/utils/build-script-impl	2015-12-04 14:47:13.056876477 +0800
+@@ -173,7 +173,7 @@
+     swift-enable-target-linux   "1"              "Enable compiler support for targeting Linux"
+     swift-runtime-enable-dtrace "0"              "Enable runtime dtrace support"
+     swift-runtime-enable-leak-checker   "0"              "Enable leaks checking routines in the runtime"
+-    use-gold-linker             ""               "Enable using the gold linker"
++    use-gold-linker             "1"               "Enable using the gold linker"
+     darwin-toolchain-bundle-identifier ""        "CFBundleIdentifier for xctoolchain info plist"
+     darwin-toolchain-display-name      ""        "Display Name for xctoolcain info plist"
+     darwin-toolchain-name              ""        "Directory name for xctoolchain"
+@@ -1443,6 +1443,7 @@
+                 cmake_options=(
+                   "${cmake_options[@]}"
+                   -DCMAKE_BUILD_TYPE:STRING="${LLVM_BUILD_TYPE}"
++                  -DCMAKE_INSTALL_PREFIX:PATH="${INSTALL_PREFIX}"
+                   "${cmark_cmake_options[@]}"
+                   "${CMARK_SOURCE_DIR}"
+                 )

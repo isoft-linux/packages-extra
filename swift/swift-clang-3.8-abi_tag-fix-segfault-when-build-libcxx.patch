@@ -1,0 +1,12 @@
+diff -Nur clang/lib/AST/ItaniumMangle.cpp clang.abi_tag/lib/AST/ItaniumMangle.cpp
+--- clang/lib/AST/ItaniumMangle.cpp	2015-12-06 18:51:47.428189833 +0800
++++ clang.abi_tag/lib/AST/ItaniumMangle.cpp	2015-12-06 18:52:05.437189511 +0800
+@@ -649,7 +649,7 @@
+ 
+ void CXXNameMangler::writeAbiTags(const NamedDecl *ND, const AbiTagList *AdditionalAbiTags) {
+   assert(AbiTags && "require AbiTagState");
+-  if (AbiTags) AbiTags->write(Out, ND, DisableDerivedAbiTags ? nullptr : AdditionalAbiTags);
++  if (AbiTags && ND) AbiTags->write(Out, ND, DisableDerivedAbiTags ? nullptr : AdditionalAbiTags);
+ }
+ 
+ void CXXNameMangler::mangle(const NamedDecl *D) {
