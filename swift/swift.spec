@@ -58,7 +58,7 @@ Patch12: swift-clang-3.8-abi_tag-fix-segfault-when-build-libcxx.patch
 
 BuildRequires: clang
 BuildRequires: swig 
-BuildRequires: ninja-build
+BuildRequires: cmake ninja-build
 BuildRequires: python python-sphinx python3
 BuildRequires: bison flex 
 BuildRequires: zip
