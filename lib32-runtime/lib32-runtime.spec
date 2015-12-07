@@ -1,9 +1,9 @@
-%define checksum 74fe4affbc7098fa72f19dbc416c89cc
-%define howtosum 42906bbd34bd9ac1dbe117c7dc01d89f
+%define checksum e1bc5b4fadf051e6cfaf948421d0a5d9
+%define howtosum 146a26ce37a87523036fe072112036c4
 
 Name: lib32-runtime
-Version: 2015.12.02
-Release: 1
+Version: 2015.12.07
+Release: 1%{?dist}
 Summary: Runtime for lib32
 
 License: LGPLv2+ 
@@ -22,19 +22,24 @@ Runtime for lib32
 mkdir -p %{buildroot}
 pushd %{buildroot}
 tar zxf %{SOURCE0} -C %{buildroot}
-ln -sf /opt/l32 l32
+ln -sf /opt/x32 x32
 popd
+export QA_SKIP_RPATHS=1
+export QA_RPATHS=$(( 0x0001|0x0002 ))
 
 %post -p /sbin/ldconfig
 %postun -p /sbin/ldconfig
 
 %files
-%dir /opt/l32
+%dir /opt/x32
 %{_libdir}/ld-linux.so.2
-/opt/l32/*
-/l32
+/opt/x32/*
+/x32
 
 %changelog
+* Mon Dec 07 2015 xiaotian.wu@i-soft.com.cn - 2015.12.07-1
+- new version
+
 * Wed Dec 02 2015 xiaotian.wu@i-soft.com.cn - 2015.12.02-1
 - new version
 
