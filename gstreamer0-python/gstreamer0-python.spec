@@ -1,8 +1,8 @@
 %define         majorminor      0.10
 
-Name:           gstreamer-python
+Name:           gstreamer0-python
 Version:        0.10.22
-Release:        10%{?dist}
+Release:        11%{?dist}
 Summary:        Python bindings for GStreamer
 License:        LGPLv2+
 URL:            http://gstreamer.freedesktop.org/
@@ -87,6 +87,9 @@ rm -fr $RPM_BUILD_ROOT%{_datadir}/gst-python/%{majorminor}/examples
 
 
 %changelog
+* Mon Dec 07 2015 sulit <sulitsrc@gmail.com> - 0.10.22-11
+- modify gstreamer-python to gstreamer0-python
+
 * Thu Dec 03 2015 sulit <sulitsrc@gmail.com> - 0.10.22-10
 - Init for isoft4
 

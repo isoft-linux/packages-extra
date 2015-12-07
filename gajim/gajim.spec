@@ -5,7 +5,7 @@ Name:		gajim
 %global		majorver 0.16
 #global		prever -rcX
 Version:	0.16.4
-Release:	5%{?dist}
+Release:	6%{?dist}
 License:	GPLv3
 Group:		Applications/Internet
 URL:		http://gajim.org/
@@ -15,7 +15,7 @@ BuildArch:	noarch
 Requires:	dbus-python
 #  Audio/Video calls:
 # Requires:	farstream-python
-Requires:	gstreamer-python
+Requires:	gstreamer0-python
 # XXX: Gajim does not import bonobo directly, but some module does and
 # prints an error if it's not available.
 # Requires:	gnome-python2-bonobo
@@ -119,6 +119,9 @@ gtk-update-icon-cache %{_datadir}/icons/hicolor &>/dev/null || :
 %{_datadir}/%{name}/src
 
 %changelog
+* Mon Dec 07 2015 sulit <sulitsrc@gmail.com> - 0.16.4-6
+- modify "Requires: gstreamer-python" to "Requires: gstreamer0-python"
+
 * Thu Dec 03 2015 sulit <sulitsrc@gmail.com> - 0.16.4-5
 - uncomment Requires:	gstreamer-python, because koji
 - repo gstreamer-python compile should use gstreamer0
