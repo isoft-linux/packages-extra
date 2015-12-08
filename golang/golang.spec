@@ -33,11 +33,11 @@
 %endif
 
 %global go_api 1.5
-%global go_version 1.5.1
+%global go_version 1.5.2
 
 Name:           golang
 Version:        1.5
-Release:        6%{?dist}
+Release:        7%{?dist}
 Summary:        The Go Programming Language
 
 License:        BSD
@@ -312,6 +312,9 @@ fi
 
 
 %changelog
+* Tue Dec 08 2015 Cjacker <cjacker@foxmail.com> - 1.5-7
+- Update to 1.5.2
+
 * Tue Oct 27 2015 Cjacker <cjacker@foxmail.com> - 1.5-6
 - Rebuild
 
