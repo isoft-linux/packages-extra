@@ -3,7 +3,7 @@
 
 %define swift_ver 2.2
 
-%define gitdate 20151207
+%define gitdate 20151208
 
 #swift heavily depend on modified lldb, and it's not LLVM upstream now.
 #we had to provided lldb in swift package.
@@ -11,7 +11,7 @@
 
 Name: swift
 Version: %{swift_ver}
-Release: 5.git%{gitdate}
+Release: 6.git%{gitdate}
 Summary: Swift Programming Language 
 
 License: Apache 2.0 license with a Runtime Library Exception 
@@ -65,6 +65,8 @@ BuildRequires: zip
 BuildRequires: doxygen
 BuildRequires: tar
 BuildRequires: pkgconfig
+#package need it.
+BuildRequires: rsync
 
 BuildRequires: python-devel
 BuildRequires: libedit-devel
@@ -191,6 +193,9 @@ rm -rf %{buildroot}/usr/local
 %{_includedir}/lldb
 
 %changelog
+* Tue Dec 08 2015 Cjacker <cjacker@foxmail.com> - 2.2-6.git20151208
+- Update to 20151208 git
+
 * Mon Dec 07 2015 Cjacker <cjacker@foxmail.com> - 2.2-5.git20151207
 - Update
 
