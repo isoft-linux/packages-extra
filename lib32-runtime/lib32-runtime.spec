@@ -1,8 +1,8 @@
-%define checksum e1bc5b4fadf051e6cfaf948421d0a5d9
-%define howtosum 146a26ce37a87523036fe072112036c4
+%define checksum 4d7de544c215ad6b6e580ae89d95bf27
+%define howtosum d4fa51ea36b0ca7fcaf7ab0803423865
 
 Name: lib32-runtime
-Version: 2015.12.07
+Version: 2015.12.09
 Release: 1%{?dist}
 Summary: Runtime for lib32
 
@@ -37,6 +37,9 @@ export QA_RPATHS=$(( 0x0001|0x0002 ))
 /x32
 
 %changelog
+* Wed Dec 09 2015 xiaotian.wu@i-soft.com.cn - 2015.12.09-1
+- new version, add qt to support skype.
+
 * Mon Dec 07 2015 xiaotian.wu@i-soft.com.cn - 2015.12.07-1
 - new version
 
