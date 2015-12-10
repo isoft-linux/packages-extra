@@ -29,6 +29,8 @@ Source14: js-flot-0.8.3.tar.gz
 Source15: js-jquery-1.11.3.tar.gz
 Source16: shake-0.15.4.tar.gz
 Source17: utf8-string-1.0.1.1.tar.gz
+Source18: doctest-0.10.1.tar.gz
+Source19: ghc-paths-0.1.0.9.tar.gz
 
 BuildRequires: ghc, cabal, hscolour
 BuildRequires: alex, happy 
@@ -39,6 +41,7 @@ BuildRequires: mesa-libGL-devel
 BuildRequires: zlib-devel
 
 Provides: shake = 0.15.4-%{release}
+Provides: doctest = 0.10.1-%{release}
 
 Requires: ghc cabal hscolour alex happy
 
@@ -84,6 +87,8 @@ tar zxf %{SOURCE14} -C suppliments
 tar zxf %{SOURCE15} -C suppliments 
 tar zxf %{SOURCE16} -C suppliments 
 tar zxf %{SOURCE17} -C suppliments 
+tar zxf %{SOURCE18} -C suppliments 
+tar zxf %{SOURCE19} -C suppliments 
 
 %build
 export SANDBOX=`pwd`/.cabal-sandbox
@@ -208,6 +213,7 @@ do
 done
 popd
 
+
 #intall pkg conf
 GHC_VERSION=`ghc --numeric-version`
 mkdir -p %{buildroot}%{_libdir}/ghc-$GHC_VERSION/package.conf.d
@@ -248,6 +254,7 @@ fi ||:
 %files
 %{_bindir}/mkReadme
 %{_bindir}/shake
+%{_bindir}/doctest
 %{_libdir}/ghc-*/*
 %{_datadir}/HUnit-*
 %{_datadir}/js-flot-*
