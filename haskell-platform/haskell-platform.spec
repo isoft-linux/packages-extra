@@ -105,6 +105,9 @@ tar zxf %{SOURCE18} -C suppliments
 tar zxf %{SOURCE19} -C suppliments 
 
 %build
+export LANG=en_US.UTF-8
+export LC_ALL=en_US.UTF-8
+
 export SANDBOX=`pwd`/.cabal-sandbox
 export DIST=`pwd`/cabal-build
 rm -rf $DIST
