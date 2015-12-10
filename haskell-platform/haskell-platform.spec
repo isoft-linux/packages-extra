@@ -38,6 +38,7 @@ BuildRequires: freeglut-devel
 BuildRequires: gmp-devel
 BuildRequires: libGLU-devel
 BuildRequires: mesa-libGL-devel
+BuildRequires: mesa-libGLU-devel
 BuildRequires: zlib-devel
 
 Provides: shake = 0.15.4-%{release}
@@ -61,6 +62,7 @@ shake
 utf8-string
 doctest
 ghc-paths
+
 %package -n alex 
 Version: %{alex_ver}
 URL: http://www.haskell.org/alex
