@@ -46,9 +46,21 @@ Provides: doctest = 0.10.1-%{release}
 Requires: ghc cabal hscolour alex happy
 
 %description
-Haskell Platform is a suite of stable and well used Haskell libraries and tools.  
+Haskell Platform is a suite of stable and well used Haskell libraries and tools.
+
 It provides a good starting environment for Haskell development.
 
+This package also include essential packages not included in official haskell-platform release, such as:
+blaze-builder
+extra
+hastache
+ieee754
+js-flot
+js-jquery
+shake
+utf8-string
+doctest
+ghc-paths
 %package -n alex 
 Version: %{alex_ver}
 URL: http://www.haskell.org/alex
