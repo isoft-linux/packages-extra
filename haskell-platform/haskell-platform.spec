@@ -14,7 +14,7 @@
 
 Name: haskell-platform	
 Version: 7.10.3
-Release: 3
+Release: 4
 Summary: Standard Haskell distribution 	
 
 License: BSD
@@ -287,6 +287,9 @@ fi ||:
 %{_datadir}/happy-*
 
 %changelog
+* Thu Dec 10 2015 Cjacker <cjacker@foxmail.com> - 7.10.3-4
+- Rebuild
+
 * Wed Dec 09 2015 Cjacker <cjacker@foxmail.com> - 7.10.3-3
 - Rebuild, sep alex/happay pkgs
 
