@@ -1,6 +1,6 @@
 Name: libvncserver
 Version: 0.9.9
-Release: 4
+Release: 5
 License: GPL
 
 Source0: http://downloads.sourceforge.net/libvncserver/LibVNCServer-0.9.9.tar.gz
@@ -41,6 +41,9 @@ make install DESTDIR=%{buildroot}
 
 
 %changelog
+* Thu Dec 10 2015 xiaotian.wu@i-soft.com.cn - 0.9.9-5
+- rebuilt
+
 * Thu Dec 10 2015 xiaotian.wu@i-soft.com.cn - 0.9.9-4
 - rebuilt
 
