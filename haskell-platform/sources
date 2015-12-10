@@ -1,9 +1,9 @@
 97fd54eb400f8f7170ec57f8b1e3e6af  blaze-builder-0.4.0.1.tar.gz
-ca8d7959add2eeac6f1f321e3d9b9091  extra-1.4.tar.gz
-7059558469e1d1471b9f4815983fef04  haskell-platform-7.10.2.tar.gz
+a1cda1f610216ad4320790e7e5eb12a5  extra-1.4.2.tar.gz
+faa81bc0b035e2754d010c5c448d94cb  haskell-platform-7.10.3.tar.gz
 31f008cc0589c69da7fca4b8cdc39dc0  hastache-0.6.1.tar.gz
 7fe15208500ca737ec48e3e6f1154286  ieee754-0.7.6.tar.gz
 ee76d397d4a9aec44206262dc5dbd917  js-flot-0.8.3.tar.gz
 d3270f56c0cb9741ce7dd1bfbcb1c1b3  js-jquery-1.11.3.tar.gz
 e03a60022237c43c6ac4cecc9f0bffa8  shake-0.15.4.tar.gz
-ba089498bf478266ce25d21eb00236aa  utf8-string-1.tar.gz
+fe24e26bd4b09731af66ef27b18b5177  utf8-string-1.0.1.1.tar.gz
