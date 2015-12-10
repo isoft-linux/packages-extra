@@ -6,7 +6,7 @@
 #hscolour is not available, since it need ghc to build, you can comment out the buildrequires.
 
 Name: ghc	
-Version: 7.10.2	
+Version: 7.10.3
 Release: 2
 Summary: Glasgow Haskell Compiler	
 
@@ -18,11 +18,17 @@ Source1: http://downloads.haskell.org/~ghc/7.10.2/ghc-%{version}-testsuite.tar.x
 Source4: ghc-doc-index
 
 BuildRequires: ghc
+BuildRequires: gcc binutils
 BuildRequires: hscolour
 BuildRequires: gmp-devel
 BuildRequires: libffi-devel
 BuildRequires: ncurses-devel
-
+BuildRequires: libxslt, docbook-style-xsl
+BuildRequires: python
+BuildRequires: autoconf, automake
+BuildRequires: libxml2-devel
+BuildRequires: sed tar patch perl findutils coreutils grep
+# BuildRequires: llvm
 Provides: haddock
 
 %description
@@ -45,11 +51,11 @@ for the functional language Haskell. Highlights:
 - Profiling is supported, both by time/allocation and heap profiling.
 - GHC comes with core libraries, and thousands more are available on Hackage.
 
-%package        devel
-Summary:        Development files for %{name}
-Requires:       %{name} = %{version}-%{release}
+%package devel
+Summary: Development files for %{name}
+Requires: %{name} = %{version}-%{release}
 
-%description    devel
+%description devel
 The %{name}-devel package contains libraries and header files for
 developing applications that use %{name}.
 
@@ -58,19 +64,19 @@ developing applications that use %{name}.
 
 %build
 ./configure \
-	--prefix=%{_prefix} \
-	--exec-prefix=%{_exec_prefix} \
-	--bindir=%{_bindir} \
-	--sbindir=%{_sbindir} \
-	--sysconfdir=%{_sysconfdir} \
-  	--datadir=%{_datadir} \
-	--includedir=%{_includedir} \
-	--libdir=%{_libdir} \
-  	--libexecdir=%{_libexecdir} \
-	--localstatedir=%{_localstatedir} \
-  	--sharedstatedir=%{_sharedstatedir} \
-	--mandir=%{_mandir} \
-  	--with-gcc=%{_bindir}/gcc
+    --prefix=%{_prefix} \
+    --exec-prefix=%{_exec_prefix} \
+    --bindir=%{_bindir} \
+    --sbindir=%{_sbindir} \
+    --sysconfdir=%{_sysconfdir} \
+    --datadir=%{_datadir} \
+    --includedir=%{_includedir} \
+    --libdir=%{_libdir} \
+    --libexecdir=%{_libexecdir} \
+    --localstatedir=%{_localstatedir} \
+    --sharedstatedir=%{_sharedstatedir} \
+    --mandir=%{_mandir} \
+    --with-gcc=%{_bindir}/gcc
 
 export LANG=en_US.utf8
 make %{?_smp_mflags}
@@ -82,8 +88,8 @@ make install DESTDIR=%{buildroot}
 mkdir -p %{buildroot}%{_localstatedir}/lib/ghc
 install -p --mode=0755 %SOURCE4 %{buildroot}%{_bindir}/ghc-doc-index
 
-%post
-/usr/bin/ghc-pkg recache --no-user-package-db || :
+%posttrans
+%{_bindir}/ghc-pkg recache --no-user-package-db || :
 
 %files
 %{_bindir}/ghc*
@@ -100,6 +106,9 @@ install -p --mode=0755 %SOURCE4 %{buildroot}%{_bindir}/ghc-doc-index
 %{_docdir}/ghc
 
 %changelog
+* Wed Dec 09 2015 Cjacker <cjacker@foxmail.com> - 7.10.3-2
+- Update
+
 * Tue Oct 27 2015 Cjacker <cjacker@foxmail.com> - 7.10.2-2
 - Rebuild
 
