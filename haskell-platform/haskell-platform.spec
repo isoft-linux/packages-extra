@@ -14,12 +14,15 @@
 
 Name: haskell-platform	
 Version: 7.10.3
-Release: 4
+Release: 5
 Summary: Standard Haskell distribution 	
 
 License: BSD
 URL: http://www.haskell.org/platform/	
 Source0: https://haskell.org/platform/download/7.10.2/haskell-platform-%{version}.tar.gz
+
+#useful script to fix rpath build in sandbox
+Source1: fix-rpath
 
 Source10: blaze-builder-0.4.0.1.tar.gz
 Source11: extra-1.4.2.tar.gz
@@ -40,6 +43,7 @@ BuildRequires: libGLU-devel
 BuildRequires: mesa-libGL-devel
 BuildRequires: mesa-libGLU-devel
 BuildRequires: zlib-devel
+BuildRequires: chrpath
 
 Provides: shake = 0.15.4-%{release}
 Provides: doctest = 0.10.1-%{release}
@@ -52,16 +56,16 @@ Haskell Platform is a suite of stable and well used Haskell libraries and tools.
 It provides a good starting environment for Haskell development.
 
 This package also include essential packages not included in official haskell-platform release, such as:
-blaze-builder
-extra
-hastache
-ieee754
-js-flot
-js-jquery
-shake
-utf8-string
-doctest
-ghc-paths
+ * blaze-builder
+ * extra
+ * hastache
+ * ieee754
+ * js-flot
+ * js-jquery
+ * shake
+ * utf8-string
+ * doctest
+ * ghc-paths
 
 %package -n alex 
 Version: %{alex_ver}
@@ -92,17 +96,16 @@ Happy works in a similar way to the yacc tool for C.
 %setup -q
 
 #add suppliments packages.
-mkdir -p suppliments
-tar zxf %{SOURCE10} -C suppliments 
-tar zxf %{SOURCE11} -C suppliments 
-tar zxf %{SOURCE12} -C suppliments 
-tar zxf %{SOURCE13} -C suppliments 
-tar zxf %{SOURCE14} -C suppliments 
-tar zxf %{SOURCE15} -C suppliments 
-tar zxf %{SOURCE16} -C suppliments 
-tar zxf %{SOURCE17} -C suppliments 
-tar zxf %{SOURCE18} -C suppliments 
-tar zxf %{SOURCE19} -C suppliments 
+tar zxf %{SOURCE10} -C packages 
+tar zxf %{SOURCE11} -C packages 
+tar zxf %{SOURCE12} -C packages 
+tar zxf %{SOURCE13} -C packages 
+tar zxf %{SOURCE14} -C packages 
+tar zxf %{SOURCE15} -C packages 
+tar zxf %{SOURCE16} -C packages 
+tar zxf %{SOURCE17} -C packages 
+tar zxf %{SOURCE18} -C packages 
+tar zxf %{SOURCE19} -C packages 
 
 %build
 export LANG=en_US.UTF-8
@@ -136,18 +139,10 @@ sed -i 's%^  docdir: .*%  docdir: $datadir/doc/ghc-$pkgid%' cabal.sandbox.config
 sed -i 's%^  htmldir: .*%  htmldir: $prefix/usr/share/doc/ghc/html/libraries/$pkgid%' cabal.sandbox.config
 
 
-#add suppliments libraries to sandbox
-for i in `find ./suppliments -maxdepth 1 -type d`
-do
-if [ ! x$i = x"./suppliments" ]; then
-cabal sandbox add-source `pwd`/$i
-fi
-done
-
 #add packages to sandbox
-for i in `cat ./etc/build.packages`
+for i in packages/*
 do
-cabal sandbox add-source `pwd`/packages/$i
+cabal sandbox add-source `pwd`/$i
 done
 
 #build to sandbox.
@@ -156,12 +151,6 @@ done
 #cabal install will ignore installed pkgs.
 
 for i in packages/*
-do
-pkgname=`basename $i`
-cabal install $pkgname
-done
-
-for i in suppliments/*
 do
 pkgname=`basename $i`
 cabal install $pkgname
@@ -184,48 +173,14 @@ do
 done
 popd
 
-pushd suppliments
-for i in * 
-do
- pushd $i
- #for find local installed pkgs.
- ln -s ../../cabal.sandbox.config .
- cabal clean
- cabal configure -p --prefix=%{_prefix} --bindir=%{_bindir} --libdir=%{_libdir} --htmldir=%{_docdir}/ghc/html/libraries/$i --docdir=%{_docdir}/ghc-%{name}-%{version} '--libsubdir=$compiler/$pkgid' --datadir=%{_datadir} --libexecdir=%{_libexecdir} '--datasubdir=$pkgid' --enable-shared --global
- cabal build
- cabal haddock --html --hyperlink-source --hoogle
- popd
-done
-popd
-
 %install
 mkdir -p %{buildroot}
-pushd suppliments
-for i in * 
-do
- pushd $i
- cabal copy --destdir=%{buildroot}
-# cabal register --gen-pkg-config=$i.conf
-# GHC_VERSION=`ghc --numeric-version`
-# #some package only provides binaries and no libraries
-# if [ -f "$i.conf" ]; then
-#         install -D -m0644 $i.conf %{buildroot}%{_libdir}/ghc-$GHC_VERSION/package.conf.d/$i.conf
-# fi
- popd
-done
-popd
 
 pushd packages
 for i in *
 do
  pushd $i
  cabal copy --destdir=%{buildroot}
-# cabal register --gen-pkg-config=$i.conf
-# GHC_VERSION=`ghc --numeric-version`
-# #some package only provides binaries and no libraries
-# if [ -f "$i.conf" ]; then
-#         install -D -m0644 $i.conf %{buildroot}%{_libdir}/ghc-$GHC_VERSION/package.conf.d/$i.conf
-# fi
  popd
 done
 popd
@@ -242,6 +197,22 @@ for i in *.conf
 do
 sed -i 's|: /.*sandbox/|: /|g' $i
 done
+
+#fixup RPATH in binary
+chrpath -d %{buildroot}%{_bindir}/alex
+chrpath -d %{buildroot}%{_bindir}/happy
+chrpath -d %{buildroot}%{_bindir}/doctest
+chrpath -d %{buildroot}%{_bindir}/mkReadme
+chrpath -d %{buildroot}%{_bindir}/shake
+
+#fixp RPATH in libraries
+pushd %{buildroot}%{_libdir}/ghc-$GHC_VERSION
+for i in */*.so
+do
+sh %{SOURCE1} $i
+done
+popd
+
 
 #they are in seperated pkgs.
 rm -rf %{buildroot}%{_bindir}/cabal
@@ -290,6 +261,9 @@ fi ||:
 %{_datadir}/happy-*
 
 %changelog
+* Thu Dec 10 2015 Cjacker <cjacker@foxmail.com> - 7.10.3-5
+- Rebuild, fix RPATH
+
 * Thu Dec 10 2015 Cjacker <cjacker@foxmail.com> - 7.10.3-4
 - Rebuild
 

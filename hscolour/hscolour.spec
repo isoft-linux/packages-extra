@@ -6,7 +6,7 @@
 
 Name: hscolour
 Version: 1.23
-Release: 3 
+Release: 4 
 Summary: Small Haskell script to colourise Haskell code
 License: GPL 
 URL: https://hackage.haskell.org/package/hscolour 
@@ -15,6 +15,8 @@ Source0: https://hackage.haskell.org/package/hscolour-%{version}/hscolour-%{vers
 BuildRequires: ghc cabal
 
 BuildRequires: gcc binutils gmp-devel
+
+BuildRequires: chrpath
 
 %description
 hscolour is a small Haskell script to colourise Haskell code. It currently has six output formats: ANSI terminal codes (optionally XTerm-256colour codes), HTML 3.2 with font tags, HTML 4.01 with CSS, HTML 4.01 with CSS and mouseover annotations, XHTML 1.0 with inline CSS styling, LaTeX, and mIRC chat codes.
@@ -31,6 +33,8 @@ cabal build
 mkdir -p %{buildroot}
 cabal copy --destdir=%{buildroot}
 
+chrpath -d %{buildroot}%{_bindir}/HsColour
+
 rm -rf %{buildroot}%{_libdir}
 rm -rf %{buildroot}%{_docdir}
 
@@ -39,6 +43,9 @@ rm -rf %{buildroot}%{_docdir}
 %{_datadir}/hscolour-*
 
 %changelog
+* Fri Dec 11 2015 Cjacker <cjacker@foxmail.com> - 1.23-4
+- Strip rpath
+
 * Wed Dec 09 2015 Cjacker <cjacker@foxmail.com> - 1.23-3
 - Rebuild
 

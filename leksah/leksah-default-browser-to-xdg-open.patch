@@ -1,0 +1,24 @@
+diff -Nur leksah-0.15.1.4/data/prefs.lkshp leksah-0.15.1.4n/data/prefs.lkshp
+--- leksah-0.15.1.4/data/prefs.lkshp	2015-08-24 09:17:27.000000000 +0800
++++ leksah-0.15.1.4n/data/prefs.lkshp	2015-12-10 21:50:14.335820107 +0800
+@@ -93,7 +93,7 @@
+                False
+ Turn on printing of binding results in GHCi:
+                False
+-Browser:       "firefox"
++Browser:       "xdg-open"
+ URL for searching documentation:
+                "https://www.haskell.org/hoogle/?q="
+      --e.g Hoogle: https://www.haskell.org/hoogle/?q= or Hayoo: http://hayoo.fh-wedel.de/?query=
+diff -Nur leksah-0.15.1.4/src/IDE/Pane/Preferences.hs leksah-0.15.1.4n/src/IDE/Pane/Preferences.hs
+--- leksah-0.15.1.4/src/IDE/Pane/Preferences.hs	2015-08-24 09:17:27.000000000 +0800
++++ leksah-0.15.1.4n/src/IDE/Pane/Preferences.hs	2015-12-10 21:50:28.042819862 +0800
+@@ -854,7 +854,7 @@
+     ,   autoLoad            =   False
+     ,   logviewFont         =   Nothing
+     ,   defaultSize         =   (1024,800)
+-    ,   browser             =   "firefox"
++    ,   browser             =   "xdg-open"
+     ,   sourceDirectories   =   []
+     ,   packageBlacklist    =   []
+     ,   pathForCategory     =   [   ("EditorCategory",[SplitP LeftP])
