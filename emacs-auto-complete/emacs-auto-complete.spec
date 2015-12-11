@@ -16,7 +16,7 @@ Patch3: emacs-clang-complete-async-auto-find-pch.patch
 Patch4: emacs-clang-complete-fix-include-pch-crash.patch
 Patch5: emacs-clang-complete-miss-header.patch
 
-BuildRequires:	emacs clang libllvm-devel libcxx-devel
+BuildRequires:	emacs clang libllvm-devel libclang-devel libcxx-devel
 Requires:	emacs emacs-init libclang
 BuildRoot:	%{_tmppath}/%{realname}-%{version}-%{release}
 
