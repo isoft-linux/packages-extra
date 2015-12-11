@@ -1,24 +1,27 @@
 Name: cargo
-Version: 0.6.0
-Release: 4
+Version: 0.7.0
+Release: 2
 Summary: The Rust package manager 	
 
 License: Apache	
 URL:	 https://github.com/rust-lang/cargo	
 Source0: %{name}-%{version}.tar.gz 
 
-Source1: https://static.rust-lang.org/cargo-dist/2015-04-02/cargo-nightly-x86_64-unknown-linux-gnu.tar.gz
-Source2: https://static.rust-lang.org/cargo-dist/2015-04-02/cargo-nightly-i686-unknown-linux-gnu.tar.gz
+Source1: https://static.rust-lang.org/cargo-dist/cargo-nightly-x86_64-unknown-linux-gnu.tar.gz
+Source2: https://static.rust-lang.org/cargo-dist/cargo-nightly-i686-unknown-linux-gnu.tar.gz
 
 #rust-installer
-Source3: https://github.com/rust-lang/rust-installer/archive/e54d4823d26cdb3f98e5a1b17e1c257cd329aa61.tar.gz
+#2015-12-11 git master
+Source3: https://github.com/rust-lang/rust-installer/archive/4915c7532533319939c18033c62db875717a4d84.tar.gz
 
 #Pre-downloaded crats required to build cargo
 #Generally, every cargo release need update this tarball.
+#every crates can be downloaded via:
+#https://crates.io/api/v1/crates/[name]/[version]/download
 Source4: cargo-crates.tar.gz
 
 Patch0: cargo-0.6.0-crates-local-deps.patch
-Patch1: cargo-0.6.0-local-deps.patch
+Patch1: cargo-0.7.0-local-deps.patch
 
 #only support amd64/x86
 ExclusiveArch: x86_64 %{ix86}
@@ -59,8 +62,8 @@ popd
 %patch0 -p1
 %patch1 -p1
 
-rm -rf %{name}-%{version}/src/rust-installer
-mv rust-installer-e54d4823d26cdb3f98e5a1b17e1c257cd329aa61 %{name}-%{version}/src/rust-installer
+rm -rf %{name}-%{version}/src/rust-installer/*
+tar zxf %{SOURCE3} -C %{name}-%{version}/src/rust-installer/ --strip-components=1
 
 mv cargo-nightly-*-unknown-linux-gnu cargo-prebuilt-bootstrap
 
@@ -100,6 +103,9 @@ rm -rf %{buildroot}/usr/etc
 %{_docdir}/cargo
 
 %changelog
+* Fri Dec 11 2015 Cjacker <cjacker@foxmail.com> - 0.7.0-2
+- Update
+
 * Sat Oct 31 2015 Cjacker <cjacker@foxmail.com> - 0.6.0-4
 - Rebuild with rust 1.4.0 and update related components
 
