@@ -5,8 +5,8 @@
 %global with_system_llvm 0
 
 Name: rust
-Version: 1.4.0
-Release: 4 
+Version: 1.5.0
+Release: 2
 Summary: rust programming language	
 
 License: Apache 
@@ -164,6 +164,9 @@ install -m 0755 %{SOURCE10} %{buildroot}%{_sysconfdir}/profile.d/rust-src.sh
 %{_prefix}/src/rust/
 
 %changelog
+* Fri Dec 11 2015 Cjacker <cjacker@foxmail.com> - 1.5.0-2
+- Update to 1.5.0
+
 * Fri Oct 30 2015 Cjacker <cjacker@foxmail.com> - 1.4.0-4
 - Update
 
