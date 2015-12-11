@@ -1,6 +1,6 @@
 Name: nodejs
-Version: 4.2.1
-Release: 3
+Version: 4.2.3
+Release: 2
 Summary: Easily building fast, scalable network applications	
 
 License: MIT
@@ -14,7 +14,10 @@ Patch0: node-disable-cpplint.patch
 Patch1: nodejs-use-system-certs.patch
 
 BuildRequires: zlib-devel, openssl-devel
+BuildRequires: python-devel
 BuildRequires: clang 
+
+Requires: ca-certificates
 
 Provides: /usr/bin/node
 
@@ -78,6 +81,9 @@ make test ||:
 %{_docdir}/node/gdbinit
 
 %changelog
+* Thu Dec 10 2015 Cjacker <cjacker@foxmail.com> - 4.2.3-2
+- Update
+
 * Sat Oct 31 2015 Cjacker <cjacker@foxmail.com> - 4.2.1-3
 - Update to LTS version
 

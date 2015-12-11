@@ -1,6 +1,6 @@
 #we use prebuilt version of electron.
 Name: electron
-Version: 0.34.2
+Version: 0.35.4
 Release: 2 
 Summary: Build cross platform desktop apps with web technologies
 
@@ -65,6 +65,9 @@ gtk-update-icon-cache %{_datadir}/icons/hicolor &> /dev/null || :
 %{_datadir}/icons/hicolor/scalable/apps/*.svg
 
 %changelog
+* Thu Dec 10 2015 Cjacker <cjacker@foxmail.com> - 0.35.4-2
+- Update
+
 * Wed Nov 04 2015 Cjacker <cjacker@foxmail.com> - 0.34.2-2
 - Update
 
