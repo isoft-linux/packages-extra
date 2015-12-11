@@ -1,0 +1,19 @@
+#!/bin/bash
+ORIG_RPATH=$(chrpath -l $1|awk -F '=' '{print $2}')
+
+IFS=:
+ary=($ORIG_RPATH)
+
+IFS=
+NEW_RPATH=
+for key in "${!ary[@]}"
+do
+   if test -z "$NEW_RPATH"
+   then
+     NEW_RPATH=$(echo "${ary[$key]}"|sed 's|/.*.cabal-sandbox||g')
+   else 
+     NEW_RPATH=$NEW_RPATH:$(echo "${ary[$key]}"|sed 's|/.*.cabal-sandbox||g')
+   fi
+done
+
+chrpath -r "$NEW_RPATH" $1
