@@ -11,7 +11,7 @@
 
 Name: swift
 Version: %{swift_ver}
-Release: 9.git%{gitdate}
+Release: 10.git%{gitdate}
 Summary: Swift Programming Language 
 
 License: Apache 2.0 license with a Runtime Library Exception 
@@ -193,6 +193,9 @@ rm -rf %{buildroot}/usr/local
 %{_includedir}/lldb
 
 %changelog
+* Fri Dec 11 2015 Cjacker <cjacker@foxmail.com> - 2.2-10.git20151211
+- Update
+
 * Fri Dec 11 2015 Cjacker <cjacker@foxmail.com> - 2.2-9.git20151211
 - Update to 20151211 git
 
