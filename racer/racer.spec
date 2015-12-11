@@ -1,6 +1,6 @@
 Name: racer 
 Version: 1.1.0 
-Release: 6.git
+Release: 7.git
 Summary: Code completion for Rust
 
 License: MIT
@@ -55,6 +55,9 @@ popd
 %{_bindir}/racer
 
 %changelog
+* Fri Dec 11 2015 Cjacker <cjacker@foxmail.com> - 1.1.0-7.git
+- Rebuild with rust 1.5.0
+
 * Sat Oct 31 2015 Cjacker <cjacker@foxmail.com> - 1.1.0-6.git
 - Update to latest git, fix all warnings
 
