@@ -1,4 +1,4 @@
-Name: Libvncserver
+Name: libvncserver
 Version: 0.9.9
 Release: 6
 License: GPL
