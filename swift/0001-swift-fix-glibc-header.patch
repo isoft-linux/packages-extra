@@ -1,13 +1,12 @@
-Binary files swift/.git/index and swiftn/.git/index differ
-diff -Nur swift/stdlib/public/Glibc/module.map swiftn/stdlib/public/Glibc/module.map
---- swift/stdlib/public/Glibc/module.map	2015-12-04 01:46:52.000000000 +0800
-+++ swiftn/stdlib/public/Glibc/module.map	2015-12-04 13:07:05.614984059 +0800
+diff -Nur swift/stdlib/public/Glibc/module.map.in swiftn/stdlib/public/Glibc/module.map.in
+--- swift/stdlib/public/Glibc/module.map.in	2015-12-11 11:04:31.000000000 +0800
++++ swiftn/stdlib/public/Glibc/module.map.in	2015-12-11 11:22:39.707946424 +0800
 @@ -184,7 +184,7 @@
        export *
      }
      module ioctl {
--      header "/usr/include/x86_64-linux-gnu/sys/ioctl.h"
-+      header "/usr/include/sys/ioctl.h"
+-      header "@GLIBC_ARCH_INCLUDE_PATH@/sys/ioctl.h"
++      header "@GLIBC_INCLUDE_PATH@/sys/ioctl.h"
        export *
      }
      module langinfo {
@@ -15,88 +14,88 @@ diff -Nur swift/stdlib/public/Glibc/module.map swiftn/stdlib/public/Glibc/module
        export *
  
        module ipc {
--        header "/usr/include/x86_64-linux-gnu/sys/ipc.h"
-+        header "/usr/include/sys/ipc.h"
+-        header "@GLIBC_ARCH_INCLUDE_PATH@/sys/ipc.h"
++        header "@GLIBC_INCLUDE_PATH@/sys/ipc.h"
          export *
        }
        module mman {
--        header "/usr/include/x86_64-linux-gnu/sys/mman.h"
-+        header "/usr/include/sys/mman.h"
+-        header "@GLIBC_ARCH_INCLUDE_PATH@/sys/mman.h"
++        header "@GLIBC_INCLUDE_PATH@/sys/mman.h"
          export *
        }
        module msg {
--        header "/usr/include/x86_64-linux-gnu/sys/msg.h"
-+        header "/usr/include/sys/msg.h"
+-        header "@GLIBC_ARCH_INCLUDE_PATH@/sys/msg.h"
++        header "@GLIBC_INCLUDE_PATH@/sys/msg.h"
          export *
        }
        module resource {
--        header "/usr/include/x86_64-linux-gnu/sys/resource.h"
-+        header "/usr/include/sys/resource.h"
+-        header "@GLIBC_ARCH_INCLUDE_PATH@/sys/resource.h"
++        header "@GLIBC_INCLUDE_PATH@/sys/resource.h"
          export *
        }
        module select {
--        header "/usr/include/x86_64-linux-gnu/sys/select.h"
-+        header "/usr/include/sys/select.h"
+-        header "@GLIBC_ARCH_INCLUDE_PATH@/sys/select.h"
++        header "@GLIBC_INCLUDE_PATH@/sys/select.h"
          export *
        }
        module sem {
--        header "/usr/include/x86_64-linux-gnu/sys/sem.h"
-+        header "/usr/include/sys/sem.h"
+-        header "@GLIBC_ARCH_INCLUDE_PATH@/sys/sem.h"
++        header "@GLIBC_INCLUDE_PATH@/sys/sem.h"
          export *
        }
        module shm {
--        header "/usr/include/x86_64-linux-gnu/sys/shm.h"
-+        header "/usr/include/sys/shm.h"
+-        header "@GLIBC_ARCH_INCLUDE_PATH@/sys/shm.h"
++        header "@GLIBC_INCLUDE_PATH@/sys/shm.h"
          export *
        }
        module socket {
--        header "/usr/include/x86_64-linux-gnu/sys/socket.h"
-+        header "/usr/include/sys/socket.h"
+-        header "@GLIBC_ARCH_INCLUDE_PATH@/sys/socket.h"
++        header "@GLIBC_INCLUDE_PATH@/sys/socket.h"
          export *
        }
        module stat {
--        header "/usr/include/x86_64-linux-gnu/sys/stat.h"
-+        header "/usr/include/sys/stat.h"
+-        header "@GLIBC_ARCH_INCLUDE_PATH@/sys/stat.h"
++        header "@GLIBC_INCLUDE_PATH@/sys/stat.h"
          export *
        }
        module statvfs {
--        header "/usr/include/x86_64-linux-gnu/sys/statvfs.h"
-+        header "/usr/include/sys/statvfs.h"
+-        header "@GLIBC_ARCH_INCLUDE_PATH@/sys/statvfs.h"
++        header "@GLIBC_INCLUDE_PATH@/sys/statvfs.h"
          export *
        }
        module time {
--        header "/usr/include/x86_64-linux-gnu/sys/time.h"
-+        header "/usr/include/sys/time.h"
+-        header "@GLIBC_ARCH_INCLUDE_PATH@/sys/time.h"
++        header "@GLIBC_INCLUDE_PATH@/sys/time.h"
          export *
        }
        module times {
--        header "/usr/include/x86_64-linux-gnu/sys/times.h"
-+        header "/usr/include/sys/times.h"
+-        header "@GLIBC_ARCH_INCLUDE_PATH@/sys/times.h"
++        header "@GLIBC_INCLUDE_PATH@/sys/times.h"
          export *
        }
        module types {
--        header "/usr/include/x86_64-linux-gnu/sys/types.h"
-+        header "/usr/include/sys/types.h"
+-        header "@GLIBC_ARCH_INCLUDE_PATH@/sys/types.h"
++        header "@GLIBC_INCLUDE_PATH@/sys/types.h"
          export *
        }
        module uio {
--        header "/usr/include/x86_64-linux-gnu/sys/uio.h"
-+        header "/usr/include/sys/uio.h"
+-        header "@GLIBC_ARCH_INCLUDE_PATH@/sys/uio.h"
++        header "@GLIBC_INCLUDE_PATH@/sys/uio.h"
          export *
        }
        module un {
--        header "/usr/include/x86_64-linux-gnu/sys/un.h"
-+        header "/usr/include/sys/un.h"
+-        header "@GLIBC_ARCH_INCLUDE_PATH@/sys/un.h"
++        header "@GLIBC_INCLUDE_PATH@/sys/un.h"
          export *
        }
        module utsname {
--        header "/usr/include/x86_64-linux-gnu/sys/utsname.h"
-+        header "/usr/include/sys/utsname.h"
+-        header "@GLIBC_ARCH_INCLUDE_PATH@/sys/utsname.h"
++        header "@GLIBC_INCLUDE_PATH@/sys/utsname.h"
          export *
        }
        module wait {
--        header "/usr/include/x86_64-linux-gnu/sys/wait.h"
-+        header "/usr/include/sys/wait.h"
+-        header "@GLIBC_ARCH_INCLUDE_PATH@/sys/wait.h"
++        header "@GLIBC_INCLUDE_PATH@/sys/wait.h"
          export *
        }
      }
