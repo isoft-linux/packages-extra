@@ -1,6 +1,6 @@
 Name: emacs-auto-complete
 Version: 1.4
-Release: 5 
+Release: 6 
 Summary: emacs c/c++/objc codes auto complete based on clang.
 URL: http://cx4a.org/software/auto-complete	
 License: GPL
@@ -16,7 +16,7 @@ Patch3: emacs-clang-complete-async-auto-find-pch.patch
 Patch4: emacs-clang-complete-fix-include-pch-crash.patch
 Patch5: emacs-clang-complete-miss-header.patch
 
-BuildRequires:	emacs clang libclang-devel libclang-static libllvm-devel libllvm-static libcxx-devel libcxxabi-devel
+BuildRequires:	emacs clang libllvm-devel libcxx-devel
 Requires:	emacs emacs-init libclang
 BuildRoot:	%{_tmppath}/%{realname}-%{version}-%{release}
 
@@ -67,6 +67,9 @@ install -m 0644 %{SOURCE2} $RPM_BUILD_ROOT/usr/share/emacs/site-lisp/site-start.
 %{_datadir}/emacs/site-lisp/site-start.d/*.el
 
 %changelog
+* Fri Dec 11 2015 Cjacker <cjacker@foxmail.com> - 1.4-6
+- Fix buildrequires
+
 * Mon Dec 07 2015 Cjacker <cjacker@foxmail.com> - 1.4-5
 - Rebuild with new llvm library
 
