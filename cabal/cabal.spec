@@ -3,7 +3,7 @@
 
 Name: cabal 
 Version: 1.22.6.0
-Release: 3
+Release: 4
 Summary: Haskell Package Manager
 
 License: BSD3
@@ -17,6 +17,8 @@ Source10: cabal-install.sh
 
 BuildRequires: ghc gcc binutils cabal	
 BuildRequires: zlib-devel gmp-devel
+
+BuildRequires: chrpath
 
 Provides: cabal-install = %{version}-%{release}
 
@@ -55,7 +57,7 @@ cabal install
 
 #all dependencies is in sandbox now, re-configure cabal as global.
 cabal clean
-cabal configure -p --prefix=%{_prefix} --bindir=%{_bindir} --libdir=%{_libdir} --htmldir=%{_docdir}/ghc/html/libraries/$i --docdir=%{_docdir}/ghc-%{name}-%{version} '--libsubdir=$compiler/$pkgid' --datadir=%{_datadir} --libexecdir=%{_libexecdir} '--datasubdir=$pkgid' --enable-shared --global
+cabal configure --prefix=%{_prefix} --bindir=%{_bindir} --libdir=%{_libdir} --htmldir=%{_docdir}/ghc/html/libraries/$i --docdir=%{_docdir}/ghc-%{name}-%{version} '--libsubdir=$compiler/$pkgid' --datadir=%{_datadir} --libexecdir=%{_libexecdir} '--datasubdir=$pkgid' --enable-shared --global
 cabal build
 
 %install
@@ -70,6 +72,9 @@ install -pm 644 %{SOURCE10} %{buildroot}%{_sysconfdir}/profile.d
 mkdir -p %{buildroot}%{_datadir}/bash-completion/completions
 cp -p bash-completion/cabal %{buildroot}%{_datadir}/bash-completion/completions
 
+#strip rpath
+chrpath -d %{buildroot}%{_bindir}/cabal
+
 %files
 %{_bindir}/cabal
 %{_sysconfdir}/profile.d/*.sh
@@ -77,6 +82,9 @@ cp -p bash-completion/cabal %{buildroot}%{_datadir}/bash-completion/completions
 %{_docdir}/ghc-cabal-*
 
 %changelog
+* Fri Dec 11 2015 Cjacker <cjacker@foxmail.com> - 1.22.6.0-4
+- Strip rpath
+
 * Wed Dec 09 2015 Cjacker <cjacker@foxmail.com> - 1.22.6.0-3
 - Rebuild
 
