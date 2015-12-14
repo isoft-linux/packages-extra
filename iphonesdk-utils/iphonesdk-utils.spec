@@ -1,18 +1,17 @@
 Name: iphonesdk-utils
-Version: 2.0
+Version: 2.1
 Release: 2
 Summary: iOS development utilities for linux.
 
 License: GPL
 URL: https://code.google.com/p/ios-toolchain-based-on-clang-for-linux/
+# git clone https://github.com/cjacker/iphonesdk-utils.git
+# ./autogen.sh;make dist
 Source0: %{name}-%{version}.tar.gz
-Source1: ldid.tar.gz
 
-Patch0: iphonesdk-utils-fix-build-with-llvm37.patch
-Patch1: iphonesdk-utils-genLocalization-fix-search-header-with-llvm37.patch
-Patch2: iphonesdk-utils-default-to-9.2-sdk-and-arch-to-arm64.patch
+BuildRequires: clang libllvm-devel libclang-devel libllvm-static
+BuildRequires: zlib-devel openssl-devel libxml2-devel
 
-BuildRequires: clang libllvm-devel libclang-devel
 Requires: clang
 
 %description
@@ -38,30 +37,14 @@ ios-plutil, plist compiler/decompiler.
 
 %prep
 %setup -q
-%patch0 -p1
-%patch1 -p1
-%patch2 -p1
-
-mkdir -p ldid2
-tar zxf %{SOURCE1} -C ldid2
-
 %build
 export CC=clang
 export CXX=clang++
-./autogen.sh
 %configure
 make %{?_smp_mflags}
 
-pushd ldid2/ldid
-make
-popd
-
 %install
 make install DESTDIR=%{buildroot}
-
-rm -rf %{buildroot}%{_bindir}/ldid
-install -m0755 ldid2/ldid/ldid %{buildroot}%{_bindir}/ldid
-
 
 %files
 %{_bindir}/ios-clang
@@ -77,8 +60,10 @@ install -m0755 ldid2/ldid/ldid %{buildroot}%{_bindir}/ldid
 %dir %{_datadir}/iPhoneTemplates
 %{_datadir}/iPhoneTemplates/*
 
-
 %changelog
+* Mon Dec 14 2015 Cjacker <cjacker@foxmail.com> - 2.1-2
+- Update to latest version
+
 * Sat Dec 12 2015 Cjacker <cjacker@foxmail.com>
 - Initial build
 
