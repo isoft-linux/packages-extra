@@ -97,6 +97,7 @@ VirtualBox dkms pkg.
 
 %build
 sed -e "s/WITH_VMMRAW=1/WITH_VMMRAW=0/" -i configure
+sed -e "s/WITH_KMODS=1/WITH_KMODS=0/" -i configure
 
 ./configure --disable-hardening --disable-java --disable-docs
 
@@ -456,4 +457,5 @@ rm -rf $RPM_BUILD_ROOT
 * Mon Dec 14 2015 sulit <sulitsrc@gmail.com> - 5.0.10-2
 - Init for isoft4
 - add cdrkit buildrequire
+- disable kmods
 
