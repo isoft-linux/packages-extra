@@ -23,7 +23,8 @@ Source5:  elfhash-0.4.tar.gz
  
 #droiddraw GUI Builder
 Source10: https://droiddraw.googlecode.com/files/droiddraw-r1b22.tgz
-Source11: androiddraw-signed.apk
+Source11: androiddraw-signed.apk.tar.gz
+
 #apktool
 Source12: https://android-apktool.googlecode.com/files/apktool-install-linux-r05-ibot.tar.bz2
 Source13: https://android-apktool.googlecode.com/files/apktool1.5.2.tar.bz2
@@ -130,7 +131,7 @@ fi
 
 mkdir -p $RPM_BUILD_ROOT/%{_datadir}/apkutil/droiddraw
 tar ${TARSTRIP}=1 -xf %{SOURCE10} -C $RPM_BUILD_ROOT/%{_datadir}/apkutil/droiddraw
-install -m 0644 %{SOURCE11} $RPM_BUILD_ROOT/%{_datadir}/apkutil/droiddraw
+tar xf %{SOURCE11} -C $RPM_BUILD_ROOT/%{_datadir}/apkutil/droiddraw
 
 #apktool
 mkdir -p $RPM_BUILD_ROOT/%{_datadir}/apkutil/apktool
