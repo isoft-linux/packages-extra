@@ -1,0 +1,327 @@
+diff -Nur binutils-2.23.2/binutils/objcopy.c binutils-2.23.2.new/binutils/objcopy.c
+--- binutils-2.23.2/binutils/objcopy.c	2013-03-25 16:06:21.000000000 +0800
++++ binutils-2.23.2.new/binutils/objcopy.c	2013-10-12 20:25:41.253084701 +0800
+@@ -39,6 +39,9 @@
+ #include "coff/i386.h"
+ #include "coff/pe.h"
+ 
++
++#include <elf.h>
++
+ static bfd_vma pe_file_alignment = (bfd_vma) -1;
+ static bfd_vma pe_heap_commit = (bfd_vma) -1;
+ static bfd_vma pe_heap_reserve = (bfd_vma) -1;
+@@ -76,6 +79,11 @@
+ /* List of sections to be renamed.  */
+ static section_rename *section_rename_list;
+ 
++
++/* Number of .dynsym entries which might be subject to renaming */
++static unsigned int dynamic_symbols = 0;
++
++
+ static asymbol **isympp = NULL;	/* Input symbols.  */
+ static asymbol **osympp = NULL;	/* Output symbols that survive stripping.  */
+ 
+@@ -1420,6 +1428,277 @@
+   free (buf);
+ }
+ 
++
++/*ELF Hash函数*/
++static unsigned long
++elf_hash (const char *namearg)
++{
++    const unsigned char *name = (const unsigned char *) namearg;
++    unsigned long h = 0;
++    unsigned long g;
++    int ch;
++
++    while ((ch = *name++) != '\0')
++    {
++        h = (h << 4) + ch;
++        if ((g = (h & 0xf0000000)) != 0)
++        {
++            h ^= g >> 24;
++            /* The ELF ABI says `h &= ~g', but this is equivalent in
++ *              this case and on some machines one insn instead of two.  */
++            h ^= g;
++        }
++    }
++    return h & 0xffffffff;
++}
++
++
++/*通过lookup_sym_redefinition，重算hash*/
++static bfd_boolean
++filter_dynamic_symbols(bfd *ibfd, bfd *obfd)
++{
++  asection *dynsym_in;
++  asection *dynstr_in;
++  asection *dynstr_out;
++  asection *hash_out;
++  //asection *hash_in;
++  char *strtab_in = 0;
++  char *strtab_out = 0;
++  Elf32_Word *new_hashtable = 0;
++  Elf32_Sym *symtab;
++  unsigned int i;
++  long dynsym_size;
++  long strtab_in_size, strtab_out_size, /*hash_in_size,*/ hash_out_size;
++  //hash_in     = bfd_get_section_by_name (ibfd, ".hash");
++  dynsym_in   = bfd_get_section_by_name (ibfd, ".dynsym");
++  dynstr_in   = bfd_get_section_by_name (ibfd, ".dynstr");
++  dynstr_out  = bfd_get_section_by_name (obfd, ".dynstr");
++  hash_out    = bfd_get_section_by_name (obfd, ".hash");
++
++  dynamic_symbols = bfd_section_size(ibfd, dynsym_in) / sizeof(Elf32_Sym);
++
++  if (!redefine_sym_list || !dynsym_in || !dynstr_in || !dynstr_out) 
++  {
++      dynamic_symbols = 0;
++      return TRUE;
++  }
++  //hash_in_size   = bfd_get_section_size(hash_in);
++  dynsym_size    = bfd_get_section_size(dynsym_in);
++  strtab_in_size = bfd_get_section_size(dynstr_in);
++
++  /* allocate space for the symbol table */
++  symtab = (Elf32_Sym *) xmalloc (dynsym_size);
++  if (!symtab)
++    fatal (_("Out of memory"));
++
++  /* read in the symbol table and re-use it for output */
++  if (!bfd_get_section_contents (ibfd, dynsym_in, symtab, 0, dynsym_size))
++  {
++      fatal (_("unable to get .dynsym contents from %s"),bfd_get_filename (ibfd));
++  }
++
++  /* read in the original string table */
++  strtab_in = (char *) xmalloc (strtab_in_size);
++  if (!bfd_get_section_contents (ibfd, dynstr_in, strtab_in, 0, strtab_in_size))
++  {
++      fatal (_("unable to get .dynstr contents from %s"),bfd_get_filename (ibfd));
++  }
++  /* create a new/empty symbol table */
++  strtab_out = xmalloc (1);
++  if (!strtab_out)
++    fatal (_("Out of memory"));
++
++  *strtab_out = 0;
++  strtab_out_size = 1;
++
++  /* loop over all symtab entries */
++  for (i=0; i < dynamic_symbols; i++)
++  {
++      char *old_name;
++      char *new_name;
++      Elf32_Word index;
++      char *s;
++
++      old_name = strtab_in + symtab[i].st_name;
++      new_name = (char *) lookup_sym_redefinition (old_name);
++      //如果替换的新旧名字不相等，我们不能处理复杂的偏移变化情况，跳过。
++      //也就是说现在只能处理改变后名字长度相等的情况
++      //
++      //这里必须把dynamic_symbols全局变量置0,因为后面我们用它来判断到底要不要跳过hash段的copy。
++      //如果为零，默认仍然才用objcopy的行为。
++      if(strlen(old_name) != strlen(new_name))
++      {
++          printf("You must provide a new name has the same length as old one!!\n");
++          dynamic_symbols = 0;
++          return TRUE;
++      }
++      /* search the name in the new string table */
++      s = strtab_out;
++      while (strcmp(new_name, s) && (s < strtab_out + strtab_out_size))
++      {
++          s += strlen(s) + 1;
++      }
++      if (s >= strtab_out + strtab_out_size)
++      {
++          /* append a new name to the string table */
++          s = xmalloc (strtab_out_size + strlen(new_name) + 1);
++          if (!s)
++            fatal (_("Out of memory"));
++
++          memcpy (s, strtab_out, strtab_out_size);
++          index = strtab_out_size;
++          strcpy (s + index, new_name);
++          free (strtab_out);
++          strtab_out = s;
++          strtab_out_size += strlen (new_name) + 1;
++      } else
++      {
++          /* use an existing name */
++          index = strtab_out - s;
++      }
++
++      /* enter the index in the symtab entry */
++      symtab[i].st_name = index;
++  }
++
++  /* 重算hash，从bfd代码里面扣出来的*/
++  if (hash_out)
++  {
++      unsigned int nbucket, nchain = dynamic_symbols;
++      long size;
++      Elf32_Word *hashes;
++      Elf32_Word *bucket, *chain;
++
++      /* Array used to determine the number of hash table buckets to use
++         based on the number of symbols there are.  If there are fewer than
++         3 symbols we use 1 bucket, fewer than 17 symbols we use 3 buckets,
++         fewer than 37 we use 17 buckets, and so forth.  We never use more
++         than 32771 buckets.  */
++      static const size_t elf_buckets[] =
++      {
++        1, 3, 17, 37, 67, 97, 131, 197, 263, 521, 1031, 2053, 4099, 8209,
++        16411, 32771, 0
++      };
++
++      /* This is the fallback solution if no 64bit type is available or if we
++         are not supposed to spend much time on optimizations.  We select the
++         bucket count using a fixed set of numbers.  */
++      for (i = 0; elf_buckets[i] != 0; i++)
++        {
++          nbucket = elf_buckets[i];
++          if (dynamic_symbols < elf_buckets[i + 1])
++            break;
++        }
++
++        /* allocate memory for the new .hash section */
++        hash_out_size = (2 + nbucket + nchain) * sizeof(Elf32_Word);
++        new_hashtable = xmalloc (hash_out_size);
++        if (!new_hashtable)
++          fatal (_("Out of memory"));
++        memset (new_hashtable, 0x0, hash_out_size);
++
++      /* set up pointers to the new .hash section contents:
++        first entry: number of buckets
++        second entry: number of chains
++        list of buckets
++        list of chain */
++      new_hashtable[0] = nbucket;
++      new_hashtable[1] = nchain;
++      bucket = &(new_hashtable[2]);
++      chain = bucket + nbucket;
++
++      /* create a fast lookup table for the hash values */
++      size = nchain * sizeof(Elf32_Word);
++      hashes = xmalloc (size);
++      if (!hashes)
++        fatal (_("Out of memory"));
++      memset (hashes, 0x0, size);
++
++      for (i=0; i < dynamic_symbols; i++)
++        {
++          unsigned int bi;
++          const char *name = strtab_out + symtab[i].st_name;
++          char *p, *alc = NULL;
++
++          /* initialize the chain entry to "undefined" */
++          chain[i] = STN_UNDEF;
++
++          /* strip away the symbol version if present */
++          p = strchr (name, ELF_VER_CHR);
++          if (p != NULL)
++            {
++              alc = xmalloc (p - name + 1);
++              if (!alc)
++                fatal (_("Out of memory"));
++              memcpy (alc, name, p - name);
++              alc[p - name] = '\0';
++              name = alc;
++            }
++
++          /* get the hash value == bucket index */
++          bi = hashes[i] = elf_hash (name) % nbucket;
++
++          /* start a new chain if this is the first symbol with this hash */
++          if (bucket[bi] == 0)
++            bucket[bi] = i;
++
++          if (alc != NULL)
++            free (alc);
++        }
++
++      for (i=0; i < nbucket; i++)
++        {
++          unsigned int si;
++          int last_symbol = -1;
++
++          for (si=0; si < dynamic_symbols; si++)
++            {
++              if (hashes[si] == i)
++                {
++                  if (last_symbol != -1)
++                    chain[last_symbol] = si;
++                  last_symbol = si;
++                }
++            }
++        }
++
++      free (hashes);
++    }
++
++ //设置size
++/* if ((! bfd_set_section_size (obfd, dynstr_out, strtab_out_size))) 
++    {
++      fatal (_("unable to set section size of .dynstr/dynsym in %s"),
++               bfd_get_filename (obfd));
++    }
++*/
++  if (new_hashtable && ! bfd_set_section_size (obfd, hash_out,
++      hash_out_size) )
++    {
++      fatal (_("unable to set section size of .hash in %s"),
++               bfd_get_filename (obfd));
++    }
++
++  /* write out all section contents */
++  /*if ((! bfd_set_section_contents (obfd, dynstr_out, strtab_out,
++                                   0, strtab_out_size)))
++  {
++      fatal (_("unable to set .dynstr section content in %s"),
++               bfd_get_filename (obfd));
++  }*/
++  if (new_hashtable && ! bfd_set_section_contents (obfd, hash_out,
++      new_hashtable, 0, hash_out_size) )
++    {
++      fatal (_("unable to set .hash section content in %s"),
++               bfd_get_filename (obfd));
++    }
++
++  return TRUE;
++}
++
++
++
++
+ /* Copy unkown object file IBFD onto OBFD.
+    Returns TRUE upon success, FALSE otherwise.  */
+ 
+@@ -1676,6 +1955,9 @@
+      any output is done.  Thus, we traverse all sections multiple times.  */
+   bfd_map_over_sections (ibfd, setup_section, obfd);
+ 
++  /* 遍历动态符号，重算hash */
++  filter_dynamic_symbols (ibfd, obfd);
++
+   if (!extract_symbol)
+     setup_bfd_headers (ibfd, obfd);
+ 
+@@ -2794,6 +3076,13 @@
+ 
+   p = find_section_list (bfd_get_section_name (ibfd, isection), FALSE);
+ 
++  if (dynamic_symbols && (
++      /*!strcmp(".dynstr",  bfd_section_name (ibfd, isection)) ||*/
++      !strcmp(".hash",    bfd_section_name (ibfd, isection)) ) )
++    {
++        //遇到.hash和.dynstr，跳过，由filter_dynamic_symbols处理
++    }
++  else
+   if (bfd_get_section_flags (ibfd, isection) & SEC_HAS_CONTENTS
+       && bfd_get_section_flags (obfd, osection) & SEC_HAS_CONTENTS)
+     {
