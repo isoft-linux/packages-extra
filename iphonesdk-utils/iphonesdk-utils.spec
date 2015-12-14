@@ -9,7 +9,7 @@ URL: https://code.google.com/p/ios-toolchain-based-on-clang-for-linux/
 # ./autogen.sh;make dist
 Source0: %{name}-%{version}.tar.bz2
 
-BuildRequires: clang libllvm-devel libclang-devel libllvm-static
+BuildRequires: clang libllvm-devel libclang-devel libllvm-static libclang-static
 BuildRequires: zlib-devel openssl-devel libxml2-devel libplist-devel
 
 Requires: clang
