@@ -1,0 +1,22 @@
+diff -Nur res/idea/PlatformActions.xml resn/idea/PlatformActions.xml
+--- res/idea/PlatformActions.xml	2015-12-07 23:18:44.000000000 +0800
++++ resn/idea/PlatformActions.xml	2015-12-12 22:05:28.187919267 +0800
+@@ -374,9 +374,6 @@
+         <action id="PsiViewer" class="com.intellij.internal.psiView.PsiViewerAction"/>
+         <action id="PsiViewerForContext" class="com.intellij.internal.psiView.PsiViewerForContextAction"/>
+         <separator/>
+-        <action id="CreateLauncherScript" class="com.intellij.ide.actions.CreateLauncherScriptAction"/>
+-        <action id="CreateDesktopEntry" class="com.intellij.ide.actions.CreateDesktopEntryAction"/>
+-        <separator/>
+       </group>
+ 
+       <group id="WindowMenu" popup="true">
+@@ -576,8 +573,6 @@
+       <action id="WelcomeScreen.Configure.Import" class="com.intellij.ide.actions.ImportSettingsAction" icon="AllIcons.General.ImportSettings"/>
+       <action id="WelcomeScreen.Configure.Export" class="com.intellij.ide.actions.ExportSettingsAction" icon="AllIcons.General.ExportSettings"/>
+ 
+-      <action id="WelcomeScreen.Configure.DesktopEntry" class="com.intellij.ide.actions.CreateDesktopEntryAction"
+-              icon="AllIcons.Welcome.CreateDesktopEntry"/>
+       <action id="WelcomeScreen.Update" class="com.intellij.openapi.updateSettings.impl.CheckForUpdateAction" text="Check for Update"/>
+     </group>
+ 
