@@ -39,7 +39,7 @@ BuildRequires:  libcap-devel
 BuildRequires:  qt4-devel
 # BuildRequires:  gsoap-devel
 BuildRequires:  pam-devel
-# BuildRequires:  mkisofs
+BuildRequires:  cdrkit
 BuildRequires:  boost-devel
 # BuildRequires:  liblzf-devel
 BuildRequires:  libxml2-devel
@@ -455,4 +455,5 @@ rm -rf $RPM_BUILD_ROOT
 %changelog
 * Mon Dec 14 2015 sulit <sulitsrc@gmail.com> - 5.0.10-2
 - Init for isoft4
+- add cdrkit buildrequire
 
