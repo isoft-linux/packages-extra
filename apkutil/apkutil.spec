@@ -3,7 +3,7 @@
 Summary: Android apk development/decompile/compile utilities 
 Name: apkutil
 Version: 4.4
-Release: 5 
+Release: 6 
 License: GPLv2+
 
 #signapk source and testkey
