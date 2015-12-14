@@ -1,6 +1,6 @@
 Name: xar 
 Version: 1.6.1
-Release: 1
+Release: 2
 Summary: eXtensible ARchiver
 
 License: refer to LICENSE
@@ -54,4 +54,7 @@ popd
 %{_includedir}/xar/xar.h
 
 %changelog
+* Mon Dec 14 2015 Cjacker <cjacker@foxmail.com> - 1.6.1-2
+- Rebuild
+
 
