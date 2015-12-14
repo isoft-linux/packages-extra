@@ -7,7 +7,7 @@ License: GPL
 URL: https://code.google.com/p/ios-toolchain-based-on-clang-for-linux/
 # git clone https://github.com/cjacker/iphonesdk-utils.git
 # ./autogen.sh;make dist
-Source0: %{name}-%{version}.tar.gz
+Source0: %{name}-%{version}.tar.bz2
 
 BuildRequires: clang libllvm-devel libclang-devel libllvm-static
 BuildRequires: zlib-devel openssl-devel libxml2-devel
