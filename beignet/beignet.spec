@@ -1,6 +1,6 @@
 Name: beignet
 Version: 1.1.1
-Release: 10.llvm37.git%{?dist}
+Release: 11.llvm37.git%{?dist}
 Epoch: 2
 Summary: Open source implementation of the OpenCL for Intel GPUs
 
@@ -72,6 +72,9 @@ build/utests/utest_run ||:
 %{_includedir}/CL/cl_intel.h
 
 %changelog
+* Sat Dec 12 2015 Cjacker <cjacker@foxmail.com> - 2:1.1.1-11.llvm37.git
+- Update and Rebuild
+
 * Sat Dec 05 2015 Cjacker <cjacker@foxmail.com> - 2:1.1.1-10.llvm37.git
 - Update, build with new llvm-3.7
 
