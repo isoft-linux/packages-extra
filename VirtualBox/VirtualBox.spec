@@ -19,7 +19,7 @@
 Summary:   Oracle VM VirtualBox
 Name:      VirtualBox
 Version:   5.0.10
-Release:   2
+Release:   3
 URL:       http://www.virtualbox.org/
 Source:    http://download.virtualbox.org/virtualbox/5.0.10/%{name}-%{version}.tar.bz2
 Patch0:    skip_gcc_version_check.patch
@@ -333,7 +333,7 @@ fi
 
 # install udev rule (disable with INSTALL_NO_UDEV=1 in /etc/default/virtualbox)
 # and /dev/vboxdrv and /dev/vboxusb/*/* device nodes
-install_device_node_setup root 0600 /usr/share/virtualbox "${usb_group}" || true
+install_device_node_setup root 0600 /usr/share/virtualbox "${usb_group}" &> /dev/null || true
 %if %{?rpm_mdv:1}%{!?rpm_mdv:0}
 /sbin/ldconfig
 %update_menus || true
@@ -383,12 +383,19 @@ test "${INSTALL_NO_VBOXDRV}" = 1 && POSTINST_START=--nostart
 %endif
 
 %posttrans -n dkms-%{name}
+echo "Waiting ..."
 (
 dkms add -m %{name} -v %{version}
 dkms build -m %{name} -v %{version}
 dkms install -m %{name} -v %{version} --force
 /sbin/depmod -a
 /sbin/modprobe -a vboxdrv vboxnetadp vboxnetflt vboxpci
+cat > /etc/modules-load.d/VirtualBox.conf << EOF
+vboxdrv
+vboxnetadp
+vboxnetflt
+vboxpci
+EOF
 ) || :
 
 
@@ -408,6 +415,7 @@ fi
 (
 dkms uninstall -m %{name} -v %{version}
 dkms remove -m %{name} -v %{version} --all
+rm /etc/modules-load.d/VirtualBox.conf
 /sbin/depmod -a
 ) || :
 
@@ -454,6 +462,10 @@ rm -rf $RPM_BUILD_ROOT
 /usr/src/%{name}-%{version}
 
 %changelog
+* Mon Dec 14 2015 sulit <sulitsrc@gmail.com> - 5.0.10-3
+- redirect output to /dev/null and add wait note
+- enable kernel default load vbox*.ko
+
 * Mon Dec 14 2015 sulit <sulitsrc@gmail.com> - 5.0.10-2
 - Init for isoft4
 - add cdrkit buildrequire
