@@ -1,6 +1,6 @@
 Name: emacs-racer
 Version: 1.0.2
-Release: 4.git
+Release: 5.git
 Summary: Allows emacs to use Racer for Rust code completion and navigation.
 License: as Emacs 
 #https://github.com/racer-rust/emacs-racer
@@ -8,6 +8,8 @@ Source0: emacs-racer.tar.gz
 Source1: racer-init.el
 
 Requires: emacs emacs-company-mode racer
+Requires: emacs-dash emacs-s
+
 BuildArch: noarch
 
 %description
@@ -26,6 +28,9 @@ install -m 0644 %{SOURCE1} %{buildroot}%{_datadir}/emacs/site-lisp/site-start.d/
 %{_datadir}/emacs/site-lisp/site-start.d/racer-init.el
 
 %changelog
+* Tue Dec 15 2015 Cjacker <cjacker@foxmail.com> - 1.0.2-5.git
+- Update
+
 * Sat Oct 31 2015 Cjacker <cjacker@foxmail.com> - 1.0.2-4.git
 - Initial build
 
