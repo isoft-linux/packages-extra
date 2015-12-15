@@ -1,10 +1,10 @@
 Name: emacs-company-mode
 Version: 0.8.12 
-Release: 3
+Release: 4
 Summary: Text completion framework for Emacs
 License: as Emacs 
 #https://github.com/company-mode/company-mode
-Source0: company-mode-0.8.12.tar.gz 
+Source0: company-mode.tar.gz 
 Requires: emacs
 BuildArch: noarch
 
@@ -13,14 +13,18 @@ Company is a text completion framework for Emacs.
 
 %prep
 %install
-mkdir -p $RPM_BUILD_ROOT%{_datadir}/emacs/site-lisp
-tar zxf %{SOURCE0} -C $RPM_BUILD_ROOT%{_datadir}/emacs/site-lisp
-mv $RPM_BUILD_ROOT%{_datadir}/emacs/site-lisp/company-mode-%{version} $RPM_BUILD_ROOT%{_datadir}/emacs/site-lisp/company-mode
+mkdir -p %{buildroot}%{_datadir}/emacs/site-lisp/company-mode
+tar xf %{SOURCE0} -C %{buildroot}%{_datadir}/emacs/site-lisp/company-mode --strip-components=1
+
+rm -rf %{buildroot}%{_datadir}/emacs/site-lisp/company-mode/.git*
 
 %files
 %{_datadir}/emacs/site-lisp/company-mode
 
 %changelog
+* Tue Dec 15 2015 Cjacker <cjacker@foxmail.com> - 0.8.12-4
+- Update
+
 * Sat Oct 31 2015 Cjacker <cjacker@foxmail.com> - 0.8.12-3
 - Initial build
 
