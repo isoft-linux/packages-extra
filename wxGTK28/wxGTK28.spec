@@ -16,7 +16,7 @@ BuildRequires:  libpng-devel, libjpeg-devel, libtiff-devel
 BuildRequires:  expat-devel, SDL-devel
 BuildRequires:  libGL-devel, libGLU-devel
 BuildRequires:  libSM-devel
-BuildRequires:  gstreamer-devel >= 0.10, gstreamer-plugins-base-devel >= 0.10
+BuildRequires:  gstreamer0-devel >= 0.10, gstreamer0-plugins-base-devel >= 0.10
 BuildRequires:  GConf2-devel
 BuildRequires:  autoconf, gettext
 BuildRequires:  cppunit-devel
