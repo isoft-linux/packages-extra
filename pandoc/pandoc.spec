@@ -3,7 +3,7 @@
 %define debug_package %{nil}
 
 Name: pandoc
-Version: 1.15.1.1
+Version: 1.15.2.1
 Release: 2
 Summary: Converting from one markup format to another 
 
@@ -15,7 +15,7 @@ Source0: http://hackage.haskell.org/package/pandoc-%{version}/pandoc-%{version}.
 #pandoc dependencies, all packages is taken from ~/.cabal of manually build.
 Source1: hackages.tar.gz
 
-BuildRequires: ghc, haskell-platform-devel	
+BuildRequires: ghc, haskell-platform, cabal, chrpath
 
 %description
 Pandoc is a Haskell library for converting from one markup
@@ -47,14 +47,6 @@ format. Thus, adding an input or output format requires
 only adding a reader or writer.
 
 
-%package devel
-Summary: Development files for %{name}
-Requires: %{name} = %{version}-%{release}
-
-%description devel
-The %{name}-devel package contains libraries and header files for
-developing applications that use %{name}.
-
 %prep
 %setup -q -a1
 
@@ -70,6 +62,9 @@ popd
 sed -i 's#ghc-prim >= 0.2 && < 0.4#ghc-prim#g' ./hackages/deepseq-generics-0.1.1.2/deepseq-generics.cabal
 
 %build
+export LANG=en_US.UTF-8
+export LC_ALL=en_US.UTF-8
+
 export SANDBOX=`pwd`/.cabal-sandbox
 export DIST=`pwd`/pandoc-build
 rm -rf $DIST
@@ -93,24 +88,43 @@ cabal install hsb2hs
 cabal clean
 cabal install --force --reinstall --flags="embed_data_files make-pandoc-man-pages" . pandoc-citeproc
 
+
+cabal clean
+cabal configure --flags="embed_data_files make-pandoc-man-pages" --prefix=%{_prefix} --bindir=%{_bindir} --libdir=%{_libdir} --htmldir=%{_docdir}/ghc/html/libraries/$i --docdir=%{_docdir}/ghc-%{name}-%{version} '--libsubdir=$compiler/$pkgid' --datadir=%{_datadir} --libexecdir=%{_libexecdir} '--datasubdir=$pkgid' --enable-shared --global
+cabal build
+
+pushd hackages/pandoc-citeproc-0.8.0.1
+ln ../../cabal.sandbox.config .
+cabal clean
+
+cabal configure --flags="embed_data_files make-pandoc-man-pages" --prefix=%{_prefix} --bindir=%{_bindir} --libdir=%{_libdir} --htmldir=%{_docdir}/ghc/html/libraries/$i --docdir=%{_docdir}/ghc-%{name}-%{version} '--libsubdir=$compiler/$pkgid' --datadir=%{_datadir} --libexecdir=%{_libexecdir} '--datasubdir=$pkgid' --enable-shared --global
+
+cabal build
+popd
+
 %install
-mkdir -p %{buildroot}%{_bindir}
-mkdir -p %{buildroot}%{_mandir}/man1
-mkdir -p %{buildroot}%{_docdir}/pandoc
-mkdir -p %{buildroot}%{_docdir}/pandoc-citeproc
+cabal copy --destdir=%{buildroot}
 
-export SANDBOX=`pwd`/.cabal-sandbox
+pushd hackages/pandoc-citeproc-0.8.0.1
+cabal copy --destdir=%{buildroot}
+popd
 
-install -m 0755 $SANDBOX/bin/pandoc %{buildroot}%{_bindir} 
-install -m 0755 $SANDBOX/bin/pandoc-citeproc %{buildroot}%{_bindir} 
-install -m 0644 $SANDBOX/share/man/man1/pandoc.1 %{buildroot}%{_mandir}/man1/
-install -m 0644 $SANDBOX/share/man/man1/pandoc-citeproc.1 %{buildroot}%{_mandir}/man1/
+rm -rf %{buildroot}%{_libdir}
+rm -rf %{buildroot}%{_docdir}
+#no need to keep data files, already embeded in ELF.
+rm -rf %{buildroot}%{_datadir}/pandoc-*
 
+chrpath -d %{buildroot}%{_bindir}/pandoc
+chrpath -d %{buildroot}%{_bindir}/pandoc-citeproc
+ 
 %files
 %{_bindir}/*
 %{_mandir}/man1/*
 
 %changelog
+* Mon Dec 14 2015 Cjacker <cjacker@foxmail.com> - 1.15.2.1-2
+- Update
+
 * Wed Oct 28 2015 Cjacker <cjacker@foxmail.com> - 1.15.1.1-2
 - Initial build
 
