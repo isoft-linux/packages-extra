@@ -2,7 +2,7 @@
 
 Name:           wxGTK28
 Version:        2.8.12
-Release:        21%{?dist}
+Release:        22%{?dist}
 Summary:        GTK2 port of the wxWidgets GUI library
 License:        wxWidgets
 URL:            http://www.wxwidgets.org/
@@ -264,6 +264,9 @@ fi
 %{_libdir}/wx/include/gtk2-unicode-release-static-2.8
 
 %changelog
+* Tue Dec 15 2015 Cjacker <cjacker@foxmail.com> - 2.8.12-22
+- rebuild with fPIC
+
 * Tue Oct 27 2015 Cjacker <cjacker@foxmail.com> - 2.8.12-21
 - Rebuild
 
