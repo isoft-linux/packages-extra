@@ -107,8 +107,8 @@ chmod a-x src/common/msgout.cpp
 export GDK_USE_XFT=1
 
 # this code dereferences type-punned pointers like there's no tomorrow.
-CFLAGS="$RPM_OPT_FLAGS -fno-strict-aliasing"
-CXXFLAGS="$RPM_OPT_FLAGS -fno-strict-aliasing"
+CFLAGS="$RPM_OPT_FLAGS -fno-strict-aliasing -fPIC"
+CXXFLAGS="$RPM_OPT_FLAGS -fno-strict-aliasing -fPIC"
 
 
 #shared library
