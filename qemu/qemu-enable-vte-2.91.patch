@@ -1,0 +1,21 @@
+diff -Nur qemu-2.5.0-rc4/configure qemu-2.5.0-rc4n/configure
+--- qemu-2.5.0-rc4/configure	2015-12-12 06:03:17.000000000 +0800
++++ qemu-2.5.0-rc4n/configure	2015-12-16 16:30:12.869165641 +0800
+@@ -2431,7 +2431,7 @@
+ 
+ if test "$vte" != "no"; then
+     if test "$gtkabi" = "3.0"; then
+-      vtepackage="vte-2.90"
++      vtepackage="vte-2.91"
+       vteversion="0.32.0"
+     else
+       vtepackage="vte"
+@@ -2444,7 +2444,7 @@
+         vte="yes"
+     elif test "$vte" = "yes"; then
+         if test "$gtkabi" = "3.0"; then
+-            feature_not_found "vte" "Install libvte-2.90 devel"
++            feature_not_found "vte" "Install libvte-2.91 devel"
+         else
+             feature_not_found "vte" "Install libvte devel"
+         fi

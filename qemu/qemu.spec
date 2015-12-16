@@ -10,7 +10,7 @@ Release: 5
 License: GPLv2+ and LGPLv2+ and BSD
 URL: http://www.qemu.org/
 
-Source0: qemu-%{version}-rc2.tar.bz2
+Source0: qemu-%{version}-rc4.tar.bz2
 
 Source1: qemu-kvm.sh
 
@@ -35,6 +35,7 @@ Source15: 80-kvm.rules
 
 Source20: qemu.binfmt
 
+Patch0: qemu-enable-vte-2.91.patch
 
 BuildRequires: SDL2-devel
 BuildRequires: zlib-devel
@@ -100,6 +101,10 @@ BuildRequires: libepoxy-devel
 #it's now a standalone project.
 BuildRequires: libcacard-devel
 
+BuildRequires: virglrenderer-devel
+
+BuildRequires: libgcrypt-devel
+
 %description
 QEMU is a generic and open source processor emulator which achieves a good
 emulation speed by using dynamic translation. QEMU has two operating modes:
@@ -115,7 +120,8 @@ As QEMU requires no host kernel patches to run, it is safe and easy to use.
 
 
 %prep
-%setup -q -n qemu-%{version}-rc2
+%setup -q -n qemu-%{version}-rc4
+%patch0 -p1
 
 %build
 buildarch="i386-softmmu x86_64-softmmu alpha-softmmu arm-softmmu \
@@ -154,7 +160,9 @@ unicore32-linux-user aarch64-softmmu"
     --enable-smartcard \
     --disable-strip \
     --disable-xen \
+    --enable-virglrenderer \
     --disable-vnc-sasl \
+    --enable-vte \
     --enable-sdl \
     --with-sdlabi="2.0" \
     --with-gtkabi="3.0"
