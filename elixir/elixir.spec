@@ -1,12 +1,12 @@
 Name:           elixir
-Version:        1.1.1
+Version:        1.2.0
 Release:        2%{?dist}
 Summary:        A modern approach to programming for the Erlang VM 
 
 License:        ASL 2.0 and ERPL
 URL:            http://elixir-lang.org/
 
-Source0:        https://github.com/elixir-lang/elixir/archive/v%{version}/%{name}-%{version}.tar.gz
+Source0:        https://github.com/elixir-lang/elixir/archive/v%{version}/%{name}-%{version}-rc.0.tar.gz
 BuildArch:      noarch
 BuildRequires:  erlang
 BuildRequires:  git
@@ -18,7 +18,7 @@ As Erlang, it is a functional language built to support distributed,
 fault-tolerant, non-stop applications with hot code swapping.
 
 %prep
-%setup -q
+%setup -q -n %{name}-%{version}-rc.0
 
 %build
 LANG="en_US.UTF-8";  make %{?_smp_mflags}
@@ -36,7 +36,7 @@ ln -s %{_datadir}/%{name}/%{version}/bin/{elixir,elixirc,iex,mix} %{buildroot}/%
 LANG="en_US.utf8" make test
 
 %files
-%doc LICENSE LEGAL
+%license LICENSE
 %{_bindir}/elixir
 %{_bindir}/elixirc
 %{_bindir}/iex
@@ -44,6 +44,9 @@ LANG="en_US.utf8" make test
 %{_datadir}/%{name}
 
 %changelog
+* Wed Dec 16 2015 Cjacker <cjacker@foxmail.com> - 1.2.0-2
+- Update
+
 * Tue Oct 27 2015 Cjacker <cjacker@foxmail.com> - 1.1.1-2
 - Rebuild
 
