@@ -6,7 +6,7 @@
 Summary: QEMU is a FAST! processor emulator
 Name: qemu
 Version: 2.5.0
-Release: 4
+Release: 5
 License: GPLv2+ and LGPLv2+ and BSD
 URL: http://www.qemu.org/
 
@@ -202,7 +202,6 @@ install -m 0644 docs/q35-chipset.cfg $RPM_BUILD_ROOT%{_sysconfdir}/qemu/
 #setup binfmt.d
 mkdir -p $RPM_BUILD_ROOT/%{_libdir}/binfmt.d
 for i in dummy \
-    qemu-i386 \
     qemu-alpha \
     qemu-arm \
     qemu-armeb \
@@ -260,6 +259,9 @@ getent passwd qemu >/dev/null || \
 %{_datadir}/qemu/*
 
 %changelog
+* Wed Dec 16 2015 Cjacker <cjacker@foxmail.com> - 2.5.0-5
+- Remove qemu-i386 userspace binfmt support
+
 * Sat Dec 05 2015 Cjacker <cjacker@foxmail.com> - 2.5.0-4
 - Update to rc2
 
