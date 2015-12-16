@@ -269,6 +269,7 @@ getent passwd qemu >/dev/null || \
 %changelog
 * Wed Dec 16 2015 Cjacker <cjacker@foxmail.com> - 2.5.0-5
 - Remove qemu-i386 userspace binfmt support
+- enable virglrenderer, enable vte3
 
 * Sat Dec 05 2015 Cjacker <cjacker@foxmail.com> - 2.5.0-4
 - Update to rc2
