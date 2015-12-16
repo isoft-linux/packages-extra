@@ -2,7 +2,7 @@
 
 Name:           wxGTK28
 Version:        2.8.12
-Release:        23%{?dist}
+Release:        24%{?dist}
 Summary:        GTK2 port of the wxWidgets GUI library
 License:        wxWidgets
 URL:            http://www.wxwidgets.org/
@@ -62,6 +62,7 @@ Requires: %{name}-media = %{version}-%{release}
 Requires: gtk2-devel
 Requires: libGL-devel, libGLU-devel
 Requires: SDL-devel
+Requires: libSM-devel libpng-devel libtiff-devel libjpeg-turbo-devel
 Requires: bakefile
 Requires(post): %{_sbindir}/update-alternatives
 Requires(postun): %{_sbindir}/update-alternatives
@@ -77,6 +78,7 @@ Requires: %{name}-common-devel = %{version}-%{release}
 Requires: gtk2-devel
 Requires: libGL-devel, libGLU-devel
 Requires: SDL-devel
+Requires: libSM-devel libpng-devel libtiff-devel libjpeg-turbo-devel
 Requires: bakefile
 Requires(post): %{_sbindir}/update-alternatives
 Requires(postun): %{_sbindir}/update-alternatives
@@ -266,6 +268,9 @@ fi
 %{_libdir}/wx/include/gtk2-unicode-release-static-2.8
 
 %changelog
+* Wed Dec 16 2015 Cjacker <cjacker@foxmail.com> - 2.8.12-24
+- More devel Requires fix
+
 * Tue Dec 15 2015 Cjacker <cjacker@foxmail.com> - 2.8.12-23
 - Add SDL-devel to devel pkg Requires
 
