@@ -1,7 +1,7 @@
 %define debug_package %{nil}
 
 Name: firefox-i18n
-Version: 42.0
+Version: 43.0
 Release: 2
 Summary: Language pack for firefox
 License: MPL
@@ -9,8 +9,6 @@ URL: http://download.cdn.mozilla.net/pub/firefox/releases/%{version}/linux-x86_6
 #this is a tarball of all xpi files.
 #wget -c -r -nd -np -k <URL>
 Source0: %{name}-%{version}.tar.gz
-
-Requires: firefox = %{version}
 
 %description
 Language pack for firefox
@@ -31,6 +29,9 @@ done
 %{_libdir}/firefox/browser/extensions/langpack-*@firefox.mozilla.org.xpi
 
 %changelog
+* Wed Dec 16 2015 Cjacker <cjacker@foxmail.com> - 43.0-2
+- Update to 43.0 xpis
+
 * Tue Nov 03 2015 Cjacker <cjacker@foxmail.com> - 42.0-2
 - Update to 42.0
 
