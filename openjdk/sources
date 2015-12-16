@@ -1,8 +1,8 @@
-9c9bde689fc4f932200cb12570abc397  corba-jdk8u60-b24.tar.bz2
-bdbe62428aed2c72c55af2767261baf3  hotspot-jdk8u60-b24.tar.bz2
-9ab5715df53aade778e4a175d601ec5c  jaxp-jdk8u60-b24.tar.bz2
-d23c47c2b122a7ea0f0ba36070a8fedc  jaxws-jdk8u60-b24.tar.bz2
-1bbf08dc9027d502d7e16673dab654ca  jdk8u60-jdk8u60-b24.tar.bz2
-025594e45f3ac512dd77ce96482303b0  jdk-jdk8u60-b24.tar.bz2
-550d81328c04c4dfd0fa672dcd22910d  langtools-jdk8u60-b24.tar.bz2
-6dd9a847826316f9dcde3695d24fafa0  nashorn-jdk8u60-b24.tar.bz2
+ab64ae95920ac3a7d0edf5c94dde3486  corba-jdk8u76-b00.tar.bz2
+6bbc0505bfb6de7c2813bac02ac9d2fa  hotspot-jdk8u76-b00.tar.bz2
+4b74070b8872b7300294c12ee300383f  jaxp-jdk8u76-b00.tar.bz2
+57f44ec08b9f2b79615e672d7aa8aea5  jaxws-jdk8u76-b00.tar.bz2
+9b80ca532d50056ed8ead7f1a600ce30  jdk-jdk8u76-b00.tar.bz2
+18fb8368734d9996b23eb5eff5f87196  jdk8u-jdk8u76-b00.tar.bz2
+17afc87d70b2dfd2e26f5db8039ec6bd  langtools-jdk8u76-b00.tar.bz2
+11c3e77d7f10583fcb4b8b041d968bfa  nashorn-jdk8u76-b00.tar.bz2

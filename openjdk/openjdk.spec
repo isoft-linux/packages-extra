@@ -1,18 +1,18 @@
-%define update_version 60 
-%define build_number 24
+%define update_version 76 
+%define build_number 00
 
 %global script 'use File::Spec; print File::Spec->abs2rel($ARGV[0], $ARGV[1])'
 %global abs2rel %{__perl} -e %{script}
 
 Name: openjdk	
 Version: 8u%{update_version}b%{build_number}
-Release: 2
-Summary: Oracle OpenJDK via IcedTea
+Release: 3
+Summary: Oracle OpenJDK
 License: ASL 1.1 and ASL 2.0 and GPL+ and GPLv2 and GPLv2 with exceptions and LGPL+ and LGPLv2 and MPLv1.0 and MPLv1.1 and Public Domain and W3C
 URL: http://openjdk.java.net/
 
-#http://hg.openjdk.java.net/jdk8u/jdk8u60/archive/jdk8u60-b24.tar.bz2
-Source0: jdk8u%{update_version}-jdk8u%{update_version}-b%{build_number}.tar.bz2
+#http://hg.openjdk.java.net/jdk8u/jdk8u/archive/jdk8u76-b00.tar.bz2
+Source0: http://hg.openjdk.java.net/jdk8u/jdk8u/archive/jdk8u-jdk8u%{update_version}-b%{build_number}.tar.bz2
 
 Source1: corba-jdk8u%{update_version}-b%{build_number}.tar.bz2
 Source2: hotspot-jdk8u%{update_version}-b%{build_number}.tar.bz2
@@ -26,7 +26,6 @@ Source7: nashorn-jdk8u%{update_version}-b%{build_number}.tar.bz2
 Source10: download-openjdk-sources.sh 
 
 Source100:  openjdk.sh
-
 
 Patch0:   adlc-parser.patch
 #this patch is important, otherwise icedteaWeb not work.
@@ -74,13 +73,13 @@ BuildRequires: autoconf automake
 BuildRequires: nss-devel cups-devel 
 BuildRequires: libjpeg-turbo-devel giflib-devel libpng-devel lcms2-devel 
 BuildRequires: libXt-devel libXp-devel libXtst-devel libXinerama-devel libXrender-devel 
+BuildRequires: libX11-devel
 BuildRequires: libattr-devel zlib-devel alsa-lib-devel freetype-devel fontconfig-devel krb5-devel
 BuildRequires: gtk2-devel 
 
 BuildRequires: alsa-lib-devel
-BuildRequires: cpio unzip which zip
+BuildRequires: cpio unzip which p7zip
 BuildRequires: cups-devel
-BuildRequires: libX11-devel
 
 BuildRequires: openjdk
 
@@ -94,14 +93,15 @@ Requires: libgcc, libstdc++
 Requires: p11-kit-trust
 
 Provides: java
+Provides: jdk
+Provides: jre
 Provides: java-devel
-
 
 %description
 %{summary}
 
 %prep
-%setup -q -n jdk8u%{update_version}-jdk8u%{update_version}-b%{build_number} -a1 -a2 -a3 -a4 -a5 -a6 -a7
+%setup -q -n jdk8u-jdk8u%{update_version}-b%{build_number} -a1 -a2 -a3 -a4 -a5 -a6 -a7
 mv corba-jdk8u%{update_version}-b%{build_number} corba
 mv hotspot-jdk8u%{update_version}-b%{build_number} hotspot
 mv jaxp-jdk8u%{update_version}-b%{build_number} jaxp
@@ -147,7 +147,7 @@ export CXX=g++
 unset JAVA_HOME
 
 sh ./configure \
-   --with-milestone="isoft" \
+   --with-milestone="iSoft" \
    --with-update-version=%{update_version} \
    --with-build-number=b%{build_number} \
    --with-debug-level=release \
@@ -188,14 +188,15 @@ pushd $RPM_BUILD_ROOT%{_libdir}/jvm/openjdk8/jre/lib/security
     ln -sf $RELATIVE/cacerts .
 popd
 
-%post
-
 %files
 %{_sysconfdir}/profile.d/openjdk.sh
 %dir %{_libdir}/jvm/openjdk8
 %{_libdir}/jvm/openjdk8/*
 
 %changelog
+* Wed Dec 16 2015 Cjacker <cjacker@foxmail.com> - 8u76b00-3
+- Update
+
 * Tue Oct 27 2015 Cjacker <cjacker@foxmail.com> - 8u60b24-2
 - Rebuild
 
