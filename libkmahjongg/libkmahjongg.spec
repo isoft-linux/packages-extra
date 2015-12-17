@@ -1,6 +1,6 @@
 Name:    libkmahjongg
 Summary: Common code, backgrounds and tile sets for games using Mahjongg tiles
-Version: 15.11.80
+Version: 15.12.0
 Release: 2%{?dist}
 
 License: GPLv2+
@@ -68,6 +68,9 @@ make install/fast DESTDIR=%{buildroot} -C %{_target_platform}
 
 
 %changelog
+* Thu Dec 17 2015 Cjacker <cjacker@foxmail.com> - 15.12.0-2
+- Update
+
 * Sat Nov 21 2015 Cjacker <cjacker@foxmail.com> - 15.11.80-2
 - Initial build
 
