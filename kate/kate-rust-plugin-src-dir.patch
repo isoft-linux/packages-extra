@@ -1,0 +1,12 @@
+diff -Nur kate-15.07.90/addons/rustcompletion/kterustcompletionplugin.cpp kate-15.07.90n/addons/rustcompletion/kterustcompletionplugin.cpp
+--- kate-15.07.90/addons/rustcompletion/kterustcompletionplugin.cpp	2015-08-06 03:42:35.000000000 +0800
++++ kate-15.07.90n/addons/rustcompletion/kterustcompletionplugin.cpp	2015-08-17 15:06:49.795474775 +0800
+@@ -132,7 +132,7 @@
+     KConfigGroup config(KSharedConfig::openConfig(), QStringLiteral("kterustcompletion"));
+     m_racerCmd = config.readEntry(QStringLiteral("racerCmd"), QStringLiteral("racer"));
+     m_rustSrcPath = config.readEntry(QStringLiteral("rustSrcPath"),
+-        QUrl(QStringLiteral("/usr/local/src/rust/src")));
++        QUrl(QStringLiteral("/usr/src/rust/src")));
+ 
+     updateConfigOk();
+ }
