@@ -1,7 +1,7 @@
 Name:    kate
 Summary: Advanced Text Editor
-Version: 15.11.80
-Release: 3 
+Version: 15.11.90
+Release: 2
 License: LGPLv2 and LGPLv2+ and GPLv2+ 
 URL:     https://projects.kde.org/projects/kde/applications/kate
 
@@ -18,6 +18,8 @@ Patch0: kate-rust-plugin-src-dir.patch
 
 # https://git.reviewboard.kde.org/r/126197/
 Patch1: prepend-dir-when-open-file-via-dbus.patch
+
+Patch2: kate-drop-kwrite.patch
 
 BuildRequires: cmake
 BuildRequires: extra-cmake-modules
@@ -89,7 +91,8 @@ License: LGPLv2+
 %prep
 %setup -q -n kate-%{version}
 %patch0 -p1
-%patch1 -p1
+#%patch1 -p1
+%patch2 -p1
 
 %build
 mkdir %{_target_platform}
@@ -99,14 +102,12 @@ popd
 
 make %{?_smp_mflags} -C %{_target_platform}
 
-
 %install
 make install/fast DESTDIR=%{buildroot} -C %{_target_platform}
 
 
 %check
 desktop-file-validate %{buildroot}%{_kf5_datadir}/applications/org.kde.kate.desktop
-desktop-file-validate %{buildroot}%{_kf5_datadir}/applications/org.kde.kwrite.desktop
 
 
 %post
@@ -123,22 +124,13 @@ gtk-update-icon-cache %{_kf5_datadir}/icons/hicolor &> /dev/null || :
 update-desktop-database -q &> /dev/null || :
 fi
 
-%postun -n kwrite
-if [ $1 -eq 0 ] ; then
-update-desktop-database -q &> /dev/null || :
-fi
-
-%posttrans -n kwrite
-update-desktop-database -q &> /dev/null || :
-
-
 %files
 %doc COPYING.LIB
 %doc AUTHORS
 %{_kf5_bindir}/kate
 %{_kf5_datadir}/applications/org.kde.kate.desktop
 %{_datadir}/appdata/org.kde.kate.appdata.xml
-%{_kf5_datadir}/icons/hicolor/*/*
+%{_kf5_datadir}/icons/hicolor/*/apps/kate.*
 %{_mandir}/man1/kate.1*
 %{_kf5_docdir}/HTML/en/kate/
 %{_kf5_docdir}/HTML/en/katepart/
@@ -154,14 +146,10 @@ update-desktop-database -q &> /dev/null || :
 %{_kf5_datadir}/katexmltools/
 %{_kf5_datadir}/kxmlgui5/katexmltools
 
-%files -n kwrite
-%{_kf5_bindir}/kwrite
-%{_kf5_datadir}/applications/org.kde.kwrite.desktop
-%{_datadir}/appdata/org.kde.kwrite.appdata.xml
-%{_kf5_docdir}/HTML/en/kwrite/
-
-
 %changelog
+* Wed Dec 16 2015 Cjacker <cjacker@foxmail.com> - 15.11.90-2
+- Update
+
 * Thu Dec 03 2015 Cjacker <cjacker@foxmail.com> - 15.11.80-3
 - https://git.reviewboard.kde.org/r/126197/
 
