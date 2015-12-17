@@ -1,0 +1,21 @@
+Index: krdc/CMakeLists.txt
+===================================================================
+--- krdc.orig/CMakeLists.txt
++++ krdc/CMakeLists.txt
+@@ -95,11 +95,11 @@ add_subdirectory(nx)
+ add_subdirectory(rdp)
+ add_subdirectory(test)
+ 
+-if(KF5DocTools_FOUND)
+-    add_subdirectory(doc)
+-else()
+-    message("KF5DocTools not found. Not building documentation.")
+-endif()
++#if(KF5DocTools_FOUND)
++#    add_subdirectory(doc)
++#else()
++#    message("KF5DocTools not found. Not building documentation.")
++#endif()
+ 
+ add_definitions(-DBUILD_ZEROCONF)
+ 

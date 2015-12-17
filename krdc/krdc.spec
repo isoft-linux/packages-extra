@@ -4,26 +4,26 @@ Release: 3
 License: GPL
 
 Source0: krdc-15.08.0.tar.xz  
-#BuildRequires: git freerdp kf5-kdoctools kf5-kcmutils kf5-kdnssd kf5-knotifyconfig libvncserver 
+Patch0: disable-doc.patch
 BuildRequires: cmake
 BuildRequires: extra-cmake-modules
-BuildRequires: kf5-rpm-macros
-BuildRequires: kf5-ki18n-devel
-BuildRequires: kf5-knotifyconfig-devel
-BuildRequires: kf5-kdoctools-devel
-BuildRequires: kf5-kcmutils-devel
-BuildRequires: kf5-kxmlgui-devel
-BuildRequires: kf5-kwidgetsaddons-devel
-BuildRequires: kf5-kwallet-devel
-BuildRequires: kf5-kcompletion-devel
-BuildRequires: kf5-kdnssd-devel
-BuildRequires: kf5-kiconthemes-devel
 BuildRequires: kf5-kbookmarks-devel
+BuildRequires: kf5-kcmutils-devel
+BuildRequires: kf5-kcompletion-devel
+BuildRequires: kf5-kconfig-devel
+BuildRequires: kf5-kconfigwidgets-devel
+BuildRequires: kf5-kcoreaddons-devel
+BuildRequires: kf5-kdnssd-devel
+BuildRequires: kf5-kdoctools-devel
+BuildRequires: kf5-ki18n-devel
+BuildRequires: kf5-kiconthemes-devel
 BuildRequires: kf5-knotifications-devel
 BuildRequires: kf5-knotifyconfig-devel
-BuildRequires: kf5-kconfig-devel
+BuildRequires: kf5-kparts-devel
+BuildRequires: kf5-kwallet-devel
+BuildRequires: kf5-kwidgetsaddons-devel
 BuildRequires: kf5-kxmlgui-devel
-
+BuildRequires: kf5-rpm-macros
 BuildRequires: freerdp-devel
 BuildRequires: libvncserver-devel
 
@@ -62,18 +62,6 @@ make install DESTDIR=%{buildroot} -C %{_target_platform}
 %{_libdir}/qt5/plugins/krdc/libkrdc_testplugin.so
 %{_libdir}/qt5/plugins/krdc/libkrdc_vncplugin.so
 %{_datadir}/applications/org.kde.krdc.desktop
-%{_defaultdocdir}/HTML/en/krdc/address_input.png
-%{_defaultdocdir}/HTML/en/krdc/bookmarks_menu.png
-%{_defaultdocdir}/HTML/en/krdc/general_preferences.png
-%{_defaultdocdir}/HTML/en/krdc/index.cache.bz2
-%{_defaultdocdir}/HTML/en/krdc/index.docbook
-%{_defaultdocdir}/HTML/en/krdc/krdc_mainwindow.png
-%{_defaultdocdir}/HTML/en/krdc/password_entry.png
-%{_defaultdocdir}/HTML/en/krdc/rdp_preferences.png
-%{_defaultdocdir}/HTML/en/krdc/view-fullscreen.png
-%{_defaultdocdir}/HTML/en/krdc/view-restore.png
-%{_defaultdocdir}/HTML/en/krdc/vnc_host_configuration.png
-%{_defaultdocdir}/HTML/en/krdc/vnc_preferences.png
 %{_datadir}/config.kcfg/krdc.kcfg
 %{_datadir}/krdc/pics/pointcursor.png
 %{_datadir}/krdc/pics/pointcursormask.png
