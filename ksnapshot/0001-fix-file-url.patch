@@ -1,0 +1,13 @@
+diff --git a/ksnapshot.cpp b/ksnapshot.cpp
+index ac0f2c4..dde122d 100644
+--- a/ksnapshot.cpp
++++ b/ksnapshot.cpp
+@@ -254,7 +254,7 @@ KSnapshot::KSnapshot(KSnapshotObject::CaptureMode mode, QWidget *parent)
+ 
+     setDelay(conf.readEntry("delay", 0));
+     setIncludeDecorations(conf.readEntry("includeDecorations", true));
+-    m_filename = QUrl(conf.readPathEntry("m_filename", QDir::currentPath() + '/' + i18n("snapshot") + "1.png"));
++    m_filename = QUrl(conf.readPathEntry("m_filename", "file://" + QDir::currentPath() + '/' + i18n("snapshot") + "1.png"));
+ 
+     connect(&m_grabTimer, &SnapshotTimer::timeout, this, &KSnapshot::grabTimerDone);
+     connect(&m_updateTimer, &QTimer::timeout, this, &KSnapshot::updatePreview);

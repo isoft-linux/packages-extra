@@ -1,0 +1,20 @@
+diff -Nur ksnapshot/ksnapshot.cpp ksnapshotn/ksnapshot.cpp
+--- ksnapshot/ksnapshot.cpp	2015-12-15 14:36:18.237149262 +0800
++++ ksnapshotn/ksnapshot.cpp	2015-12-15 14:47:26.955119448 +0800
+@@ -779,8 +779,14 @@
+ 
+ void KSnapshot::slotModeChanged(int mode)
+ {
+-    m_snapshotWidget->cbIncludePointer->setEnabled(!(mode == Region || mode == FreeRegion));
+-    m_snapshotWidget->lblIncludePointer->setEnabled(!(mode == Region || mode == FreeRegion));
++    if (mode == WindowUnderCursor && m_useKwinEffect) {
++        m_snapshotWidget->cbIncludePointer->setEnabled(true);
++        m_snapshotWidget->lblIncludePointer->setEnabled(true);
++    }
++    else {
++        m_snapshotWidget->cbIncludePointer->setEnabled(false);
++        m_snapshotWidget->lblIncludePointer->setEnabled(false);
++    }
+     m_snapshotWidget->cbIncludeDecorations->setEnabled(mode == WindowUnderCursor);
+     m_snapshotWidget->lblIncludeDecorations->setEnabled(mode == WindowUnderCursor);
+ }

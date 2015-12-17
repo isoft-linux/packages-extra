@@ -1,7 +1,7 @@
-Name: spectacle
+Name:    ksnapshot 
 Summary: A screen capture utility 
-Version: 15.12.0
-Release: 3
+Version: 15.04.2
+Release: 11.git 
 
 License: GPLv2+
 URL:     https://projects.kde.org/projects/kde/kdegraphics/ksnapshot
@@ -11,7 +11,13 @@ URL:     https://projects.kde.org/projects/kde/kdegraphics/ksnapshot
 %else
 %global stable stable
 %endif 
-Source0: http://download.kde.org/%{stable}/applications/%{version}/src/%{name}-%{version}.tar.xz
+Source0: http://download.kde.org/%{stable}/applications/%{version}/src/%{name}.tar.gz
+
+# Fix file QUrl issue for example $HOME/snapshot1.png/snapshot1.png
+Patch1: 0001-fix-file-url.patch
+Patch2: ksnapshot-disable-kipi.patch
+Patch3: ksnapshot-save-to-xdg-image-dir.patch
+Patch4: ksnapshot-modify-window-under-cursor.patch
 
 BuildRequires: cmake
 BuildRequires: desktop-file-utils
@@ -39,16 +45,9 @@ BuildRequires: kf5-kwidgetsaddons-devel
 BuildRequires: kf5-kxmlgui-devel
 BuildRequires: kf5-kdoctools-devel
 BuildRequires: kf5-kparts-devel
-BuildRequires: kf5-knotifications-devel
-BuildRequires: kf5-libkipi-devel
-BuildRequires: pkgconfig(xcb-cursor)
-BuildRequires: pkgconfig(xcb-image)
-BuildRequires: pkgconfig(xcb-util)
-BuildRequires: pkgconfig(xcb)
+
 BuildRequires: pkgconfig(exiv2)
 BuildRequires: pkgconfig(xfixes) 
-
-BuildRequires: libkscreen-devel
 
 BuildRequires: qt5-qtx11extras-devel
 
@@ -57,7 +56,11 @@ BuildRequires: qt5-qtx11extras-devel
 
 
 %prep
-%setup -q
+%setup -q -n %{name}
+%patch1 -p1
+%patch2 -p1
+%patch3 -p1
+%patch4 -p1
 
 %build
 mkdir -p %{_target_platform}
@@ -70,6 +73,10 @@ make %{?_smp_mflags} -C %{_target_platform}
 
 %install
 make install/fast DESTDIR=%{buildroot} -C %{_target_platform}
+
+
+%check
+desktop-file-validate %{buildroot}%{_kf5_datadir}/applications/org.kde.%{name}.desktop
 
 
 %post
@@ -87,23 +94,31 @@ fi
 %files
 %doc COPYING
 %{_kf5_bindir}/%{name}
-%{_kf5_datadir}/knotifications5/spectacle.notifyrc
+%{_kf5_bindir}/kbackgroundsnapshot
+%{_datadir}/dbus-1/interfaces/org.kde.ksnapshot.xml
 %{_kf5_datadir}/applications/org.kde.%{name}.desktop
-%{_kf5_datadir}/khotkeys/spectacle.khotkeys
-%{_kf5_datadir}/dbus-1/interfaces/org.kde.Spectacle.xml
-%{_kf5_datadir}/dbus-1/services/org.kde.Spectacle.service
 %{_kf5_datadir}/icons/hicolor/*/*/*
-%{_docdir}/HTML/en/spectacle
-
+%{_datadir}/doc/HTML/en/ksnapshot/*
 
 
 %changelog
-* Thu Dec 17 2015 Cjacker <cjacker@foxmail.com> - 15.12.0-3
-- Fix xcb dependency
+* Tue Dec 15 2015 fj <fujiang.zhu@i-soft.com.cn> - 15.04.2-11.git
+- sorry, missing patch4
 
-* Thu Dec 17 2015 Cjacker <cjacker@foxmail.com> - 15.12.0-2
+* Tue Dec 15 2015 fj <fujiang.zhu@i-soft.com.cn> - 15.04.2-10.git
+- ksnapshot-modify-window-under-cursor.patch
+
+* Tue Dec 08 2015 Cjacker <cjacker@foxmail.com> - 15.04.2-9.git
+- Save to xdg Image dir
+
+* Sat Nov 21 2015 Cjacker <cjacker@foxmail.com> - 15.04.2-8.git
 - Update
 
-* Sun Nov 22 2015 Cjacker <cjacker@foxmail.com> - 15.11.80-2
-- Initial build
+* Thu Oct 29 2015 Leslie Zhai <xiang.zhai@i-soft.com.cn>
+- Fix file QUrl issue for example $HOME/snapshot1.png/snapshot1.png
+- Add missing BuildRequires.
+- Remove find_lang.
+
+* Sun Oct 25 2015 Cjacker <cjacker@foxmail.com> - 15.04.2-6.git
+- Rebuild for new 4.0 release
 

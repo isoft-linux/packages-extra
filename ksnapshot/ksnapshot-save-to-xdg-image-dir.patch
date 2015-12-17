@@ -1,0 +1,11 @@
+--- ksnapshot/ksnapshot.cpp	2015-12-08 15:31:35.708039798 +0800
++++ ksnapshotn/ksnapshot.cpp	2015-12-08 15:30:45.226037516 +0800
+@@ -254,7 +254,7 @@
+ 
+     setDelay(conf.readEntry("delay", 0));
+     setIncludeDecorations(conf.readEntry("includeDecorations", true));
+-    m_filename = QUrl(conf.readPathEntry("m_filename", "file://" + QDir::currentPath() + '/' + i18n("snapshot") + "1.png"));
++    m_filename = QUrl(conf.readPathEntry("m_filename", "file://" + QStandardPaths::writableLocation(QStandardPaths::PicturesLocation) + '/' + i18n("snapshot") + "1.png"));
+ 
+     connect(&m_grabTimer, &SnapshotTimer::timeout, this, &KSnapshot::grabTimerDone);
+     connect(&m_updateTimer, &QTimer::timeout, this, &KSnapshot::updatePreview);
