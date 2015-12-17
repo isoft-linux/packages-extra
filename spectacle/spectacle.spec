@@ -39,6 +39,7 @@ BuildRequires: kf5-kwidgetsaddons-devel
 BuildRequires: kf5-kxmlgui-devel
 BuildRequires: kf5-kdoctools-devel
 BuildRequires: kf5-kparts-devel
+BuildRequires: kf5-knotifications-devel
 
 BuildRequires: pkgconfig(exiv2)
 BuildRequires: pkgconfig(xfixes) 
