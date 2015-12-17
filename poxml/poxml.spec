@@ -14,18 +14,15 @@ URL:     http://www.kde.org/
 Source0: http://download.kde.org/%{stable}/applications/%{version}/src/%{name}-%{version}.tar.xz
 Patch0: poxml-fix-cmake.patch
 
-BuildRequires:  cmake
-#for kde4 rpm macros
-BuildRequires:  kde-filesystem
+BuildRequires: cmake
+BuildRequires: extra-cmake-modules
+BuildRequires: gettext
+BuildRequires: kf5-rpm-macros
+BuildRequires: kf5-kdoctools-devel
+BuildRequires: qt5-qtbase-devel qt5-qttools-devel
 
-BuildRequires:  kdelibs-devel >= 4.14
-BuildRequires:  gettext-devel
 BuildRequires:  pkgconfig(libxslt)
-
-Conflicts:      kdesdk-common < 4.10.80
 Provides:       kdesdk-poxml = %{version}-%{release}
-Obsoletes:      kdesdk-poxml < 4.10.80
-
 
 %description
 Text utilities from kdesdk, including
@@ -41,7 +38,7 @@ xml2pot
 %build
 mkdir -p %{_target_platform}
 pushd %{_target_platform}
-%{cmake_kde4} ..
+%{cmake_kf5} ..
 popd
 
 # seeing failures, appear to be parallel-build races
@@ -54,10 +51,10 @@ make install/fast DESTDIR=%{buildroot} -C %{_target_platform}
 
 %files
 %doc COPYING COPYING.DOC
-%{_kde4_bindir}/po2xml
-%{_kde4_bindir}/split2po
-%{_kde4_bindir}/swappo
-%{_kde4_bindir}/xml2pot
+%{_kf5_bindir}/po2xml
+%{_kf5_bindir}/split2po
+%{_kf5_bindir}/swappo
+%{_kf5_bindir}/xml2pot
 %{_mandir}/man1/po2xml*
 %{_mandir}/man1/split2po*
 %{_mandir}/man1/swappo*
