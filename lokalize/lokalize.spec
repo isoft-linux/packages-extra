@@ -30,6 +30,8 @@ BuildRequires: kf5-kxmlgui-devel
 BuildRequires: kf5-knotifications-devel
 BuildRequires: kf5-kross-devel
 BuildRequires: kf5-sonnet-devel
+BuildRequires: kf5-kcrash-devel
+
 BuildRequires: pkgconfig(hunspell)
 BuildRequires: pkgconfig(Qt5Widgets) pkgconfig(Qt5DBus) pkgconfig(Qt5Script) pkgconfig(Qt5Sql)
 BuildRequires: appstream-glib
