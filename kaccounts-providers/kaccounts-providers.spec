@@ -15,7 +15,15 @@ Source0: http://download.kde.org/%{stable}/applications/%{version}/src/%{name}-%
 
 BuildRequires:  cmake
 BuildRequires:  extra-cmake-modules
+BuildRequires:  gettext
+BuildRequires:  kf5-rpm-macros
+
 BuildRequires:  kaccounts-integration-devel
+BuildRequires:  kf5-kio-devel
+BuildRequires:  kf5-ki18n-devel
+BuildRequires:  kf5-kdeclarative-devel
+BuildRequires:  kf5-kpackage-devel
+BuildRequires:  qt5-qtdeclarative-devel
 
 BuildRequires:  intltool
 BuildRequires:  libaccounts-glib-devel
@@ -32,7 +40,7 @@ Requires:       signon-ui
 %build
 mkdir -p %{_target_platform}
 pushd %{_target_platform}
-%{cmake} ..
+%{cmake_kf5} ..
 popd
 
 make %{?_smp_mflags} -C %{_target_platform}
@@ -42,10 +50,14 @@ make install/fast DESTDIR=%{buildroot} -C %{_target_platform}
 
 %files
 %license COPYING
-%{_datadir}/accounts/providers/*.provider
 %config %{_sysconfdir}/signon-ui/webkit-options.d/*
-%{_libdir}/plugins/kaccounts/ui/owncloud_plugin_kaccounts.so
-%{_kf5_datadir}/kpackage/genericqml/org.kde.kaccounts.owncloud
+%{_kf5_qtplugindir}/kaccounts/ui/owncloud_plugin_kaccounts.so
+%dir %{_kf5_datadir}/kpackage/genericqml/org.kde.kaccounts.owncloud
+%{_kf5_datadir}/kpackage/genericqml/org.kde.kaccounts.owncloud/*
+%{_kf5_datadir}/accounts/providers/google.provider
+%{_kf5_datadir}/accounts/providers/owncloud.provider
+
+
 
 %changelog
 * Thu Dec 17 2015 Cjacker <cjacker@foxmail.com> - 15.12.0-2
