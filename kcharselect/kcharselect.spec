@@ -1,7 +1,7 @@
 Name: kcharselect
 Summary: Character selector 
 Version: 15.11.80
-Release: 2%{?dist}
+Release: 3%{?dist}
 
 License: GPLv2+
 #URL:     https://projects.kde.org/projects/kde/kdeutils/%{name}
@@ -68,6 +68,9 @@ desktop-file-validate %{buildroot}%{_kf5_datadir}/applications/org.kde.%{name}.d
 
 
 %changelog
+* Thu Dec 17 2015 Cjacker <cjacker@foxmail.com> - 15.11.80-3
+- Update
+
 * Sat Nov 21 2015 Cjacker <cjacker@foxmail.com> - 15.11.80-2
 - Update
 
