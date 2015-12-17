@@ -1,7 +1,7 @@
 Name:    kate
 Summary: Advanced Text Editor
-Version: 15.11.90
-Release: 2
+Version: 15.12.0
+Release: 2 
 License: LGPLv2 and LGPLv2+ and GPLv2+ 
 URL:     https://projects.kde.org/projects/kde/applications/kate
 
@@ -147,6 +147,9 @@ fi
 %{_kf5_datadir}/kxmlgui5/katexmltools
 
 %changelog
+* Thu Dec 17 2015 Cjacker <cjacker@foxmail.com> - 15.12.0-2
+- Update
+
 * Wed Dec 16 2015 Cjacker <cjacker@foxmail.com> - 15.11.90-2
 - Update
 
