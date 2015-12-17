@@ -27,7 +27,7 @@ BuildRequires:  kf5-kiconthemes-devel
 BuildRequires:  kf5-kconfig-devel
 BuildRequires:  kf5-kwallet-devel
 BuildRequires:  kf5-kdbusaddons-devel
-
+BuildRequires:  kf5-kdeclarative-devel 
 BuildRequires:  libaccounts-qt5-devel
 BuildRequires:  signon-devel
 
