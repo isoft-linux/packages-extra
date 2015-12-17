@@ -1,7 +1,7 @@
 Name: spectacle
 Summary: A screen capture utility 
 Version: 15.12.0
-Release: 2
+Release: 3
 
 License: GPLv2+
 URL:     https://projects.kde.org/projects/kde/kdegraphics/ksnapshot
@@ -40,7 +40,11 @@ BuildRequires: kf5-kxmlgui-devel
 BuildRequires: kf5-kdoctools-devel
 BuildRequires: kf5-kparts-devel
 BuildRequires: kf5-knotifications-devel
-
+BuildRequires: kf5-libkipi-devel
+BuildRequires: pkgconfig(xcb-cursor)
+BuildRequires: pkgconfig(xcb-image)
+BuildRequires: pkgconfig(xcb-util)
+BuildRequires: pkgconfig(xcb)
 BuildRequires: pkgconfig(exiv2)
 BuildRequires: pkgconfig(xfixes) 
 
@@ -92,6 +96,9 @@ fi
 
 
 %changelog
+* Thu Dec 17 2015 Cjacker <cjacker@foxmail.com> - 15.12.0-3
+- Fix xcb dependency
+
 * Thu Dec 17 2015 Cjacker <cjacker@foxmail.com> - 15.12.0-2
 - Update
 
