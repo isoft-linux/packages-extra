@@ -1,6 +1,6 @@
 Name: spectacle
 Summary: A screen capture utility 
-Version: 15.11.80
+Version: 15.12.0
 Release: 2
 
 License: GPLv2+
@@ -91,6 +91,9 @@ fi
 
 
 %changelog
+* Thu Dec 17 2015 Cjacker <cjacker@foxmail.com> - 15.12.0-2
+- Update
+
 * Sun Nov 22 2015 Cjacker <cjacker@foxmail.com> - 15.11.80-2
 - Initial build
 
