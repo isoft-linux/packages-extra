@@ -16,7 +16,7 @@ Patch0: poxml-fix-cmake.patch
 
 BuildRequires: cmake
 BuildRequires: extra-cmake-modules
-BuildRequires: gettext
+BuildRequires: gettext-devel
 BuildRequires: kf5-rpm-macros
 BuildRequires: kf5-kdoctools-devel
 BuildRequires: qt5-qtbase-devel qt5-qttools-devel
