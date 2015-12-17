@@ -48,6 +48,8 @@ BuildRequires: pkgconfig(xcb)
 BuildRequires: pkgconfig(exiv2)
 BuildRequires: pkgconfig(xfixes) 
 
+BuildRequires: libkscreen-devel
+
 BuildRequires: qt5-qtx11extras-devel
 
 %description
