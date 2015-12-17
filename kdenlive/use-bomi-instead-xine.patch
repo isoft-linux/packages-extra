@@ -1,0 +1,28 @@
+diff -Nur kdenlive-15.12.0/src/dialogs/wizard.cpp kdenlive-15.12.0n/src/dialogs/wizard.cpp
+--- kdenlive-15.12.0/src/dialogs/wizard.cpp	2015-12-10 06:53:40.000000000 +0800
++++ kdenlive-15.12.0n/src/dialogs/wizard.cpp	2015-12-17 13:37:40.224057973 +0800
+@@ -525,10 +525,10 @@
+         } else item->setIcon(0, m_badIcon);
+     } else item->setIcon(0, m_okIcon);
+ 
+-    item = new QTreeWidgetItem(m_check.programList, QStringList() << QString() << i18n("xine"));
++    item = new QTreeWidgetItem(m_check.programList, QStringList() << QString() << i18n("bomi"));
+     item->setData(1, Qt::UserRole, i18n("Required to preview your DVD"));
+     item->setSizeHint(0, itemSize);
+-    if (QStandardPaths::findExecutable("xine").isEmpty()) {
++    if (QStandardPaths::findExecutable("bomi").isEmpty()) {
+         if (!QStandardPaths::findExecutable("vlc").isEmpty()) {
+             item->setText(1, i18n("vlc"));
+             item->setIcon(0, m_okIcon);
+diff -Nur kdenlive-15.12.0/src/dvdwizard/dvdwizard.cpp kdenlive-15.12.0n/src/dvdwizard/dvdwizard.cpp
+--- kdenlive-15.12.0/src/dvdwizard/dvdwizard.cpp	2015-12-10 06:53:40.000000000 +0800
++++ kdenlive-15.12.0n/src/dvdwizard/dvdwizard.cpp	2015-12-17 13:37:16.104056661 +0800
+@@ -852,7 +852,7 @@
+ void DvdWizard::slotPreview()
+ {
+     QStringList programNames;
+-    programNames << "xine" << "vlc";
++    programNames << "bomi" << "xine" << "vlc";
+     QString exec;
+     foreach(const QString &prog, programNames) {
+         exec = QStandardPaths::findExecutable(prog);
