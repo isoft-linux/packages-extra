@@ -1,7 +1,7 @@
 Name:    lokalize
 Summary: Computer-aided translation system
 Version: 15.12.0
-Release: 2
+Release: 3
 
 License: GPLv2+ and GFDL
 URL:     https://projects.kde.org/projects/kde/kdesdk/lokalize
@@ -13,6 +13,9 @@ URL:     https://projects.kde.org/projects/kde/kdesdk/lokalize
 %endif
 Source0: http://download.kde.org/%{stable}/applications/%{version}/src/%{name}-%{version}.tar.xz
 Patch0: lokalize-tune-desktop.patch
+
+#start lokalize, press "Open" from toolbar and open a po file, it will segfault.
+Patch1: always-add-mdi-window-first-to-avoid-crash.patch
 
 BuildRequires: cmake
 BuildRequires: desktop-file-utils
@@ -53,6 +56,7 @@ Computer-aided translation system focusing on productivity and performance
 %prep
 %setup -q
 %patch0 -p1
+%patch1 -p1
 
 %build
 mkdir %{_target_platform}
@@ -103,6 +107,9 @@ gtk-update-icon-cache %{_kf5_datadir}/icons/hicolor &> /dev/null || :
 
 
 %changelog
+* Fri Dec 18 2015 Cjacker <cjacker@foxmail.com> - 15.12.0-3
+- Fix open segfault
+
 * Thu Dec 17 2015 Cjacker <cjacker@foxmail.com> - 15.12.0-2
 - Update
 

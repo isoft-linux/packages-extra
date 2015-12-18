@@ -1,0 +1,12 @@
+diff -Nur lokalize-15.12.0/src/lokalizemainwindow.cpp lokalize-15.12.0n/src/lokalizemainwindow.cpp
+--- lokalize-15.12.0/src/lokalizemainwindow.cpp	2015-12-09 18:13:15.000000000 +0800
++++ lokalize-15.12.0n/src/lokalizemainwindow.cpp	2015-12-18 13:26:59.628997356 +0800
+@@ -269,7 +269,7 @@
+     EditorTab* w=new EditorTab(this);
+     QMdiSubWindow* sw=0;
+     //create QMdiSubWindow BEFORE fileOpen() because it causes some strange QMdiArea behaviour otherwise
+-    if (filePath.length())
++    //if (filePath.length())
+         sw=m_mdiArea->addSubWindow(w);
+ 
+     QString suggestedDirPath;
