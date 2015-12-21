@@ -26,6 +26,8 @@ BuildRequires: intltool
 BuildRequires: python-cheetah
 BuildRequires: pulseaudio-libs-devel
 BuildRequires: autoconf, automake, libtool
+#for MM_AX_CXX_COMPILE_STDCXX_11 macro
+BuildRequires: autoconf-archive
 
 Requires: dbus
 
