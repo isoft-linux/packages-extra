@@ -21,3 +21,15 @@ diff -Nur swift/utils/build-presets.ini swiftn/utils/build-presets.ini
  # Ubuntu 15.10 preset for backwards compat and future customizations.
  [preset: buildbot_linux_1510]
  mixin-preset=buildbot_linux
+diff -Nur swift/utils/build-presets.ini swiftn/utils/build-presets.ini
+--- swift/utils/build-presets.ini	2015-12-21 12:43:00.270824087 +0800
++++ swiftn/utils/build-presets.ini	2015-12-21 12:44:43.838822232 +0800
+@@ -452,7 +452,7 @@
+ 
+ # Executes the lit tests for the installable package that is created
+ # Assumes the swift-integration-tests repo is checked out
+-test-installable-package=1
++test-installable-package=0
+ 
+ # Path to the root of the installation filesystem.
+ install-destdir=%(install_destdir)s
