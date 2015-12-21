@@ -29,6 +29,7 @@ BuildRequires: pulseaudio-libs-devel
 BuildRequires: autoconf, automake, libtool
 #for MM_AX_CXX_COMPILE_STDCXX_11 macro
 BuildRequires: mm-common
+BuildRequires: GConf2-devel
 
 Requires: dbus
 
