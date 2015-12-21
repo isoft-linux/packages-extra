@@ -84,11 +84,10 @@ BuildRequires: libuuid-devel
 BuildRequires: libicu-devel
 BuildRequires: sqlite-devel
 
-#use external python-six
-BuildRequires: python-six
  
 #swift repl required.
 Requires: swift-lldb = %{lldb_ver}-%{release}
+
 
 %description
 Swift is a general-purpose programming language built using a modern approach to safety, performance, and software design patterns.
@@ -101,6 +100,8 @@ Most importantly, Swift is designed to make writing and maintaining correct prog
 Version: %{lldb_ver}
 Summary: LLDB is a next generation, high-performance debugger
 Requires: swift-liblldb = %{lldb_ver}-%{release}
+#use external python-six
+Requires: python-six
 Provides: lldb = %{lldb_ver}-%{release}
 
 %description -n swift-lldb
@@ -154,6 +155,9 @@ tar zxf %{_builddir}/swift-%{swift_ver}-%{release}-root/swift-%{swift_ver}-isoft
 
 #remove empty dir
 rm -rf %{buildroot}/usr/local
+
+#avoid conflict with python-six
+rm -rf %{buildroot}%{python_sitearch}/site-packages/six.*
 
 %post -n swift-liblldb -p /sbin/ldconfig
 %postun -n swift-liblldb -p /sbin/ldconfig
