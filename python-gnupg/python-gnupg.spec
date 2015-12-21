@@ -1,8 +1,7 @@
 Name:           python-gnupg
 Version:        0.3.7
-Release:        3%{?dist}
+Release:        4%{?dist}
 Summary:        Python module for GnuPG
-Group:          Development/Languages
 License:        BSD
 URL:            http://pythonhosted.org/python-gnupg/
 Source0:        https://pypi.python.org/packages/source/p/%{name}/%{name}-%{version}.tar.gz
@@ -29,6 +28,9 @@ GnuPG bindings for python. This uses the gpg command.
 %{python_sitelib}/python_gnupg-%{version}-py*.egg-info
 
 %changelog
+* Mon Dec 21 2015 sulit <sulitsrc@gmail.com> - 0.3.7-4
+- Remove Group info
+
 * Thu Dec 03 2015 sulit <sulitsrc@gmail.com> - 0.3.7-3
 - Init for isoft4
 

@@ -2,10 +2,8 @@
 
 Name:       miniz
 Version:    1.15
-Release:    2.%{miniz_revision}
-#%{?dist}
+Release:    3.%{miniz_revision}%{?dist}
 Summary:    Compression library implementing the zlib and Deflate
-Group:      System Environment/Libraries
 License:    Unlicense
 URL:        https://code.google.com/p/%{name}/
 Source0:    https://%{name}.googlecode.com/files/%{name}_v%(echo '%{version}' | tr -d .)_%{miniz_revision}.7z
@@ -23,7 +21,6 @@ been tuned to be comparable to zlib's, and it also has a specialized real-time
 compressor function designed to compare well against fastlz/minilzo.
 
 %package devel
-Group:      Development/Libraries
 Summary:    Development files for the %{name} library
 Requires:   %{name}%{?_isa} = %{version}-%{release}
 Requires:   glibc-headers%{?_isa}
@@ -82,3 +79,6 @@ install -m 0644 %{name}.h '%{buildroot}/%{_includedir}'
 
 
 %changelog
+* Mon Dec 21 2015 sulit <sulitsrc@gmail.com> - 1.15-3.r4
+- Remove Group info
+

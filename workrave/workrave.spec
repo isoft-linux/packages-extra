@@ -1,10 +1,9 @@
 %define rel 1_10_8
 Name: workrave
 Version: 1.10
-Release: 2%{?dist}
+Release: 3%{?dist}
 Summary: Program that assists in the recovery and prevention of RSI
 License: GPLv3+
-Group: Applications/Productivity
 URL: http://www.workrave.org/
 # https://github.com/rcaelers/workrave
 Source0: workrave-%{rel}.tar.gz
@@ -103,6 +102,9 @@ desktop-file-install \
 %{_libdir}/libworkrave-private-1.0.so
 
 %changelog
+* Mon Dec 21 2015 sulit <sulitsrc@gmail.com> - 1.10-3
+- Remove Group info
+
 * Thu Nov 26 2015 Cjacker <cjacker@foxmail.com> - 1.10-2
 - Initial build
 

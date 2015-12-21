@@ -1,6 +1,6 @@
 Name: libasyncns
 Version: 0.8
-Release: 10%{?dist}
+Release: 11%{?dist}
 Summary: Asynchronous Name Service Library
 Source0: http://0pointer.de/lennart/projects/libasyncns/libasyncns-%{version}.tar.gz
 License: LGPLv2+
@@ -13,7 +13,6 @@ wrappers around the libc NSS functions getaddrinfo(), res_query() and related.
 
 %package devel
 Summary: Development Files for libasyncns Client Development
-Group: Development/Libraries
 Requires: %{name} = %{version}-%{release}
 Requires: pkgconfig
 
@@ -51,6 +50,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/pkgconfig/libasyncns.pc
 
 %changelog
+* Mon Dec 21 2015 sulit <sulitsrc@gmail.com> - 0.8-11
+- Remove Group info
+
 * Thu Dec 03 2015 sulit <sulitsrc@gmail.com> - 0.8-10
 - Init for isoft4
 

@@ -7,8 +7,7 @@
 Name: freetds
 Summary: Implementation of the TDS (Tabular DataStream) protocol
 Version: 0.95.19
-Release: 2%{?dist}
-Group: System Environment/Libraries
+Release: 3%{?dist}
 License: LGPLv2+ and GPLv2+
 URL: http://www.freetds.org/
 
@@ -37,7 +36,6 @@ level interfaces for DB-Lib, CT-Lib, and ODBC.
 
 %package devel
 Summary: Header files and development libraries for %{name}
-Group: Development/Libraries
 Requires: %{name} = %{version}-%{release}
 
 %description devel
@@ -48,7 +46,6 @@ to install %{name}-devel.
 
 %package doc
 Summary: Development documentation for %{name}
-Group: Documentation
 BuildArch: noarch
 
 %description doc
@@ -143,6 +140,9 @@ rm -rf $RPM_BUILD_ROOT
  
 
 %changelog
+* Mon Dec 21 2015 sulit <sulitsrc@gmail.com> - 0.95.19-3
+- remove Group info
+
 * Wed Oct 28 2015 Cjacker <cjacker@foxmail.com> - 0.95.19-2
 - Initial build
 

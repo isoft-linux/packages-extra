@@ -1,9 +1,8 @@
 Name:           makeself
 Version:        2.2.0
-Release:        5%{?dist}
+Release:        6%{?dist}
 BuildArch:      noarch
 Summary:        Make self-extractable archives on Unix
-Group:          Development/Tools
 
 License:        GPLv2+
 URL:            http://www.megastep.org/makeself/
@@ -53,6 +52,9 @@ install -p -m644 makeself.1.gz %{buildroot}%{_mandir}/man1/
 
 
 %changelog
+* Mon Dec 21 2015 sulit <sulitsrc@gmail.com> - 2.2.0-6
+- Remove Group info
+
 * Thu Dec 10 2015 sulit <sulitsrc@gmail.com> - 2.2.0-5
 - Init for isoft4
 

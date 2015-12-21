@@ -2,7 +2,7 @@
 Summary: Off-The-Record Messaging library and toolkit
 Name: libotr
 Version: 4.1.0
-Release: 4%{?dist}
+Release: 5%{?dist}
 License: GPLv2 and LGPLv2
 Source0: http://otr.cypherpunks.ca/%{name}-%{version}.tar.gz
 Url: http://otr.cypherpunks.ca/
@@ -24,7 +24,6 @@ Authentication, Deniability and Perfect forward secrecy.
 
 %package devel
 Summary: Development library and include files for libotr
-Group: Development/Libraries
 Requires: %{name} = %{version}-%{release}, libgcrypt-devel >= 1.2.0
 Conflicts: libotr3-devel
 
@@ -79,6 +78,9 @@ rm -rf $RPM_BUILD_ROOT
 
 
 %changelog
+* Mon Dec 21 2015 sulit <sulitsrc@gmail.com> - 4.1.0-5
+- Remove Group info
+
 * Thu Dec 03 2015 sulit <sulitsrc@gmail.com> - 4.1.0-4
 - update release
 

@@ -5,9 +5,8 @@ Name:		gajim
 %global		majorver 0.16
 #global		prever -rcX
 Version:	0.16.4
-Release:	6%{?dist}
+Release:	7%{?dist}
 License:	GPLv3
-Group:		Applications/Internet
 URL:		http://gajim.org/
 Source0:	http://gajim.org/downloads/%{majorver}/%{name}-%{version}%{?prever}.tar.bz2
 BuildArch:	noarch
@@ -119,6 +118,9 @@ gtk-update-icon-cache %{_datadir}/icons/hicolor &>/dev/null || :
 %{_datadir}/%{name}/src
 
 %changelog
+* Mon Dec 21 2015 sulit <sulitsrc@gmail.com> - 0.16.4-7
+- remove Group info
+
 * Mon Dec 07 2015 sulit <sulitsrc@gmail.com> - 0.16.4-6
 - modify "Requires: gstreamer-python" to "Requires: gstreamer0-python"
 

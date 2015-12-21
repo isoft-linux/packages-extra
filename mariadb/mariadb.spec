@@ -95,11 +95,10 @@
 
 Name:             mariadb
 Version:          %{compatver}.%{bugfixver}
-Release:          3%{?with_debug:.debug}%{?dist}
+Release:          4%{?with_debug:.debug}%{?dist}
 Epoch:            1
 
 Summary:          A community developed branch of MySQL
-Group:            Applications/Databases
 URL:              http://mariadb.org
 # Exceptions allow client libraries to be linked with most open source SW,
 # not only GPL code.  See README.mysql-license
@@ -206,7 +205,6 @@ contains the standard MariaDB/MySQL client programs and generic MySQL files.
 %if %{with clibrary}
 %package          libs
 Summary:          The shared libraries required for MariaDB/MySQL clients
-Group:            Applications/Databases
 Requires:         %{name}-common%{?_isa} = %{sameevr}
 %if %{with mysql_names}
 Provides:         mysql-libs = %{sameevr}
@@ -226,7 +224,6 @@ to a MariaDB/MySQL server. MariaDB is a community developed branch of MySQL.
 %if %{with config}
 %package          config
 Summary:          The config files required by server and client
-Group:            Applications/Databases
 
 %description      config
 The package provides the config file my.cnf and my.cnf.d directory used by any
@@ -239,7 +236,6 @@ package itself.
 %if %{with common}
 %package          common
 Summary:          The shared files required by server and client
-Group:            Applications/Databases
 Requires:         %{_sysconfdir}/my.cnf
 
 %description      common
@@ -251,7 +247,6 @@ You will need to install this package to use any other MariaDB package.
 %if %{with errmsg}
 %package          errmsg
 Summary:          The error messages files required by server and embedded
-Group:            Applications/Databases
 Requires:         %{name}-common%{?_isa} = %{sameevr}
 
 %description      errmsg
@@ -263,7 +258,6 @@ MariaDB packages.
 
 %package          server
 Summary:          The MariaDB server and related files
-Group:            Applications/Databases
 
 # note: no version here = %%{version}-%%{release}
 %if %{with mysql_names}
@@ -311,7 +305,6 @@ MariaDB is a community developed branch of MySQL.
 %if %{with oqgraph}
 %package          oqgraph-engine
 Summary:          The Open Query GRAPH engine for MariaDB
-Group:            Applications/Databases
 Requires:         %{name}-server%{?_isa} = %{sameevr}
 # boost and Judy required for oograph
 BuildRequires:    boost-devel
@@ -329,7 +322,6 @@ standard SQL syntax, and results joined onto other tables.
 %if %{with connect}
 %package          connect-engine
 Summary:          The CONNECT storage engine for MariaDB
-Group:            Applications/Databases
 Requires:         %{name}-server%{?_isa} = %{sameevr}
 
 %description      connect-engine
@@ -344,7 +336,6 @@ or products (such as Excel), or data retrieved from the environment
 %if %{with devel}
 %package          devel
 Summary:          Files for development of MariaDB/MySQL applications
-Group:            Applications/Databases
 %{?with_clibrary:Requires:         %{name}-libs%{?_isa} = %{sameevr}}
 Requires:         openssl-devel%{?_isa}
 %if %{with mysql_names}
@@ -366,7 +357,6 @@ MariaDB is a community developed branch of MySQL.
 %if %{with embedded}
 %package          embedded
 Summary:          MariaDB as an embeddable library
-Group:            Applications/Databases
 Requires:         %{name}-common%{?_isa} = %{sameevr}
 Requires:         %{name}-errmsg%{?_isa} = %{sameevr}
 %if %{with mysql_names}
@@ -385,7 +375,6 @@ MariaDB is a community developed branch of MySQL.
 
 %package          embedded-devel
 Summary:          Development files for MariaDB as an embeddable library
-Group:            Applications/Databases
 Requires:         %{name}-embedded%{?_isa} = %{sameevr}
 Requires:         %{name}-devel%{?_isa} = %{sameevr}
 %if %{with mysql_names}
@@ -407,7 +396,6 @@ MariaDB is a community developed branch of MySQL.
 %if %{with bench}
 %package          bench
 Summary:          MariaDB benchmark scripts and data
-Group:            Applications/Databases
 Requires:         %{name}%{?_isa} = %{sameevr}
 %if %{with mysql_names}
 Provides:         mysql-bench = %{sameevr}
@@ -428,7 +416,6 @@ MariaDB is a community developed branch of MySQL.
 %if %{with test}
 %package          test
 Summary:          The test suite distributed with MariaD
-Group:            Applications/Databases
 Requires:         %{name}%{?_isa} = %{sameevr}
 Requires:         %{name}-common%{?_isa} = %{sameevr}
 Requires:         %{name}-server%{?_isa} = %{sameevr}
@@ -1121,6 +1108,9 @@ fi
 %endif
 
 %changelog
+* Mon Dec 21 2015 sulit <sulitsrc@gmail.com> - 1:10.0.21-4
+- Remove Group info
+
 * Thu Oct 29 2015 Cjacker <cjacker@foxmail.com> - 1:10.0.21-3
 - Initial build, package come from fedora
 

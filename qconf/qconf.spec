@@ -1,10 +1,9 @@
 Summary:        Tool for generating configure script for qmake-based projects
 Name:           qconf
 Version:        1.4
-Release:        3%{?dist}
+Release:        4%{?dist}
 Epoch:          1
 
-Group:          Development/Tools
 License:        GPLv2+ with exceptions
 URL:            http://delta.affinix.com/qconf/
 Source0:        http://delta.affinix.com/download/qconf-%{version}.tar.bz2
@@ -56,5 +55,8 @@ make INSTALL_ROOT=%{buildroot} install
 
 
 %changelog
+* Mon Dec 21 2015 sulit <sulitsrc@gmail.com> - 1:1.4-4
+- Remove Group info
+
 * Wed Dec 02 2015 sulit <sulitsrc@gmail.com> - 1:1.4-3
 - rebuilt

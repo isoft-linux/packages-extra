@@ -2,7 +2,7 @@
 
 Name:           transmission
 Version:        2.84
-Release:        10%{?dist}
+Release:        11%{?dist}
 Summary:        A lightweight GTK+ BitTorrent client
 
 # See COPYING. This licensing situation is... special.
@@ -35,7 +35,6 @@ back-end.
 
 %package common
 Summary:       Transmission common files
-Group:         Applications/Internet
 Conflicts:     transmission < 1.80-0.3.b4
 %description common
 Common files for Transmission BitTorrent client sub-packages. It includes 
@@ -44,7 +43,6 @@ transmission-edit, transmission-show utilities.
 
 %package cli
 Summary:       Transmission command line implementation
-Group:         Applications/Internet
 Requires:      transmission-common
 Provides:      transmission = %{version}-%{release}
 %description cli
@@ -52,7 +50,6 @@ Command line version of Transmission BitTorrent client.
 
 %package daemon
 Summary:       Transmission daemon
-Group:         Applications/Internet
 Requires:      transmission-common
 Requires(pre): shadow-utils
 Requires(post): systemd
@@ -65,7 +62,6 @@ Transmission BitTorrent client daemon.
 
 %package gtk
 Summary:       Transmission GTK interface
-Group:         Applications/Internet
 Requires:      transmission-common
 Provides:      transmission = %{version}-%{release}
 
@@ -74,7 +70,6 @@ GTK graphical interface of Transmission BitTorrent client.
 
 %package qt
 Summary:       Transmission Qt interface
-Group:         Applications/Internet
 Requires:      transmission-common
 
 %description qt
@@ -247,6 +242,9 @@ fi
 %doc %{_mandir}/man1/transmission-qt.*
 
 %changelog
+* Mon Dec 21 2015 sulit <sulitsrc@gmail.com> - 2.84-11
+- Remove Group info
+
 * Thu Dec 03 2015 sulit <sulitsrc@gmail.com> - 2.84-10
 - update release
 
