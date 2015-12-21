@@ -1,11 +1,13 @@
 Name: emacs-swift-mode
 Version: 0.3.0
-Release: 2 
+Release: 4 
 Summary: A major Emacs mode for editing Swift source code
 License: GPL
 # https://github.com/chrisbarrett/swift-mode
 Source0: swift-mode.tar.gz 
 Source1: swift-mode-init.el
+
+Patch0: swift-mode-no-xcrun.patch
 
 BuildRequires:emacs
 Requires: emacs
@@ -17,6 +19,7 @@ BuildArch: noarch
 
 %prep
 %setup -n swift-mode
+%patch0 -p1
 
 %install
 mkdir -p $RPM_BUILD_ROOT/%{_datadir}/emacs/site-lisp/site-start.d
@@ -56,6 +59,12 @@ fi ||:
 %{_datadir}/emacs/site-lisp/site-start.d/*.el
 
 %changelog
+* Sat Dec 19 2015 Cjacker <cjacker@foxmail.com> - 0.3.0-4
+- No xcrun under linux
+
+* Sat Dec 19 2015 Cjacker <cjacker@foxmail.com> - 0.3.0-3
+- rebuilt
+
 * Mon Dec 07 2015 Cjacker <cjacker@foxmail.com> - 0.3.0-2
 - Initial build
 

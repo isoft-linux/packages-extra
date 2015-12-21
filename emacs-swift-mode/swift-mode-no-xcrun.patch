@@ -1,0 +1,12 @@
+diff -Nur swift-mode/swift-mode.el swift-moden/swift-mode.el
+--- swift-mode/swift-mode.el	2015-12-07 15:36:12.000000000 +0800
++++ swift-moden/swift-mode.el	2015-12-19 23:32:37.315902019 +0800
+@@ -63,7 +63,7 @@
+   :package-version '(swift-mode "0.4.0"))
+ 
+ (defcustom swift-repl-executable
+-  "xcrun swift"
++  "swift"
+   "Path to the Swift CLI."
+   :group 'swift)
+ 
