@@ -20,6 +20,7 @@ BuildRequires: libXmu-devel
 BuildRequires: libXt-devel
 BuildRequires: libXtst-devel
 BuildRequires: libXScrnSaver-devel
+BuildRequires: libSM-devel libICE-devel
 BuildRequires: dbus-devel
 BuildRequires: gstreamer-devel
 BuildRequires: intltool
