@@ -1,0 +1,23 @@
+--- rsibreaknn/src/setup.cpp	2015-12-19 14:56:34.784962236 +0800
++++ rsibreak/src/setup.cpp	2015-12-19 15:18:11.755939010 +0800
+@@ -72,15 +72,16 @@
+     connect(d->generalPage, &SetupGeneral::useIdleTimerChanged, d->maximizedPage, &SetupMaximized::slotSetUseIdleTimer);
+     d->maximizedPage->slotSetUseIdleTimer(d->generalPage->useIdleTimer());
+ 
+-    KConfigGroup config = KSharedConfig::openConfig()->group( "SetupDimensions" );
+-    KWindowConfig::restoreWindowSize( windowHandle(), config );
++    setMinimumSize(670, 550);
+     show();
++    //KConfigGroup config = KSharedConfig::openConfig()->group( "SetupDimensions" );
++    //KWindowConfig::restoreWindowSize( windowHandle(), config );
+ }
+ 
+ Setup::~Setup()
+ {
+-    KConfigGroup config = KSharedConfig::openConfig()->group( "SetupDimensions" );
+-    KWindowConfig::saveWindowSize( windowHandle(), config );
++    //KConfigGroup config = KSharedConfig::openConfig()->group( "SetupDimensions" );
++    //KWindowConfig::saveWindowSize( windowHandle(), config );
+     delete d;
+ }
+ 

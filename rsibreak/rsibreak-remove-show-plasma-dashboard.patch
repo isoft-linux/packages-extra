@@ -1,0 +1,55 @@
+Binary files rsibreak/.git/index and rsibreakfix/.git/index differ
+diff -Nur rsibreak/src/setupmaximized.cpp rsibreakfix/src/setupmaximized.cpp
+--- rsibreak/src/setupmaximized.cpp	2015-12-19 13:17:39.000000000 +0800
++++ rsibreakfix/src/setupmaximized.cpp	2015-12-19 15:27:44.516928753 +0800
+@@ -89,7 +89,7 @@
+         d->effectBox->addItem( i18n( "Simple Gray Effect" ), QVariant( RSIObject::SimpleGray ) );
+     else
+         d->effectBox->addItem( i18n( "Complete Black Effect" ), QVariant( RSIObject::SimpleGray ) );
+-    d->effectBox->addItem( i18n( "Show Plasma Dashboard" ), QVariant( RSIObject::Plasma ) );
++    //d->effectBox->addItem( i18n( "Show Plasma Dashboard" ), QVariant( RSIObject::Plasma ) );
+     d->effectBox->addItem( i18n( "Show Slide Show of Images" ), QVariant( RSIObject::SlideShow ) );
+     d->effectBox->addItem( i18n( "Show a Passive Popup" ), QVariant( RSIObject::Popup ) );
+     d->effectLabel->setBuddy( d->effectBox );
+diff -Nur rsibreak/src/rsiwidget.cpp rsibreakn/src/rsiwidget.cpp
+--- rsibreak/src/rsiwidget.cpp	2015-12-19 13:17:39.000000000 +0800
++++ rsibreakn/src/rsiwidget.cpp	2015-12-19 15:53:10.361901428 +0800
+@@ -245,11 +245,6 @@
+ 
+     delete m_effect;
+     switch ( effect ) {
+-    case Plasma: {
+-        m_effect = new PlasmaEffect( 0 );
+-        m_effect->setReadOnly( m_usePlasmaRO );
+-        break;
+-    }
+     case SlideShow: {
+         SlideEffect* slide = new SlideEffect( 0 );
+         slide->reset( path, recursive, showSmallImages, slideInterval );
+diff -Nur rsibreak/src/rsiwidget.h rsibreakn/src/rsiwidget.h
+--- rsibreak/src/rsiwidget.h	2015-12-19 13:17:39.000000000 +0800
++++ rsibreakn/src/rsiwidget.h	2015-12-19 15:52:42.592901925 +0800
+@@ -41,7 +41,7 @@
+ 
+ public:
+ 
+-    enum Effects {  SimpleGray = 0, Plasma, SlideShow, Popup };
++    enum Effects {  SimpleGray = 0, SlideShow, Popup };
+ 
+     /**
+      * Constructor
+diff -Nur rsibreak/src/setupmaximized.cpp rsibreakn/src/setupmaximized.cpp
+--- rsibreak/src/setupmaximized.cpp	2015-12-19 15:54:09.906900361 +0800
++++ rsibreakn/src/setupmaximized.cpp	2015-12-19 15:53:44.489900816 +0800
+@@ -277,11 +277,6 @@
+         d->plasmaBox->setVisible( false );
+         d->grayBox->setVisible( false );
+         break;
+-    case RSIObject::Plasma:
+-        d->slideshowBox->setVisible( false );
+-        d->plasmaBox->setVisible( true );
+-        d->grayBox->setVisible( false );
+-        break;
+     case RSIObject::SimpleGray:
+         d->slideshowBox->setVisible( false );
+         d->plasmaBox->setVisible( false );

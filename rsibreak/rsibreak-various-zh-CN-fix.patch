@@ -1,0 +1,37 @@
+Binary files rsibreak/.git/index and rsibreakfix/.git/index differ
+diff -Nur rsibreak/src/rsibreak.desktop rsibreakfix/src/rsibreak.desktop
+--- rsibreak/src/rsibreak.desktop	2015-12-19 13:17:39.000000000 +0800
++++ rsibreakfix/src/rsibreak.desktop	2015-12-19 14:45:44.671973878 +0800
+@@ -88,5 +88,5 @@
+ Comment[tr]=Şimdi ve sonrasında dinlenmenizi sağlar
+ Comment[uk]=Переконується, що ви відпочиваєте від комп’ютера
+ Comment[x-test]=xxMakes sure you rest now and thenxx
+-Comment[zh_CN]=请确保从现在开始您会休息一下
++Comment[zh_CN]=确保您工作时偶尔会休息一下
+ Comment[zh_TW]=確定您偶而會休息一下
+diff -Nur rsibreak/src/rsibreak.notifyrc rsibreakfix/src/rsibreak.notifyrc
+--- rsibreak/src/rsibreak.notifyrc	2015-12-19 13:17:39.000000000 +0800
++++ rsibreakfix/src/rsibreak.notifyrc	2015-12-19 14:44:39.299975049 +0800
+@@ -450,6 +450,7 @@
+ Name[tr]=Zamanlayıcılar hakkında
+ Name[uk]=Відповідні таймери
+ Name[x-test]=xxRegarding timersxx
++Name[zh_CN]=计时器
+ Name[zh_TW]=關於計時器
+ 
+ [Event/short timer reset]
+@@ -484,6 +485,7 @@
+ Name[tr]=Kısa bir gerisayım bittiğinde
+ Name[uk]=Коли короткому таймеру буде надано нульове значення
+ Name[x-test]=xxWhen the short timer has been resetxx
++Name[zh_CN]=当短计时器被重置时
+ Name[zh_TW]=當短計時器被重置時
+ 
+ [Event/timers reset]
+@@ -517,5 +519,6 @@
+ Name[tr]=Zamanlayıcılar sıfırlandığında
+ Name[uk]=Коли таймерам буде надано нульових значень
+ Name[x-test]=xxWhen the timers have been resetxx
++Name[zh_CN]=当计时器被重置时
+ Name[zh_TW]=當計時器被重置時
+ 

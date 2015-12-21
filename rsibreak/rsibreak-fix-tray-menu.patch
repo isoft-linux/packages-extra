@@ -1,0 +1,23 @@
+Binary files rsibreak/.git/index and rsibreakn/.git/index differ
+diff -Nur rsibreak/src/rsidock.cpp rsibreakn/src/rsidock.cpp
+--- rsibreak/src/rsidock.cpp	2015-12-19 13:17:39.000000000 +0800
++++ rsibreakn/src/rsidock.cpp	2015-12-19 15:21:52.652935054 +0800
+@@ -73,14 +73,14 @@
+     m_help = new KHelpMenu( 0, aboutData );
+ 
+     QMenu* menu = contextMenu();
+-    doAddAction( menu, QIcon::fromTheme( "kde" ), i18n( "About &KDE" ), m_help, &KHelpMenu::aboutKDE );
+-    doAddAction( menu, i18n( "&About RSIBreak" ), m_help, &KHelpMenu::aboutApplication );
++ //   doAddAction( menu, QIcon::fromTheme( "kde" ), i18n( "About &KDE" ), m_help, &KHelpMenu::aboutKDE );
++    doAddAction( menu, SmallIcon( "rsibreak" ), i18n( "&About RSIBreak" ), m_help, &KHelpMenu::aboutApplication );
+     doAddAction( menu, QIcon::fromTheme( "help-contents" ), i18n( "RSIBreak &Handbook" ), m_help, &KHelpMenu::appHelpActivated );
+ 
+-    menu->addSeparator();
++/*    menu->addSeparator();
+     doAddAction( menu, QIcon::fromTheme( "tools-report-bug" ), i18n( "&Report Bug..." ), m_help, &KHelpMenu::reportBug );
+     doAddAction( menu, i18n( "Switch application &language..." ), m_help, &KHelpMenu::switchApplicationLanguage );
+-
++*/
+     menu->addSeparator();
+     m_suspendItem = doAddAction(menu, SmallIcon( "media-playback-pause" ), i18n( "&Suspend RSIBreak" ), this, &RSIDock::slotSuspend );
+     doAddAction(menu, SmallIcon( "view-statistics" ), i18n( "&Usage Statistics" ), this, &RSIDock::slotShowStatistics );

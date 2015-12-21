@@ -1,0 +1,53 @@
+diff -Nur rsibreak/CMakeLists.txt rsibreaknn/CMakeLists.txt
+--- rsibreak/CMakeLists.txt	2015-12-19 13:17:39.000000000 +0800
++++ rsibreaknn/CMakeLists.txt	2015-12-19 14:56:45.638962042 +0800
+@@ -32,5 +32,6 @@
+ add_subdirectory( icons )
+ add_subdirectory( doc )
+ add_subdirectory( src )
++add_subdirectory( sounds )
+ 
+ feature_summary(WHAT ALL INCLUDE_QUIET_PACKAGES FATAL_ON_MISSING_REQUIRED_PACKAGES)
+diff -Nur rsibreak/src/rsibreak.notifyrc rsibreaknn/src/rsibreak.notifyrc
+--- rsibreak/src/rsibreak.notifyrc	2015-12-19 14:56:29.107962338 +0800
++++ rsibreaknn/src/rsibreak.notifyrc	2015-12-19 14:59:22.007959241 +0800
+@@ -87,7 +87,8 @@
+ 
+ [Event/start short break]
+ Contexts=breaks
+-Action=None
++Action=Sound
++Sound=rsibreak/short-break-start.ogg
+ Name=Start of a short break
+ Name[be]=Пачатак кароткага перапынку
+ Name[bg]=Начало на кратка почивка
+@@ -171,7 +172,8 @@
+ 
+ [Event/end short break]
+ Contexts=breaks
+-Action=None
++Action=Sound
++Sound=rsibreak/short-break-end.ogg
+ Name=End of a short break
+ Name[be]=Канчатак кароткага перапынку
+ Name[bg]=Край на кратка почивка
+@@ -255,7 +257,8 @@
+ 
+ [Event/start long break]
+ Contexts=breaks
+-Action=None
++Action=Sound
++Sound=rsibreak/long-break-start.ogg
+ Name=Start of a long break
+ Name[be]=Пачатак доўгага перапынку
+ Name[bg]=Начало на дълга почивка
+@@ -339,7 +342,8 @@
+ 
+ [Event/end long break]
+ Contexts=breaks
+-Action=None
++Action=Sound
++Sound=rsibreak/long-break-end.ogg
+ Name=End of a long break
+ Name[be]=Канчатак доўгага перапынку
+ Name[bg]=Край на дълга почивка
