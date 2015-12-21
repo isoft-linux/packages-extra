@@ -11,7 +11,7 @@
 
 Name: swift
 Version: %{swift_ver}
-Release: 19.git%{gitdate}
+Release: 20.git%{gitdate}
 Summary: Swift Programming Language 
 
 License: Apache 2.0 license with a Runtime Library Exception 
@@ -83,6 +83,9 @@ BuildRequires: zlib-devel
 BuildRequires: libuuid-devel
 BuildRequires: libicu-devel
 BuildRequires: sqlite-devel
+
+#use external python-six
+BuildRequires: python-six
  
 #swift repl required.
 Requires: swift-lldb = %{lldb_ver}-%{release}
@@ -167,6 +170,8 @@ rm -rf %{buildroot}/usr/local
 %{_libdir}/swift/*
 %dir %{_libdir}/swift_static
 %{_libdir}/swift_static/*
+%dir %{_datadir}/swift 
+%{_datadir}/swift/LICENSE.txt
 %{_mandir}/man1/swift.1*
 
 %files -n swift-lldb
@@ -193,6 +198,9 @@ rm -rf %{buildroot}/usr/local
 %{_includedir}/lldb
 
 %changelog
+* Mon Dec 21 2015 Cjacker <cjacker@foxmail.com> - 2.2-20.git20151221
+- Rebuild
+
 * Mon Dec 21 2015 Cjacker <cjacker@foxmail.com> - 2.2-19.git20151221
 - Regular update
 
