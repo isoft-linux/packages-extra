@@ -1,9 +1,8 @@
 Summary: Share mouse and keyboard between multiple computers over the network
 Name: synergy
 Version: 1.6.2
-Release: 2
+Release: 3
 License: GPLv2
-Group: System Environment/Daemons
 URL: http://synergy-foss.org/
 Source: https://github.com/synergy/synergy/archive/%{version}.tar.gz
 
@@ -85,6 +84,9 @@ desktop-file-validate %{buildroot}/%{_datadir}/applications/synergy.desktop
 %{_mandir}/man8/synergys.8*
 
 %changelog
+* Mon Dec 21 2015 xiaotian.wu@i-soft.com.cn - 1.6.2-3
+- remove group.
+
 * Wed Nov 25 2015 xiaotian.wu@i-soft.com.cn - 1.6.2-2
 - rebuilt
 
