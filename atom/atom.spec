@@ -2,7 +2,7 @@
 %define debug_package %{nil}
 
 Name: atom 
-Version: 1.3.0
+Version: 1.3.2
 Release: 2
 Summary: A hackable text editor for the 21st Century.
 
@@ -54,6 +54,9 @@ gtk-update-icon-cache %{_datadir}/icons/hicolor &>/dev/null || :
 %{_datadir}/icons/hicolor/*/apps/*
 
 %changelog
+* Sat Dec 19 2015 Cjacker <cjacker@foxmail.com> - 1.3.2-2
+- Update
+
 * Sat Dec 12 2015 Cjacker <cjacker@foxmail.com> - 1.3.0-2
 - Create package
 
