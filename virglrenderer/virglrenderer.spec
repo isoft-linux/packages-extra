@@ -1,7 +1,7 @@
 %global debug_package %{nil}
 Name:		virglrenderer
 Version:	0.3.0
-Release:	2.git
+Release:	3.git
 
 Summary:	Virgl Rendering library.
 License:	MIT
@@ -72,6 +72,9 @@ find %{buildroot} -type f -name '*.la' | xargs rm -f -- || :
 %{_bindir}/virgl_test_server
 
 %changelog
+* Tue Dec 22 2015 Cjacker <cjacker@foxmail.com> - 0.3.0-3.git
+- update
+
 * Wed Dec 16 2015 Cjacker <cjacker@foxmail.com> - 0.3.0-2.git
 - Initial build
 
