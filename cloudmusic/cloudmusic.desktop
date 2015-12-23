@@ -1,0 +1,13 @@
+[Desktop Entry]
+Name=Netease Cloud Music
+GenericName=Netease Cloud Music
+Comment=Play music online
+Name[zh_CN]=网易云音乐
+GenericName[zh_CN]=网易云音乐
+Comment[zh_CN]=在线播放音乐
+Exec=cloudmusic
+Icon=cloudmusic
+StartupNotify=false
+Terminal=false
+Type=Application
+Categories=Qt;AudioVideo;Player;Audio;

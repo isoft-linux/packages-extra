@@ -1,0 +1,27 @@
+#!/bin/bash
+if [ ! -d $HOME/.local ]; then
+  mkdir -p $HOME/.local
+fi
+
+#detect whether it's outdated or not.
+if [ -d $HOME/.local/cloudmusic ]; then
+  LOCALVER=`cat $HOME/.local/cloudmusic/ver`
+  NEWVER=`cat /usr/share/cloudmusic/ver`
+  if [ "$LOCALVER"x != "$NEWVER"x ]; then
+    rm -rf $HOME/.local/cloudmusic
+  fi
+fi
+
+if [ ! -d $HOME/.local/cloudmusic ]; then
+  /bin/cp -r /usr/share/cloudmusic $HOME/.local/
+fi
+
+if [ ! -f $HOME/.local/cloudmusic/info ]; then 
+  kdialog -title "Wine 网易云音乐" -msgbox "<p>这是普华使用<b>Wine技术模拟运行的Windows 网易云音乐</b><br></p>网易云音乐是一款非常优秀的带有社交属性的音乐播放软件，很遗憾的是官方并没有提供Linux版本，为了您的使用便利，我们使用wine技术进行了跨平台移植，在使用过程中某些功能可能存在一些问题，请谅解。<br><p align="right">— 普华基础软件股份有限公司</p>"
+  touch $HOME/.local/cloudmusic/info
+fi
+
+pushd $HOME/.local/cloudmusic
+./cloudmusic
+popd
+
