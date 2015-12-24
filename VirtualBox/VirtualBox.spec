@@ -19,7 +19,7 @@
 Summary:   Oracle VM VirtualBox
 Name:      VirtualBox
 Version:   5.0.10
-Release:   3
+Release:   4
 URL:       http://www.virtualbox.org/
 Source:    http://download.virtualbox.org/virtualbox/5.0.10/%{name}-%{version}.tar.bz2
 Patch0:    skip_gcc_version_check.patch
@@ -70,6 +70,7 @@ Requires: dkms-%{name}
 Requires(post): systemd-units
 Requires(preun): systemd-units
 Requires(postun): systemd-units
+Requires: kernel-headers
 
 # Plague-specific weirdness
 ExclusiveArch:  x86_64
@@ -187,6 +188,21 @@ if [ -d ExtensionPacks/VNC ]; then
   mv ExtensionPacks/VNC $RPM_BUILD_ROOT/usr/lib/virtualbox/ExtensionPacks
 fi
 mv VBoxTunctl $RPM_BUILD_ROOT/usr/bin
+cat >> $RPM_BUILD_ROOT/sbin/vboxconfig << EOF
+#!/bin/sh
+
+name=%{name}
+version=%{version}
+
+dkms add -m \$name -v \$version
+dkms build -m \$name -v \$version
+dkms install -m \$name -v \$version --force
+/sbin/depmod -a
+/sbin/modprobe -a vboxdrv vboxnetadp vboxnetflt vboxpci
+EOF
+
+chmod 755 $RPM_BUILD_ROOT/sbin/vboxconfig
+
 # %if %{?is_ose:0}%{!?is_ose:1}
 %if 0
 for d in /lib/modules/*; do
@@ -462,6 +478,10 @@ rm -rf $RPM_BUILD_ROOT
 /usr/src/%{name}-%{version}
 
 %changelog
+* Thu Dec 24 2015 sulit <sulitsrc@gmail.com> - 5.0.10-4
+- add /sbin/vboxconfig file
+- add requires kernel-headers
+
 * Mon Dec 14 2015 sulit <sulitsrc@gmail.com> - 5.0.10-3
 - redirect output to /dev/null and add wait note
 - enable kernel default load vbox*.ko
