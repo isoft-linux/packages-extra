@@ -19,7 +19,7 @@
 Summary:   Oracle VM VirtualBox
 Name:      VirtualBox
 Version:   5.0.10
-Release:   4
+Release:   5
 URL:       http://www.virtualbox.org/
 Source:    http://download.virtualbox.org/virtualbox/5.0.10/%{name}-%{version}.tar.bz2
 Patch0:    skip_gcc_version_check.patch
@@ -463,6 +463,7 @@ rm -rf $RPM_BUILD_ROOT
 %{!?rpm_suse: %{python_sitelib}/*}
 %endif
 /etc/vbox
+/sbin/vboxconfig
 /usr/bin/*
 /usr/src/vbox*
 /usr/lib/virtualbox
@@ -478,6 +479,9 @@ rm -rf $RPM_BUILD_ROOT
 /usr/src/%{name}-%{version}
 
 %changelog
+* Thu Dec 24 2015 sulit <sulitsrc@gmail.com> - 5.0.10-5
+- packge /sbin/vboxconfig file
+
 * Thu Dec 24 2015 sulit <sulitsrc@gmail.com> - 5.0.10-4
 - add /sbin/vboxconfig file
 - add requires kernel-headers
