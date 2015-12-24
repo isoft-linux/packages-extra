@@ -47,8 +47,32 @@
 (setq visible-bell nil)
 
 ;;不产生~备份文件
-(setq make-backup-files nil)
-(setq-default make-backup-files nil) 
+;;(setq make-backup-files nil)
+;;(setq-default make-backup-files nil) 
+
+;;Put back files to /tmp/emacs-<uid> dir.
+;;http://www.emacswiki.org/emacs/AutoSave
+(defconst emacs-tmp-dir (format "%s/%s-%s/" temporary-file-directory "emacs" (user-uid)))
+
+
+(defun make-emacs-tmp-dir (fn)
+  (if (not (file-exists-p fn))
+    (make-directory fn)))
+(make-emacs-tmp-dir emacs-tmp-dir)
+
+(setq backup-directory-alist
+    `((".*" . ,emacs-tmp-dir)))
+(setq auto-save-file-name-transforms
+    `((".*" ,emacs-tmp-dir t)))
+(setq auto-save-list-file-prefix
+    emacs-tmp-dir)
+
+
+(defun save-all ()
+    (interactive)
+    (save-some-buffers t))
+(add-hook 'focus-out-hook 'save-all)
+
 
 ;;光标靠近鼠标的时候，让鼠标自动让开，别挡住视线
 (mouse-avoidance-mode 'animate)
