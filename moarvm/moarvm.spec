@@ -1,5 +1,5 @@
 %global year 2015
-%global month 09 
+%global month 11
 
 
 Name:           moarvm
@@ -11,14 +11,9 @@ License:        Artistic 2.0
 URL:            http://moarvm.org
 Source0:        http://moarvm.org/releases/MoarVM-%{year}.%{month}.tar.gz
 
-BuildRequires:  libtommath-devel
-# libuv-devel sha-devel
 BuildRequires:  libatomic_ops-devel >= 7.4
 BuildRequires:  perl(Pod::Usage) perl(ExtUtils::Command) perl(autodie)
-#
 BuildRequires:  discount
-
-
 
 %description
 Short for "Metamodel On A Runtime", MoarVM is a virtual machine built
@@ -61,11 +56,12 @@ rm -r 3rdparty/libatomic_ops
 # The upstream libtommath doesn't have the conversion from and to
 # float/double that MoarVM needs. bn_mp_(get|set)_long.c are extentions of the
 # origin libtommath source. The header files are needed to build.
-rm `find 3rdparty/libtommath -type f ! -name '*long.c' -a ! -name '*.h'`
+#rm `find 3rdparty/libtommath -type f ! -name '*long.c' -a ! -name '*.h'`
+
+#use internal libtommath otherwise, nqp test failed.
 
 # --has-libuv --has-sha \
-%{__perl} Configure.pl --prefix=%{_usr} --libdir=%{_libdir} --has-libtommath \
---has-libatomic_ops
+%{__perl} Configure.pl --prefix=%{_usr} --libdir=%{_libdir} --has-libatomic_ops
 
 make %{?_smp_mflags}
 
@@ -112,6 +108,9 @@ pod2man --section=1 --name=moar docs/moar.pod | %{__gzip} -c > $RPM_BUILD_ROOT%{
 
 
 %changelog
+* Sat Dec 26 2015 Cjacker <cjacker@foxmail.com> - 0.2015.11-2
+- Update
+
 * Tue Oct 27 2015 Cjacker <cjacker@foxmail.com> - 0.2015.09-2
 - Rebuild
 
