@@ -13,7 +13,7 @@
 
 
 %global year 2015
-%global month 09
+%global month 11 
 
 
 Name:           rakudo-star
