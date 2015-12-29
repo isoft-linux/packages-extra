@@ -4,7 +4,7 @@
 
 
 %global year 2015
-%global month 09.1
+%global month 11
 
 
 Name:		nqp
@@ -65,7 +65,7 @@ CFLAGS="$RPM_OPT_FLAGS -fPIC" %{__make} %{?_smp_mflags}
 
 %check
 # fails at prove -r --exec "./nqp-m" ...
-rm -f t/hll/06-sprintf.t
+#rm -f t/hll/06-sprintf.t
 %{?!_without_tests: make test}
 
 
@@ -84,6 +84,9 @@ rm -f t/hll/06-sprintf.t
 
 
 %changelog
+* Sat Dec 26 2015 Cjacker <cjacker@foxmail.com> - 0.0.2015.11-2
+- Update
+
 * Tue Oct 27 2015 Cjacker <cjacker@foxmail.com> - 0.0.2015.09.1-2
 - Rebuild
 
