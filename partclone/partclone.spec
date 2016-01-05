@@ -4,10 +4,10 @@ Release: 1
 License: GPL
 
 Source0: https://github.com/Thomas-Tsai/partclone/archive/0.2.76.tar.gz
-BuildRequires: reiserfsprogs ntfs-3g libuuid-devel
+BuildRequires: reiserfsprogs ntfs-3g libuuid-devel e2fsprogs-devel ncurses-devel
 
 Summary:Utilities to save and restore used blocks on a partition
-Requires: reiserfsprogs ntfs-3g
+Requires: reiserfsprogs ntfs-3g e2fsprogs ncurses
 
 %description
 Utilities to save and restore used blocks on a partition
@@ -17,7 +17,8 @@ Utilities to save and restore used blocks on a partition
 
 %build 
 cd "%{_builddir}"/%{name}/%{name}-%{version}
-%{configure} 
+%{configure} --enable-extfs --enable-fat  --enable-exfat --enable-ntfs --enable-btrfs  --enable-ncursesw --enable-mtrace 
+
 make  %{?_smp_mflags}
 
 %install
