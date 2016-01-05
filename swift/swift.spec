@@ -11,7 +11,7 @@
 
 Name: swift
 Version: %{swift_ver}
-Release: 25.git%{gitdate}
+Release: 26.git%{gitdate}
 Summary: Swift Programming Language 
 
 License: Apache 2.0 license with a Runtime Library Exception 
@@ -157,7 +157,7 @@ tar zxf %{_builddir}/swift-%{swift_ver}-%{release}-root/swift-%{swift_ver}-isoft
 rm -rf %{buildroot}/usr/local
 
 #avoid conflict with python-six
-rm -rf %{buildroot}%{python_sitearch}/site-packages/six.*
+rm -rf %{buildroot}%{python_sitearch}/six.*
 
 %post -n swift-liblldb -p /sbin/ldconfig
 %postun -n swift-liblldb -p /sbin/ldconfig
@@ -169,6 +169,7 @@ rm -rf %{buildroot}%{python_sitearch}/site-packages/six.*
 %{_bindir}/repl_swift
 %{_bindir}/swift-build
 %{_bindir}/swift-demangle
+%{_bindir}/swift-compress
 %{_bindir}/swift-build-tool
 %dir %{_libdir}/swift
 %{_libdir}/swift/*
@@ -202,6 +203,9 @@ rm -rf %{buildroot}%{python_sitearch}/site-packages/six.*
 %{_includedir}/lldb
 
 %changelog
+* Tue Jan 05 2016 Cjacker <cjacker@foxmail.com> - 2.2-26.git20160105
+- Rebuilt, add not pkged files
+
 * Tue Jan 05 2016 Cjacker <cjacker@foxmail.com> - 2.2-25.git20160105
 - Update
 
