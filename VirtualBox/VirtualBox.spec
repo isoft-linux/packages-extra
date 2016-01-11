@@ -18,11 +18,10 @@
 
 Summary:   Oracle VM VirtualBox
 Name:      VirtualBox
-Version:   5.0.10
-Release:   5
+Version:   5.0.12
+Release:   1
 URL:       http://www.virtualbox.org/
 Source:    http://download.virtualbox.org/virtualbox/5.0.10/%{name}-%{version}.tar.bz2
-Patch0:    skip_gcc_version_check.patch
 License:   GPLv2
 
 # BuildRequires:  SDL-devel xalan-c-devel
@@ -93,7 +92,6 @@ VirtualBox dkms pkg.
 
 %prep
 %setup -q -D
-%patch0 -p1
 
 
 %build
@@ -194,11 +192,13 @@ cat >> $RPM_BUILD_ROOT/sbin/vboxconfig << EOF
 name=%{name}
 version=%{version}
 
-dkms add -m \$name -v \$version
-dkms build -m \$name -v \$version
-dkms install -m \$name -v \$version --force
+echo "Please wait some seconds, building kernel modules..."
+dkms add -m \$name -v \$version &> /dev/null
+dkms build -m \$name -v \$version &> /dev/null
+dkms install -m \$name -v \$version --force &> /dev/null
 /sbin/depmod -a
 /sbin/modprobe -a vboxdrv vboxnetadp vboxnetflt vboxpci
+echo "OK! Restart \$name, and use it!"
 EOF
 
 chmod 755 $RPM_BUILD_ROOT/sbin/vboxconfig
@@ -269,7 +269,7 @@ ln -s VBox $RPM_BUILD_ROOT/usr/bin/VBoxAutostart
 ln -s VBox $RPM_BUILD_ROOT/usr/bin/vboxautostart
 ln -s VBox $RPM_BUILD_ROOT/usr/bin/vboxwebsrv
 ln -s /usr/lib/virtualbox/vbox-img $RPM_BUILD_ROOT/usr/bin/vbox-img
-ln -s /usr/share/virtualbox/src/vboxhost $RPM_BUILD_ROOT/usr/src/vboxhost-%{version}
+#ln -s /usr/share/virtualbox/src/ $RPM_BUILD_ROOT/usr/src/vboxhost-%{version}
 mv virtualbox.desktop $RPM_BUILD_ROOT/usr/share/applications/virtualbox.desktop
 mv VBox.png $RPM_BUILD_ROOT/usr/share/pixmaps/VBox.png
 
@@ -465,7 +465,7 @@ rm -rf $RPM_BUILD_ROOT
 /etc/vbox
 /sbin/vboxconfig
 /usr/bin/*
-/usr/src/vbox*
+#/usr/src/vbox*
 /usr/lib/virtualbox
 /usr/share/applications/*
 /usr/share/icons/hicolor/*/apps/*
@@ -479,6 +479,11 @@ rm -rf $RPM_BUILD_ROOT
 /usr/src/%{name}-%{version}
 
 %changelog
+* Thu Jan 07 2016 sulit <sulitsrc@gmail.com> - 5.0.12-1
+- add vboxconfig prompt
+- remove check_gcc_version patch
+- upgrade 5.0.12
+
 * Thu Dec 24 2015 sulit <sulitsrc@gmail.com> - 5.0.10-5
 - packge /sbin/vboxconfig file
 

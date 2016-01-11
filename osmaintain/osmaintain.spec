@@ -1,10 +1,10 @@
 Name: osmaintain
-Version: 0.1
-Release: 2
+Version: 0.1.4
+Release: 1
 Summary: isoft system maintain tools
 License: isoft
-URL: www.isoft-linux.org
-Source0: osmaintain.tar.xz
+URL: http://git.isoft.zhcn.cc/wangguofeng/osmaintain
+Source0: %{name}-%{version}.tar.gz
 
 BuildRequires: cmake
 BuildRequires: parted-devel
@@ -19,7 +19,7 @@ Requires: clonezilla
 isoft system maintain tools
 
 %prep
-%setup -n %{name}
+%setup -n %{name}-%{version}
 
 %build
 cmake .
@@ -36,5 +36,11 @@ make install DESTDIR=%{buildroot}
 %{_datadir}/apps/osmaintain/trans/osmaintain_zh.qm
 
 %changelog
+* Fri Jan 08 2016 sulit <sulitsrc@gmail.com> - 0.1.4-1
+- update version and fix partclone error
+
+* Wed Jan 06 2016 sulit <sulitsrc@gmail.com> - 0.1-3
+- many modification, and item 2,3 can be called successfully
+
 * Tue Jan 05 2016 sulit <sulitsrc@gmail.com> - 0.1-2
 - Init for isoft4
