@@ -1,0 +1,15 @@
+--- cloudmusic-1.9.2/system.reg	2015-12-03 09:07:08.000000000 +0800
++++ cloudmusic-1.9.2/system.reg	2016-01-11 11:18:13.898403138 +0800
+@@ -23954,12 +23954,6 @@
+ #time=1d12d66c66d237e
+ "Extension"=".zip"
+ 
+-[Software\\Classes\\MIME\\Database\\Content Type\\application/xml] 1449104760 9408520
+-#time=1d12d66c66d1c08
+-"CLSID"="{48123BC4-99D9-11D1-A6B3-00C04FD91555}"
+-"Encoding"=hex:08,00,00,00
+-"Extension"=".xml"
+-
+ [Software\\Classes\\MIME\\Database\\Content Type\\audio/mpeg] 1449104760 9392900
+ #time=1d12d66c66cdf04
+ "CLSID"="{CD3AFA76-B84F-48F0-9393-7EDC34128127}"
