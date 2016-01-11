@@ -1,0 +1,15 @@
+--- QQLite/system.reg	2016-01-11 10:52:53.375462037 +0800
++++ QQLite/system.reg	2016-01-11 10:53:00.508461760 +0800
+@@ -25388,12 +25388,6 @@
+ #time=1d12b7b1d7f5878
+ "Extension"=".zip"
+ 
+-[Software\\Classes\\MIME\\Database\\Content Type\\application/xml] 1448893594 6309940
+-#time=1d12b7b1d7f5134
+-"CLSID"="{48123BC4-99D9-11D1-A6B3-00C04FD91555}"
+-"Encoding"=hex:08,00,00,00
+-"Extension"=".xml"
+-
+ [Software\\Classes\\MIME\\Database\\Content Type\\audio/mpeg] 1448893594 6294380
+ #time=1d12b7b1d7f146c
+ "CLSID"="{CD3AFA76-B84F-48F0-9393-7EDC34128127}"

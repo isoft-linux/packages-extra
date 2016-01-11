@@ -1,6 +1,6 @@
 Name: wineqq
 Version: 6.7
-Release: 4
+Release: 5
 Summary: Wine QQ Light Edition
 
 License: Commercial
@@ -11,6 +11,7 @@ Source0: QQLite-%{version}.tar.xz
 Source10: qq
 Source20: wine-qq.desktop
 Source21: qq.png
+Patch1: system-reg-remove-xml.patch
 
 BuildRequires: p7zip p7zip-plugins
 Requires: wine32
@@ -26,6 +27,7 @@ mkdir -p %{buildroot}%{_datadir}/applications
 mkdir -p %{buildroot}%{_datadir}/icons/hicolor/256x256/apps
 mkdir -p %{buildroot}%{_bindir}
 tar Jxf %{SOURCE0} -C %{buildroot}%{_datadir}/QQLite --strip-component=1 
+patch -p1 -i %{PATCH1} %{buildroot}%{_datadir}/QQLite/system.reg
 
 #we need copy QQLite to ~/.local
 #so we have to add a file here to detect whether ~/.local/QQLite is outdated or not after update.
@@ -55,6 +57,9 @@ gtk-update-icon-cache %{_datadir}/icons/hicolor &> /dev/null || :
 %{_datadir}/applications/*.desktop
 
 %changelog
+* Mon Jan 11 2016 xiaotian.wu@i-soft.com.cn - 6.7-5
+- remove xml file associations to fix bug 13240.
+
 * Sat Dec 05 2015 Cjacker <cjacker@foxmail.com> - 6.7-4
 - Update source, remove qqloginfix, we hack it in wine now.
 
