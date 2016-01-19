@@ -33,7 +33,7 @@ URL:            http://git.zx2c4.com/cgit/
 Source0:        http://git.zx2c4.com/cgit/snapshot/%{name}-%{version}.tar.xz
 Source1:        http://www.kernel.org/pub/software/scm/git//git-%{gitver}.tar.xz
 Source2:        cgitrc
-Source3:        README.SELinux
+Source3:        README
 
 %if %{syntax_highlight}
 Patch1:         cgit-0.9.1-highlightv3.patch
