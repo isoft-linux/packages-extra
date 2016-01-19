@@ -1,0 +1,4 @@
+Additionally, the git repositories need to be readable by the cgi.  This is
+handled automatically for repositories in the default path, /var/lib/git.  If
+your repositories are in a different path, /srv/git, for example, you can set
+that dir and files been owned by root
