@@ -45,6 +45,7 @@ BuildRequires:  asciidoc
 BuildRequires:  libcurl-devel
 BuildRequires:  openssl-devel
 BuildRequires:  lua-devel
+BuildRequires:  libxml2
 
 # Requires:       httpd-filesystem
 # Requires:       webserver
@@ -122,4 +123,4 @@ rm -rf %{buildroot}
 %changelog
 * Tue Jan 19 2016 sulit <sulitsrc@gmail.com> - 0.12-2
 - Init for isoft4
-
+- add libxml2 buildrequire
