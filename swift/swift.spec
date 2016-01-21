@@ -169,7 +169,7 @@ rm -rf %{buildroot}%{python_sitearch}/six.*
 %{_bindir}/repl_swift
 %{_bindir}/swift-build
 %{_bindir}/swift-demangle
-%{_bindir}/swift-compress
+#%{_bindir}/swift-compress
 %{_bindir}/swift-build-tool
 %dir %{_libdir}/swift
 %{_libdir}/swift/*
