@@ -6,7 +6,7 @@
 
 Summary: Mozilla Firefox Web browser
 Name: firefox
-Version: 43.0
+Version: 43.0.4
 Release: 2 
 URL: http://www.mozilla.org/projects/firefox
 License: MPLv1.1 or GPLv2+ or LGPLv2+
@@ -80,6 +80,9 @@ update-desktop-database ||:
 %{_datadir}/icons/hicolor/*/apps/firefox.png
 
 %changelog
+* Thu Jan 21 2016 Cjacker <cjacker@foxmail.com> - 43.0.4-2
+- Update to 43.0.4
+
 * Wed Dec 16 2015 Cjacker <cjacker@foxmail.com> - 43.0-2
 - Update to official binary release
 
