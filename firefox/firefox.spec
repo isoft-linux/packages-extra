@@ -6,7 +6,7 @@
 
 Summary: Mozilla Firefox Web browser
 Name: firefox
-Version: 43.0.4
+Version: 44.0.2
 Release: 2 
 URL: http://www.mozilla.org/projects/firefox
 License: MPLv1.1 or GPLv2+ or LGPLv2+
