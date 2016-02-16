@@ -1,6 +1,6 @@
-diff -Nur clang/docs/ItaniumMangleAbiTags.rst clang.abi_tag/docs/ItaniumMangleAbiTags.rst
+diff -Nur clang/docs/ItaniumMangleAbiTags.rst clangn/docs/ItaniumMangleAbiTags.rst
 --- clang/docs/ItaniumMangleAbiTags.rst	1970-01-01 08:00:00.000000000 +0800
-+++ clang.abi_tag/docs/ItaniumMangleAbiTags.rst	2015-12-06 18:45:32.155196554 +0800
++++ clangn/docs/ItaniumMangleAbiTags.rst	2016-02-16 15:04:34.303359376 +0800
 @@ -0,0 +1,90 @@
 +========
 +Abi Tags
@@ -92,10 +92,10 @@ diff -Nur clang/docs/ItaniumMangleAbiTags.rst clang.abi_tag/docs/ItaniumMangleAb
 +Example: a cast operator to std::string (which is
 +std::__cxx11::basic_string<...>) will use 'cxx11' as active tag, as it is
 +required from the return type `std::string` but not available.
-diff -Nur clang/include/clang/Basic/Attr.td clang.abi_tag/include/clang/Basic/Attr.td
---- clang/include/clang/Basic/Attr.td	2015-12-06 12:44:03.000000000 +0800
-+++ clang.abi_tag/include/clang/Basic/Attr.td	2015-12-06 18:45:32.155196554 +0800
-@@ -352,6 +352,14 @@
+diff -Nur clang/include/clang/Basic/Attr.td clangn/include/clang/Basic/Attr.td
+--- clang/include/clang/Basic/Attr.td	2016-02-16 14:55:35.000000000 +0800
++++ clangn/include/clang/Basic/Attr.td	2016-02-16 15:04:34.303359376 +0800
+@@ -353,6 +353,14 @@
  // Attributes begin here
  //
  
@@ -110,20 +110,19 @@ diff -Nur clang/include/clang/Basic/Attr.td clang.abi_tag/include/clang/Basic/At
  def AddressSpace : TypeAttr {
    let Spellings = [GNU<"address_space">];
    let Args = [IntArgument<"AddressSpace">];
-diff -Nur clang/include/clang/Basic/DiagnosticSemaKinds.td clang.abi_tag/include/clang/Basic/DiagnosticSemaKinds.td
---- clang/include/clang/Basic/DiagnosticSemaKinds.td	2015-12-06 12:44:03.000000000 +0800
-+++ clang.abi_tag/include/clang/Basic/DiagnosticSemaKinds.td	2015-12-06 18:47:32.574194397 +0800
-@@ -2356,7 +2356,8 @@
-   "Objective-C instance methods|init methods of interface or class extension declarations|"
+diff -Nur clang/include/clang/Basic/DiagnosticSemaKinds.td clangn/include/clang/Basic/DiagnosticSemaKinds.td
+--- clang/include/clang/Basic/DiagnosticSemaKinds.td	2016-02-16 14:55:35.000000000 +0800
++++ clangn/include/clang/Basic/DiagnosticSemaKinds.td	2016-02-16 15:07:31.430776601 +0800
+@@ -2446,7 +2446,7 @@
    "variables, functions and classes|Objective-C protocols|"
    "functions and global variables|structs, unions, and typedefs|structs and typedefs|"
--  "interface or protocol declarations|kernel functions|non-K&R-style functions}1">,
-+  "interface or protocol declarations|kernel functions|non-K&R-style functions|"
-+  "structs, classes, variables, functions, methods and inline namespaces}1">, 
+   "interface or protocol declarations|kernel functions|non-K&R-style functions|"
+-  "variables, fields and typedefs}1">,
++  "structs, classes, variables, fields and typedefs, functions, methods and inline namespaces}1">,
    InGroup<IgnoredAttributes>;
  def err_attribute_wrong_decl_type : Error<warn_attribute_wrong_decl_type.Text>;
  def warn_type_attribute_wrong_type : Warning<
-@@ -4073,6 +4074,13 @@
+@@ -4177,6 +4177,13 @@
  def err_redefinition_extern_inline : Error<
    "redefinition of a 'extern inline' function %0 is not supported in "
    "%select{C99 mode|C++}1">;
@@ -137,22 +136,22 @@ diff -Nur clang/include/clang/Basic/DiagnosticSemaKinds.td clang.abi_tag/include
  
  def note_deleted_dtor_no_operator_delete : Note<
    "virtual destructor requires an unambiguous, accessible 'operator delete'">;
-diff -Nur clang/include/clang/Sema/AttributeList.h clang.abi_tag/include/clang/Sema/AttributeList.h
---- clang/include/clang/Sema/AttributeList.h	2015-12-06 12:44:03.000000000 +0800
-+++ clang.abi_tag/include/clang/Sema/AttributeList.h	2015-12-06 18:47:56.581193967 +0800
-@@ -853,7 +853,8 @@
-   ExpectedStructOrTypedef,
+diff -Nur clang/include/clang/Sema/AttributeList.h clangn/include/clang/Sema/AttributeList.h
+--- clang/include/clang/Sema/AttributeList.h	2016-02-16 14:55:35.000000000 +0800
++++ clangn/include/clang/Sema/AttributeList.h	2016-02-16 15:05:10.598617938 +0800
+@@ -856,7 +856,8 @@
    ExpectedObjectiveCInterfaceOrProtocol,
    ExpectedKernelFunction,
--  ExpectedFunctionWithProtoType
-+  ExpectedFunctionWithProtoType,
+   ExpectedFunctionWithProtoType,
+-  ExpectedVariableFieldOrTypedef
++  ExpectedVariableFieldOrTypedef,
 +  ExpectedStructClassVariableFunctionMethodOrInlineNamespace
  };
  
  }  // end namespace clang
-diff -Nur clang/lib/AST/ItaniumMangle.cpp clang.abi_tag/lib/AST/ItaniumMangle.cpp
---- clang/lib/AST/ItaniumMangle.cpp	2015-12-06 12:44:04.000000000 +0800
-+++ clang.abi_tag/lib/AST/ItaniumMangle.cpp	2015-12-06 18:45:32.161196553 +0800
+diff -Nur clang/lib/AST/ItaniumMangle.cpp clangn/lib/AST/ItaniumMangle.cpp
+--- clang/lib/AST/ItaniumMangle.cpp	2016-02-16 14:55:35.000000000 +0800
++++ clangn/lib/AST/ItaniumMangle.cpp	2016-02-16 15:04:34.309359425 +0800
 @@ -212,6 +212,8 @@
  class CXXNameMangler {
    ItaniumMangleContextImpl &Context;
@@ -425,7 +424,7 @@ diff -Nur clang/lib/AST/ItaniumMangle.cpp clang.abi_tag/lib/AST/ItaniumMangle.cp
    void mangleTemplatePrefix(TemplateName Template);
    bool mangleUnresolvedTypeOrSimpleId(QualType DestroyedType,
                                        StringRef Prefix = "");
-@@ -404,6 +592,10 @@
+@@ -405,6 +593,10 @@
    void mangleTemplateParameter(unsigned Index);
  
    void mangleFunctionParam(const ParmVarDecl *parm);
@@ -436,7 +435,7 @@ diff -Nur clang/lib/AST/ItaniumMangle.cpp clang.abi_tag/lib/AST/ItaniumMangle.cp
  };
  
  }
-@@ -454,6 +646,11 @@
+@@ -455,6 +647,11 @@
    return true;
  }
  
@@ -448,7 +447,7 @@ diff -Nur clang/lib/AST/ItaniumMangle.cpp clang.abi_tag/lib/AST/ItaniumMangle.cp
  void CXXNameMangler::mangle(const NamedDecl *D) {
    // <mangled-name> ::= _Z <encoding>
    //            ::= <data name>
-@@ -469,14 +666,28 @@
+@@ -470,14 +667,28 @@
      mangleName(cast<FieldDecl>(D));
  }
  
@@ -482,7 +481,7 @@ diff -Nur clang/lib/AST/ItaniumMangle.cpp clang.abi_tag/lib/AST/ItaniumMangle.cp
    if (FD->hasAttr<EnableIfAttr>()) {
      FunctionTypeDepthState Saved = FunctionTypeDepth.push();
      Out << "Ua9enable_ifI";
-@@ -580,7 +791,21 @@
+@@ -581,7 +792,21 @@
    return nullptr;
  }
  
@@ -505,7 +504,7 @@ diff -Nur clang/lib/AST/ItaniumMangle.cpp clang.abi_tag/lib/AST/ItaniumMangle.cp
    //  <name> ::= <nested-name>
    //         ::= <unscoped-name>
    //         ::= <unscoped-template-name> <template-args>
-@@ -596,7 +821,7 @@
+@@ -597,7 +822,7 @@
      while (!DC->isNamespace() && !DC->isTranslationUnit())
        DC = getEffectiveParentContext(DC);
    else if (GetLocalClassDecl(ND)) {
@@ -514,7 +513,7 @@ diff -Nur clang/lib/AST/ItaniumMangle.cpp clang.abi_tag/lib/AST/ItaniumMangle.cp
      return;
    }
  
-@@ -606,76 +831,88 @@
+@@ -607,76 +832,88 @@
      // Check if we have a template.
      const TemplateArgumentList *TemplateArgs = nullptr;
      if (const TemplateDecl *TD = isTemplate(ND, TemplateArgs)) {
@@ -621,7 +620,7 @@ diff -Nur clang/lib/AST/ItaniumMangle.cpp clang.abi_tag/lib/AST/ItaniumMangle.cp
    addSubstitution(Template);
  }
  
-@@ -834,6 +1071,7 @@
+@@ -835,6 +1072,7 @@
      else
        Out << "sr";
      mangleSourceName(qualifier->getAsNamespace()->getIdentifier());
@@ -629,7 +628,7 @@ diff -Nur clang/lib/AST/ItaniumMangle.cpp clang.abi_tag/lib/AST/ItaniumMangle.cp
      break;
    case NestedNameSpecifier::NamespaceAlias:
      if (qualifier->getPrefix())
-@@ -842,6 +1080,7 @@
+@@ -843,6 +1081,7 @@
      else
        Out << "sr";
      mangleSourceName(qualifier->getAsNamespaceAlias()->getIdentifier());
@@ -637,7 +636,7 @@ diff -Nur clang/lib/AST/ItaniumMangle.cpp clang.abi_tag/lib/AST/ItaniumMangle.cp
      break;
  
    case NestedNameSpecifier::TypeSpec:
-@@ -876,6 +1115,7 @@
+@@ -877,6 +1116,7 @@
        Out << "sr";
  
      mangleSourceName(qualifier->getAsIdentifier());
@@ -645,7 +644,7 @@ diff -Nur clang/lib/AST/ItaniumMangle.cpp clang.abi_tag/lib/AST/ItaniumMangle.cp
      break;
    }
  
-@@ -921,7 +1161,8 @@
+@@ -922,7 +1162,8 @@
  
  void CXXNameMangler::mangleUnqualifiedName(const NamedDecl *ND,
                                             DeclarationName Name,
@@ -655,7 +654,7 @@ diff -Nur clang/lib/AST/ItaniumMangle.cpp clang.abi_tag/lib/AST/ItaniumMangle.cp
    unsigned Arity = KnownArity;
    //  <unqualified-name> ::= <operator-name>
    //                     ::= <ctor-dtor-name>
-@@ -940,6 +1181,7 @@
+@@ -941,6 +1182,7 @@
          Out << 'L';
  
        mangleSourceName(II);
@@ -663,7 +662,7 @@ diff -Nur clang/lib/AST/ItaniumMangle.cpp clang.abi_tag/lib/AST/ItaniumMangle.cp
        break;
      }
  
-@@ -979,6 +1221,7 @@
+@@ -980,6 +1222,7 @@
        assert(FD->getIdentifier() && "Data member name isn't an identifier!");
  
        mangleSourceName(FD->getIdentifier());
@@ -671,7 +670,7 @@ diff -Nur clang/lib/AST/ItaniumMangle.cpp clang.abi_tag/lib/AST/ItaniumMangle.cp
        break;
      }
  
-@@ -999,6 +1242,9 @@
+@@ -1000,6 +1243,9 @@
        assert(D->getDeclName().getAsIdentifierInfo() &&
               "Typedef was not named!");
        mangleSourceName(D->getDeclName().getAsIdentifierInfo());
@@ -681,7 +680,7 @@ diff -Nur clang/lib/AST/ItaniumMangle.cpp clang.abi_tag/lib/AST/ItaniumMangle.cp
        break;
      }
  
-@@ -1008,6 +1254,7 @@
+@@ -1009,6 +1255,7 @@
      // <lambda-sig> ::= <parameter-type>+   # Parameter types or 'v' for 'void'.
      if (const CXXRecordDecl *Record = dyn_cast<CXXRecordDecl>(TD)) {
        if (Record->isLambda() && Record->getLambdaManglingNumber()) {
@@ -689,15 +688,15 @@ diff -Nur clang/lib/AST/ItaniumMangle.cpp clang.abi_tag/lib/AST/ItaniumMangle.cp
          mangleLambda(Record);
          break;
        }
-@@ -1019,6 +1266,7 @@
+@@ -1020,6 +1267,7 @@
        if (UnnamedMangle > 1)
-         Out << llvm::utostr(UnnamedMangle - 2);
+         Out << UnnamedMangle - 2;
        Out << '_';
 +      writeAbiTags(TD, AdditionalAbiTags);
        break;
      }
  
-@@ -1051,6 +1299,7 @@
+@@ -1052,6 +1300,7 @@
        // Otherwise, use the complete constructor name. This is relevant if a
        // class with a constructor is declared within a constructor.
        mangleCXXCtorType(Ctor_Complete);
@@ -705,7 +704,7 @@ diff -Nur clang/lib/AST/ItaniumMangle.cpp clang.abi_tag/lib/AST/ItaniumMangle.cp
      break;
  
    case DeclarationName::CXXDestructorName:
-@@ -1062,6 +1311,7 @@
+@@ -1063,6 +1312,7 @@
        // Otherwise, use the complete destructor name. This is relevant if a
        // class with a destructor is declared within a destructor.
        mangleCXXDtorType(Dtor_Complete);
@@ -713,7 +712,7 @@ diff -Nur clang/lib/AST/ItaniumMangle.cpp clang.abi_tag/lib/AST/ItaniumMangle.cp
      break;
  
    case DeclarationName::CXXOperatorName:
-@@ -1077,6 +1327,7 @@
+@@ -1078,6 +1328,7 @@
    case DeclarationName::CXXConversionFunctionName:
    case DeclarationName::CXXLiteralOperatorName:
      mangleOperatorName(Name, Arity);
@@ -721,7 +720,7 @@ diff -Nur clang/lib/AST/ItaniumMangle.cpp clang.abi_tag/lib/AST/ItaniumMangle.cp
      break;
  
    case DeclarationName::CXXUsingDirective:
-@@ -1093,7 +1344,9 @@
+@@ -1094,7 +1345,9 @@
  
  void CXXNameMangler::mangleNestedName(const NamedDecl *ND,
                                        const DeclContext *DC,
@@ -732,7 +731,7 @@ diff -Nur clang/lib/AST/ItaniumMangle.cpp clang.abi_tag/lib/AST/ItaniumMangle.cp
    // <nested-name> 
    //   ::= N [<CV-qualifiers>] [<ref-qualifier>] <prefix> <unqualified-name> E
    //   ::= N [<CV-qualifiers>] [<ref-qualifier>] <template-prefix> 
-@@ -1113,30 +1366,35 @@
+@@ -1114,30 +1367,35 @@
    // Check if we have a template.
    const TemplateArgumentList *TemplateArgs = nullptr;
    if (const TemplateDecl *TD = isTemplate(ND, TemplateArgs)) {
@@ -772,7 +771,7 @@ diff -Nur clang/lib/AST/ItaniumMangle.cpp clang.abi_tag/lib/AST/ItaniumMangle.cp
    // <local-name> := Z <function encoding> E <entity name> [<discriminator>]
    //              := Z <function encoding> E s [<discriminator>]
    // <local-name> := Z <function encoding> E d [ <parameter number> ] 
-@@ -1148,15 +1406,25 @@
+@@ -1149,15 +1407,25 @@
  
    Out << 'Z';
  
@@ -804,7 +803,7 @@ diff -Nur clang/lib/AST/ItaniumMangle.cpp clang.abi_tag/lib/AST/ItaniumMangle.cp
    if (RD) {
      // The parameter number is omitted for the last parameter, 0 for the 
      // second-to-last parameter, 1 for the third-to-last parameter, etc. The 
-@@ -1181,13 +1449,17 @@
+@@ -1182,13 +1450,17 @@
      // Mangle the name relative to the closest enclosing function.
      // equality ok because RD derived from ND above
      if (D == RD)  {
@@ -825,7 +824,7 @@ diff -Nur clang/lib/AST/ItaniumMangle.cpp clang.abi_tag/lib/AST/ItaniumMangle.cp
      }
    } else if (const BlockDecl *BD = dyn_cast<BlockDecl>(D)) {
      // Mangle a block in a default parameter; see above explanation for
-@@ -1204,30 +1476,35 @@
+@@ -1205,30 +1477,35 @@
        }
      }
  
@@ -872,7 +871,7 @@ diff -Nur clang/lib/AST/ItaniumMangle.cpp clang.abi_tag/lib/AST/ItaniumMangle.cp
      return;
    }
    manglePrefix(getEffectiveDeclContext(Block));
-@@ -1238,10 +1515,11 @@
+@@ -1239,10 +1516,11 @@
    if (Decl *Context = Block->getBlockManglingContextDecl()) {
      if ((isa<VarDecl>(Context) || isa<FieldDecl>(Context)) &&
          Context->getDeclContext()->isRecord()) {
@@ -887,7 +886,7 @@ diff -Nur clang/lib/AST/ItaniumMangle.cpp clang.abi_tag/lib/AST/ItaniumMangle.cp
        }
      }
    }
-@@ -1274,7 +1552,7 @@
+@@ -1275,7 +1553,7 @@
        if (const IdentifierInfo *Name
              = cast<NamedDecl>(Context)->getIdentifier()) {
          mangleSourceName(Name);
@@ -896,7 +895,7 @@ diff -Nur clang/lib/AST/ItaniumMangle.cpp clang.abi_tag/lib/AST/ItaniumMangle.cp
        }
      }
    }
-@@ -1356,11 +1634,11 @@
+@@ -1358,11 +1636,11 @@
    // Check if we have a template.
    const TemplateArgumentList *TemplateArgs = nullptr;
    if (const TemplateDecl *TD = isTemplate(ND, TemplateArgs)) {
@@ -910,7 +909,7 @@ diff -Nur clang/lib/AST/ItaniumMangle.cpp clang.abi_tag/lib/AST/ItaniumMangle.cp
    }
  
    addSubstitution(ND);
-@@ -1371,27 +1649,30 @@
+@@ -1373,27 +1651,30 @@
    //                   ::= <template-param>
    //                   ::= <substitution>
    if (TemplateDecl *TD = Template.getAsTemplateDecl())
@@ -947,7 +946,7 @@ diff -Nur clang/lib/AST/ItaniumMangle.cpp clang.abi_tag/lib/AST/ItaniumMangle.cp
    // <template-prefix> ::= <prefix> <template unqualified-name>
    //                   ::= <template-param>
    //                   ::= <substitution>
-@@ -1403,10 +1684,12 @@
+@@ -1405,10 +1686,12 @@
  
    // <template-template-param> ::= <template-param>
    if (const auto *TTP = dyn_cast<TemplateTemplateParmDecl>(ND)) {
@@ -961,7 +960,7 @@ diff -Nur clang/lib/AST/ItaniumMangle.cpp clang.abi_tag/lib/AST/ItaniumMangle.cp
    }
  
    addSubstitution(ND);
-@@ -1450,6 +1733,7 @@
+@@ -1452,6 +1735,7 @@
      // <name> ::= <nested-name>
      mangleUnresolvedPrefix(Dependent->getQualifier());
      mangleSourceName(Dependent->getIdentifier());
@@ -969,7 +968,7 @@ diff -Nur clang/lib/AST/ItaniumMangle.cpp clang.abi_tag/lib/AST/ItaniumMangle.cp
      break;
    }
  
-@@ -1541,16 +1825,19 @@
+@@ -1544,16 +1828,19 @@
  
    case Type::Typedef:
      mangleSourceName(cast<TypedefType>(Ty)->getDecl()->getIdentifier());
@@ -989,7 +988,7 @@ diff -Nur clang/lib/AST/ItaniumMangle.cpp clang.abi_tag/lib/AST/ItaniumMangle.cp
      break;
  
    case Type::TemplateSpecialization: {
-@@ -1569,6 +1856,7 @@
+@@ -1572,6 +1859,7 @@
          goto unresolvedType;
  
        mangleSourceName(TD->getIdentifier());
@@ -997,7 +996,7 @@ diff -Nur clang/lib/AST/ItaniumMangle.cpp clang.abi_tag/lib/AST/ItaniumMangle.cp
        break;
      }
  
-@@ -1600,16 +1888,19 @@
+@@ -1603,16 +1891,19 @@
    case Type::InjectedClassName:
      mangleSourceName(
          cast<InjectedClassNameType>(Ty)->getDecl()->getIdentifier());
@@ -1017,7 +1016,7 @@ diff -Nur clang/lib/AST/ItaniumMangle.cpp clang.abi_tag/lib/AST/ItaniumMangle.cp
      mangleTemplateArgs(DTST->getArgs(), DTST->getNumArgs());
      break;
    }
-@@ -2531,7 +2822,11 @@
+@@ -2546,7 +2837,11 @@
  
  void CXXNameMangler::mangleType(const TemplateSpecializationType *T) {
    if (TemplateDecl *TD = T->getTemplateName().getAsTemplateDecl()) {
@@ -1030,7 +1029,7 @@ diff -Nur clang/lib/AST/ItaniumMangle.cpp clang.abi_tag/lib/AST/ItaniumMangle.cp
    } else {
      if (mangleSubstitution(QualType(T, 0)))
        return;
-@@ -2578,6 +2873,7 @@
+@@ -2593,6 +2888,7 @@
    Out << 'N';
    manglePrefix(T->getQualifier());
    mangleSourceName(T->getIdentifier());
@@ -1038,7 +1037,7 @@ diff -Nur clang/lib/AST/ItaniumMangle.cpp clang.abi_tag/lib/AST/ItaniumMangle.cp
    Out << 'E';
  }
  
-@@ -3995,6 +4291,74 @@
+@@ -4020,6 +4316,74 @@
    Substitutions[Ptr] = SeqID++;
  }
  
@@ -1113,7 +1112,7 @@ diff -Nur clang/lib/AST/ItaniumMangle.cpp clang.abi_tag/lib/AST/ItaniumMangle.cp
  //
  
  /// Mangles the name of the declaration D and emits that name to the given
-@@ -4096,6 +4460,7 @@
+@@ -4121,6 +4485,7 @@
    //  <special-name> ::= GV <object name>       # Guard variable for one-time
    //                                            # initialization
    CXXNameMangler Mangler(*this, Out);
@@ -1121,10 +1120,10 @@ diff -Nur clang/lib/AST/ItaniumMangle.cpp clang.abi_tag/lib/AST/ItaniumMangle.cp
    Mangler.getStream() << "_ZGV";
    Mangler.mangleName(D);
  }
-diff -Nur clang/lib/Sema/SemaDeclAttr.cpp clang.abi_tag/lib/Sema/SemaDeclAttr.cpp
---- clang/lib/Sema/SemaDeclAttr.cpp	2015-12-06 12:44:04.000000000 +0800
-+++ clang.abi_tag/lib/Sema/SemaDeclAttr.cpp	2015-12-06 18:45:32.162196553 +0800
-@@ -4540,6 +4540,58 @@
+diff -Nur clang/lib/Sema/SemaDeclAttr.cpp clangn/lib/Sema/SemaDeclAttr.cpp
+--- clang/lib/Sema/SemaDeclAttr.cpp	2016-02-16 14:55:36.000000000 +0800
++++ clangn/lib/Sema/SemaDeclAttr.cpp	2016-02-16 15:04:34.310359433 +0800
+@@ -4732,6 +4732,58 @@
        Attr.getRange(), S.Context, Attr.getAttributeSpellingListIndex()));
  }
  
@@ -1183,7 +1182,7 @@ diff -Nur clang/lib/Sema/SemaDeclAttr.cpp clang.abi_tag/lib/Sema/SemaDeclAttr.cp
  static void handleARMInterruptAttr(Sema &S, Decl *D,
                                     const AttributeList &Attr) {
    // Check the attribute arguments.
-@@ -5377,6 +5429,9 @@
+@@ -5732,6 +5784,9 @@
    case AttributeList::AT_Thread:
      handleDeclspecThreadAttr(S, D, Attr);
      break;
