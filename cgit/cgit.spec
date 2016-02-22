@@ -88,7 +88,7 @@ EOF
 %{make_cgit}
 
 # Something in the a2x chain doesn't like running in parallel. :/
-%{make_cgit} -j1 doc-man doc-html
+%{make_cgit} -j1 doc-html #doc-man
 
 %if %{syntax_highlight}
 highlight --print-style --style-outfile=stdout >> cgit.css
