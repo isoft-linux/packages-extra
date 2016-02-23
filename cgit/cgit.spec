@@ -24,7 +24,7 @@ make V=1 %{?_smp_mflags} \\\
 
 Name:           cgit
 Version:        0.12
-Release:        2%{?dist}
+Release:        2
 Summary:        A fast web interface for git
 
 Group:          Development/Tools
@@ -42,10 +42,10 @@ BuildRequires:  highlight
 BuildRoot:      %(mktemp -ud %{_tmppath}/%{name}-%{version}-%{release}-XXXXXX)
 
 BuildRequires:  asciidoc
+BuildRequires:  docbook5-style-xsl
 BuildRequires:  libcurl-devel
 BuildRequires:  openssl-devel
 BuildRequires:  lua-devel
-BuildRequires:  libxml2
 
 # Requires:       httpd-filesystem
 # Requires:       webserver
@@ -88,7 +88,7 @@ EOF
 %{make_cgit}
 
 # Something in the a2x chain doesn't like running in parallel. :/
-%{make_cgit} -j1 #doc-html #doc-man
+%{make_cgit} -j1
 
 %if %{syntax_highlight}
 highlight --print-style --style-outfile=stdout >> cgit.css
@@ -97,7 +97,7 @@ highlight --print-style --style-outfile=stdout >> cgit.css
 
 %install
 rm -rf %{buildroot}
-%{make_cgit} install #install-man
+%{make_cgit} install
 install -d -m0755 %{buildroot}%{_sysconfdir}/httpd/conf.d
 install -p -m0644 %{SOURCE2} %{buildroot}%{_sysconfdir}/cgitrc
 install -p -m0644 httpd.conf %{buildroot}%{_sysconfdir}/httpd/conf.d/cgit.conf
@@ -123,3 +123,4 @@ rm -rf %{buildroot}
 * Tue Jan 19 2016 sulit <sulitsrc@gmail.com> - 0.12-2
 - Init for isoft4
 - add libxml2 buildrequire
+- remove man and install it later
