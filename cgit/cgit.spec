@@ -88,7 +88,7 @@ EOF
 %{make_cgit}
 
 # Something in the a2x chain doesn't like running in parallel. :/
-%{make_cgit} -j1 doc-html #doc-man
+%{make_cgit} -j1 #doc-html #doc-man
 
 %if %{syntax_highlight}
 highlight --print-style --style-outfile=stdout >> cgit.css
@@ -97,7 +97,7 @@ highlight --print-style --style-outfile=stdout >> cgit.css
 
 %install
 rm -rf %{buildroot}
-%{make_cgit} install install-man
+%{make_cgit} install #install-man
 install -d -m0755 %{buildroot}%{_sysconfdir}/httpd/conf.d
 install -p -m0644 %{SOURCE2} %{buildroot}%{_sysconfdir}/cgitrc
 install -p -m0644 httpd.conf %{buildroot}%{_sysconfdir}/httpd/conf.d/cgit.conf
@@ -110,14 +110,13 @@ rm -rf %{buildroot}
 
 %files
 %defattr(-,root,root,-)
-%doc COPYING README* *.html
+%doc COPYING README*
 %config(noreplace) %{_sysconfdir}/cgitrc
 %config(noreplace) %{_sysconfdir}/httpd/conf.d/cgit.conf
 %dir %attr(-,apache,root) %{cachedir}
 %{cgitdata}
 %{filterdir}
 %{scriptdir}/*
-%{_mandir}/man*/*
 
 
 %changelog
