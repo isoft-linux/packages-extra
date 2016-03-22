@@ -27,6 +27,7 @@ BuildRequires:  libisofs-devel >= 0.6.4
 BuildRequires:  nautilus-devel >= 2.22.2
 BuildRequires:  libSM-devel
 BuildRequires:  libcanberra-devel
+BuildRequires:  libcanberra-gtk3-devel
 BuildRequires:  gobject-introspection-devel
 BuildRequires:  tracker-devel
 BuildRequires:  autoconf automake libtool
@@ -202,4 +203,5 @@ update-mime-database %{_datadir}/mime &> /dev/null || :
 %changelog
 * Tue Mar 22 2016 sulit <sulitsrc@gmail.com> - 3.12.1-4
 - Init for isoft5
+- add libcanberra-gtk3-devel buildrequire
 
