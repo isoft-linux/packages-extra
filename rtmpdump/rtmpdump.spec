@@ -4,7 +4,7 @@
 
 Name:           rtmpdump
 Version:        2.4
-Release:        4.%{gitdate}.git%{shortcommit}%{?dist}
+Release:        5.%{gitdate}.git%{shortcommit}%{?dist}
 Summary:        Toolkit for RTMP streams
 
 # The tools are GPLv2+. The library is LGPLv2+, see below.
@@ -23,7 +23,6 @@ including rtmp://, rtmpt://, rtmpe://, rtmpte://, and rtmps://.
 
 %package -n librtmp
 Summary:        Support library for RTMP streams
-Group:          Applications/Internet
 License:        LGPLv2+
 
 %description -n librtmp
@@ -32,7 +31,6 @@ including rtmp://, rtmpt://, rtmpe://, rtmpte://, and rtmps://.
 
 %package -n librtmp-devel
 Summary:        Files for librtmp development
-Group:          Applications/Internet
 License:        LGPLv2+
 Requires:       librtmp%{?_isa} = %{version}-%{release}
 
@@ -74,6 +72,9 @@ rm -f %{buildroot}%{_libdir}/librtmp.a
 %{_mandir}/man3/librtmp.3*
 
 %changelog
+* Mon Mar 21 2016 sulit <sulitsrc@gmail.com> - 2.4-5.20131205.gitdc76f0a
+- remove group info
+
 * Mon Mar 21 2016 sulit <sulitsrc@gmail.com> - 2.4-4.20131205.gitdc76f0a
 - Init for isoft5
 

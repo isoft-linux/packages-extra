@@ -1,6 +1,6 @@
 Name:      brasero
 Version:   3.12.1
-Release:   4%{?dist}
+Release:   5%{?dist}
 Summary:   Gnome CD/DVD burning application
 # see https://bugzilla.gnome.org/show_bug.cgi?id=683503
 License:   GPLv3+
@@ -53,7 +53,6 @@ desktop.
 
 %package   libs
 Summary:   Libraries for %{name}
-Group:     System Environment/Libraries
 Obsoletes: nautilus-cd-burner-libs < 2.25.4
 
 
@@ -64,7 +63,6 @@ The %{name}-libs package contains the runtime shared libraries for
 
 %package   nautilus
 Summary:   Nautilus extension for %{name}
-Group:     User Interface/Desktops
 
 Provides:  nautilus-cd-burner = %{version}-%{release}
 Obsoletes: nautilus-cd-burner < 2.25.4
@@ -76,7 +74,6 @@ The %{name}-nautilus package contains the brasero nautilus extension.
 
 %package        devel
 Summary:        Headers for developing programs that will use %{name}
-Group:          Development/Libraries
 Requires:       %{name}-libs%{?_isa} = %{version}-%{release}
 Obsoletes:      nautilus-cd-burner-devel < 2.25.4
 
@@ -201,6 +198,9 @@ update-mime-database %{_datadir}/mime &> /dev/null || :
 
 
 %changelog
+* Tue Mar 22 2016 sulit <sulitsrc@gmail.com> - 3.12.1-5
+- remove group info
+
 * Tue Mar 22 2016 sulit <sulitsrc@gmail.com> - 3.12.1-4
 - Init for isoft5
 - add libcanberra-gtk3-devel buildrequire
