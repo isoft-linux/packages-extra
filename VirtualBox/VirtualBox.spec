@@ -18,8 +18,8 @@
 
 Summary:   Oracle VM VirtualBox
 Name:      VirtualBox
-Version:   5.0.12
-Release:   1
+Version:   5.0.16
+Release:   2
 URL:       http://www.virtualbox.org/
 Source:    http://download.virtualbox.org/virtualbox/5.0.10/%{name}-%{version}.tar.bz2
 License:   GPLv2
@@ -95,6 +95,8 @@ VirtualBox dkms pkg.
 
 
 %build
+sed -e 's/PACKAGE_NAME="vboxhost"/PACKAGE_NAME="%{name}"/' -i src/VBox/HostDrivers/linux/dkms.conf
+sed -e 's/PACKAGE_VERSION=.*/PACKAGE_VERSION="%{version}"/' -i src/VBox/HostDrivers/linux/dkms.conf
 sed -e "s/WITH_VMMRAW=1/WITH_VMMRAW=0/" -i configure
 sed -e "s/WITH_KMODS=1/WITH_KMODS=0/" -i configure
 
@@ -479,6 +481,9 @@ rm -rf $RPM_BUILD_ROOT
 /usr/src/%{name}-%{version}
 
 %changelog
+* Mon Apr 18 2016 sulit <sulitsrc@gmail.com> - 5.0.16-2
+- update virtualbox to 5.0.16 and modify dkms.conf
+
 * Thu Jan 07 2016 sulit <sulitsrc@gmail.com> - 5.0.12-1
 - add vboxconfig prompt
 - remove check_gcc_version patch
