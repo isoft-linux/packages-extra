@@ -48,11 +48,11 @@ Requires: dbus-x11
 # the vte3 package is effectively a compat package with API version 2.90.
 # virt-manager works fine with either, so pull the latest bits so there's
 # no ambiguity.
-Requires: vte291
+Requires: vte3
 
 # For console widget
 Requires: gtk-vnc
-Requires: spice-gtk3
+Requires: spice-gtk
 
 %if 0%{?rhel} == 7
 Requires: gnome-icon-theme
@@ -82,7 +82,7 @@ Requires: libvirt-python >= 0.7.0
 Requires: python-libxml2
 Requires: python-requests
 Requires: python-ipaddr
-Requires: libosinfo >= 0.2.10
+#Requires: libosinfo >= 0.2.10
 # Required for gobject-introspection infrastructure
 Requires: pygobject3-base
 
