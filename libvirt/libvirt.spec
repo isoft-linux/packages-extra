@@ -26,7 +26,7 @@ BuildRequires: libblkid-devel
 #BuildRequires: libcares-devel
 BuildRequires: libcurl-devel
 BuildRequires: dbus-devel
-BuildRequires: device-mapper-libs
+BuildRequires: device-mapper-devel
 BuildRequires: e2fsprogs-devel
 BuildRequires: libgcrypt-devel
 BuildRequires: gnutls-devel
@@ -54,6 +54,10 @@ BuildRequires: libzip-devel
 #BuildRequires: libyajl-devel
 BuildRequires: libpcap-devel >= 1.2
 BuildRequires: systemtap-sdt-devel
+BuildRequires: systemd-devel
+BuildRequires: libpciaccess-devel
+BuildRequires: libnl3-devel
+
 Requires:      dnsmasq
 Requires:      ebtables
 Requires:      netcat-openbsd
