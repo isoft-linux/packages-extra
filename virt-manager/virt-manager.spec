@@ -24,7 +24,6 @@ Release: 1%{?dist}
 %define verrel %{version}-%{release}
 
 Summary: Desktop tool for managing virtual machines via libvirt
-Group: Applications/Emulators
 License: GPLv2+
 URL: http://virt-manager.org/
 Source0: http://virt-manager.org/download/sources/%{name}/%{name}-%{version}.tar.gz
@@ -74,7 +73,6 @@ management API.
 
 %package common
 Summary: Common files used by the different Virtual Machine Manager interfaces
-Group: Applications/Emulators
 
 # This version not strictly required: virt-manager should work with older,
 # however varying amounts of functionality will not be enabled.

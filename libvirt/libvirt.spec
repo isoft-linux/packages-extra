@@ -3,7 +3,7 @@
 
 Name:          libvirt
 Version:       1.3.3
-Release:       1
+Release:       1%{?dist}
 Summary:       Virtualization API
 URL:           http://libvirt.org
 Source0:       http://libvirt.org/sources/libvirt-%{version}.tar.gz
