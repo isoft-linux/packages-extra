@@ -96,8 +96,7 @@ This package contains static libraries and header files need for development.
 
 
 %build
-CPPFLAGS="%{optflags} -I%{_inclduedir}/tirpc" \
-CFLAGS="%{optflags} -I%{_includedir}/tirpc" \
+autoreconf -if
 %configure \
    --without-xen \
    --with-systemd-daemon \
@@ -105,12 +104,11 @@ CFLAGS="%{optflags} -I%{_includedir}/tirpc" \
    --with-qemu-user=%{qemu_user} \
    --with-qemu-group=%{qemu_group} \
    --without-wireshark-dissector
-
-#   --with-remote-pid-file=%{_localstatedir}/run/libvirtd.pid \
+make %{?_smp_mflags}
 
 %install
 [ "%{buildroot}" != / ] && rm -rf "%{buildroot}"
-%makeinstall SYSTEMD_UNIT_DIR=%{_unitdir}
+make install DESTDIR=%{?buildroot} SYSTEMD_UNIT_DIR=%{_unitdir}
 
 install -d %{buildroot}%{_localstatedir}/log/libvirt/{lxc,uml,qemu}
 
@@ -230,10 +228,6 @@ fi
 %files client -f %{name}.lang
 %defattr(-,root,root)
 %config(noreplace) %{_sysconfdir}/sasl2/libvirt.conf
-%ifnarch arm
-%config(noreplace) %{_sysconfdir}/libvirt/libxl-lockd.conf
-%config(noreplace) %{_sysconfdir}/libvirt/libxl.conf
-%endif
 %{_unitdir}/libvirt-guests.service
 %{_sysconfdir}/sysconfig/libvirt-guests
 %{_bindir}/virsh
@@ -244,10 +238,6 @@ fi
 %dir %{_libdir}/libvirt/connection-driver
 %{_libdir}/libvirt/connection-driver/libvirt_driver_interface.la
 %{_libdir}/libvirt/connection-driver/libvirt_driver_interface.so
-%ifnarch arm
-%{_libdir}/libvirt/connection-driver/libvirt_driver_libxl.la
-%{_libdir}/libvirt/connection-driver/libvirt_driver_libxl.so
-%endif
 %{_libdir}/libvirt/connection-driver/libvirt_driver_lxc.la
 %{_libdir}/libvirt/connection-driver/libvirt_driver_lxc.so
 %{_libdir}/libvirt/connection-driver/libvirt_driver_network.la
@@ -270,10 +260,6 @@ fi
 #%{_libdir}/libvirt/connection-driver/libvirt_driver_vbox_network.so
 #%{_libdir}/libvirt/connection-driver/libvirt_driver_vbox_storage.la
 #%{_libdir}/libvirt/connection-driver/libvirt_driver_vbox_storage.so
-%ifnarch arm
-%{_libdir}/libvirt/connection-driver/libvirt_driver_xen.la
-%{_libdir}/libvirt/connection-driver/libvirt_driver_xen.so
-%endif
 %dir %{_libdir}/libvirt/lock-driver
 %{_libdir}/libvirt/lock-driver/lockd.la
 %{_libdir}/libvirt/lock-driver/lockd.so
