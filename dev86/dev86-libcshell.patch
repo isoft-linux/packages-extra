@@ -1,0 +1,14 @@
+diff -Nur dev86-0.16.21_old/libc/Config_sh dev86-0.16.21/libc/Config_sh
+--- dev86-0.16.21_old/libc/Config_sh	2016-05-05 16:41:32.785833624 +0800
++++ dev86-0.16.21/libc/Config_sh	2016-05-05 16:43:02.901829606 +0800
+@@ -42,6 +42,10 @@
+       RUNNING=0
+       echo 'Using default configuration'
+    }
++
++   #let's use default cfg!
++   RUNNING=0
++
+    while [ $RUNNING = 1 ]
+    do
+       display
