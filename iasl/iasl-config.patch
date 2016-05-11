@@ -1,0 +1,46 @@
+Remove -D_FORTIFY_SOURCE=2 because it only works with -O.  Upstream
+disables -O because (they claim) it leads to miscompilation.
+
+Remove -Wstrict-aliasing=0.  If these warnings happen, they are
+serious.
+
+Remove -Wredundant-decls.  This happens several times, and is not
+serious.
+
+Remove -m32/-m64 flags. The buildsystem is native and thus correct and -m32 doesn't work on s390.
+
+diff -up acpica-unix-20120913/generate/unix/Makefile.config.opts acpica-unix-20120913/generate/unix/Makefile.config
+--- acpica-unix-20120913/generate/unix/Makefile.config.opts	2012-09-13 21:37:42.000000000 +0200
++++ acpica-unix-20120913/generate/unix/Makefile.config	2012-11-23 12:23:01.000000000 +0100
+@@ -104,14 +104,10 @@ ACPICA_HEADERS = \
+ # automatically included in -Wall.
+ #
+ CFLAGS += \
+-    $(BITSFLAG) \
+     -D$(HOST) \
+     -D_GNU_SOURCE \
+-    -D_FORTIFY_SOURCE=2 \
+     -I$(ACPICA_INCLUDE)
+ 
+-LDFLAGS += $(BITSFLAG)
+-
+ CWARNINGFLAGS = \
+     -ansi \
+     -Wall \
+@@ -121,7 +117,6 @@ CWARNINGFLAGS = \
+     -Wformat=2 \
+     -Wmissing-declarations \
+     -Wmissing-prototypes \
+-    -Wstrict-aliasing=0 \
+     -Wstrict-prototypes \
+     -Wswitch-default \
+     -Wpointer-arith \
+@@ -142,7 +137,7 @@ CWARNINGFLAGS += \
+     -Wnested-externs \
+     -Wold-style-declaration \
+     -Wold-style-definition \
+-    -Wredundant-decls \
++    -Wno-redundant-decls \
+     -Wtype-limits
+ 
+ #
