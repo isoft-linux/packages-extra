@@ -6,8 +6,8 @@
 
 Summary: Mozilla Firefox Web browser
 Name: firefox
-Version: 44.0.2
-Release: 2 
+Version: 46.0.1
+Release: 2
 URL: http://www.mozilla.org/projects/firefox
 License: MPLv1.1 or GPLv2+ or LGPLv2+
 Source0: http://ftp.mozilla.org/pub/firefox/releases/%{version}/linux-x86_64/en-US/firefox-%{version}.tar.bz2
@@ -80,6 +80,9 @@ update-desktop-database ||:
 %{_datadir}/icons/hicolor/*/apps/firefox.png
 
 %changelog
+* Mon May 16 2016 Cjacker <cjacker@foxmail.com> - 46.0.1-2
+- Update to 46.0.1
+
 * Thu Jan 21 2016 Cjacker <cjacker@foxmail.com> - 43.0.4-2
 - Update to 43.0.4
 
