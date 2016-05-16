@@ -1,0 +1,34 @@
+From: Cole Robinson <crobinso@redhat.com>
+Date: Thu, 21 Jan 2016 13:18:04 -0500
+Subject: [PATCH] lxc: fuse: Fill in MemAvailable for /proc/meminfo
+
+'free' on Fedora 23 will use MemAvailable to calculate its 'available'
+field, but we are passing through the host's value. Set it to match
+MemFree, which is what 'free' will do for older linux that don't have
+MemAvailable
+
+https://bugzilla.redhat.com/show_bug.cgi?id=1300781
+(cherry picked from commit c7be484d1136834614089c9a74a3818594852f24)
+---
+ src/lxc/lxc_fuse.c | 8 ++++++++
+ 1 file changed, 8 insertions(+)
+
+diff --git a/src/lxc/lxc_fuse.c b/src/lxc/lxc_fuse.c
+index e6369f8..691ddee 100644
+--- a/src/lxc/lxc_fuse.c
++++ b/src/lxc/lxc_fuse.c
+@@ -174,6 +174,14 @@ static int lxcProcReadMeminfo(char *hostpath, virDomainDefPtr def,
+                     virDomainDefGetMemoryActual(def))) {
+             virBufferAsprintf(new_meminfo, "MemFree:        %8llu kB\n",
+                               (meminfo.memtotal - meminfo.memusage));
++        } else if (STREQ(line, "MemAvailable") &&
++                   (virMemoryLimitIsSet(def->mem.hard_limit) ||
++                    virDomainDefGetMemoryActual(def))) {
++            /* MemAvailable is actually MemFree + SRReclaimable +
++               some other bits, but MemFree is the closest approximation
++               we have */
++            virBufferAsprintf(new_meminfo, "MemAvailable:   %8llu kB\n",
++                              (meminfo.memtotal - meminfo.memusage));
+         } else if (STREQ(line, "Buffers")) {
+             virBufferAsprintf(new_meminfo, "Buffers:        %8d kB\n", 0);
+         } else if (STREQ(line, "Cached")) {

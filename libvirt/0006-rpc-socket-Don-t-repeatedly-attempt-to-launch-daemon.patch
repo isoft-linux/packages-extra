@@ -1,0 +1,43 @@
+From: Cole Robinson <crobinso@redhat.com>
+Date: Mon, 11 Jan 2016 20:13:38 -0500
+Subject: [PATCH] rpc: socket: Don't repeatedly attempt to launch daemon
+
+On every socket connect(2) attempt we were re-launching session
+libvirtd, up to 100 times in 5 seconds.
+
+This understandably caused some weird load races and intermittent
+qemu:///session startup failures
+
+https://bugzilla.redhat.com/show_bug.cgi?id=1271183
+(cherry picked from commit 2eb7a975756d05a5b54ab4acf60083beb6161ac6)
+---
+ src/rpc/virnetsocket.c | 9 +++++++--
+ 1 file changed, 7 insertions(+), 2 deletions(-)
+
+diff --git a/src/rpc/virnetsocket.c b/src/rpc/virnetsocket.c
+index 6a51dc8..b132532 100644
+--- a/src/rpc/virnetsocket.c
++++ b/src/rpc/virnetsocket.c
+@@ -619,6 +619,7 @@ int virNetSocketNewConnectUNIX(const char *path,
+     virSocketAddr remoteAddr;
+     char *rundir = NULL;
+     int ret = -1;
++    bool daemonLaunched = false;
+ 
+     VIR_DEBUG("path=%s spawnDaemon=%d binary=%s", path, spawnDaemon,
+         NULLSTR(binary));
+@@ -699,8 +700,12 @@ int virNetSocketNewConnectUNIX(const char *path,
+             goto cleanup;
+         }
+ 
+-        if (virNetSocketForkDaemon(binary) < 0)
+-            goto cleanup;
++        if (!daemonLaunched) {
++            if (virNetSocketForkDaemon(binary) < 0)
++                goto cleanup;
++
++            daemonLaunched = true;
++        }
+ 
+         usleep(5000);
+     }

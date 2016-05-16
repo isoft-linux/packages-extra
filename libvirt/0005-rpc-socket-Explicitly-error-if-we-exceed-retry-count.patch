@@ -1,0 +1,40 @@
+From: Cole Robinson <crobinso@redhat.com>
+Date: Mon, 11 Jan 2016 20:08:45 -0500
+Subject: [PATCH] rpc: socket: Explicitly error if we exceed retry count
+
+When we autolaunch libvirtd for session URIs, we spin in a retry
+loop waiting for the daemon to start and the connect(2) to succeed.
+
+However if we exceed the retry count, we don't explicitly raise an
+error, which can yield a slew of different error messages elsewhere
+in the code.
+
+Explicitly raise the last connect(2) failure if we run out of retries.
+
+(cherry picked from commit 8da02d528068942303923fc4f935e77cccac9c7c)
+---
+ src/rpc/virnetsocket.c | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
+
+diff --git a/src/rpc/virnetsocket.c b/src/rpc/virnetsocket.c
+index fc8ce6c..6a51dc8 100644
+--- a/src/rpc/virnetsocket.c
++++ b/src/rpc/virnetsocket.c
+@@ -690,7 +690,9 @@ int virNetSocketNewConnectUNIX(const char *path,
+         }
+         VIR_DEBUG("connect() failed: retries=%d errno=%d", retries, errno);
+ 
++        retries--;
+         if (!spawnDaemon ||
++            retries == 0 ||
+             (errno != ENOENT && errno != ECONNREFUSED)) {
+             virReportSystemError(errno, _("Failed to connect socket to '%s'"),
+                                  path);
+@@ -700,7 +702,6 @@ int virNetSocketNewConnectUNIX(const char *path,
+         if (virNetSocketForkDaemon(binary) < 0)
+             goto cleanup;
+ 
+-        retries--;
+         usleep(5000);
+     }
+ 

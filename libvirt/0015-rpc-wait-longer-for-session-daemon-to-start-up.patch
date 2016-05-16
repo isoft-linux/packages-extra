@@ -1,0 +1,37 @@
+From: Cole Robinson <crobinso@redhat.com>
+Date: Tue, 15 Mar 2016 17:04:32 -0400
+Subject: [PATCH] rpc: wait longer for session daemon to start up
+
+https://bugzilla.redhat.com/show_bug.cgi?id=1271183
+
+We only wait 0.5 seconds for the session daemon to start up and present
+its socket, which isn't sufficient for many users. Bump up the sleep
+interval and retry amount so we wait for a total of 5.0 seconds.
+
+(cherry picked from commit ca0c06f4008154de55e0b3109885facd0bf02d32)
+---
+ src/rpc/virnetsocket.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/src/rpc/virnetsocket.c b/src/rpc/virnetsocket.c
+index b132532..ecedcf5 100644
+--- a/src/rpc/virnetsocket.c
++++ b/src/rpc/virnetsocket.c
+@@ -614,7 +614,7 @@ int virNetSocketNewConnectUNIX(const char *path,
+     char *lockpath = NULL;
+     int lockfd = -1;
+     int fd = -1;
+-    int retries = 100;
++    int retries = 500;
+     virSocketAddr localAddr;
+     virSocketAddr remoteAddr;
+     char *rundir = NULL;
+@@ -707,7 +707,7 @@ int virNetSocketNewConnectUNIX(const char *path,
+             daemonLaunched = true;
+         }
+ 
+-        usleep(5000);
++        usleep(10000);
+     }
+ 
+     localAddr.len = sizeof(localAddr.data);

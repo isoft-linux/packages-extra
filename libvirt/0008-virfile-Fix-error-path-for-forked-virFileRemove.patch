@@ -1,0 +1,42 @@
+From: John Ferlan <jferlan@redhat.com>
+Date: Wed, 30 Sep 2015 17:37:27 -0400
+Subject: [PATCH] virfile: Fix error path for forked virFileRemove
+
+As it turns out the caller in this case expects a return < 0 for failure
+and to get/use "errno" rather than using the negative of returned status.
+Again different than the create path.
+
+If someone "deleted" a file from the pool without using virsh vol-delete,
+then the unlink/rmdir would return an error (-1) and set errno to ENOENT.
+The caller checks errno for ENOENT when determining whether to throw an
+error message indicating the failure.  Without the change, the error
+message is:
+
+error: Failed to delete vol $vol
+error: cannot unlink file '/$pathto/$vol': Success
+
+This patch thus allows the fork path to follow the non-fork path
+where unlink/rmdir return -1 and errno.
+
+(cherry picked from commit cb19cff468432e55366014658f405066ce06c2f2)
+---
+ src/util/virfile.c | 5 +++--
+ 1 file changed, 3 insertions(+), 2 deletions(-)
+
+diff --git a/src/util/virfile.c b/src/util/virfile.c
+index 7b14ee8..d742645 100644
+--- a/src/util/virfile.c
++++ b/src/util/virfile.c
+@@ -2381,9 +2381,10 @@ virFileUnlink(const char *path,
+                            path, msg);
+             VIR_FREE(msg);
+             if (WIFEXITED(status))
+-                ret = -WEXITSTATUS(status);
++                errno = WEXITSTATUS(status);
+             else
+-                ret = -EACCES;
++                errno = EACCES;
++            ret = -errno;
+         }
+ 
+  parenterror:
