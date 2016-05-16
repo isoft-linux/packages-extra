@@ -1,8 +1,8 @@
 %define debug_package %{nil}
 
 Name: firefox-i18n
-Version: 44.0.2
-Release: 3 
+Version: 46.0.1
+Release: 2
 Summary: Language pack for firefox
 License: MPL
 URL: http://download.cdn.mozilla.net/pub/firefox/releases/%{version}/linux-x86_64/xpi
@@ -29,6 +29,9 @@ done
 %{_libdir}/firefox/browser/extensions/langpack-*@firefox.mozilla.org.xpi
 
 %changelog
+* Mon May 16 2016 Cjacker <cjacker@foxmail.com> - 46.0.1-2
+- Update to 46.0.1
+
 * Tue Feb 16 2016 Cjacker <cjacker@foxmail.com> - 44.0.2-3
 - Update to 44.0.2
 
