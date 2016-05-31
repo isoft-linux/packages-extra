@@ -1,6 +1,6 @@
 Name:           netcf
 Version:        0.2.8
-Release:        4
+Release:        5
 Summary:        Cross-platform network configuration library
 
 Group:          System Environment/Libraries
@@ -208,6 +208,9 @@ fi
 %{_libdir}/pkgconfig/netcf.pc
 
 %changelog
+* Tue May 31 2016 fj <fujiang.zhu@i-soft.com.cn> - 0.2.8-5
+- rebuilt:add change log;use libnl3
+
 * Thu May 05 2016 fj <fujiang.zhu@i-soft.com.cn> - 0.2.8-4
 - rebuilt for libvirt,add:--with-driver=redhat
 
