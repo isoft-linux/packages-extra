@@ -130,7 +130,8 @@
 %define with_apparmor         0%{!?_without_apparmor:0}
 
 # A few optional bits off by default, we enable later
-%define with_polkit        0%{!?_without_polkit:0}
+%define with_polkit        0
+#%define with_polkit        0%{!?_without_polkit:0}
 %define with_capng         0%{!?_without_capng:0}
 %define with_fuse          0%{!?_without_fuse:0}
 %define with_netcf         0%{!?_without_netcf:0}
@@ -380,7 +381,7 @@
 Summary: Library providing a simple virtualization API
 Name: libvirt
 Version: 1.2.18.2
-Release: 4%{?dist}%{?extra_release}
+Release: 1
 License: LGPLv2+
 Group: Development/Libraries
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
@@ -529,11 +530,7 @@ BuildRequires: sanlock-devel >= 1.8
 BuildRequires: libpcap-devel
 %endif
 %if %{with_libnl}
-    %if 0%{?fedora} >= 18 || 0%{?rhel} >= 7
 BuildRequires: libnl3-devel
-    %else
-BuildRequires: libnl-devel
-    %endif
 %endif
 %if %{with_avahi}
 BuildRequires: avahi-devel
@@ -562,8 +559,8 @@ BuildRequires: cyrus-sasl-devel
 %if %{with_polkit}
     %if 0%{?fedora} >= 20 || 0%{?rhel} >= 7
 # F22 polkit-devel doesn't pull in polkit anymore, which we need for pkcheck
-BuildRequires: polkit >= 0.112
-BuildRequires: polkit-devel >= 0.112
+#BuildRequires: polkit >= 0.112
+#BuildRequires: polkit-devel >= 0.112
     %else
         %if 0%{?fedora} || 0%{?rhel} >= 6
 BuildRequires: polkit-devel >= 0.93
@@ -1346,9 +1343,9 @@ rm -rf .git
     %define _without_vz --without-vz
 %endif
 
-%if ! %{with_polkit}
+#%if ! %{with_polkit}
     %define _without_polkit --without-polkit
-%endif
+#%endif
 
 %if ! %{with_libvirtd}
     %define _without_libvirtd --without-libvirtd
@@ -2362,6 +2359,6 @@ exit 0
 %doc examples/systemtap
 
 %changelog
-* Fri May 06 2016 fj <fujiang.zhu@i-soft.com.cn> - 1.2.18.2-4
+* Fri May 06 2016 fj <fujiang.zhu@i-soft.com.cn> - 1.2.18.2-1
 - rebuilt
 
