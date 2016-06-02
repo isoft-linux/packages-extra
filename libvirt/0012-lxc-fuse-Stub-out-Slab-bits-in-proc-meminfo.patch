@@ -1,0 +1,35 @@
+From: Cole Robinson <crobinso@redhat.com>
+Date: Thu, 21 Jan 2016 13:33:50 -0500
+Subject: [PATCH] lxc: fuse: Stub out Slab bits in /proc/meminfo
+
+'free' on fedora23 wants to use the Slab field for calculated used
+memory. The equation is:
+
+used = MemTotal - MemFree - (Cached + Slab) - Buffers
+
+We already set Cached and Buffers to 0, do the same for Slab and its
+related values
+
+https://bugzilla.redhat.com/show_bug.cgi?id=1300781
+(cherry picked from commit 81da8bc73b6bc6777632b65a0df45335f7caebe4)
+---
+ src/lxc/lxc_fuse.c | 6 ++++++
+ 1 file changed, 6 insertions(+)
+
+diff --git a/src/lxc/lxc_fuse.c b/src/lxc/lxc_fuse.c
+index 691ddee..8c20a7d 100644
+--- a/src/lxc/lxc_fuse.c
++++ b/src/lxc/lxc_fuse.c
+@@ -217,6 +217,12 @@ static int lxcProcReadMeminfo(char *hostpath, virDomainDefPtr def,
+             virBufferAsprintf(new_meminfo, "SwapFree:       %8llu kB\n",
+                               (meminfo.swaptotal - meminfo.memtotal -
+                                meminfo.swapusage + meminfo.memusage));
++        } else if (STREQ(line, "Slab")) {
++            virBufferAsprintf(new_meminfo, "Slab:           %8d kB\n", 0);
++        } else if (STREQ(line, "SReclaimable")) {
++            virBufferAsprintf(new_meminfo, "SReclaimable:   %8d kB\n", 0);
++        } else if (STREQ(line, "SUnreclaim")) {
++            virBufferAsprintf(new_meminfo, "SUnreclaim:     %8d kB\n", 0);
+         } else {
+             *ptr = ':';
+             virBufferAdd(new_meminfo, line, -1);

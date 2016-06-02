@@ -1,0 +1,57 @@
+From: Jiri Denemark <jdenemar@redhat.com>
+Date: Fri, 15 Jan 2016 10:55:58 +0100
+Subject: [PATCH] security: Do not restore kernel and initrd labels
+
+Kernel/initrd files are essentially read-only shareable images and thus
+should be handled in the same way. We already use the appropriate label
+for kernel/initrd files when starting a domain, but when a domain gets
+destroyed we would remove the labels which would make other running
+domains using the same files very unhappy.
+
+https://bugzilla.redhat.com/show_bug.cgi?id=921135
+
+Signed-off-by: Jiri Denemark <jdenemar@redhat.com>
+(cherry picked from commit 68acc701bd449481e3206723c25b18fcd3d261b7)
+---
+ src/security/security_dac.c     | 8 --------
+ src/security/security_selinux.c | 8 --------
+ 2 files changed, 16 deletions(-)
+
+diff --git a/src/security/security_dac.c b/src/security/security_dac.c
+index deb6980..d01215f 100644
+--- a/src/security/security_dac.c
++++ b/src/security/security_dac.c
+@@ -971,14 +971,6 @@ virSecurityDACRestoreSecurityAllLabel(virSecurityManagerPtr mgr,
+         virSecurityDACRestoreSecurityFileLabel(def->os.loader->nvram) < 0)
+         rc = -1;
+ 
+-    if (def->os.kernel &&
+-        virSecurityDACRestoreSecurityFileLabel(def->os.kernel) < 0)
+-        rc = -1;
+-
+-    if (def->os.initrd &&
+-        virSecurityDACRestoreSecurityFileLabel(def->os.initrd) < 0)
+-        rc = -1;
+-
+     if (def->os.dtb &&
+         virSecurityDACRestoreSecurityFileLabel(def->os.dtb) < 0)
+         rc = -1;
+diff --git a/src/security/security_selinux.c b/src/security/security_selinux.c
+index c2464c2..38f2a29 100644
+--- a/src/security/security_selinux.c
++++ b/src/security/security_selinux.c
+@@ -1978,14 +1978,6 @@ virSecuritySELinuxRestoreSecurityAllLabel(virSecurityManagerPtr mgr,
+         virSecuritySELinuxRestoreSecurityFileLabel(mgr, def->os.loader->nvram) < 0)
+         rc = -1;
+ 
+-    if (def->os.kernel &&
+-        virSecuritySELinuxRestoreSecurityFileLabel(mgr, def->os.kernel) < 0)
+-        rc = -1;
+-
+-    if (def->os.initrd &&
+-        virSecuritySELinuxRestoreSecurityFileLabel(mgr, def->os.initrd) < 0)
+-        rc = -1;
+-
+     if (def->os.dtb &&
+         virSecuritySELinuxRestoreSecurityFileLabel(mgr, def->os.dtb) < 0)
+         rc = -1;

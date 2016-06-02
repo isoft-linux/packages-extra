@@ -1,0 +1,63 @@
+From: Cole Robinson <crobinso@redhat.com>
+Date: Tue, 19 Jan 2016 22:19:56 -0500
+Subject: [PATCH] build: predictably generate systemtap tapsets (bz 1173641)
+
+The generated output is dependent on perl hashtable ordering, which
+gives different results for i686 and x86_64. Fix this by sorting
+the hash keys before iterating over them
+
+https://bugzilla.redhat.com/show_bug.cgi?id=1173641
+(cherry picked from commit a1edb05c6028470aa24b74aa0f8d5fb5a181128a)
+---
+ src/rpc/gensystemtap.pl | 10 +++++-----
+ 1 file changed, 5 insertions(+), 5 deletions(-)
+
+diff --git a/src/rpc/gensystemtap.pl b/src/rpc/gensystemtap.pl
+index 2467300..7b80fbf 100755
+--- a/src/rpc/gensystemtap.pl
++++ b/src/rpc/gensystemtap.pl
+@@ -72,7 +72,7 @@ function libvirt_rpc_auth_name(type, verbose)
+ {
+ EOF
+ my $first = 1;
+-foreach my $type (keys %auth) {
++foreach my $type (sort(keys %auth)) {
+     my $cond = $first ? "if" : "} else if";
+     $first = 0;
+     print "  $cond (type == ", $type, ") {\n";
+@@ -95,7 +95,7 @@ function libvirt_rpc_type_name(type, verbose)
+ {
+ EOF
+ $first = 1;
+-foreach my $type (keys %type) {
++foreach my $type (sort(keys %type)) {
+     my $cond = $first ? "if" : "} else if";
+     $first = 0;
+     print "  $cond (type == ", $type, ") {\n";
+@@ -118,7 +118,7 @@ function libvirt_rpc_status_name(status, verbose)
+ {
+ EOF
+ $first = 1;
+-foreach my $status (keys %status) {
++foreach my $status (sort(keys %status)) {
+     my $cond = $first ? "if" : "} else if";
+     $first = 0;
+     print "  $cond (status == ", $status, ") {\n";
+@@ -141,7 +141,7 @@ function libvirt_rpc_program_name(program, verbose)
+ {
+ EOF
+ $first = 1;
+-foreach my $prog (keys %funcs) {
++foreach my $prog (sort(keys %funcs)) {
+     my $cond = $first ? "if" : "} else if";
+     $first = 0;
+     print "  $cond (program == ", $funcs{$prog}->{id}, ") {\n";
+@@ -165,7 +165,7 @@ function libvirt_rpc_procedure_name(program, version, proc, verbose)
+ {
+ EOF
+ $first = 1;
+-foreach my $prog (keys %funcs) {
++foreach my $prog (sort(keys %funcs)) {
+     my $cond = $first ? "if" : "} else if";
+     $first = 0;
+     print "  $cond (program == ", $funcs{$prog}->{id}, " && version == ", $funcs{$prog}->{version}, ") {\n";

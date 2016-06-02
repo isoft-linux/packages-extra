@@ -1,0 +1,55 @@
+From: Cole Robinson <crobinso@redhat.com>
+Date: Wed, 9 Mar 2016 12:20:37 -0500
+Subject: [PATCH] util: virfile: Only setuid for virFileRemove if on NFS
+
+NFS with root-squash is the only reason we need to do setuid/setgid
+crazyness in virFileRemove, so limit that behavior to the NFS case.
+
+(cherry picked from commit adefc561cc4c6a007529769c3df286f2ed461684)
+---
+ src/util/virfile.c | 11 +++++++++--
+ 1 file changed, 9 insertions(+), 2 deletions(-)
+
+diff --git a/src/util/virfile.c b/src/util/virfile.c
+index 45bb249..1dc6601 100644
+--- a/src/util/virfile.c
++++ b/src/util/virfile.c
+@@ -2308,6 +2308,7 @@ virFileOpenAs(const char *path, int openflags, mode_t mode,
+ 
+ 
+ /* virFileRemoveNeedsSetuid:
++ * @path: file we plan to remove
+  * @uid: file uid to check
+  * @gid: file gid to check
+  *
+@@ -2315,7 +2316,7 @@ virFileOpenAs(const char *path, int openflags, mode_t mode,
+  * owned by the passed uid/gid pair. Needed for NFS with root-squash
+  */
+ static bool
+-virFileRemoveNeedsSetuid(uid_t uid, gid_t gid)
++virFileRemoveNeedsSetuid(const char *path, uid_t uid, gid_t gid)
+ {
+     /* If running unprivileged, setuid isn't going to work */
+     if (geteuid() != 0)
+@@ -2329,6 +2330,12 @@ virFileRemoveNeedsSetuid(uid_t uid, gid_t gid)
+     if (uid == geteuid() && gid == getegid())
+         return false;
+ 
++    /* Only perform the setuid stuff for NFS, which is the only case
++       that may actually need it. This can error, but just be safe and
++       only check for a clear negative result. */
++    if (virFileIsSharedFSType(path, VIR_FILE_SHFS_NFS) == 0)
++        return false;
++
+     return true;
+ }
+ 
+@@ -2355,7 +2362,7 @@ virFileUnlink(const char *path,
+     gid_t *groups;
+     int ngroups;
+ 
+-    if (!virFileRemoveNeedsSetuid(uid, gid))
++    if (!virFileRemoveNeedsSetuid(path, uid, gid))
+         return unlink(path);
+ 
+     /* Otherwise, we have to deal with the NFS root-squash craziness

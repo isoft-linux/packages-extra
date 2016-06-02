@@ -1,6 +1,6 @@
 Name:           netcf
 Version:        0.2.8
-Release:        4%{?dist}%{?extra_release}
+Release:        5
 Summary:        Cross-platform network configuration library
 
 Group:          System Environment/Libraries
@@ -58,19 +58,10 @@ BuildRequires: /usr/bin/pod2man
 BuildRequires:  readline-devel augeas-devel >= 0.5.2
 BuildRequires:  libxml2-devel libxslt-devel
 
-# force the --with-libnl1 option on F17/RHEL6 and earlier
-%if (0%{?fedora} && 0%{?fedora} < 18) || (0%{?rhel} && 0%{?rhel} < 7)
-%define with_libnl1 1
-%else
 %define with_libnl1 0
-%endif
 
 # require libnl3 on F18/RHEL7 and later
-%if 0%{?fedora} >= 18 || 0%{?rhel} >= 7
 BuildRequires:  libnl3-devel
-%else
-BuildRequires:  libnl-devel
-%endif
 
 Requires:       %{name}-libs = %{version}-%{release}
 
@@ -217,6 +208,9 @@ fi
 %{_libdir}/pkgconfig/netcf.pc
 
 %changelog
+* Tue May 31 2016 fj <fujiang.zhu@i-soft.com.cn> - 0.2.8-5
+- rebuilt:add change log;use libnl3
+
 * Thu May 05 2016 fj <fujiang.zhu@i-soft.com.cn> - 0.2.8-4
 - rebuilt for libvirt,add:--with-driver=redhat
 
