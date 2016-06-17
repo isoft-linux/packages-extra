@@ -38,7 +38,7 @@ Patch0: 0000-swift-build-config.patch
 #Build Preset for iSoft Linux.
 Patch1: 0000-swift-isoft-build-preset.patch
 
-#Glibc header search issue.
+#glibc header search issue.
 Patch2: 0001-swift-fix-glibc-header.patch
  
 #Fix python2 detection with newer cmake version.
