@@ -1,7 +1,7 @@
 #If debuginfo needed, try to modify pre-settings.ini in swift/utils.
 %define debug_package %{nil}
 
-%define swift_ver 2.2
+%define swift_ver 3.0 
 
 %define gitdate 20160617
 
@@ -11,7 +11,7 @@
 
 Name: swift
 Version: %{swift_ver}
-Release: 29.git%{gitdate}
+Release: 30.git%{gitdate}
 Summary: Swift Programming Language 
 
 License: Apache 2.0 license with a Runtime Library Exception 
@@ -205,6 +205,9 @@ rm -rf %{buildroot}%{python_sitearch}/six.*
 %{_includedir}/lldb
 
 %changelog
+* Fri Jun 17 2016 Cjacker <cjacker@foxmail.com> - 3.0-30.git20160617
+- Bump swift version to 3.0, it's 3.0-dev now
+
 * Fri Jun 17 2016 Cjacker <cjacker@foxmail.com> - 2.2-29.git20160617
 - Update to 20160617
 
