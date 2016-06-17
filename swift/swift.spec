@@ -170,6 +170,9 @@ rm -rf %{buildroot}%{python_sitearch}/six.*
 %{_bindir}/swift-build
 %{_bindir}/swift-demangle
 %{_bindir}/swift-build-tool
+%{_bindir}/swift-package
+%{_bindir}/swift-test
+%{_libexecdir}/swift/pm/swiftpm-xctest-helper
 %dir %{_libdir}/swift
 %{_libdir}/swift/*
 %dir %{_libdir}/swift_static
