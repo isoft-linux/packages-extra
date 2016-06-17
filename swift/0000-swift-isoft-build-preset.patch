@@ -1,35 +1,24 @@
 diff -Nur swift/utils/build-presets.ini swiftn/utils/build-presets.ini
---- swift/utils/build-presets.ini	2015-12-11 11:04:27.000000000 +0800
-+++ swiftn/utils/build-presets.ini	2015-12-11 11:19:14.190950105 +0800
-@@ -465,8 +465,6 @@
+--- swift/utils/build-presets.ini	2016-06-17 15:37:28.000000000 +0800
++++ swiftn/utils/build-presets.ini	2016-06-17 15:49:55.131973473 +0800
+@@ -573,10 +573,6 @@
+ build-swift-static-stdlib
+ build-swift-stdlib-unittest-extra
+ 
+-# Executes the lit tests for the installable package that is created
+-# Assumes the swift-integration-tests repo is checked out
+-test-installable-package
+-
+ # Path to the root of the installation filesystem.
+ install-destdir=%(install_destdir)s
+ 
+@@ -588,9 +584,6 @@
  build-subdir=buildbot_linux
  lldb
  release
 -test
 -validation-test
+-long-test
  foundation
  
  dash-dash
-@@ -474,6 +472,10 @@
- install-foundation
- reconfigure
- 
-+# iSoft preset
-+[preset: buildbot_linux_isoft]
-+mixin-preset=buildbot_linux
-+
- # Ubuntu 15.10 preset for backwards compat and future customizations.
- [preset: buildbot_linux_1510]
- mixin-preset=buildbot_linux
-diff -Nur swift/utils/build-presets.ini swiftn/utils/build-presets.ini
---- swift/utils/build-presets.ini	2015-12-21 12:43:00.270824087 +0800
-+++ swiftn/utils/build-presets.ini	2015-12-21 12:44:43.838822232 +0800
-@@ -452,7 +452,7 @@
- 
- # Executes the lit tests for the installable package that is created
- # Assumes the swift-integration-tests repo is checked out
--test-installable-package=1
-+test-installable-package=0
- 
- # Path to the root of the installation filesystem.
- install-destdir=%(install_destdir)s

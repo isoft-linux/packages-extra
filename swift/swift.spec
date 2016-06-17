@@ -3,7 +3,7 @@
 
 %define swift_ver 2.2
 
-%define gitdate 20160216
+%define gitdate 20160617
 
 #swift heavily depend on modified lldb, and it's not LLVM upstream now.
 #we had to provided lldb in swift package.
@@ -37,9 +37,6 @@ Patch0: 0000-swift-build-config.patch
 
 #Build Preset for iSoft Linux.
 Patch1: 0000-swift-isoft-build-preset.patch
-
-#Match our glibc headers.
-Patch3: 0001-swift-fix-glibc-header.patch
 
 #Fix python2 detection with newer cmake version.
 Patch4: 0002-lldb-fix-python2-detection.patch
@@ -131,7 +128,6 @@ This package contains header files for lldb library.
 %setup -q -n %{name}
 %patch0 -p1 -d swift
 %patch1 -p1 -d swift
-%patch3 -p1 -d swift
 %patch4 -p1 -d lldb
 %patch5 -p1 -d llvm
 %patch6 -p1 -d clang 
@@ -146,7 +142,7 @@ This package contains header files for lldb library.
 mkdir -p %{_builddir}/swift-%{swift_ver}-%{release}-root
 
 ./swift/utils/build-script \
-    --preset=buildbot_linux_isoft \
+    --preset=buildbot_linux \
     install_destdir=%{_builddir}/swift-%{swift_ver}-%{release}-root \
     installable_package=%{_builddir}/swift-%{swift_ver}-%{release}-root/swift-%{swift_ver}-isoft.tar.gz
 
