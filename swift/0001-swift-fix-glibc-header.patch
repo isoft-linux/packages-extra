@@ -1,0 +1,103 @@
+diff -Nur swift/stdlib/public/Platform/glibc.modulemap.gyb swiftn/stdlib/public/Platform/glibc.modulemap.gyb
+--- swift/stdlib/public/Platform/glibc.modulemap.gyb	2016-06-17 15:37:28.000000000 +0800
++++ swiftn/stdlib/public/Platform/glibc.modulemap.gyb	2016-06-17 15:57:43.447365037 +0800
+@@ -248,7 +248,7 @@
+       export *
+     }
+     module ioctl {
+-      header "${GLIBC_ARCH_INCLUDE_PATH}/sys/ioctl.h"
++      header "${GLIBC_INCLUDE_PATH}/sys/ioctl.h"
+       export *
+     }
+     module libgen {
+@@ -307,73 +307,73 @@
+ 
+ % if CMAKE_SDK in ["LINUX", "FREEBSD", "CYGWIN"]:
+       module sem {
+-        header "${GLIBC_ARCH_INCLUDE_PATH}/sys/sem.h"
++        header "${GLIBC_INCLUDE_PATH}/sys/sem.h"
+         export *
+       }
+       module shm {
+-        header "${GLIBC_ARCH_INCLUDE_PATH}/sys/shm.h"
++        header "${GLIBC_INCLUDE_PATH}/sys/shm.h"
+         export *
+       }
+       module statvfs {
+-        header "${GLIBC_ARCH_INCLUDE_PATH}/sys/statvfs.h"
++        header "${GLIBC_INCLUDE_PATH}/sys/statvfs.h"
+         export *
+       }
+ % end
+ 
+       module ipc {
+-        header "${GLIBC_ARCH_INCLUDE_PATH}/sys/ipc.h"
++        header "${GLIBC_INCLUDE_PATH}/sys/ipc.h"
+         export *
+       }
+       module mman {
+-        header "${GLIBC_ARCH_INCLUDE_PATH}/sys/mman.h"
++        header "${GLIBC_INCLUDE_PATH}/sys/mman.h"
+         export *
+       }
+       module msg {
+-        header "${GLIBC_ARCH_INCLUDE_PATH}/sys/msg.h"
++        header "${GLIBC_INCLUDE_PATH}/sys/msg.h"
+         export *
+       }
+       module resource {
+-        header "${GLIBC_ARCH_INCLUDE_PATH}/sys/resource.h"
++        header "${GLIBC_INCLUDE_PATH}/sys/resource.h"
+         export *
+       }
+       module select {
+-        header "${GLIBC_ARCH_INCLUDE_PATH}/sys/select.h"
++        header "${GLIBC_INCLUDE_PATH}/sys/select.h"
+         export *
+       }
+       module socket {
+-        header "${GLIBC_ARCH_INCLUDE_PATH}/sys/socket.h"
++        header "${GLIBC_INCLUDE_PATH}/sys/socket.h"
+         export *
+       }
+       module stat {
+-        header "${GLIBC_ARCH_INCLUDE_PATH}/sys/stat.h"
++        header "${GLIBC_INCLUDE_PATH}/sys/stat.h"
+         export *
+       }
+       module time {
+-        header "${GLIBC_ARCH_INCLUDE_PATH}/sys/time.h"
++        header "${GLIBC_INCLUDE_PATH}/sys/time.h"
+         export *
+       }
+       module times {
+-        header "${GLIBC_ARCH_INCLUDE_PATH}/sys/times.h"
++        header "${GLIBC_INCLUDE_PATH}/sys/times.h"
+         export *
+       }
+       module types {
+-        header "${GLIBC_ARCH_INCLUDE_PATH}/sys/types.h"
++        header "${GLIBC_INCLUDE_PATH}/sys/types.h"
+         export *
+       }
+       module uio {
+-        header "${GLIBC_ARCH_INCLUDE_PATH}/sys/uio.h"
++        header "${GLIBC_INCLUDE_PATH}/sys/uio.h"
+         export *
+       }
+       module un {
+-        header "${GLIBC_ARCH_INCLUDE_PATH}/sys/un.h"
++        header "${GLIBC_INCLUDE_PATH}/sys/un.h"
+         export *
+       }
+       module utsname {
+-        header "${GLIBC_ARCH_INCLUDE_PATH}/sys/utsname.h"
++        header "${GLIBC_INCLUDE_PATH}/sys/utsname.h"
+         export *
+       }
+       module wait {
+-        header "${GLIBC_ARCH_INCLUDE_PATH}/sys/wait.h"
++        header "${GLIBC_INCLUDE_PATH}/sys/wait.h"
+         export *
+       }
+     }

@@ -11,7 +11,7 @@
 
 Name: swift
 Version: %{swift_ver}
-Release: 28.git%{gitdate}
+Release: 29.git%{gitdate}
 Summary: Swift Programming Language 
 
 License: Apache 2.0 license with a Runtime Library Exception 
@@ -38,6 +38,9 @@ Patch0: 0000-swift-build-config.patch
 #Build Preset for iSoft Linux.
 Patch1: 0000-swift-isoft-build-preset.patch
 
+#Glibc header search issue.
+Patch2: 0001-swift-fix-glibc-header.patch
+ 
 #Fix python2 detection with newer cmake version.
 Patch4: 0002-lldb-fix-python2-detection.patch
 
@@ -128,6 +131,7 @@ This package contains header files for lldb library.
 %setup -q -n %{name}
 %patch0 -p1 -d swift
 %patch1 -p1 -d swift
+%patch2 -p1 -d swift
 %patch4 -p1 -d lldb
 %patch5 -p1 -d llvm
 %patch6 -p1 -d clang 
@@ -198,6 +202,9 @@ rm -rf %{buildroot}%{python_sitearch}/six.*
 %{_includedir}/lldb
 
 %changelog
+* Fri Jun 17 2016 Cjacker <cjacker@foxmail.com> - 2.2-29.git20160617
+- Update to 20160617
+
 * Tue Feb 16 2016 Cjacker <cjacker@foxmail.com> - 2.2-28.git20160216
 - Update to git 20160216
 
