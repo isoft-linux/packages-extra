@@ -33,6 +33,7 @@ ExclusiveArch: x86_64 %{ix86}
 
 BuildRequires: clang
 BuildRequires: glibc-devel
+BuildRequires: curl
 
 %description
 Rust is a systems programming language that runs blazingly fast, prevents nearly all segfaults, and guarantees thread safety
