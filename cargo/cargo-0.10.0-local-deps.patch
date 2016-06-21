@@ -1,0 +1,77 @@
+diff -Nur cargo-0.10.0/cargo-0.10.0/Cargo.toml cargo-0.10.0fix/cargo-0.10.0/Cargo.toml
+--- cargo-0.10.0/cargo-0.10.0/Cargo.toml	2016-04-09 04:31:50.000000000 +0800
++++ cargo-0.10.0fix/cargo-0.10.0/Cargo.toml	2016-06-20 14:48:08.268975794 +0800
+@@ -17,38 +17,29 @@
+ path = "src/cargo/lib.rs"
+ 
+ [dependencies]
+-advapi32-sys = "0.1"
+ crates-io = { path = "src/crates-io", version = "0.1" }
+-crossbeam = "0.2"
+-curl = "0.2"
+-docopt = "0.6"
+-env_logger = "0.3"
+-filetime = "0.1"
+-flate2 = "0.2"
+-fs2 = "0.2"
+-git2 = "0.4"
+-git2-curl = "0.4"
+-glob = "0.2"
+-kernel32-sys = "0.2"
+-libc = "0.2"
+-libgit2-sys = "0.4"
+-log = "0.3"
+-num_cpus = "0.2"
+-regex = "0.1"
+-rustc-serialize = "0.3"
+-semver = "0.2.2"
+-tar = "0.4"
+-term = "0.4.4"
+-time = "0.1"
+-toml = "0.1"
+-url = "0.2"
+-winapi = "0.2"
+-
+-[dev-dependencies]
+-tempdir = "0.3"
+-hamcrest = "0.1"
+-bufstream = "0.1"
+-filetime = "0.1"
++crossbeam = { version = "0.2.9", path = "../crossbeam-0.2.9" }
++curl = { version = "0.2.19", path = "../curl-0.2.19" }
++docopt = { version = "0.6.70", path = "../docopt-0.6.70" }
++env_logger = { version = "0.3.1", path = "../env_logger-0.3.1" }
++filetime = { version = "0.1.6", path = "../filetime-0.1.6" }
++flate2 = { version = "0.2.7", path = "../flate2-0.2.7" }
++git2 = { version = "0.4.3", path = "../git2-0.4.3" }
++git2-curl = { version = "0.4.1", path = "../git2-curl-0.4.1" }
++glob = { version = "0.2.10", path = "../glob-0.2.10" }
++libc = { version = "0.2.12", path = "../libc-0.2.12" }
++libgit2-sys = { version = "0.4.3", path = "../libgit2-sys-0.4.3" }
++log = { version = "0.3.2", path = "../log-0.3.2" }
++num_cpus = { version = "0.2.6", path = "../num_cpus-0.2.6" }
++regex = { version = "0.1.71", path = "../regex-0.1.71" }
++rustc-serialize = { version = "0.3.16", path = "../rustc-serialize-0.3.16" }
++tar = { version = "0.4.6", path = "../tar-0.4.6" }
++term = { version = "0.4.4", path = "../term-0.4.4" }
++time = { version = "0.1.35", path = "../time-0.1.35" }
++toml = { version = "0.1.23", path = "../toml-0.1.23" }
++url = { version = "0.2.38", path = "../url-0.2.38" }
++semver = { version = "0.2.2", path = "../semver-0.2.2" }
++fs2 = { version = "0.2.5", path = "../fs2-0.2.5" }
+ 
+ [[bin]]
+ name = "cargo"
+diff -Nur cargo-0.10.0/cargo-0.10.0/src/crates-io/Cargo.toml cargo-0.10.0fix/cargo-0.10.0/src/crates-io/Cargo.toml
+--- cargo-0.10.0/cargo-0.10.0/src/crates-io/Cargo.toml	2016-04-09 04:31:50.000000000 +0800
++++ cargo-0.10.0fix/cargo-0.10.0/src/crates-io/Cargo.toml	2016-06-20 14:47:46.074799846 +0800
+@@ -13,6 +13,6 @@
+ path = "lib.rs"
+ 
+ [dependencies]
+-curl = "0.2"
+-url = "0.2"
+-rustc-serialize = "0.3"
++url = { version = "0.2.38", path = "../../../url-0.2.38" }
++curl = { version = "0.2.19", path = "../../../curl-0.2.19" }
++rustc-serialize = { version = "0.3.16", path = "../../../rustc-serialize-0.3.16" }

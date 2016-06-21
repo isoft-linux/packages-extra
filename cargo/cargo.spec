@@ -1,6 +1,6 @@
 Name: cargo
-Version: 0.7.0
-Release: 2
+Version: 0.10.0
+Release: 2 
 Summary: The Rust package manager 	
 
 License: Apache	
@@ -20,8 +20,8 @@ Source3: https://github.com/rust-lang/rust-installer/archive/4915c7532533319939c
 #https://crates.io/api/v1/crates/[name]/[version]/download
 Source4: cargo-crates.tar.gz
 
-Patch0: cargo-0.6.0-crates-local-deps.patch
-Patch1: cargo-0.7.0-local-deps.patch
+Patch0: cargo-0.10.0-crates-local-deps.patch
+Patch1: cargo-0.10.0-local-deps.patch
 
 #only support amd64/x86
 ExclusiveArch: x86_64 %{ix86}
@@ -103,6 +103,9 @@ rm -rf %{buildroot}/usr/etc
 %{_docdir}/cargo
 
 %changelog
+* Tue Jun 21 2016 Cjacker <cjacker@foxmail.com> - 0.10.0-2
+- Update
+
 * Fri Dec 11 2015 Cjacker <cjacker@foxmail.com> - 0.7.0-2
 - Update
 
