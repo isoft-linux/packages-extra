@@ -29,6 +29,7 @@ ExclusiveArch: x86_64 %{ix86}
 BuildRequires: rust	
 BuildRequires: libcurl-devel openssl-devel libssh2-devel
 BuildRequires: clang
+BuildRequires: cmake
 
 Requires:rust
 
