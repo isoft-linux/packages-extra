@@ -30,6 +30,7 @@ BuildRequires: rust
 BuildRequires: libcurl-devel openssl-devel libssh2-devel
 BuildRequires: clang
 BuildRequires: cmake
+BuildRequires: curl
 
 Requires:rust
 
