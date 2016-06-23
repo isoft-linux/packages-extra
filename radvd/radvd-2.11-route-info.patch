@@ -1,0 +1,58 @@
+From 11b4e773af7d2463751190edb240ec26c1a70bbf Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?Pavel=20=C5=A0imerda?= <psimerda@redhat.com>
+Date: Sun, 12 Apr 2015 21:45:53 +0200
+Subject: [PATCH] radvdump: show routes with prefixlen > 64
+
+Current radvdump code blindly copies over eight bytes of route prefix
+but its size in bytes can actually be zero, eight or sixteen.
+
+Use the following `/etc/radvd.conf` to reproduce:
+
+    interface eth0 {
+        AdvSendAdvert on;
+        MinRtrAdvInterval 3;
+        MaxRtrAdvInterval 4;
+        route 2001:db8:0:0:11::/80 {};
+    };
+
+Output before the change:
+
+    route 2001:db8::/80
+    {
+        AdvRoutePreference medium;
+        AdvRouteLifetime 12;
+    }; # End of route definition
+
+Output after the change:
+
+    route 2001:db8:0:0:11::/80
+    {
+        AdvRoutePreference medium;
+        AdvRouteLifetime 12;
+    }; # End of route definition
+
+See also:
+
+ * https://bugzilla.redhat.com/show_bug.cgi?id=1188891
+ * https://tools.ietf.org/html/rfc4191#section-2.3
+---
+ radvdump.c | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
+
+diff --git a/radvdump.c b/radvdump.c
+index 9789c85..7d55146 100644
+--- a/radvdump.c
++++ b/radvdump.c
+@@ -352,7 +352,8 @@ static void print_ff(unsigned char *msg, int len, struct sockaddr_in6 *addr, int
+ 				} else {
+ 					struct in6_addr addr;
+ 					memset(&addr, 0, sizeof(addr));
+-					memcpy(&addr, &rinfo->nd_opt_ri_prefix, 8);
++					if (rinfo->nd_opt_ri_len > 1)
++						memcpy(&addr, &rinfo->nd_opt_ri_prefix, (rinfo->nd_opt_ri_len - 1) * 8);
+ 					addrtostr(&addr, prefix_str, sizeof(prefix_str));
+ 					printf("\n\troute %s/%d\n\t{\n", prefix_str, rinfo->nd_opt_ri_prefix_len);
+ 				}
+-- 
+2.0.5
+

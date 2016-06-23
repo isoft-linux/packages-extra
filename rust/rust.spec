@@ -5,8 +5,8 @@
 %global with_system_llvm 0
 
 Name: rust
-Version: 1.5.0
-Release: 2
+Version: 1.9.0
+Release: 2 
 Summary: rust programming language	
 
 License: Apache 
@@ -14,8 +14,8 @@ URL:	 http://www.rust-lang.org
 
 Source0: https://static.rust-lang.org/dist/rustc-%{version}-src.tar.gz
 #see src/snapshots.txt
-Source1: http://static.rust-lang.org/stage0-snapshots/rust-stage0-2015-08-11-1af31d4-linux-x86_64-7df8ba9dec63ec77b857066109d4b6250f3d222f.tar.bz2
-Source2: https://static.rust-lang.org/stage0-snapshots/rust-stage0-2015-08-11-1af31d4-linux-i386-e2553bf399cd134a08ef3511a0a6ab0d7a667216.tar.bz2
+Source1: http://static.rust-lang.org/stage0-snapshots/rust-stage0-2016-03-18-235d774-linux-x86_64-1273b6b6aed421c9e40c59f366d0df6092ec0397.tar.bz2
+Source2: http://static.rust-lang.org/stage0-snapshots/rust-stage0-2016-03-18-235d774-linux-i386-0e0e4448b80d0a12b75485795244bb3857a0a7ef.tar.bz2
 
 Source10: rust-src.sh
 
@@ -33,6 +33,7 @@ ExclusiveArch: x86_64 %{ix86}
 
 BuildRequires: clang
 BuildRequires: glibc-devel
+BuildRequires: curl python
 
 %description
 Rust is a systems programming language that runs blazingly fast, prevents nearly all segfaults, and guarantees thread safety
@@ -164,6 +165,9 @@ install -m 0755 %{SOURCE10} %{buildroot}%{_sysconfdir}/profile.d/rust-src.sh
 %{_prefix}/src/rust/
 
 %changelog
+* Mon Jun 20 2016 Cjacker <cjacker@foxmail.com> - 1.9.0-2
+- Update to 1.9.0
+
 * Fri Dec 11 2015 Cjacker <cjacker@foxmail.com> - 1.5.0-2
 - Update to 1.5.0
 

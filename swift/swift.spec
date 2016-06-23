@@ -1,9 +1,9 @@
 #If debuginfo needed, try to modify pre-settings.ini in swift/utils.
 %define debug_package %{nil}
 
-%define swift_ver 2.2
+%define swift_ver 3.0 
 
-%define gitdate 20160216
+%define gitdate 20160617
 
 #swift heavily depend on modified lldb, and it's not LLVM upstream now.
 #we had to provided lldb in swift package.
@@ -11,7 +11,7 @@
 
 Name: swift
 Version: %{swift_ver}
-Release: 28.git%{gitdate}
+Release: 30.git%{gitdate}
 Summary: Swift Programming Language 
 
 License: Apache 2.0 license with a Runtime Library Exception 
@@ -38,9 +38,9 @@ Patch0: 0000-swift-build-config.patch
 #Build Preset for iSoft Linux.
 Patch1: 0000-swift-isoft-build-preset.patch
 
-#Match our glibc headers.
-Patch3: 0001-swift-fix-glibc-header.patch
-
+#glibc header search issue.
+Patch2: 0001-swift-fix-glibc-header.patch
+ 
 #Fix python2 detection with newer cmake version.
 Patch4: 0002-lldb-fix-python2-detection.patch
 
@@ -131,7 +131,7 @@ This package contains header files for lldb library.
 %setup -q -n %{name}
 %patch0 -p1 -d swift
 %patch1 -p1 -d swift
-%patch3 -p1 -d swift
+%patch2 -p1 -d swift
 %patch4 -p1 -d lldb
 %patch5 -p1 -d llvm
 %patch6 -p1 -d clang 
@@ -146,7 +146,7 @@ This package contains header files for lldb library.
 mkdir -p %{_builddir}/swift-%{swift_ver}-%{release}-root
 
 ./swift/utils/build-script \
-    --preset=buildbot_linux_isoft \
+    --preset=buildbot_linux \
     install_destdir=%{_builddir}/swift-%{swift_ver}-%{release}-root \
     installable_package=%{_builddir}/swift-%{swift_ver}-%{release}-root/swift-%{swift_ver}-isoft.tar.gz
 
@@ -170,6 +170,9 @@ rm -rf %{buildroot}%{python_sitearch}/six.*
 %{_bindir}/swift-build
 %{_bindir}/swift-demangle
 %{_bindir}/swift-build-tool
+%{_bindir}/swift-package
+%{_bindir}/swift-test
+%{_libexecdir}/swift/pm/swiftpm-xctest-helper
 %dir %{_libdir}/swift
 %{_libdir}/swift/*
 %dir %{_libdir}/swift_static
@@ -202,6 +205,12 @@ rm -rf %{buildroot}%{python_sitearch}/six.*
 %{_includedir}/lldb
 
 %changelog
+* Fri Jun 17 2016 Cjacker <cjacker@foxmail.com> - 3.0-30.git20160617
+- Bump swift version to 3.0, it's 3.0-dev now
+
+* Fri Jun 17 2016 Cjacker <cjacker@foxmail.com> - 2.2-29.git20160617
+- Update to 20160617
+
 * Tue Feb 16 2016 Cjacker <cjacker@foxmail.com> - 2.2-28.git20160216
 - Update to git 20160216
 

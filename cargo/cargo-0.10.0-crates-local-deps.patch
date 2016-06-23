@@ -1,0 +1,764 @@
+diff -Nur cargo-0.10.0/cmake-0.1.7/Cargo.toml cargo-0.10.0n/cmake-0.1.7/Cargo.toml
+--- cargo-0.10.0/cmake-0.1.7/Cargo.toml	2015-10-08 12:06:30.000000000 +0800
++++ cargo-0.10.0n/cmake-0.1.7/Cargo.toml	2016-06-20 14:36:55.775164731 +0800
+@@ -14,4 +14,4 @@
+ """
+ 
+ [dependencies]
+-gcc = "0.3.17"
++gcc = { version = "0.3.19", path = "../gcc-0.3.19" }
+diff -Nur cargo-0.10.0/curl-0.2.19/Cargo.toml cargo-0.10.0n/curl-0.2.19/Cargo.toml
+--- cargo-0.10.0/curl-0.2.19/Cargo.toml	2016-05-02 13:21:26.000000000 +0800
++++ cargo-0.10.0n/curl-0.2.19/Cargo.toml	2016-06-20 14:38:45.528433297 +0800
+@@ -8,52 +8,49 @@
+ description = "Rust bindings to libcurl for making HTTP requests"
+ 
+ [dependencies]
+-url = ">= 0.5, < 2.0"
+-log = "0.3.0"
+-libc = "0.2"
+-curl-sys = { path = "curl-sys", version = "0.1.0" }
+-
+-[dev-dependencies]
+-env_logger = "0.3.0"
++url = { version = "1.1.1", path = "../url-1.1.1" }
++log = { version = "0.3.2", path = "../log-0.3.2" }
++libc = { version = "0.2.12", path = "../libc-0.2.12" }
++curl-sys = { version = "0.1.26", path = "../curl-sys-0.1.26" }
+ 
+ # Unix platforms use OpenSSL for now to provide SSL functionality
+ [target."cfg(all(unix, not(target_os = \"macos\")))".dependencies]
+-openssl-sys = "0.7.0"
++openssl-sys = { version = "0.7.0", path = "../openssl-sys-0.7.0" }
+ 
+ [target.i686-unknown-linux-gnu.dependencies]
+-openssl-sys = "0.7.0"
++openssl-sys = { version = "0.7.0", path = "../openssl-sys-0.7.0" }
+ [target.i586-unknown-linux-gnu.dependencies]
+-openssl-sys = "0.7.0"
++openssl-sys = { version = "0.7.0", path = "../openssl-sys-0.7.0" }
+ [target.i686-linux-android.dependencies]
+-openssl-sys = "0.7.0"
++openssl-sys = { version = "0.7.0", path = "../openssl-sys-0.7.0" }
+ [target.x86_64-unknown-linux-gnu.dependencies]
+-openssl-sys = "0.7.0"
++openssl-sys = { version = "0.7.0", path = "../openssl-sys-0.7.0" }
+ [target.x86_64-unknown-linux-musl.dependencies]
+-openssl-sys = "0.7.0"
++openssl-sys = { version = "0.7.0", path = "../openssl-sys-0.7.0" }
+ [target.arm-unknown-linux-gnueabihf.dependencies]
+-openssl-sys = "0.7.0"
++openssl-sys = { version = "0.7.0", path = "../openssl-sys-0.7.0" }
+ [target.armv7-unknown-linux-gnueabihf.dependencies]
+-openssl-sys = "0.7.0"
++openssl-sys = { version = "0.7.0", path = "../openssl-sys-0.7.0" }
+ [target.arm-linux-androideabi.dependencies]
+-openssl-sys = "0.7.0"
++openssl-sys = { version = "0.7.0", path = "../openssl-sys-0.7.0" }
+ [target.aarch64-unknown-linux-gnu.dependencies]
+-openssl-sys = "0.7.0"
++openssl-sys = { version = "0.7.0", path = "../openssl-sys-0.7.0" }
+ [target.powerpc-unknown-linux-gnu.dependencies]
+-openssl-sys = "0.7.0"
++openssl-sys = { version = "0.7.0", path = "../openssl-sys-0.7.0" }
+ [target.powerpc64-unknown-linux-gnu.dependencies]
+-openssl-sys = "0.7.0"
++openssl-sys = { version = "0.7.0", path = "../openssl-sys-0.7.0" }
+ [target.powerpc64le-unknown-linux-gnu.dependencies]
+-openssl-sys = "0.7.0"
++openssl-sys = { version = "0.7.0", path = "../openssl-sys-0.7.0" }
+ [target.i686-unknown-freebsd.dependencies]
+-openssl-sys = "0.7.0"
++openssl-sys = { version = "0.7.0", path = "../openssl-sys-0.7.0" }
+ [target.x86_64-unknown-freebsd.dependencies]
+-openssl-sys = "0.7.0"
++openssl-sys = { version = "0.7.0", path = "../openssl-sys-0.7.0" }
+ [target.x86_64-unknown-bitrig.dependencies]
+-openssl-sys = "0.7.0"
++openssl-sys = { version = "0.7.0", path = "../openssl-sys-0.7.0" }
+ [target.x86_64-unknown-openbsd.dependencies]
+-openssl-sys = "0.7.0"
++openssl-sys = { version = "0.7.0", path = "../openssl-sys-0.7.0" }
+ [target.x86_64-unknown-dragonfly.dependencies]
+-openssl-sys = "0.7.0"
++openssl-sys = { version = "0.7.0", path = "../openssl-sys-0.7.0" }
+ 
+ [[test]]
+ 
+diff -Nur cargo-0.10.0/curl-sys-0.1.26/Cargo.toml cargo-0.10.0n/curl-sys-0.1.26/Cargo.toml
+--- cargo-0.10.0/curl-sys-0.1.26/Cargo.toml	2015-10-19 13:14:11.000000000 +0800
++++ cargo-0.10.0n/curl-sys-0.1.26/Cargo.toml	2016-06-20 14:36:55.777164754 +0800
+@@ -9,43 +9,43 @@
+ description = "Native bindings to the libcurl library"
+ 
+ [build-dependencies]
+-pkg-config = "0.3"
+-gcc = "0.3.10"
++pkg-config = { version = "0.3.5", path = "../pkg-config-0.3.5" }
++gcc = { version = "0.3.19", path = "../gcc-0.3.19" }
+ 
+ [lib]
+ name = "curl_sys"
+ path = "lib.rs"
+ 
+ [dependencies]
+-libz-sys = "0.1.0"
+-libc = "0.1"
++libz-sys = { version = "0.1.9", path = "../libz-sys-0.1.9" }
++libc = { version = "0.2.12", path = "../libc-0.2.12" }
+ 
+ # Unix platforms use OpenSSL for now to provide SSL functionality
+ [target.i686-apple-darwin.dependencies]
+-openssl-sys = "0.6.0"
++openssl-sys = { version = "0.7.0", path = "../openssl-sys-0.7.0" }
+ [target.x86_64-apple-darwin.dependencies]
+-openssl-sys = "0.6.0"
++openssl-sys = { version = "0.7.0", path = "../openssl-sys-0.7.0" }
+ [target.i686-unknown-linux-gnu.dependencies]
+-openssl-sys = "0.6.0"
++openssl-sys = { version = "0.7.0", path = "../openssl-sys-0.7.0" }
+ [target.i686-linux-android.dependencies]
+-openssl-sys = "0.6.0"
++openssl-sys = { version = "0.7.0", path = "../openssl-sys-0.7.0" }
+ [target.x86_64-unknown-linux-gnu.dependencies]
+-openssl-sys = "0.6.0"
++openssl-sys = { version = "0.7.0", path = "../openssl-sys-0.7.0" }
+ [target.x86_64-unknown-linux-musl.dependencies]
+-openssl-sys = "0.6.0"
++openssl-sys = { version = "0.7.0", path = "../openssl-sys-0.7.0" }
+ [target.arm-unknown-linux-gnueabihf.dependencies]
+-openssl-sys = "0.6.0"
++openssl-sys = { version = "0.7.0", path = "../openssl-sys-0.7.0" }
+ [target.arm-linux-androideabi.dependencies]
+-openssl-sys = "0.6.0"
++openssl-sys = { version = "0.7.0", path = "../openssl-sys-0.7.0" }
+ [target.aarch64-unknown-linux-gnu.dependencies]
+-openssl-sys = "0.6.0"
++openssl-sys = { version = "0.7.0", path = "../openssl-sys-0.7.0" }
+ [target.i686-unknown-freebsd.dependencies]
+-openssl-sys = "0.6.0"
++openssl-sys = { version = "0.7.0", path = "../openssl-sys-0.7.0" }
+ [target.x86_64-unknown-freebsd.dependencies]
+-openssl-sys = "0.6.0"
++openssl-sys = { version = "0.7.0", path = "../openssl-sys-0.7.0" }
+ [target.x86_64-unknown-bitrig.dependencies]
+-openssl-sys = "0.6.0"
++openssl-sys = { version = "0.7.0", path = "../openssl-sys-0.7.0" }
+ [target.x86_64-unknown-openbsd.dependencies]
+-openssl-sys = "0.6.0"
++openssl-sys = { version = "0.7.0", path = "../openssl-sys-0.7.0" }
+ [target.x86_64-unknown-dragonfly.dependencies]
+-openssl-sys = "0.6.0"
++openssl-sys = { version = "0.7.0", path = "../openssl-sys-0.7.0" }
+diff -Nur cargo-0.10.0/docopt-0.6.70/Cargo.toml cargo-0.10.0n/docopt-0.6.70/Cargo.toml
+--- cargo-0.10.0/docopt-0.6.70/Cargo.toml	2015-08-06 08:25:31.000000000 +0800
++++ cargo-0.10.0n/docopt-0.6.70/Cargo.toml	2016-06-20 14:36:55.777164754 +0800
+@@ -20,6 +20,6 @@
+ test = false
+ 
+ [dependencies]
+-regex = "0.1"
+-rustc-serialize = "0.3"
+-strsim = "0.3"
++regex = { version = "0.1.71", path = "../regex-0.1.71" }
++rustc-serialize = { version = "0.3.16", path = "../rustc-serialize-0.3.16" }
++strsim = { version = "0.3.0", path = "../strsim-0.3.0" }
+diff -Nur cargo-0.10.0/env_logger-0.3.1/Cargo.toml cargo-0.10.0n/env_logger-0.3.1/Cargo.toml
+--- cargo-0.10.0/env_logger-0.3.1/Cargo.toml	2015-05-18 23:48:21.000000000 +0800
++++ cargo-0.10.0n/env_logger-0.3.1/Cargo.toml	2016-06-20 14:36:55.777164754 +0800
+@@ -13,7 +13,7 @@
+ 
+ [dependencies.log]
+ version = "0.3"
+-path = ".."
++path = "../log-0.3.2"
+ 
+ [dependencies]
+-regex = "0.1"
++regex = { version = "0.1.71", path = "../regex-0.1.71" }
+diff -Nur cargo-0.10.0/filetime-0.1.6/Cargo.toml cargo-0.10.0n/filetime-0.1.6/Cargo.toml
+--- cargo-0.10.0/filetime-0.1.6/Cargo.toml	2015-10-04 03:23:38.000000000 +0800
++++ cargo-0.10.0n/filetime-0.1.6/Cargo.toml	2016-06-20 14:36:55.778164766 +0800
+@@ -13,9 +13,4 @@
+ """
+ 
+ [dependencies]
+-libc = "0.1"
+-kernel32-sys = "0.1"
+-winapi = "0.2"
+-
+-[dev-dependencies]
+-tempdir = "0.3"
++libc = { version = "0.2.12", path = "../libc-0.2.12" }
+diff -Nur cargo-0.10.0/filetime-0.1.6/src/lib.rs cargo-0.10.0n/filetime-0.1.6/src/lib.rs
+--- cargo-0.10.0/filetime-0.1.6/src/lib.rs	2015-10-04 03:23:20.000000000 +0800
++++ cargo-0.10.0n/filetime-0.1.6/src/lib.rs	2016-06-20 14:36:55.778164766 +0800
+@@ -35,7 +35,9 @@
+ //! ```
+ 
+ extern crate libc;
++#[cfg(windows)]
+ extern crate winapi;
++#[cfg(windows)]
+ extern crate kernel32;
+ 
+ #[cfg(unix)] use std::os::unix::prelude::*;
+diff -Nur cargo-0.10.0/flate2-0.2.7/Cargo.toml cargo-0.10.0n/flate2-0.2.7/Cargo.toml
+--- cargo-0.10.0/flate2-0.2.7/Cargo.toml	2015-04-23 23:47:43.000000000 +0800
++++ cargo-0.10.0n/flate2-0.2.7/Cargo.toml	2016-06-20 14:36:55.778164766 +0800
+@@ -16,8 +16,5 @@
+ """
+ 
+ [dependencies]
+-libc = "0.1"
+-miniz-sys = { path = "miniz-sys", version = "0.1" }
+-
+-[dev-dependencies]
+-rand = "0.3"
++libc = { version = "0.2.12", path = "../libc-0.2.12" }
++miniz-sys = { version = "0.1.5", path = "../miniz-sys-0.1.5" }
+diff -Nur cargo-0.10.0/gcc-0.3.19/Cargo.toml cargo-0.10.0n/gcc-0.3.19/Cargo.toml
+--- cargo-0.10.0/gcc-0.3.19/Cargo.toml	2015-10-19 13:12:47.000000000 +0800
++++ cargo-0.10.0n/gcc-0.3.19/Cargo.toml	2016-06-20 14:36:55.779164778 +0800
+@@ -12,19 +12,3 @@
+ code.
+ """
+ keywords = ["build-dependencies"]
+-
+-[target.i686-pc-windows-msvc.dependencies]
+-winapi = "0.2.1"
+-advapi32-sys = "0.1.2"
+-[target.x86_64-pc-windows-msvc.dependencies]
+-winapi = "0.2.1"
+-advapi32-sys = "0.1.2"
+-[target.i686-pc-windows-gnu.dependencies]
+-winapi = "0.2.1"
+-advapi32-sys = "0.1.2"
+-[target.x86_64-pc-windows-gnu.dependencies]
+-winapi = "0.2.1"
+-advapi32-sys = "0.1.2"
+-
+-[dev-dependencies]
+-tempdir = "0.3"
+diff -Nur cargo-0.10.0/git2-0.4.3/Cargo.toml cargo-0.10.0n/git2-0.4.3/Cargo.toml
+--- cargo-0.10.0/git2-0.4.3/Cargo.toml	2016-04-28 08:41:44.000000000 +0800
++++ cargo-0.10.0n/git2-0.4.3/Cargo.toml	2016-06-20 14:36:55.779164778 +0800
+@@ -16,16 +16,10 @@
+ """
+ 
+ [dependencies]
+-url = "1.0"
+-bitflags = "0.1"
+-libc = "0.2"
+-libgit2-sys = { path = "libgit2-sys", version = "0.4.3" }
+-
+-[dev-dependencies]
+-docopt = "0.6"
+-rustc-serialize = "0.3"
+-time = "0.1"
+-tempdir = "0.3"
++url = { version = "1.1.1", path = "../url-1.1.1" }
++bitflags = { version = "0.3.2", path = "../bitflags-0.3.2" }
++libc = { version = "0.2.12", path = "../libc-0.2.12" }
++libgit2-sys = { version = "0.4.3", path = "../libgit2-sys-0.4.3" }
+ 
+ [features]
+ unstable = []
+diff -Nur cargo-0.10.0/git2-curl-0.4.1/Cargo.toml cargo-0.10.0n/git2-curl-0.4.1/Cargo.toml
+--- cargo-0.10.0/git2-curl-0.4.1/Cargo.toml	2016-04-30 07:26:09.000000000 +0800
++++ cargo-0.10.0n/git2-curl-0.4.1/Cargo.toml	2016-06-20 14:36:55.779164778 +0800
+@@ -14,16 +14,10 @@
+ """
+ 
+ [dependencies]
+-curl = "0.2"
+-url = "1.0"
+-log = "0.3"
+-git2 = { path = "..", version = "0.4" }
+-
+-[dev-dependencies]
+-civet = "0.8"
+-conduit = "0.7"
+-conduit-git-http-backend = "0.7"
+-tempdir = "0.3"
++curl = { version = "0.2.19", path = "../curl-0.2.19" }
++url = { version = "1.1.1", path = "../url-1.1.1" }
++log = { version = "0.3.2", path = "../log-0.3.2" }
++git2 = { version = "0.4.3", path = "../git2-0.4.3" }
+ 
+ [[test]]
+ name = "all"
+diff -Nur cargo-0.10.0/glob-0.2.10/Cargo.toml cargo-0.10.0n/glob-0.2.10/Cargo.toml
+--- cargo-0.10.0/glob-0.2.10/Cargo.toml	2015-04-14 08:48:17.000000000 +0800
++++ cargo-0.10.0n/glob-0.2.10/Cargo.toml	2016-06-20 14:36:55.780164789 +0800
+@@ -10,6 +10,3 @@
+ description = """
+ Support for matching file paths against Unix shell style patterns.
+ """
+-
+-[dev-dependencies]
+-tempdir = "0.3"
+diff -Nur cargo-0.10.0/libgit2-sys-0.4.3/Cargo.toml cargo-0.10.0n/libgit2-sys-0.4.3/Cargo.toml
+--- cargo-0.10.0/libgit2-sys-0.4.3/Cargo.toml	2016-04-28 08:41:12.000000000 +0800
++++ cargo-0.10.0n/libgit2-sys-0.4.3/Cargo.toml	2016-06-20 14:36:55.780164789 +0800
+@@ -14,46 +14,46 @@
+ path = "lib.rs"
+ 
+ [dependencies]
+-libssh2-sys = { version = ">= 0", optional = true }
+-libc = "0.2"
+-libz-sys = ">= 0"
++libssh2-sys = { version = "0.1.30", path = "../libssh2-sys-0.1.30", optional = true}
++libc = { version = "0.2.12", path = "../libc-0.2.12" }
++libz-sys = { version = "0.1.9", path = "../libz-sys-0.1.9" }
+ 
+ [build-dependencies]
+-pkg-config = "0.3"
+-cmake = "0.1.2"
+-gcc = "0.3"
++pkg-config = { version = "0.3.5", path = "../pkg-config-0.3.5" }
++cmake = { version = "0.1.7", path = "../cmake-0.1.7" }
++gcc = { version = "0.3.19", path = "../gcc-0.3.19" }
+ 
+ [target."cfg(all(unix, not(target_os = \"macos\")))".dependencies]
+-openssl-sys = "0.7.0"
++openssl-sys = { version = "0.7.0", path = "../openssl-sys-0.7.0" }
+ 
+ [target.i686-unknown-linux-gnu.dependencies]
+-openssl-sys = "0.7.0"
++openssl-sys = { version = "0.7.0", path = "../openssl-sys-0.7.0" }
+ [target.i586-unknown-linux-gnu.dependencies]
+-openssl-sys = "0.7.0"
++openssl-sys = { version = "0.7.0", path = "../openssl-sys-0.7.0" }
+ [target.x86_64-unknown-linux-gnu.dependencies]
+-openssl-sys = "0.7.0"
++openssl-sys = { version = "0.7.0", path = "../openssl-sys-0.7.0" }
+ [target.x86_64-unknown-linux-musl.dependencies]
+-openssl-sys = "0.7.0"
++openssl-sys = { version = "0.7.0", path = "../openssl-sys-0.7.0" }
+ [target.aarch64-unknown-linux-gnu.dependencies]
+-openssl-sys = "0.7.0"
++openssl-sys = { version = "0.7.0", path = "../openssl-sys-0.7.0" }
+ [target.powerpc64-unknown-linux-gnu.dependencies]
+-openssl-sys = "0.7.0"
++openssl-sys = { version = "0.7.0", path = "../openssl-sys-0.7.0" }
+ [target.powerpc64le-unknown-linux-gnu.dependencies]
+-openssl-sys = "0.7.0"
++openssl-sys = { version = "0.7.0", path = "../openssl-sys-0.7.0" }
+ [target.arm-unknown-linux-gnueabihf.dependencies]
+-openssl-sys = "0.7.0"
++openssl-sys = { version = "0.7.0", path = "../openssl-sys-0.7.0" }
+ [target.armv7-unknown-linux-gnueabihf.dependencies]
+-openssl-sys = "0.7.0"
++openssl-sys = { version = "0.7.0", path = "../openssl-sys-0.7.0" }
+ [target.i686-unknown-freebsd.dependencies]
+-openssl-sys = "0.7.0"
++openssl-sys = { version = "0.7.0", path = "../openssl-sys-0.7.0" }
+ [target.x86_64-unknown-freebsd.dependencies]
+-openssl-sys = "0.7.0"
++openssl-sys = { version = "0.7.0", path = "../openssl-sys-0.7.0" }
+ [target.x86_64-unknown-bitrig.dependencies]
+-openssl-sys = "0.7.0"
++openssl-sys = { version = "0.7.0", path = "../openssl-sys-0.7.0" }
+ [target.x86_64-unknown-openbsd.dependencies]
+-openssl-sys = "0.7.0"
++openssl-sys = { version = "0.7.0", path = "../openssl-sys-0.7.0" }
+ [target.x86_64-unknown-dragonfly.dependencies]
+-openssl-sys = "0.7.0"
++openssl-sys = { version = "0.7.0", path = "../openssl-sys-0.7.0" }
+ 
+ [features]
+ ssh = ["libssh2-sys"]
+diff -Nur cargo-0.10.0/libssh2-sys-0.1.30/Cargo.toml cargo-0.10.0n/libssh2-sys-0.1.30/Cargo.toml
+--- cargo-0.10.0/libssh2-sys-0.1.30/Cargo.toml	2015-08-19 01:23:46.000000000 +0800
++++ cargo-0.10.0n/libssh2-sys-0.1.30/Cargo.toml	2016-06-20 14:36:55.781164801 +0800
+@@ -13,32 +13,32 @@
+ path = "lib.rs"
+ 
+ [dependencies]
+-libz-sys = "0.1.0"
+-libc = "0.1"
++libz-sys = { version = "0.1.9", path = "../libz-sys-0.1.9" }
++libc = { version = "0.2.12", path = "../libc-0.2.12" }
+ 
+ [target.i686-apple-darwin.dependencies]
+-openssl-sys = "0.6.0"
++openssl-sys = { version = "0.7.0", path = "../openssl-sys-0.7.0" }
+ [target.x86_64-apple-darwin.dependencies]
+-openssl-sys = "0.6.0"
++openssl-sys = { version = "0.7.0", path = "../openssl-sys-0.7.0" }
+ [target.i686-unknown-linux-gnu.dependencies]
+-openssl-sys = "0.6.0"
++openssl-sys = { version = "0.7.0", path = "../openssl-sys-0.7.0" }
+ [target.x86_64-unknown-linux-gnu.dependencies]
+-openssl-sys = "0.6.0"
++openssl-sys = { version = "0.7.0", path = "../openssl-sys-0.7.0" }
+ [target.aarch64-unknown-linux-gnu.dependencies]
+-openssl-sys = "0.6.0"
++openssl-sys = { version = "0.7.0", path = "../openssl-sys-0.7.0" }
+ [target.arm-unknown-linux-gnueabihf.dependencies]
+-openssl-sys = "0.6.0"
++openssl-sys = { version = "0.7.0", path = "../openssl-sys-0.7.0" }
+ [target.i686-unknown-freebsd.dependencies]
+-openssl-sys = "0.6.0"
++openssl-sys = { version = "0.7.0", path = "../openssl-sys-0.7.0" }
+ [target.x86_64-unknown-freebsd.dependencies]
+-openssl-sys = "0.6.0"
++openssl-sys = { version = "0.7.0", path = "../openssl-sys-0.7.0" }
+ [target.x86_64-unknown-dragonfly.dependencies]
+-openssl-sys = "0.6.0"
++openssl-sys = { version = "0.7.0", path = "../openssl-sys-0.7.0" }
+ [target.x86_64-unknown-bitrig.dependencies]
+-openssl-sys = "0.6.0"
++openssl-sys = { version = "0.7.0", path = "../openssl-sys-0.7.0" }
+ [target.x86_64-unknown-openbsd.dependencies]
+-openssl-sys = "0.6.0"
++openssl-sys = { version = "0.7.0", path = "../openssl-sys-0.7.0" }
+ 
+ [build-dependencies]
+-pkg-config = "0.3"
+-cmake = "0.1.2"
++pkg-config = { version = "0.3.5", path = "../pkg-config-0.3.5" }
++cmake = { version = "0.1.7", path = "../cmake-0.1.7" }
+diff -Nur cargo-0.10.0/libz-sys-0.1.9/Cargo.toml cargo-0.10.0n/libz-sys-0.1.9/Cargo.toml
+--- cargo-0.10.0/libz-sys-0.1.9/Cargo.toml	2015-10-19 13:13:14.000000000 +0800
++++ cargo-0.10.0n/libz-sys-0.1.9/Cargo.toml	2016-06-20 14:36:55.781164801 +0800
+@@ -13,8 +13,9 @@
+ """
+ 
+ [dependencies]
+-libc = "0.1"
++libc = { version = "0.2.12", path = "../libc-0.2.12" }
+ 
+ [build-dependencies]
+-pkg-config = "0.3"
+-gcc = "0.3.10"
++pkg-config = { version = "0.3.5", path = "../pkg-config-0.3.5" }
++gcc = { version = "0.3.19", path = "../gcc-0.3.19" }
++
+diff -Nur cargo-0.10.0/log-0.3.2/Cargo.toml cargo-0.10.0n/log-0.3.2/Cargo.toml
+--- cargo-0.10.0/log-0.3.2/Cargo.toml	2015-08-28 00:43:30.000000000 +0800
++++ cargo-0.10.0n/log-0.3.2/Cargo.toml	2016-06-20 14:36:55.781164801 +0800
+@@ -17,4 +17,4 @@
+ harness = false
+ 
+ [dependencies]
+-libc = "0.1"
++libc = { version = "0.2.12", path = "../libc-0.2.12" }
+diff -Nur cargo-0.10.0/memchr-0.1.10/Cargo.toml cargo-0.10.0n/memchr-0.1.10/Cargo.toml
+--- cargo-0.10.0/memchr-0.1.10/Cargo.toml	2016-02-15 05:36:16.000000000 +0800
++++ cargo-0.10.0n/memchr-0.1.10/Cargo.toml	2016-06-20 14:36:55.782164812 +0800
+@@ -14,7 +14,4 @@
+ name = "memchr"
+ 
+ [dependencies]
+-libc = "0.2.4"
+-
+-[dev-dependencies]
+-quickcheck = "0.2"
++libc = { version = "0.2.12", path = "../libc-0.2.12" }
+diff -Nur cargo-0.10.0/miniz-sys-0.1.5/Cargo.toml cargo-0.10.0n/miniz-sys-0.1.5/Cargo.toml
+--- cargo-0.10.0/miniz-sys-0.1.5/Cargo.toml	2015-05-15 07:18:01.000000000 +0800
++++ cargo-0.10.0n/miniz-sys-0.1.5/Cargo.toml	2016-06-20 14:36:55.782164812 +0800
+@@ -16,7 +16,7 @@
+ path = "lib.rs"
+ 
+ [dependencies]
+-libc = "0.1"
++libc = { version = "0.2.12", path = "../libc-0.2.12" }
+ 
+ [build-dependencies]
+-gcc = "0.3"
++gcc = { version = "0.3.19", path = "../gcc-0.3.19" }
+diff -Nur cargo-0.10.0/num_cpus-0.2.6/Cargo.toml cargo-0.10.0n/num_cpus-0.2.6/Cargo.toml
+--- cargo-0.10.0/num_cpus-0.2.6/Cargo.toml	2015-05-26 00:02:46.000000000 +0800
++++ cargo-0.10.0n/num_cpus-0.2.6/Cargo.toml	2016-06-20 14:36:55.782164812 +0800
+@@ -9,4 +9,4 @@
+ 
+ 
+ [dependencies]
+-libc = "0.1.7"
++libc = { version = "0.2.12", path = "../libc-0.2.12" }
+diff -Nur cargo-0.10.0/openssl-sys-0.7.0/Cargo.toml cargo-0.10.0n/openssl-sys-0.7.0/Cargo.toml
+--- cargo-0.10.0/openssl-sys-0.7.0/Cargo.toml	2015-11-17 13:43:44.000000000 +0800
++++ cargo-0.10.0n/openssl-sys-0.7.0/Cargo.toml	2016-06-20 14:36:55.782164812 +0800
+@@ -25,20 +25,11 @@
+ rfc5114 = []
+ 
+ [dependencies]
+-libc = "0.2"
++libc = { version = "0.2.12", path = "../libc-0.2.12" }
+ 
+ [build-dependencies]
+-pkg-config = "0.3"
+-gcc = "0.3"
+-
+-[target.le32-unknown-nacl.dependencies]
+-libressl-pnacl-sys = "2.1.0"
+-[target.x86_64-unknown-nacl.dependencies]
+-libressl-pnacl-sys = "2.1.0"
+-[target.i686-unknown-nacl.dependencies]
+-libressl-pnacl-sys = "2.1.0"
+-[target.arm-unknown-nacl.dependencies]
+-libressl-pnacl-sys = "2.1.0"
++pkg-config = { version = "0.3.5", path = "../pkg-config-0.3.5" }
++gcc = { version = "0.3.19", path = "../gcc-0.3.19" }
+ 
+ # Only here to make sure we link to these in a static build on Windows
+ [target.i686-pc-windows-gnu]
+diff -Nur cargo-0.10.0/regex-0.1.71/Cargo.toml cargo-0.10.0n/regex-0.1.71/Cargo.toml
+--- cargo-0.10.0/regex-0.1.71/Cargo.toml	2016-05-20 18:38:16.000000000 +0800
++++ cargo-0.10.0n/regex-0.1.71/Cargo.toml	2016-06-20 14:36:55.782164812 +0800
+@@ -13,26 +13,12 @@
+ """
+ 
+ [dependencies]
+-# For very fast prefix literal matching.
+-aho-corasick = "0.5.1"
+-# For skipping along search text quickly when a leading byte is known.
+-memchr = "0.1.9"
+-# For managing regex caches quickly across multiple threads.
+-thread_local = "0.2.4"
+-# For parsing regular expressions.
+-regex-syntax = { path = "regex-syntax", version = "0.3.2" }
+-# For accelerating text search.
+-simd = { version = "0.1.0", optional = true }
+-# For compiling UTF-8 decoding into automata.
+-utf8-ranges = "0.1.3"
+-
+-[dev-dependencies]
+-# For examples.
+-lazy_static = "0.1"
+-# For property based tests.
+-quickcheck = "0.2"
+-# For generating random test data.
+-rand = "0.3"
++aho-corasick = { version = "0.5.1", path = "../aho-corasick-0.5.1" }
++memchr = { version = "0.1.10", path = "../memchr-0.1.10" }
++regex-syntax = { path = "../regex-syntax-0.3.2", version = "0.3.2" }
++utf8-ranges = { version = "0.1.3", path = "../utf8-ranges-0.1.3" }
++thread_local = { version = "0.2.4", path = "../thread_local-0.2.4" }
++simd = { version = "0.1.0", path = "../simd-0.1.0", optional = true }
+ 
+ [features]
+ # Enable to use the unstable pattern traits defined in std.
+diff -Nur cargo-0.10.0/regex-syntax-0.3.2/Cargo.toml cargo-0.10.0n/regex-syntax-0.3.2/Cargo.toml
+--- cargo-0.10.0/regex-syntax-0.3.2/Cargo.toml	2016-05-20 18:36:02.000000000 +0800
++++ cargo-0.10.0n/regex-syntax-0.3.2/Cargo.toml	2016-06-20 14:36:55.782164812 +0800
+@@ -7,7 +7,3 @@
+ documentation = "http://doc.rust-lang.org/regex/regex_syntax/index.html"
+ homepage = "https://github.com/rust-lang/regex"
+ description = "A regular expression parser."
+-
+-[dev-dependencies]
+-quickcheck = "0.2"
+-rand = "0.3"
+diff -Nur cargo-0.10.0/rustc-serialize-0.3.16/Cargo.toml cargo-0.10.0n/rustc-serialize-0.3.16/Cargo.toml
+--- cargo-0.10.0/rustc-serialize-0.3.16/Cargo.toml	2015-08-17 01:55:45.000000000 +0800
++++ cargo-0.10.0n/rustc-serialize-0.3.16/Cargo.toml	2016-06-20 14:36:55.782164812 +0800
+@@ -13,6 +13,3 @@
+ `derive(RustcEncodable, RustcDecodable)` mode in the compiler. Also includes
+ support for hex, base64, and json encoding and decoding.
+ """
+-
+-[dev-dependencies]
+-rand = "0.3"
+diff -Nur cargo-0.10.0/tar-0.4.6/Cargo.toml cargo-0.10.0n/tar-0.4.6/Cargo.toml
+--- cargo-0.10.0/tar-0.4.6/Cargo.toml	2016-06-09 22:56:53.000000000 +0800
++++ cargo-0.10.0n/tar-0.4.6/Cargo.toml	2016-06-20 14:36:55.782164812 +0800
+@@ -18,8 +18,5 @@
+ """
+ 
+ [dependencies]
+-libc = "0.2"
+-filetime = "0.1.5"
+-
+-[dev-dependencies]
+-tempdir = "0.3"
++libc = { version = "0.2.12", path = "../libc-0.2.12" }
++filetime = { version = "0.1.6", path = "../filetime-0.1.6" }
+diff -Nur cargo-0.10.0/term-0.4.4/Cargo.toml cargo-0.10.0n/term-0.4.4/Cargo.toml
+--- cargo-0.10.0/term-0.4.4/Cargo.toml	2016-02-02 01:25:49.000000000 +0800
++++ cargo-0.10.0n/term-0.4.4/Cargo.toml	2016-06-20 14:36:55.782164812 +0800
+@@ -11,7 +11,3 @@
+ description = """
+ A terminal formatting library
+ """
+-
+-[dependencies]
+-winapi = "0.2"
+-kernel32-sys = "0.2"
+diff -Nur cargo-0.10.0/time-0.1.35/Cargo.toml cargo-0.10.0n/time-0.1.35/Cargo.toml
+--- cargo-0.10.0/time-0.1.35/Cargo.toml	2016-04-02 03:59:54.000000000 +0800
++++ cargo-0.10.0n/time-0.1.35/Cargo.toml	2016-06-20 14:36:55.782164812 +0800
+@@ -12,11 +12,5 @@
+ """
+ 
+ [dependencies]
+-libc = "0.2.1"
+-winapi = "0.2.0"
+-kernel32-sys = "0.2.0"
+-rustc-serialize = { version = "0.3", optional = true }
+-
+-[dev-dependencies]
+-log = "0.3"
+-advapi32-sys = "0.1.2"
++libc = { version = "0.2.12", path = "../libc-0.2.12" }
++rustc-serialize = { version = "0.3", optional = true, path = "../rustc-serialize-0.3.16" }
+diff -Nur cargo-0.10.0/toml-0.1.23/Cargo.toml cargo-0.10.0n/toml-0.1.23/Cargo.toml
+--- cargo-0.10.0/toml-0.1.23/Cargo.toml	2015-10-08 00:50:57.000000000 +0800
++++ cargo-0.10.0n/toml-0.1.23/Cargo.toml	2016-06-20 14:36:55.783164824 +0800
+@@ -16,11 +16,7 @@
+ """
+ 
+ [dependencies]
+-rustc-serialize = { optional = true, version = "0.3.0" }
+-serde = { optional = true, version = "0.5" }
++rustc-serialize = { optional = true, version = "0.3.0", path = "../rustc-serialize-0.3.16" }
+ 
+ [features]
+ default = ["rustc-serialize"]
+-
+-[dev-dependencies]
+-rustc-serialize = "0.3"
+diff -Nur cargo-0.10.0/url-1.1.1/Cargo.toml cargo-0.10.0n/url-1.1.1/Cargo.toml
+--- cargo-0.10.0/url-1.1.1/Cargo.toml	2016-05-27 22:49:04.000000000 +0800
++++ cargo-0.10.0n/url-1.1.1/Cargo.toml	2016-06-20 14:36:55.783164824 +0800
+@@ -21,19 +21,7 @@
+ [lib]
+ test = false
+ 
+-[dev-dependencies]
+-rustc-test = "0.1"
+-rustc-serialize = "0.3"
+-
+-[features]
+-query_encoding = ["encoding"]
+-heap_size = ["heapsize", "heapsize_plugin"]
+-
+ [dependencies]
+-idna = { version = "0.1.0", path = "./idna" }
+-heapsize = {version = ">=0.1.1, <0.4", optional = true}
+-heapsize_plugin = {version = "0.1.0", optional = true}
+-encoding = {version = "0.2", optional = true}
+-serde = {version = ">=0.6.1, <0.8", optional = true}
+-rustc-serialize = {version = "0.3", optional = true}
+-matches = "0.1"
++idna = { version = "0.1.0", path = "../idna-0.1.0" }
++rustc-serialize = { version = "0.3.16", path = "../rustc-serialize-0.3.16", optional = true}
++matches = { version = "0.1.2", path = "../matches-0.1.2" }
+diff -Nur cargo-0.10.0/url-0.2.38/Cargo.toml cargo-0.10.0n/url-0.2.38/Cargo.toml
+--- cargo-0.10.0/url-0.2.38/Cargo.toml  2015-11-19 00:32:59.000000000 +0800
++++ cargo-0.10.0n/url-0.2.38/Cargo.toml 2016-06-20 17:20:34.107659883 +0800
+@@ -33,6 +33,6 @@
+ optional = true
+ 
+ [dependencies]
+-uuid = "0.1.17"
+-rustc-serialize = "0.3"
+-matches = "0.1"
++uuid = { version = "0.1.17", path = "../uuid-0.1.17" }
++rustc-serialize = { version = "0.3.16", path = "../rustc-serialize-0.3.16" }
++matches = { version = "0.1.2", path = "../matches-0.1.2" }
+diff -Nur cargo-0.10.0/uuid-0.1.17/Cargo.toml cargo-0.10.0n/uuid-0.1.17/Cargo.toml
+--- cargo-0.10.0/uuid-0.1.17/Cargo.toml	2015-05-04 09:44:45.000000000 +0800
++++ cargo-0.10.0n/uuid-0.1.17/Cargo.toml	2016-06-20 17:23:31.567913543 +0800
+@@ -13,5 +13,5 @@
+ """
+ 
+ [dependencies]
+-rustc-serialize = "0.3"
+-rand = "0.3"
++rustc-serialize = { version = "0.3.16", path = "../rustc-serialize-0.3.16" }
++rand = { version = "0.3.10", path = "../rand-0.3.10" }
+diff -Nur cargo-0.10.0n/rand-0.3.10/Cargo.toml cargo-0.10.0/rand-0.3.10/Cargo.toml
+--- cargo-0.10.0n/rand-0.3.10/Cargo.toml	2016-06-20 17:22:12.051000343 +0800
++++ cargo-0.10.0/rand-0.3.10/Cargo.toml	2016-06-20 17:24:20.266423031 +0800
+@@ -14,9 +14,4 @@
+ keywords = ["random"]
+ 
+ [dependencies]
+-libc = "0.1.1"
+-winapi = "0.2"
+-advapi32-sys = "0.1.2"
+-
+-[dev-dependencies]
+-log = "0.3.0"
++libc = { version = "0.2.12", path = "../libc-0.2.12" }
+diff -Nur cargo-0.10.0/idna-0.1.0/Cargo.toml cargo-0.10.0n/idna-0.1.0/Cargo.toml
+--- cargo-0.10.0/idna-0.1.0/Cargo.toml	2016-03-31 00:56:32.000000000 +0800
++++ cargo-0.10.0n/idna-0.1.0/Cargo.toml	2016-06-20 17:36:50.206918792 +0800
+@@ -19,6 +19,6 @@
+ rustc-serialize = "0.3"
+ 
+ [dependencies]
+-unicode-bidi = "0.2.3"
+-unicode-normalization = "0.1.2"
+-matches = "0.1"
++unicode-bidi = {version = "0.2.3", path = "../unicode-bidi-0.2.3"}
++unicode-normalization = {version = "0.1.2", path = "../unicode-normalization-0.1.2"}
++matches = {version = "0.1.2", path = "../matches-0.1.2" }
+diff -Nur cargo-0.10.0/thread-id-2.0.0/Cargo.toml cargo-0.10.0n/thread-id-2.0.0/Cargo.toml
+--- cargo-0.10.0/thread-id-2.0.0/Cargo.toml	2016-04-09 17:56:32.000000000 +0800
++++ cargo-0.10.0n/thread-id-2.0.0/Cargo.toml	2016-06-20 17:40:12.230328807 +0800
+@@ -10,5 +10,5 @@
+ documentation = "https://ruud-v-a.github.io/thread-id/doc/v2.0.0/thread-id/"
+ 
+ [dependencies]
+-libc = "0.2.6"
+-kernel32-sys = "0.2.1"
++libc = {version = "0.2.12", path = "../libc-0.2.12"}
++#kernel32-sys = {version = "0.2.2", path = "../kernel32-sys-0.2.2" }
+diff -Nur cargo-0.10.0/unicode-bidi-0.2.3/Cargo.toml cargo-0.10.0n/unicode-bidi-0.2.3/Cargo.toml
+--- cargo-0.10.0/unicode-bidi-0.2.3/Cargo.toml	2015-11-11 01:29:22.000000000 +0800
++++ cargo-0.10.0n/unicode-bidi-0.2.3/Cargo.toml	2016-06-20 17:40:37.261227508 +0800
+@@ -12,4 +12,4 @@
+ name = "unicode_bidi"
+ 
+ [dependencies]
+-matches = "0.1"
++matches = {version = "0.1.2", path = "../matches-0.1.2"}
+--- cargo-0.10.0/semver-0.2.2/Cargo.toml	2015-12-26 10:35:13.000000000 +0800
++++ cargo-0.10.0n/semver-0.2.2/Cargo.toml	2016-06-20 17:42:44.268971016 +0800
+@@ -12,7 +12,7 @@
+ """
+ 
+ [dependencies]
+-nom = "1.0.1"
++nom = {verson = "1.2.2", path = "../nom-1.2.2"}
+ 
+ [features]
+ default = []
+--- cargo-0.10.0/thread_local-0.2.4/Cargo.toml	2016-04-22 19:12:00.000000000 +0800
++++ cargo-0.10.0n/thread_local-0.2.4/Cargo.toml	2016-06-20 17:49:46.609295592 +0800
+@@ -10,4 +10,4 @@
+ keywords = ["thread_local", "concurrent", "thread"]
+ 
+ [dependencies]
+-thread-id = "2.0"
++thread-id = {version = "2.0.0", path = "../thread-id-2.0.0" }
+--- cargo-0.10.0/aho-corasick-0.5.1/Cargo.toml	2016-02-16 20:03:32.000000000 +0800
++++ cargo-0.10.0fix/aho-corasick-0.5.1/Cargo.toml	2016-06-20 17:56:08.930109696 +0800
+@@ -20,7 +20,7 @@
+ bench = false
+ 
+ [dependencies]
+-memchr = "0.1.9"
++memchr = {version = "0.1.10", path = "../memchr-0.1.10" }
+ 
+ [dev-dependencies]
+ csv = "0.14"
+diff -Nur cargo-0.10.0/fs2-0.2.5/Cargo.toml cargo-0.10.0n/fs2-0.2.5/Cargo.toml
+--- cargo-0.10.0/fs2-0.2.5/Cargo.toml	2016-06-15 10:06:37.000000000 +0800
++++ cargo-0.10.0n/fs2-0.2.5/Cargo.toml	2016-06-20 17:59:19.389432985 +0800
+@@ -9,9 +9,4 @@
+ keywords = ["file", "file-system", "lock", "duplicate", "flock"]
+ 
+ [dependencies]
+-libc = "0.2.2"
+-winapi = "0.2"
+-kernel32-sys = "0.2"
+-
+-[dev-dependencies]
+-tempdir = "0.3"
++libc = { version = "0.2.12", path = "../libc-0.2.12" }
