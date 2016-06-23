@@ -20,6 +20,7 @@ Patch2: 0003-build-add-GCC-6.0-Wlogical-op-workaround.patch
 # Upstream commit beaa447a2982bc78adb26c183560d0ee566c1268.
 Patch3: 0001-Add-functions-for-handling-exponential-backoff-loops.patch
 
+BuildRequires: automake
 BuildRequires: glibc-devel
 BuildRequires: avahi-devel
 BuildRequires: libblkid-devel

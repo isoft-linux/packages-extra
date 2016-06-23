@@ -1,6 +1,6 @@
 Name:           sddm-kcm
-Version:        5.4.3
-Release:        3
+Version:        5.6.95
+Release:        1
 License:        GPLv2+
 Summary:        SDDM KDE configuration module
 
@@ -13,13 +13,6 @@ Url:            https://projects.kde.org/projects/kde/workspace/sddm-kcm
 %global stable stable
 %endif
 Source0:        http://download.kde.org/%{stable}/plasma/%{version}/%{name}-%{version}.tar.xz
-
-# Fix KJob synchronous exec blocked issue
-Patch0: 0001-fix-save-job-block.patch
-# Fix QQuickWidget embedded into QWidget issue
-Patch1: 0002-fix-quickwidget-freeze.patch
-# Only enable breeze theme, other themes are full of bugs
-Patch2: 0003-only-enable-breeze-theme.patch
 
 BuildRequires:  extra-cmake-modules
 BuildRequires:  kf5-rpm-macros
@@ -50,9 +43,6 @@ SDDM Display Manager
 
 %prep
 %setup -q -n %{name}-%{version}
-%patch0 -p1
-%patch1 -p1
-%patch2 -p1
 
 %build
 mkdir -p %{_target_platform}
@@ -80,6 +70,9 @@ make install/fast DESTDIR=%{buildroot} -C %{_target_platform}
 
 
 %changelog
+* Thu Jun 23 2016 Leslie Zhai <xiang.zhai@i-soft.com.cn> - 5.6.95-1
+- 5.6.95
+
 * Fri Nov 20 2015 Leslie Zhai <xiang.zhai@i-soft.com.cn>
 - Only enable breeze theme, other themes are full of bugs.
 
