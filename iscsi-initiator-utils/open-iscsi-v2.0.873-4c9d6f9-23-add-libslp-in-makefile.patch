@@ -1,0 +1,21 @@
+diff -Nur old/usr/Makefile new/usr/Makefile
+--- old/usr/Makefile	2016-05-04 15:11:39.632655673 +0800
++++ new/usr/Makefile	2016-05-04 15:14:51.279662034 +0800
+@@ -54,14 +54,14 @@
+ 
+ iscsid: $(ISCSI_LIB_SRCS) $(INITIATOR_SRCS) $(DISCOVERY_SRCS) \
+ 	iscsid.o session_mgmt.o discoveryd.o
+-	$(CC) $(CFLAGS) $(LDFLAGS) $^ -o $@  -lisns -lcrypto -lrt -lmount
++	$(CC) $(CFLAGS) $(LDFLAGS) $^ -o $@  -lisns -lcrypto -lrt -lmount -lslp
+ 
+ iscsiadm: $(ISCSI_LIB_SRCS) $(DISCOVERY_SRCS) iscsiadm.o session_mgmt.o
+-	$(CC) $(CFLAGS) $(LDFLAGS) $^ -o $@ -lisns -lcrypto
++	$(CC) $(CFLAGS) $(LDFLAGS) $^ -o $@ -lisns -lcrypto  -lslp
+ 
+ iscsistart: $(ISCSI_LIB_SRCS) $(INITIATOR_SRCS) $(FW_BOOT_SRCS) \
+ 		iscsistart.o statics.o
+-	$(CC) $(CFLAGS) $(LDFLAGS) $^ -o $@ -lrt -lmount
++	$(CC) $(CFLAGS) $(LDFLAGS) $^ -o $@ -lrt -lmount -lslp
+ clean:
+ 	rm -f *.o $(PROGRAMS) .depend $(LIBSYS)
+ 
