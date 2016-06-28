@@ -13,6 +13,7 @@ BuildRequires:  pkgconfig(gio-unix-2.0)
 BuildRequires:  pkgconfig(json-glib-1.0)
 BuildRequires:  pkgconfig(libarchive) >= 2.8.0
 ##BuildRequires:  pkgconfig(libelf) >= 0.8.12
+BuildRequires:  libelfutils-devel
 BuildRequires:  pkgconfig(libgsystem) >= 2015.1
 BuildRequires:  pkgconfig(libsoup-2.4)
 BuildRequires:  pkgconfig(ostree-1) >= 2016.5
