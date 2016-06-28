@@ -1,0 +1,12 @@
+diff -up xen-3.4.0/tools/Makefile.dump xen-3.4.0/tools/Makefile
+--- xen-3.4.0/tools/Makefile.dump	2009-05-18 13:05:38.000000000 +0200
++++ xen-3.4.0/tools/Makefile	2009-05-20 17:03:26.000000000 +0200
+@@ -46,7 +46,7 @@ all: subdirs-all
+ 
+ .PHONY: install
+ install: subdirs-install
+-	$(INSTALL_DIR) $(DESTDIR)/var/xen/dump
++	$(INSTALL_DIR) $(DESTDIR)/var/lib/xen/dump
+ 	$(INSTALL_DIR) $(DESTDIR)/var/log/xen
+ 	$(INSTALL_DIR) $(DESTDIR)/var/lib/xen
+ 
