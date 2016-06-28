@@ -14,7 +14,7 @@ Source0:       http://www.prevanders.net/%{name}-%{version}.tar.gz
 Patch0:        libdwarf-shlib.patch
 
 ##BuildRequires: binutils-devel elfutils-libelf-devel
-BuildRequires: binutils-devel
+BuildRequires: binutils-devel libelfutils-devel
 
 %package devel
 Summary:       Library and header files of libdwarf
