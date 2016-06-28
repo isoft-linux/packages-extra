@@ -1,0 +1,11 @@
+--- bridge-utils-1.5/libbridge/Makefile.in.orig	2015-07-21 13:09:20.270079468 +0100
++++ bridge-utils-1.5/libbridge/Makefile.in	2015-07-21 13:09:39.382036853 +0100
+@@ -5,7 +5,7 @@
+ RANLIB=@RANLIB@
+ 
+ CC=@CC@
+-CFLAGS = -Wall -g $(KERNEL_HEADERS)
++CFLAGS = @CFLAGS@ -g $(KERNEL_HEADERS)
+ 
+ prefix=@prefix@
+ exec_prefix=@exec_prefix@
