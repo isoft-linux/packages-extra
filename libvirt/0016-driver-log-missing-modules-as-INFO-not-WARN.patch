@@ -1,0 +1,27 @@
+From: Jovanka Gulicoska <jovanka.gulicoska@gmail.com>
+Date: Thu, 17 Mar 2016 20:02:20 +0100
+Subject: [PATCH] driver: log missing modules as INFO, not WARN
+
+Missing modules is a common expected scenario for most libvirt usage on
+RPM distributions like Fedora, so it doesn't really warrant logging at
+WARN level. Use INFO instead
+
+https://bugzilla.redhat.com/show_bug.cgi?id=1274849
+(cherry picked from commit 9a0c7f5f834185db9017c34aabc03ad99cf37bed)
+---
+ src/driver.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/src/driver.c b/src/driver.c
+index 2985538..1514a3b 100644
+--- a/src/driver.c
++++ b/src/driver.c
+@@ -62,7 +62,7 @@ virDriverLoadModule(const char *name)
+         return NULL;
+ 
+     if (access(modfile, R_OK) < 0) {
+-        VIR_WARN("Module %s not accessible", modfile);
++        VIR_INFO("Module %s not accessible", modfile);
+         goto cleanup;
+     }
+ 

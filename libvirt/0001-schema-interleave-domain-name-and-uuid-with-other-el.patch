@@ -1,0 +1,38 @@
+From: =?UTF-8?q?J=C3=A1n=20Tomko?= <jtomko@redhat.com>
+Date: Thu, 17 Dec 2015 13:43:58 +0100
+Subject: [PATCH] schema: interleave domain name and uuid with other elements
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+
+Allow <name> and <uuid> anywhere under <domain>, not just at the top:
+
+error:XML document failed to validate against schema: Unable to validate
+doc against /usr/share/libvirt/schemas/domain.rng
+Expecting an element name, got nothing
+Invalid sequence in interleave
+Element domain failed to validate content
+
+Introduced with the first RelaxNG schema in commit c642103.
+
+https://bugzilla.redhat.com/show_bug.cgi?id=1292131
+(cherry picked from commit b4e0549febe416ffefc16f389423740d6d65fa74)
+Signed-off-by: Ján Tomko <jtomko@redhat.com>
+---
+ docs/schemas/domaincommon.rng | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/docs/schemas/domaincommon.rng b/docs/schemas/domaincommon.rng
+index 1120003..9e7fad5 100644
+--- a/docs/schemas/domaincommon.rng
++++ b/docs/schemas/domaincommon.rng
+@@ -30,8 +30,8 @@
+   <define name="domain">
+     <element name="domain">
+       <ref name="hvs"/>
+-      <ref name="ids"/>
+       <interleave>
++        <ref name="ids"/>
+         <optional>
+           <ref name="title"/>
+         </optional>

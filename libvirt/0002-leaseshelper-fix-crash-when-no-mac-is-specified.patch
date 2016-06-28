@@ -1,0 +1,32 @@
+From: =?UTF-8?q?J=C3=A1n=20Tomko?= <jtomko@redhat.com>
+Date: Thu, 14 Jan 2016 14:31:17 +0100
+Subject: [PATCH] leaseshelper: fix crash when no mac is specified
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+
+If dnsmasq specified DNSMASQ_IAID (so we're dealing with an IPv6
+lease) but no DNSMASQ_MAC, we skip creation of the new lease object.
+
+Also skip adding it to the leases array.
+
+https://bugzilla.redhat.com/show_bug.cgi?id=1202350
+(cherry picked from commit df9fe124d650bc438c531673492569da87523d20)
+Signed-off-by: Ján Tomko <jtomko@redhat.com>
+---
+ src/network/leaseshelper.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/src/network/leaseshelper.c b/src/network/leaseshelper.c
+index 2d528f7..6930310 100644
+--- a/src/network/leaseshelper.c
++++ b/src/network/leaseshelper.c
+@@ -439,7 +439,7 @@ main(int argc, char **argv)
+ 
+     case VIR_LEASE_ACTION_OLD:
+     case VIR_LEASE_ACTION_ADD:
+-        if (virJSONValueArrayAppend(leases_array_new, lease_new) < 0) {
++        if (lease_new && virJSONValueArrayAppend(leases_array_new, lease_new) < 0) {
+             virReportError(VIR_ERR_INTERNAL_ERROR, "%s",
+                            _("failed to create json"));
+             goto cleanup;
