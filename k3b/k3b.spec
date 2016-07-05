@@ -45,6 +45,12 @@ BuildRequires: kf5-kservice-devel
 BuildRequires: kf5-kwindowsystem-devel
 BuildRequires: kf5-kwidgetsaddons-devel
 BuildRequires: kf5-kxmlgui-devel
+BuildRequires: kf5-karchive-devel
+BuildRequires: kf5-kfilemetadata-devel
+BuildRequires: kf5-kcmutils-devel
+BuildRequires: kf5-knotifications-devel
+BuildRequires: kf5-kdoctools-devel
+BuildRequires: qt5-qtwebkit-devel
 
 BuildRequires: kf5-libkcddb-devel
 BuildRequires: libmpcdec-devel
@@ -172,6 +178,7 @@ update-mime-database %{_kf5_datadir}/mime &> /dev/null || :
 %changelog
 * Tue Jul 05 2016 Leslie Zhai <xiang.zhai@i-soft.com.cn> - 1:2.9.90-8.git
 - Fix QUrl::fromLocalFile and QString filename convert issue.
+- add some BuildRequires
 
 * Sat Nov 21 2015 Cjacker <cjacker@foxmail.com> - 1:2.9.90-7.git
 - Rebuild
