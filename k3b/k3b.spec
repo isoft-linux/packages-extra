@@ -17,6 +17,8 @@ Source0: k3b.tar.gz
 Source0: http://download.kde.org/stable/k3b/k3b-%{version}.tar.xz
 %endif
 
+# Fix QUrl::fromLocalFile and QString convert issue
+Patch0: 0001-fix-convert-qurl-filename.patch
 
 BuildRequires: gettext
 BuildRequires: cmake
@@ -88,6 +90,7 @@ Requires: %{name}-libs%{?_isa} = %{epoch}:%{version}-%{release}
 
 %prep
 %setup -q -n %{name}
+%patch0 -p1
 
 #install -p -m644 %{SOURCE51} src/k3b.appdata.xml
 
@@ -167,6 +170,9 @@ update-mime-database %{_kf5_datadir}/mime &> /dev/null || :
 
 
 %changelog
+* Tue Jul 05 2016 Leslie Zhai <xiang.zhai@i-soft.com.cn> - 1:2.9.90-8.git
+- Fix QUrl::fromLocalFile and QString filename convert issue.
+
 * Sat Nov 21 2015 Cjacker <cjacker@foxmail.com> - 1:2.9.90-7.git
 - Rebuild
 

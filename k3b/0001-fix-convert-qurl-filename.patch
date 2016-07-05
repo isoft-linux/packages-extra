@@ -1,0 +1,42 @@
+diff --git a/libk3b/core/k3bglobals.cpp b/libk3b/core/k3bglobals.cpp
+index 167a564..2e6d52b 100644
+--- a/libk3b/core/k3bglobals.cpp
++++ b/libk3b/core/k3bglobals.cpp
+@@ -261,6 +261,11 @@ KIO::filesize_t K3b::imageFilesize( const QUrl& url )
+     return size;
+ }
+ 
++KIO::filesize_t K3b::imageFilesize(const QString& path) 
++{
++    return K3b::filesize(QUrl::fromLocalFile(path));
++}
++
+ 
+ QString K3b::cutFilename( const QString& name, int len )
+ {
+diff --git a/libk3b/core/k3bglobals.h b/libk3b/core/k3bglobals.h
+index 54d83a0..a8c7f9a 100644
+--- a/libk3b/core/k3bglobals.h
++++ b/libk3b/core/k3bglobals.h
+@@ -214,6 +214,8 @@ namespace K3b {
+      */
+     LIBK3B_EXPORT KIO::filesize_t imageFilesize( const QUrl& url );
+ 
++    LIBK3B_EXPORT KIO::filesize_t imageFilesize( const QString& path );
++
+     /**
+      * true if the kernel supports ATAPI devices without SCSI emulation.
+      * use in combination with the ExternalProgram feature "plain-atapi"
+diff --git a/libk3b/tools/k3bmd5job.cpp b/libk3b/tools/k3bmd5job.cpp
+index a3cae72..cf2d3cc 100644
+--- a/libk3b/tools/k3bmd5job.cpp
++++ b/libk3b/tools/k3bmd5job.cpp
+@@ -138,7 +138,7 @@ void K3b::Md5Job::cancel()
+ 
+ void K3b::Md5Job::setFile( const QString& filename )
+ {
+-    d->filename = filename;
++    d->filename = QUrl::fromLocalFile(filename).toString();
+     d->isoFile = 0;
+     d->ioDevice = 0;
+     d->device = 0;
