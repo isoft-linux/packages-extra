@@ -1,42 +1,89 @@
 diff --git a/libk3b/core/k3bglobals.cpp b/libk3b/core/k3bglobals.cpp
-index 167a564..2e6d52b 100644
+index 167a564..902128b 100644
 --- a/libk3b/core/k3bglobals.cpp
 +++ b/libk3b/core/k3bglobals.cpp
-@@ -261,6 +261,11 @@ KIO::filesize_t K3b::imageFilesize( const QUrl& url )
+@@ -229,11 +229,9 @@ KIO::filesize_t K3b::filesize( const QUrl& url )
+     else {
+         KIO::UDSEntry uds;
+         KIO::StatJob* statJob = KIO::stat( url, KIO::HideProgressInfo );
+-        QObject::connect( statJob, &KJob::result, [&](KJob*){
+-            if( statJob->error() == KJob::NoError )
+-                uds = statJob->statResult();
+-        } );
+         statJob->exec();
++        if (statJob->error() == KJob::NoError)
++            uds = statJob->statResult();
+         fSize = uds.numberValue( KIO::UDSEntry::UDS_SIZE );
+     }
+ 
+@@ -250,13 +248,11 @@ KIO::filesize_t K3b::imageFilesize( const QUrl& url )
+         QUrl nextUrl( url );
+         nextUrl.setPath(nextUrl.path() + '.' + QString::number(cnt).rightJustified( 3, '0' ));
+         KIO::StatJob* statJob = KIO::stat(nextUrl, KIO::StatJob::SourceSide, KIO::HideProgressInfo);
+-        QObject::connect(statJob, &KJob::result, [&](KJob*) {
+-            if( statJob->error() != KJob::NoError )
+-                size += K3b::filesize( nextUrl );
+-            else
+-                exists = false;
+-        } );
+         statJob->exec();
++        if (statJob->error() != KJob::NoError)
++            size += K3b::filesize(nextUrl);
++        else
++            exists = false;
+     }
      return size;
  }
+diff --git a/libk3b/jobs/k3biso9660imagewritingjob.cpp b/libk3b/jobs/k3biso9660imagewritingjob.cpp
+index 80e767b..7ce78ec 100644
+--- a/libk3b/jobs/k3biso9660imagewritingjob.cpp
++++ b/libk3b/jobs/k3biso9660imagewritingjob.cpp
+@@ -94,7 +94,7 @@ void K3b::Iso9660ImageWritingJob::start()
+         return;
+     }
  
-+KIO::filesize_t K3b::imageFilesize(const QString& path) 
-+{
-+    return K3b::filesize(QUrl::fromLocalFile(path));
-+}
-+
+-    KIO::filesize_t mb = K3b::imageFilesize( m_imagePath )/1024ULL/1024ULL;
++    KIO::filesize_t mb = K3b::imageFilesize( QUrl::fromLocalFile(m_imagePath) )/1024ULL/1024ULL;
  
- QString K3b::cutFilename( const QString& name, int len )
- {
-diff --git a/libk3b/core/k3bglobals.h b/libk3b/core/k3bglobals.h
-index 54d83a0..a8c7f9a 100644
---- a/libk3b/core/k3bglobals.h
-+++ b/libk3b/core/k3bglobals.h
-@@ -214,6 +214,8 @@ namespace K3b {
-      */
-     LIBK3B_EXPORT KIO::filesize_t imageFilesize( const QUrl& url );
+     // very rough test but since most dvd images are 4,x or 8,x GB it should be enough
+     d->isDvdImage = ( mb > 900ULL );
+@@ -132,7 +132,7 @@ void K3b::Iso9660ImageWritingJob::slotWriterJobFinished( bool success )
+             }
+             d->verifyJob->setDevice( m_device );
+             d->verifyJob->clear();
+-            d->verifyJob->addTrack( 1, d->checksumPipe.checksum(), K3b::imageFilesize( m_imagePath )/2048 );
++            d->verifyJob->addTrack( 1, d->checksumPipe.checksum(), K3b::imageFilesize( QUrl::fromLocalFile(m_imagePath) )/2048 );
  
-+    LIBK3B_EXPORT KIO::filesize_t imageFilesize( const QString& path );
-+
-     /**
-      * true if the kernel supports ATAPI devices without SCSI emulation.
-      * use in combination with the ExternalProgram feature "plain-atapi"
+             if( m_copies == 1 )
+                 emit newTask( i18n("Verifying written data") );
+@@ -266,7 +266,7 @@ void K3b::Iso9660ImageWritingJob::startWriting()
+ 
+ 
+     // wait for the media
+-    Device::MediaType media = waitForMedium( m_device, K3b::Device::STATE_EMPTY, mt, K3b::imageFilesize( m_imagePath )/2048 );
++    Device::MediaType media = waitForMedium( m_device, K3b::Device::STATE_EMPTY, mt, K3b::imageFilesize( QUrl::fromLocalFile(m_imagePath) )/2048 );
+     if( media == Device::MEDIA_UNKNOWN ) {
+         d->finished = true;
+         emit canceled();
+@@ -310,7 +310,7 @@ bool K3b::Iso9660ImageWritingJob::prepareWriter()
+     d->writer->setMultiSession( m_noFix );
+ 
+     Device::Toc toc;
+-    toc << Device::Track( 0, Msf(K3b::imageFilesize( m_imagePath )/2048)-1,
++    toc << Device::Track( 0, Msf(K3b::imageFilesize( QUrl::fromLocalFile(m_imagePath) )/2048)-1,
+                           Device::Track::TYPE_DATA,
+                           ( m_dataMode == K3b::DataModeAuto && m_noFix ) ||
+                           m_dataMode == K3b::DataMode2
 diff --git a/libk3b/tools/k3bmd5job.cpp b/libk3b/tools/k3bmd5job.cpp
-index a3cae72..cf2d3cc 100644
+index a3cae72..7a3df6b 100644
 --- a/libk3b/tools/k3bmd5job.cpp
 +++ b/libk3b/tools/k3bmd5job.cpp
-@@ -138,7 +138,7 @@ void K3b::Md5Job::cancel()
+@@ -104,7 +104,7 @@ void K3b::Md5Job::start()
+             return;
+         }
  
- void K3b::Md5Job::setFile( const QString& filename )
- {
--    d->filename = filename;
-+    d->filename = QUrl::fromLocalFile(filename).toString();
-     d->isoFile = 0;
-     d->ioDevice = 0;
-     d->device = 0;
+-        d->imageSize = K3b::filesize( d->filename );
++        d->imageSize = K3b::filesize( QUrl::fromLocalFile(d->filename) );
+     }
+     else
+         d->imageSize = 0;

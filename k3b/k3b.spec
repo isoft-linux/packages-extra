@@ -5,7 +5,7 @@ Name:    k3b
 Summary: CD/DVD/Blu-ray burning application
 Epoch:   1
 Version: 2.9.90
-Release: 8.git%{?dist}
+Release: 9.git%{?dist}
 
 License: GPLv2+
 URL:     http://www.k3b.org/
@@ -18,6 +18,7 @@ Source0: http://download.kde.org/stable/k3b/k3b-%{version}.tar.xz
 %endif
 
 # Fix QUrl::fromLocalFile and QString convert issue
+# https://git.reviewboard.kde.org/r/128376/
 Patch0: 0001-fix-convert-qurl-filename.patch
 
 BuildRequires: gettext
@@ -176,6 +177,9 @@ update-mime-database %{_kf5_datadir}/mime &> /dev/null || :
 
 
 %changelog
+* Wed Jul 06 2016 Leslie Zhai <xiang.zhai@i-soft.com.cn> - 1:2.9.90-9.git
+- Update patch.
+
 * Tue Jul 05 2016 Leslie Zhai <xiang.zhai@i-soft.com.cn> - 1:2.9.90-8.git
 - Fix QUrl::fromLocalFile and QString filename convert issue.
 - add some BuildRequires
