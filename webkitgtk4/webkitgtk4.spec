@@ -2,8 +2,8 @@
 %global _build_with_clang 1 
 
 Name:	    webkitgtk4
-Version:    2.10.3
-Release:    3
+Version:    2.12.3
+Release:    1
 Summary:    GTK Port of WebKit
 
 License:	MIT
@@ -11,6 +11,7 @@ URL:	    http://www.webkitgtk.org
 Source0:    webkitgtk-%{version}.tar.xz
 
 BuildRequires: cmake ninja-build make
+BuildRequires: libXt-devel
 BuildRequires: bison flex gperf perl python ruby pkgconfig
 BuildRequires: gettext
 BuildRequires: cairo-devel fontconfig-devel freetype-devel
@@ -92,6 +93,9 @@ popd
 %{_datadir}/gtk-doc/html/*
 
 %changelog
+* Thu Jul 07 2016 zhouyang <yang.zhou@i-soft.com.cn> - 2.12.3-1
+- Update
+
 * Sun Nov 01 2015 Cjacker <cjacker@foxmail.com> - 2.10.3-3
 - Update and rebuild with icu 56.1
 
