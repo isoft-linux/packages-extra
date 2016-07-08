@@ -61,6 +61,7 @@ Requires: gnome-icon-theme
 BuildRequires: python
 BuildRequires: intltool
 BuildRequires: /usr/bin/pod2man
+BuildRequires: glib2
 
 
 %description
