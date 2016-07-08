@@ -20,7 +20,7 @@
 
 Name: virt-manager
 Version: 1.3.2
-Release: 1%{?dist}
+Release: 2%{?dist}
 %define verrel %{version}-%{release}
 
 Summary: Desktop tool for managing virtual machines via libvirt
@@ -228,5 +228,8 @@ fi
 %{_bindir}/virt-xml
 
 %changelog
+* Fri Jul 08 2016 xiaotian.wu@i-soft.com.cn - 1.3.2-2
+- rebuilt
+
 * Tue Apr 19 2016 Leslie Zhai <xiang.zhai@i-soft.com.cn> - 1.3.2-1
 - 1.3.2
