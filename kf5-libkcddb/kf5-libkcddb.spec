@@ -1,10 +1,10 @@
 Name:    kf5-libkcddb
 Summary: CDDB retrieval library 
-Version: 5.0.0
-Release: 4.git%{?dist}
+Version: 5.24.0
+Release: 1%{?dist}
 
 License: GPLv2+
-URL:     https://projects.kde.org/projects/kde/kdegraphics/libs/libkexiv2
+URL:     https://github.com/isoft-linux/libkcddb
 %global revision %(echo %{version} | cut -d. -f3)
 %if %{revision} >= 50
 %global stable unstable
@@ -15,7 +15,7 @@ URL:     https://projects.kde.org/projects/kde/kdegraphics/libs/libkexiv2
 
 #git clone git://anongit.kde.org/libkcddb
 #git checkout kf5
-Source0: libkcddb.tar.gz
+Source0: libkcddb-5.24.0.tar.bz2
 
 BuildRequires: cmake
 BuildRequires: desktop-file-utils
@@ -56,7 +56,7 @@ Requires: %{name}%{?_isa} = %{version}-%{release}
 
 
 %prep
-%autosetup -n libkcddb
+%autosetup -n libkcddb-%{version}
 
 %build
 mkdir -p %{_target_platform}
@@ -79,21 +79,26 @@ make install/fast DESTDIR=%{buildroot} -C %{_target_platform}
 
 %files
 %{_kf5_qtplugindir}/kcm_cddb.so
-%{_kf5_libdir}/libkcddbwidgets.so.5*
-%{_kf5_libdir}/libkcddb.so.5*
+%{_kf5_libdir}/libKF5CddbWidgets.so.5*
+%{_kf5_libdir}/libKF5Cddb.so.5*
 %{_kf5_docdir}/HTML/*/kcontrol/cddbretrieval/
 %{_kf5_datadir}/kservices5/libkcddb.desktop
 %{_kf5_datadir}/config.kcfg/libkcddb.kcfg
 
 
 %files devel
-%{_kf5_libdir}/libkcddbwidgets.so
-%{_kf5_libdir}/libkcddb.so
-%{_includedir}/libkcddb/
-%{_libdir}/cmake/libkcddb/
+%{_kf5_includedir}/kcddb_version.h
+%{_kf5_includedir}/KCddb
+%{_kf5_libdir}/libKF5CddbWidgets.so
+%{_kf5_libdir}/libKF5Cddb.so
+%{_kf5_libdir}/cmake/KF5Cddb/
+%{_kf5_archdatadir}/mkspecs/modules/qt_KCddb.pri
 
 
 %changelog
+* Tue Jul 19 2016 Leslie Zhai <xiang.zhai@i-soft.com.cn> - 5.24.0-1
+- 5.24.0
+
 * Tue Oct 27 2015 Cjacker <cjacker@foxmail.com> - 5.0.0-4.git
 - Rebuild
 
