@@ -150,7 +150,6 @@ update-mime-database %{_kf5_datadir}/mime &> /dev/null || :
 %{_kf5_datadir}/kservicetypes5/k3bplugin.desktop
 
 %{_kf5_datadir}/mime/packages/x-k3b.xml
-%{_kf5_datadir}/appdata/k3b.appdata.xml
 %{_kf5_datadir}/icons/hicolor/*/*/*
 
 %{_kf5_docdir}/HTML/*/k3b/
