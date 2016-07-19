@@ -1,7 +1,7 @@
 Name:    kf5-libkcddb
 Summary: CDDB retrieval library 
 Version: 5.24.0
-Release: 1%{?dist}
+Release: 2%{?dist}
 
 License: GPLv2+
 URL:     https://github.com/isoft-linux/libkcddb
@@ -97,8 +97,9 @@ make install/fast DESTDIR=%{buildroot} -C %{_target_platform}
 
 
 %changelog
-* Tue Jul 19 2016 Leslie Zhai <xiang.zhai@i-soft.com.cn> - 5.24.0-1
+* Tue Jul 19 2016 Leslie Zhai <xiang.zhai@i-soft.com.cn> - 5.24.0-2
 - 5.24.0
+- Rearch.
 
 * Tue Oct 27 2015 Cjacker <cjacker@foxmail.com> - 5.0.0-4.git
 - Rebuild
