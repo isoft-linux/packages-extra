@@ -3,9 +3,9 @@
 
 Name:    k3b
 Summary: CD/DVD/Blu-ray burning application
-Epoch:   2
-Version: 2.9.90
-Release: 10.git%{?dist}
+Epoch:   1
+Version: 2.10.0
+Release: 1%{?dist}
 
 License: GPLv2+
 URL:     http://www.k3b.org/
@@ -16,10 +16,6 @@ Source0: k3b.tar.gz
 %else
 Source0: http://download.kde.org/stable/k3b/k3b-%{version}.tar.xz
 %endif
-
-# Fix QUrl::fromLocalFile and QString convert issue
-# https://git.reviewboard.kde.org/r/128376/
-Patch0: 0001-fix-convert-qurl-filename.patch
 
 BuildRequires: gettext
 BuildRequires: cmake
@@ -53,7 +49,7 @@ BuildRequires: kf5-knotifications-devel
 BuildRequires: kf5-kdoctools-devel
 BuildRequires: qt5-qtwebkit-devel
 
-BuildRequires: kf5-libkcddb-devel
+BuildRequires: kf5-libkcddb-devel >= 5.24.0
 BuildRequires: libmpcdec-devel
 BuildRequires: pkgconfig(dvdread)
 BuildRequires: pkgconfig(flac++)
@@ -177,6 +173,9 @@ update-mime-database %{_kf5_datadir}/mime &> /dev/null || :
 
 
 %changelog
+* Tue Jul 19 2016 Leslie Zhai <xiang.zhai@i-soft.com.cn> - 2.10.0-1
+- 2.10.0
+
 * Wed Jul 06 2016 sulit <sulitsrc@gmail.com> - 2:2.9.90-10.git
 - epoch add 1 for k3b
 
