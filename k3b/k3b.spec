@@ -12,7 +12,7 @@ URL:     http://www.k3b.org/
 %if 0%{?snap:1}
 #git clone git://anongit.kde.org/k3b
 #git checkout kf5
-Source0: k3b.tar.gz
+Source0: k3b-%{version}.tar.bz2
 %else
 Source0: http://download.kde.org/stable/k3b/k3b-%{version}.tar.xz
 %endif
@@ -92,8 +92,7 @@ Requires: %{name}-libs%{?_isa} = %{epoch}:%{version}-%{release}
 
 
 %prep
-%setup -q -n %{name}
-%patch0 -p1
+%setup -q -n %{name}-%{version}
 
 #install -p -m644 %{SOURCE51} src/k3b.appdata.xml
 
