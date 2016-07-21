@@ -5,7 +5,7 @@ Name:    k3b
 Summary: CD/DVD/Blu-ray burning application
 Epoch:   1
 Version: 2.10.0
-Release: 1%{?dist}
+Release: 2%{?dist}
 
 License: GPLv2+
 URL:     http://www.k3b.org/
@@ -49,7 +49,7 @@ BuildRequires: kf5-knotifications-devel
 BuildRequires: kf5-kdoctools-devel
 BuildRequires: qt5-qtwebkit-devel
 
-BuildRequires: kf5-libkcddb-devel >= 5.24.0
+BuildRequires: kf5-libkcddb-devel
 BuildRequires: libmpcdec-devel
 BuildRequires: pkgconfig(dvdread)
 BuildRequires: pkgconfig(flac++)
@@ -171,6 +171,9 @@ update-mime-database %{_kf5_datadir}/mime &> /dev/null || :
 
 
 %changelog
+* Thu Jul 21 2016 Leslie Zhai <xiang.zhai@i-soft.com.cn> - 2.10.0-2
+- Rebuild for kf5-libkcddb
+
 * Tue Jul 19 2016 Leslie Zhai <xiang.zhai@i-soft.com.cn> - 2.10.0-1
 - 2.10.0
 
