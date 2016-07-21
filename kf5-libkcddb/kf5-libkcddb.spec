@@ -22,26 +22,26 @@ BuildRequires: desktop-file-utils
 BuildRequires: extra-cmake-modules
 BuildRequires: gettext
 BuildRequires: kf5-rpm-macros
-BuildRequires: kf5-kcompletion-devel >= %{version}
-BuildRequires: kf5-kconfig-devel >= %{version}
-BuildRequires: kf5-kconfigwidgets-devel >= %{version}
-BuildRequires: kf5-kcoreaddons-devel >= %{version}
-BuildRequires: kf5-kdbusaddons-devel >= %{version}
-BuildRequires: kf5-kdeclarative-devel >= %{version}
-BuildRequires: kf5-kguiaddons-devel >= %{version}
-BuildRequires: kf5-ki18n-devel >= %{version}
-BuildRequires: kf5-kiconthemes-devel >= %{version}
-BuildRequires: kf5-kitemviews-devel >= %{version}
-BuildRequires: kf5-kio-devel >= %{version}
-BuildRequires: kf5-kjobwidgets-devel >= %{version}
-BuildRequires: kf5-knewstuff-devel >= %{version}
-BuildRequires: kf5-knotifyconfig-devel >= %{version}
-BuildRequires: kf5-knewstuff-devel >= %{version}
-BuildRequires: kf5-kservice-devel >= %{version}
-BuildRequires: kf5-kwindowsystem-devel >= %{version}
-BuildRequires: kf5-kwidgetsaddons-devel >= %{version}
-BuildRequires: kf5-kxmlgui-devel >= %{version}
-BuildRequires: kf5-kdoctools-devel >= %{version}
+BuildRequires: kf5-kcompletion-devel
+BuildRequires: kf5-kconfig-devel
+BuildRequires: kf5-kconfigwidgets-devel
+BuildRequires: kf5-kcoreaddons-devel
+BuildRequires: kf5-kdbusaddons-devel
+BuildRequires: kf5-kdeclarative-devel
+BuildRequires: kf5-kguiaddons-devel
+BuildRequires: kf5-ki18n-devel
+BuildRequires: kf5-kiconthemes-devel
+BuildRequires: kf5-kitemviews-devel
+BuildRequires: kf5-kio-devel
+BuildRequires: kf5-kjobwidgets-devel
+BuildRequires: kf5-knewstuff-devel
+BuildRequires: kf5-knotifyconfig-devel
+BuildRequires: kf5-knewstuff-devel
+BuildRequires: kf5-kservice-devel
+BuildRequires: kf5-kwindowsystem-devel
+BuildRequires: kf5-kwidgetsaddons-devel
+BuildRequires: kf5-kxmlgui-devel
+BuildRequires: kf5-kdoctools-devel
 
 BuildRequires: libmusicbrainz-devel
 
