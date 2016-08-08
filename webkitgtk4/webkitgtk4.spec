@@ -68,7 +68,8 @@ pushd build
     -DENABLE_GTKDOC=ON \
     ..
 
-make %{?_smp_mflags}
+#make %{?_smp_mflags}
+make -j1
 popd    
 
 %install
