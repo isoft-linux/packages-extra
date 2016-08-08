@@ -18,7 +18,7 @@
 
 Summary:   Oracle VM VirtualBox
 Name:      VirtualBox
-Version:   5.1.2
+Version:   5.0.26
 Release:   1
 URL:       http://www.virtualbox.org/
 Source:    http://download.virtualbox.org/virtualbox/5.0.10/%{name}-%{version}.tar.bz2
@@ -481,8 +481,10 @@ rm -rf $RPM_BUILD_ROOT
 /usr/src/%{name}-%{version}
 
 %changelog
-* Mon Aug 08 2016 sulit <sulitsrc@gmail.com> - 5.1.2-1
+* Mon Aug 08 2016 sulit <sulitsrc@gmail.com> - 5.0.26-1
 - upgrade to official version
+- rollback to 5.0.26, because VirtualBox 5.1.x don't
+- depend on dkms
 
 * Mon Apr 18 2016 sulit <sulitsrc@gmail.com> - 5.0.16-2
 - update virtualbox to 5.0.16 and modify dkms.conf
