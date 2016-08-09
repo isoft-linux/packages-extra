@@ -66,7 +66,7 @@ pushd build
     -DCMAKE_BUILD_TYPE=Release \
     -DPORT=GTK \
     -DCMAKE_SKIP_RPATH=ON \
-    -DENABLE_GTKDOC=OFF \
+    -DENABLE_GTKDOC=ON \
     ..
 
 make %{?_smp_mflags}
