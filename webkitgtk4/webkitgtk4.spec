@@ -65,11 +65,10 @@ pushd build
     -DCMAKE_BUILD_TYPE=Release \
     -DPORT=GTK \
     -DCMAKE_SKIP_RPATH=ON \
-    -DENABLE_GTKDOC=ON \
+    -DENABLE_GTKDOC=OFF \
     ..
 
-#make %{?_smp_mflags}
-make -j1
+make %{?_smp_mflags}
 popd    
 
 %install
@@ -96,6 +95,7 @@ popd
 %changelog
 * Thu Jul 07 2016 zhouyang <yang.zhou@i-soft.com.cn> - 2.12.3-1
 - Update
+- disable gtkdoc for now.
 
 * Sun Nov 01 2015 Cjacker <cjacker@foxmail.com> - 2.10.3-3
 - Update and rebuild with icu 56.1
