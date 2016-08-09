@@ -10,6 +10,7 @@ License:	MIT
 URL:	    http://www.webkitgtk.org
 Source0:    webkitgtk-%{version}.tar.xz
 
+BuildRequires: vim
 BuildRequires: gtk-doc
 BuildRequires: cmake ninja-build make
 BuildRequires: libXt-devel
