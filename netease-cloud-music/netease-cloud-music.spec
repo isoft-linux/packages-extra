@@ -1,10 +1,10 @@
-# use the follow command build rpm package, **DON'T USE KOJI BUILD IT**
+# use the follow command build the package, **DON'T USE KOJI BUILD IT**
 # QA_RPATHS=$((0x0004|0x0008)) rpmbuild -ba netease-cloud-music.spec
 
 %global	       debug_package %{nil}
 Name: netease-cloud-music  
 Version: 1.0.0
-Release: 1
+Release: 2
 Summary: netease cloud music player.
 License: netease-cloud-music-proprietary
 URL:  music.163.com
@@ -15,14 +15,6 @@ Provides: libcef.so()(64bit)
 
 %description
 netease cloud music player.
-
-# %package libcef
-# Summary: netease cloud music player libcef library.
-# Requires: %{name}
-# Provides: libcef.so()(64bit)
-# 
-# %description libcef
-# netease cloud music player libcef library.
 
 %prep
 %setup -c -T
@@ -35,32 +27,16 @@ tar xf data.tar.xz
 %install
 cp -r usr %{buildroot}
 
-#%post #libcef
 %post
 ldconfig
 
 %files
 %doc /usr/share/doc/netease-cloud-music/*
 %{_bindir}/%{name}
-%{_libdir}/%{name}/chrome-sandbox
-%{_libdir}/%{name}/icudtl.dat
-%{_libdir}/%{name}/locales/*
-%{_libdir}/%{name}/natives_blob.bin
-%{_libdir}/%{name}/netease-cloud-music
-%{_libdir}/%{name}/snapshot_blob.bin
-%{_libdir}/%{name}/libcef.so
-%{_libdir}/%{name}/cef.pak
-%{_libdir}/%{name}/cef_100_percent.pak
-%{_libdir}/%{name}/cef_200_percent.pak
-%{_libdir}/%{name}/cef_extensions.pak
+%{_libdir}/%{name}/*
 %{_datadir}/applications/netease-cloud-music.desktop
 %{_datadir}/icons/hicolor/scalable/apps/netease-cloud-music.svg
 
-# %files libcef
-# %{_libdir}/%{name}/libcef.so
-# %{_libdir}/%{name}/cef.pak
-# %{_libdir}/%{name}/cef_100_percent.pak
-# %{_libdir}/%{name}/cef_200_percent.pak
-# %{_libdir}/%{name}/cef_extensions.pak
-
 %changelog
+* Fri Aug 12 2016 sulit <sulitsrc@gmail.com> - 1.0.0-2
+- make rpm from deb
