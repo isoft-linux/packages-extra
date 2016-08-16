@@ -186,7 +186,7 @@ install -m 0755 %{SOURCE3} $RPM_BUILD_ROOT%{_bindir}/qemu-kvm-spice
 mkdir -p $RPM_BUILD_ROOT%{_udevdir}
 mkdir -p $RPM_BUILD_ROOT%{_unitdir}
 
-install -m 0755 scripts/kvm/kvm_stat $RPM_BUILD_ROOT%{_bindir}/
+#install -m 0755 scripts/kvm/kvm_stat $RPM_BUILD_ROOT%{_bindir}/
 install -m 0644 %{SOURCE15} $RPM_BUILD_ROOT%{_udevdir}
 
 
