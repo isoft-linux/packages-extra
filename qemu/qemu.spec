@@ -5,12 +5,12 @@
 
 Summary: QEMU is a FAST! processor emulator
 Name: qemu
-Version: 2.5.0
-Release: 6
+Version: 2.7.0
+Release: 1
 License: GPLv2+ and LGPLv2+ and BSD
 URL: http://www.qemu.org/
 
-Source0: qemu-%{version}.tar.bz2
+Source0: qemu-%{version}-rc2.tar.bz2
 
 Source1: qemu-kvm.sh
 
@@ -35,7 +35,8 @@ Source15: 80-kvm.rules
 
 Source20: qemu.binfmt
 
-Patch0: qemu-enable-vte-2.91.patch
+# Build fix, posted upstream
+Patch0001: for-2.7-virtio-gpu-fix-missing-log.h-include-file.patch
 
 BuildRequires: SDL2-devel
 BuildRequires: zlib-devel
@@ -120,8 +121,8 @@ As QEMU requires no host kernel patches to run, it is safe and easy to use.
 
 
 %prep
-%setup -q
-%patch0 -p1
+%setup -q -n qemu-%{version}-rc2
+%patch0001 -p1
 
 %build
 buildarch="i386-softmmu x86_64-softmmu alpha-softmmu arm-softmmu \
@@ -267,6 +268,9 @@ getent passwd qemu >/dev/null || \
 %{_datadir}/qemu/*
 
 %changelog
+* Tue Aug 16 2016 Leslie Zhai <xiang.zhai@i-soft.com.cn> - 2.7.0-1
+- 2.7.0
+
 * Thu Dec 17 2015 Cjacker <cjacker@foxmail.com> - 2.5.0-6
 - Update to official release
 

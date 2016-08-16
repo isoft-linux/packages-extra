@@ -1,0 +1,12 @@
+diff --git a/include/hw/virtio/virtio-gpu.h b/include/hw/virtio/virtio-gpu.h
+index e4f424a..20d1cd6 100644
+--- a/include/hw/virtio/virtio-gpu.h
++++ b/include/hw/virtio/virtio-gpu.h
+@@ -19,6 +19,7 @@
+ #include "ui/console.h"
+ #include "hw/virtio/virtio.h"
+ #include "hw/pci/pci.h"
++#include "qemu/log.h"
+ 
+ #include "standard-headers/linux/virtio_gpu.h"
+ #define TYPE_VIRTIO_GPU "virtio-gpu-device"
