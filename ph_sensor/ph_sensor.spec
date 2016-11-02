@@ -18,6 +18,7 @@ BuildRequires: intltool
 
 Requires: libgtop2
 Requires: lm_sensors
+Requires: lm_sensors-libs
 Requires: libatasmart
 
 %description
