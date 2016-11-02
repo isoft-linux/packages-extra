@@ -8,12 +8,17 @@ URL: git@git.isoft.zhcn.cc:zhaohongbo/ph_sensor.git
 Source0: %{name}-%{version}.tar.gz
 
 BuildRequires: libgtop2-devel
+BuildRequires: lm_sensors-libs
+BuildRequires: lm_sensors-devel
+BuildRequires: libatasmart-devel
 BuildRequires: autoconf
 BuildRequires: automake
 BuildRequires: libtool
 BuildRequires: intltool
 
 Requires: libgtop2
+Requires: lm_sensors
+Requires: libatasmart
 
 %description
 This lib is used to get sensors tem.
