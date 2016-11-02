@@ -8,6 +8,7 @@ URL: git@git.isoft.zhcn.cc:zhaohongbo/ph_sensor.git
 Source0: %{name}-%{version}.tar.gz
 
 BuildRequires: libgtop2-devel
+BuildRequires: autoconf
 BuildRequires: automake
 BuildRequires: libtool
 BuildRequires: intltool
