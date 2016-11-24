@@ -1,6 +1,6 @@
 Name: iphonesdk-utils
 Version: 2.1
-Release: 2
+Release: 3
 Summary: iOS development utilities for linux.
 
 License: GPL
@@ -61,6 +61,9 @@ make install DESTDIR=%{buildroot}
 %{_datadir}/iPhoneTemplates/*
 
 %changelog
+* Thu Nov 24 2016 cjacker - 2.1-3
+- Rebuild with new clang/llvm 3.9
+
 * Mon Dec 14 2015 Cjacker <cjacker@foxmail.com> - 2.1-2
 - Update to latest version
 
