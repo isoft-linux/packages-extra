@@ -1,7 +1,7 @@
 %define debug_package %{nil}
 Name: golang-tools
  
-Version: 1.5.2 
+Version: 1.7
 Release: 2
 Summary: Various packages and tools that support the Go programming language
 
@@ -44,8 +44,8 @@ tar xf %{SOURCE1} -C src/github.com/kisielk/
 tar xf %{SOURCE2} -C src/github.com/kisielk/
 tar xf %{SOURCE3} -C .
 
-mkdir -p src/github.com/rogpeppe
-tar xf %{SOURCE4} -C src/github.com/rogpeppe
+#mkdir -p src/github.com/rogpeppe
+#tar xf %{SOURCE4} -C src/github.com/rogpeppe
 
 tar xf %{SOURCE6} -C .
 
@@ -67,13 +67,13 @@ pushd src/github.com/kisielk/errcheck
 go build
 popd
 
-pushd src/github.com/rogpeppe/godef
-go build
-popd
+#pushd src/github.com/rogpeppe/godef
+#go build
+#popd
 
-pushd src/golang.org/x/tools/cmd/oracle
-go build
-popd
+#pushd src/golang.org/x/tools/cmd/oracle
+#go build
+#popd
 
 pushd src/golang.org/x/tools/cmd/goimports
 go build
@@ -88,8 +88,8 @@ mkdir -p %{buildroot}%{_bindir}
 install -m0755 gocode/gocode %{buildroot}%{_bindir}
 install -m0755 golint/golint %{buildroot}%{_bindir}
 install -m0755 src/github.com/kisielk/errcheck/errcheck %{buildroot}%{_bindir}
-install -m0755 src/github.com/rogpeppe/godef/godef %{buildroot}%{_bindir}
-install -m0755 src/golang.org/x/tools/cmd/oracle/oracle %{buildroot}%{_bindir}
+#install -m0755 src/github.com/rogpeppe/godef/godef %{buildroot}%{_bindir}
+#install -m0755 src/golang.org/x/tools/cmd/oracle/oracle %{buildroot}%{_bindir}
 install -m0755 src/golang.org/x/tools/cmd/goimports/goimports %{buildroot}%{_bindir}
 install -m0755 src/golang.org/x/tools/cmd/gorename/gorename %{buildroot}%{_bindir}
 
@@ -97,6 +97,9 @@ install -m0755 src/golang.org/x/tools/cmd/gorename/gorename %{buildroot}%{_bindi
 %{_bindir}/*
 
 %changelog
+* Thu Nov 24 2016 cjacker - 1.7-2
+- Update and rebuild with golang 1.7
+
 * Tue Dec 15 2015 Cjacker <cjacker@foxmail.com> - 1.5.2-2
 - Initial build
 
