@@ -1,5 +1,5 @@
 Name:  cctools
-Version: 877.5
+Version: 886 
 Release: 2
 Summary: Apple cctools port for Linux
 
@@ -8,7 +8,7 @@ URL: https://code.google.com/p/ios-toolchain-based-on-clang-for-linux
 
 #git clone https://github.com/tpoechtrager/cctools-port.git
 #./package.sh
-Source0: cctools-877.5-ld64-253.3_7d40549.tar.xz
+Source0: cctools-886-ld64-264.3.102_84ce22d.tar.xz
 
 BuildRequires: clang llvm libllvm-devel xar-devel libuuid-devel
 
@@ -26,7 +26,7 @@ The %{name}-devel package contains libraries and header files for
 developing applications that use %{name}.
 
 %prep
-%setup -q -n cctools-877.5-ld64-253.3_7d40549
+%setup -q -n cctools-886-ld64-264.3.102_84ce22d
 
 %build
 cp -r cctools cctools-ios
@@ -64,6 +64,9 @@ popd
 %{_libexecdir}/as/*/as
 
 %changelog
+* Thu Nov 24 2016 cjacker - 886-2
+- Update to 886
+
 * Sat Dec 12 2015 Cjacker <cjacker@foxmail.com> - 877.5-2
 - Initial build
 
