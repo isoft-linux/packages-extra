@@ -32,12 +32,12 @@
 %global gohostarch  arm
 %endif
 
-%global go_api 1.5
-%global go_version 1.5.2
+%global go_api 1.7
+%global go_version 1.7.3
 
 Name:           golang
-Version:        1.5
-Release:        7%{?dist}
+Version:        1.7
+Release:        8%{?dist}
 Summary:        The Go Programming Language
 
 License:        BSD
@@ -48,15 +48,14 @@ Source100:      golang-gdbinit
 Source101:      golang-prelink.conf
 Source102:      macros.golang
 
-Patch210:       golang-hostname.patch
 # use the arch dependent path in the bootstrap
-Patch212:       golang-1.5-bootstrap-binary-path.patch
-# disable TestGdbPython
-# https://github.com/golang/go/issues/11214
-Patch213:       go1.5beta1-disable-TestGdbPython.patch
-# disable  TestCloneNEWUSERAndRemapNoRootDisableSetgroups
-# this is not possible in the limitied build chroot
-Patch214:       go1.5beta2-disable-TestCloneNEWUSERAndRemapNoRootDisableSetgroups.patch
+#Patch212:       golang-1.5-bootstrap-binary-path.patch
+## disable TestGdbPython
+## https://github.com/golang/go/issues/11214
+#Patch213:       go1.5beta1-disable-TestGdbPython.patch
+## disable  TestCloneNEWUSERAndRemapNoRootDisableSetgroups
+## this is not possible in the limitied build chroot
+#Patch214:       go1.5beta2-disable-TestCloneNEWUSERAndRemapNoRootDisableSetgroups.patch
 
 
 ExclusiveArch:  %{go_arches}
@@ -131,10 +130,9 @@ end
 
 %prep
 %setup -q -n go
-%patch210 -p0
-%patch212 -p1
-%patch213 -p1
-%patch214 -p1
+#%patch212 -p1
+#%patch213 -p1
+#%patch214 -p1
 
 %build
 # go1.5 bootstrapping. The compiler is written in golang.
@@ -312,6 +310,9 @@ fi
 
 
 %changelog
+* Thu Nov 24 2016 cjacker - 1.7-8
+- Update to 1.7.3
+
 * Tue Dec 08 2015 Cjacker <cjacker@foxmail.com> - 1.5-7
 - Update to 1.5.2
 
