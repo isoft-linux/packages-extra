@@ -1,6 +1,6 @@
 Name: emacs-auto-complete
 Version: 1.4
-Release: 6 
+Release: 7 
 Summary: emacs c/c++/objc codes auto complete based on clang.
 URL: http://cx4a.org/software/auto-complete	
 License: GPL
@@ -67,6 +67,9 @@ install -m 0644 %{SOURCE2} $RPM_BUILD_ROOT/usr/share/emacs/site-lisp/site-start.
 %{_datadir}/emacs/site-lisp/site-start.d/*.el
 
 %changelog
+* Thu Nov 24 2016 sulit <sulitsrc@163.com> - 1.4-7
+- rebuild
+
 * Fri Dec 11 2015 Cjacker <cjacker@foxmail.com> - 1.4-6
 - Fix buildrequires
 
