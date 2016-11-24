@@ -1,11 +1,15 @@
-diff -Nur node-v0.12.5/Makefile node-v0.12.5n/Makefile
---- node-v0.12.5/Makefile	2015-06-22 18:22:53.000000000 +0000
-+++ node-v0.12.5n/Makefile	2015-06-24 14:16:03.374251891 +0000
-@@ -88,7 +88,6 @@
- test: all
- 	$(PYTHON) tools/test.py --mode=release simple message
- 	$(MAKE) jslint
--	$(MAKE) cpplint
+diff -Nur node-v6.9.1/Makefile node-v6.9.1n/Makefile
+--- node-v6.9.1/Makefile	2016-10-20 06:01:56.000000000 +0800
++++ node-v6.9.1n/Makefile	2016-11-24 15:38:40.493573447 +0800
+@@ -734,9 +734,9 @@
+ 	@$(PYTHON) tools/check-imports.py
  
- test-http1: all
- 	$(PYTHON) tools/test.py --mode=release --use-http1 simple message
+ ifneq ("","$(wildcard tools/eslint/lib/eslint.js)")
+-lint: jslint cpplint
++lint: jslint
+ CONFLICT_RE=^>>>>>>> [0-9A-Fa-f]+|^<<<<<<< [A-Za-z]+
+-lint-ci: jslint-ci cpplint
++lint-ci: jslint-ci
+ 	@if ! ( grep -IEqrs "$(CONFLICT_RE)" benchmark deps doc lib src test tools ) \
+ 		&& ! ( find . -maxdepth 1 -type f | xargs grep -IEqs "$(CONFLICT_RE)" ); then \
+ 		exit 0 ; \

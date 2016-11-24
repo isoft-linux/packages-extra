@@ -1,22 +1,19 @@
-diff -Nur node-v4.2.1/src/node_crypto.cc node-v4.2.1n/src/node_crypto.cc
---- node-v4.2.1/src/node_crypto.cc	2015-10-14 01:20:12.000000000 +0800
-+++ node-v4.2.1n/src/node_crypto.cc	2015-10-31 22:26:51.055874581 +0800
-@@ -706,32 +706,17 @@
+diff -Nur node-v6.9.1/src/node_crypto.cc node-v6.9.1n/src/node_crypto.cc
+--- node-v6.9.1/src/node_crypto.cc	2016-10-20 06:02:10.000000000 +0800
++++ node-v6.9.1n/src/node_crypto.cc	2016-11-24 15:40:31.749571455 +0800
+@@ -751,29 +751,17 @@
    CHECK_EQ(sc->ca_store_, nullptr);
  
    if (!root_cert_store) {
 -    root_cert_store = X509_STORE_new();
 -
--    for (size_t i = 0; i < ARRAY_SIZE(root_certs); i++) {
--      BIO* bp = NodeBIO::New();
--
--      if (!BIO_write(bp, root_certs[i], strlen(root_certs[i]))) {
--        BIO_free_all(bp);
+-    for (size_t i = 0; i < arraysize(root_certs); i++) {
+-      BIO* bp = NodeBIO::NewFixed(root_certs[i], strlen(root_certs[i]));
+-      if (bp == nullptr) {
 -        return;
 -      }
 -
 -      X509 *x509 = PEM_read_bio_X509(bp, nullptr, CryptoPemCallback, nullptr);
--
 -      if (x509 == nullptr) {
 -        BIO_free_all(bp);
 -        return;

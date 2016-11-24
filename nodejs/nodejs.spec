@@ -1,5 +1,5 @@
 Name: nodejs
-Version: 4.2.3
+Version: 6.9.1 
 Release: 2
 Summary: Easily building fast, scalable network applications	
 
@@ -81,6 +81,9 @@ make test ||:
 %{_docdir}/node/gdbinit
 
 %changelog
+* Thu Nov 24 2016 cjacker - 6.9.1-2
+- Update to 6.9.1 LTS
+
 * Thu Dec 10 2015 Cjacker <cjacker@foxmail.com> - 4.2.3-2
 - Update
 
