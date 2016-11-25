@@ -1,7 +1,7 @@
 %define debug_package %{nil}
 
 Name: firefox-i18n
-Version: 43.0.4
+Version: 50.0 
 Release: 2 
 Summary: Language pack for firefox
 License: MPL
@@ -29,6 +29,12 @@ done
 %{_libdir}/firefox/browser/extensions/langpack-*@firefox.mozilla.org.xpi
 
 %changelog
+* Fri Nov 18 2016 cjacker - 50.0-2
+- Update to 50.0
+
+* Tue Feb 16 2016 Cjacker <cjacker@foxmail.com> - 44.0.2-3
+- Update to 44.0.2
+
 * Thu Jan 21 2016 Cjacker <cjacker@foxmail.com> - 43.0.4-2
 - Update to 43.0.4
 
