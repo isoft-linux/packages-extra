@@ -26,6 +26,7 @@ BuildRequires: kf5-ki18n-devel
 BuildRequires: kf5-kcmutils-devel
 BuildRequires: kdevplatform-devel
 BuildRequires: kdevelop-pg-qt-devel
+BuildRequires: qt5-qtwebkit-devel
 
 Requires: kdevelop
 
