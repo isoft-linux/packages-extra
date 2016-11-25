@@ -4,22 +4,18 @@
 Name:    k3b
 Summary: CD/DVD/Blu-ray burning application
 Epoch:   2
-Version: 2.9.90
-Release: 10.git%{?dist}
+Version: 2.10.0
+Release: 2%{?dist}
 
 License: GPLv2+
 URL:     http://www.k3b.org/
 %if 0%{?snap:1}
 #git clone git://anongit.kde.org/k3b
 #git checkout kf5
-Source0: k3b.tar.gz
+Source0: k3b-%{version}.tar.bz2
 %else
 Source0: http://download.kde.org/stable/k3b/k3b-%{version}.tar.xz
 %endif
-
-# Fix QUrl::fromLocalFile and QString convert issue
-# https://git.reviewboard.kde.org/r/128376/
-Patch0: 0001-fix-convert-qurl-filename.patch
 
 BuildRequires: gettext
 BuildRequires: cmake
@@ -96,8 +92,7 @@ Requires: %{name}-libs%{?_isa} = %{epoch}:%{version}-%{release}
 
 
 %prep
-%setup -q -n %{name}
-%patch0 -p1
+%setup -q -n %{name}-%{version}
 
 #install -p -m644 %{SOURCE51} src/k3b.appdata.xml
 
@@ -155,7 +150,6 @@ update-mime-database %{_kf5_datadir}/mime &> /dev/null || :
 %{_kf5_datadir}/kservicetypes5/k3bplugin.desktop
 
 %{_kf5_datadir}/mime/packages/x-k3b.xml
-%{_kf5_datadir}/appdata/k3b.appdata.xml
 %{_kf5_datadir}/icons/hicolor/*/*/*
 
 %{_kf5_docdir}/HTML/*/k3b/
@@ -177,6 +171,12 @@ update-mime-database %{_kf5_datadir}/mime &> /dev/null || :
 
 
 %changelog
+* Thu Jul 21 2016 Leslie Zhai <xiang.zhai@i-soft.com.cn> - 2.10.0-2
+- Rebuild for kf5-libkcddb
+
+* Tue Jul 19 2016 Leslie Zhai <xiang.zhai@i-soft.com.cn> - 2.10.0-1
+- 2.10.0
+
 * Wed Jul 06 2016 sulit <sulitsrc@gmail.com> - 2:2.9.90-10.git
 - epoch add 1 for k3b
 
