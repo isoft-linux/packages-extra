@@ -38,6 +38,7 @@ BuildRequires: kf5-kwindowsystem-devel
 BuildRequires: kf5-krunner-devel
 BuildRequires: kf5-plasma-devel
 BuildRequires: kf5-kcrash-devel
+BuildRequires: libksysguard-devel
 
 BuildRequires: libllvm-devel
 BuildRequires: libclang-devel
