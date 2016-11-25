@@ -60,7 +60,7 @@ BuildRequires: llvm
 BuildRequires: clang
 BuildRequires: shared-mime-info
 BuildRequires: qt5-qttools-devel
-
+BuildRequires: grantlee-qt5-devel
 BuildRequires: kdevelop-pg-qt-devel
 BuildRequires: kdevplatform-devel >= %{kdevplatform_ver}
 
