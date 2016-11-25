@@ -73,6 +73,9 @@ BuildRequires: kf5-plasma-devel
 BuildRequires: kf5-kcrash-devel
 BuildRequires: libksysguard-devel
 BuildRequires: kf5-karchive-devel
+BuildRequires: grantlee-qt5-devel
+BuildRequires: kdevelop-pg-qt-devel
+
 Requires: kdevelop
 
 %description
