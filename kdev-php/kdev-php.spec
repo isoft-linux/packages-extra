@@ -1,9 +1,9 @@
-%define kdevelop_ver 4.90.90
+%define kdevelop_ver 5.0.2 
 
 Name:           kdev-php
 Summary:        PHP development plugin for Kdevelop
-Version:        4.90.90 
-Release:        3%{?dist}
+Version:        5.0.2 
+Release:        2%{?dist}
 
 License:        GPLv2
 URL:            https://projects.kde.org/projects/extragear/kdevelop/kdevplatform
@@ -54,10 +54,7 @@ make install/fast DESTDIR=%{buildroot} -C %{_target_platform}
 
 %files
 %{_kf5_libdir}/lib*.so
-%{_kf5_qtplugindir}/kdevplatform/24/kcm/kcm_kdevphpdocs.so
-%{_kf5_qtplugindir}/kdevplatform/24/kdevphpunitprovider.so
-%{_kf5_qtplugindir}/kdevplatform/24/kdevphpdocs.so
-%{_kf5_qtplugindir}/kdevplatform/24/kdevphplanguagesupport.so
+%{_kf5_qtplugindir}/kdevplatform/*/*
 %{_kf5_datadir}/kdevappwizard/templates/simple_phpapp.tar.bz2
 %{_kf5_datadir}/kdevphpsupport/phpunitdeclarations.php
 %{_kf5_datadir}/kdevphpsupport/phpfunctions.php
@@ -66,6 +63,9 @@ make install/fast DESTDIR=%{buildroot} -C %{_target_platform}
 %{_datadir}/locale/*/LC_MESSAGES/*.mo
 
 %changelog
+* Fri Nov 25 2016 cjacker - 5.0.2-2
+- Update to 5.0.2
+
 * Fri Oct 30 2015 Cjacker <cjacker@foxmail.com> - 4.90.90-3
 - Initial build
 
