@@ -17,6 +17,20 @@ BuildRequires: extra-cmake-modules
 BuildRequires: qt5-qtbase-devel qt5-qtdeclarative-devel qt5-qtwebkit-devel qt5-qtscript-devel 
 BuildRequires: kf5-rpm-macros
 BuildRequires: python-devel
+BuildRequires: kf5-attica-devel
+BuildRequires: kf5-kauth-devel
+BuildRequires: kf5-kbookmarks-devel
+BuildRequires: kf5-kcodecs-devel
+BuildRequires: kf5-kcompletion-devel
+BuildRequires: kf5-kconfigwidgets-devel
+BuildRequires: kf5-kcoreaddons-devel
+BuildRequires: kf5-kguiaddons-devel 
+BuildRequires: kf5-knotifications-devel 
+BuildRequires: kf5-kpackage-devel
+BuildRequires: kf5-solid-devel
+BuildRequires: kf5-sonnet-devel
+BuildRequires: kf5-ktextwidgets-devel
+BuildRequires: kf5-kwidgetsaddons-devel
 BuildRequires: kf5-kconfig-devel
 BuildRequires: kf5-kdeclarative-devel
 BuildRequires: kf5-ki18n-devel
@@ -39,7 +53,7 @@ BuildRequires: kf5-krunner-devel
 BuildRequires: kf5-plasma-devel
 BuildRequires: kf5-kcrash-devel
 BuildRequires: libksysguard-devel
-
+BuildRequires: kf5-karchive-devel
 BuildRequires: libllvm-devel
 BuildRequires: libclang-devel
 BuildRequires: llvm
