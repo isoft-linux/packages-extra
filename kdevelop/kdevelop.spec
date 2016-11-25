@@ -37,6 +37,7 @@ BuildRequires: kf5-kxmlgui-devel
 BuildRequires: kf5-kwindowsystem-devel
 BuildRequires: kf5-krunner-devel
 BuildRequires: kf5-plasma-devel
+BuildRequires: kf5-kcrash-devel
 
 BuildRequires: libllvm-devel
 BuildRequires: libclang-devel
