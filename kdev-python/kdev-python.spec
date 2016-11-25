@@ -1,11 +1,11 @@
 %global _python_bytecompile_errors_terminate_build 0
 
-%define kdevelop_ver 4.90.90
+%define kdevelop_ver 5.0.2 
 
 Name:           kdev-python
 Summary:        Python development plugin for Kdevelop
-Version:        4.90.90 
-Release:        3%{?dist}
+Version:        5.0.2
+Release:        2%{?dist}
 
 License:        GPLv2
 URL:            https://projects.kde.org/projects/extragear/kdevelop/kdevplatform
@@ -69,14 +69,16 @@ make install/fast DESTDIR=%{buildroot} -C %{_target_platform}
 %{_kf5_libdir}/libkdevpythoncompletion.so
 %{_kf5_libdir}/libkdevpythonduchain.so
 %{_kf5_libdir}/libkdevpythonparser.so
-%{_kf5_qtplugindir}/kdevplatform/24/kdevpdb.so
-%{_kf5_qtplugindir}/kdevplatform/24/kdevpythonlanguagesupport.so
+%{_kf5_qtplugindir}/kdevplatform/*/*
 
 %{_kf5_datadir}/kdevappwizard/templates/*
 %dir %{_kf5_datadir}/kdevpythonsupport
 %{_kf5_datadir}/kdevpythonsupport/*
 
 %changelog
+* Fri Nov 25 2016 cjacker - 5.0.2-2
+- Update to 5.0.2
+
 * Fri Oct 30 2015 Cjacker <cjacker@foxmail.com> - 4.90.90-3
 - Initial build
 
