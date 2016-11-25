@@ -35,7 +35,7 @@ BuildRequires: kf5-kitemmodels-devel
 BuildRequires: kdevplatform-devel
 BuildRequires: kdevelop-pg-qt-devel
 BuildRequires: kdevelop-devel
-
+BuildRequires: qt5-qtwebkit-devel
 
 Requires: kdevelop
 
