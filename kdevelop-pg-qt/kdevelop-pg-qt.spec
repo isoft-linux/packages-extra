@@ -15,6 +15,7 @@ BuildRequires: cmake
 BuildRequires: extra-cmake-modules
 BuildRequires: gettext
 BuildRequires: kf5-rpm-macros
+BuildRequires: qt5-qtbase-devel
 
 %description
 KDevelop-PG-Qt is a parser generator written in readable source-code and
