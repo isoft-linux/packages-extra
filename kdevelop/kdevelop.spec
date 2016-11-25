@@ -1,8 +1,8 @@
-%define kdevplatform_ver 4.90.90 
+%define kdevplatform_ver 5.0.2 
 
 Name:    kdevelop
 Summary: Integrated Development Environment for C++/C
-Version: 4.90.90
+Version: 5.0.2
 Release: 2%{?dist}
 
 License: GPLv2
@@ -124,23 +124,19 @@ update-desktop-database -q &> /dev/null
 update-mime-database -n %{_kf5_datadir}/mime &> /dev/null || :
 
 %files
-%{_sysconfdir}/xdg/*
 %{_kf5_bindir}/kdevelop!
 %{_kf5_bindir}/kdev_includepathsconverter
 %{_kf5_bindir}/kdevelop
 %{_kf5_libdir}/libkdevcmakecommon.so
-
+%{_kf5_libdir}/libKDevClangPrivate.so*
 %{_kf5_qtplugindir}/plasma/dataengine/plasma_engine_kdevelopsessions.so
-%{_kf5_qtplugindir}/kdevplatform/24/*.so
+%{_kf5_qtplugindir}/kdevplatform/*/*.so
 %{_kf5_qtplugindir}/krunner_kdevelopsessions.so
-
-%{_kf5_datadir}/propertywidgets
 %{_kf5_datadir}/kdevqmljssupport
 %{_kf5_datadir}/kdevmanpage
 %{_kf5_datadir}/kdevgdb
-%{_kf5_datadir}/appdata/kdevelop.appdata.xml
+%{_kf5_datadir}/appdata/org.kde.kdevelop.appdata.xml
 %{_kf5_datadir}/kdevcodegen/templates/*
-%{_kf5_datadir}/kxmlgui5/*
 %{_kf5_datadir}/kdevqmakebuilder
 %{_kf5_datadir}/mime/packages/kdevelop.xml
 %{_kf5_datadir}/mime/packages/kdevelopinternal.xml
@@ -155,17 +151,22 @@ update-mime-database -n %{_kf5_datadir}/mime &> /dev/null || :
 %{_datadir}/locale/*/LC_MESSAGES/*.mo
 %{_kf5_datadir}/kdevelop
 %{_kf5_datadir}/kdevfiletemplates
-%{_datadir}/applications/kdevelop.desktop
-%{_datadir}/applications/kdevelop_ps.desktop
+%{_datadir}/applications/org.kde.kdevelop.desktop
+%{_datadir}/applications/org.kde.kdevelop_ps.desktop
 
 %{_datadir}/locale/*/LC_MESSAGES/*.mo
+%dir %{_datadir}/kdevclangsupport
+%{_datadir}/kdevclangsupport/*
 
 %files devel
 %dir %{_libdir}/cmake/KDevelop
-%{_libdir}/cmake/KDevelop/KDevelopConfig.cmake
+%{_libdir}/cmake/KDevelop/*.cmake
 %{_includedir}/kdevelop/
 
 %changelog
+* Fri Nov 25 2016 cjacker - 5.0.2-2
+- Update to 5.0.2
+
 * Wed Oct 28 2015 Cjacker <cjacker@foxmail.com> - 4.90.90-2
 - Initial build
 
