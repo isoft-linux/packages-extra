@@ -36,7 +36,43 @@ BuildRequires: kdevplatform-devel
 BuildRequires: kdevelop-pg-qt-devel
 BuildRequires: kdevelop-devel
 BuildRequires: qt5-qtwebkit-devel
-
+BuildRequires: kf5-attica-devel
+BuildRequires: kf5-kauth-devel
+BuildRequires: kf5-kbookmarks-devel
+BuildRequires: kf5-kcodecs-devel
+BuildRequires: kf5-kcompletion-devel
+BuildRequires: kf5-kconfigwidgets-devel
+BuildRequires: kf5-kcoreaddons-devel
+BuildRequires: kf5-kguiaddons-devel
+BuildRequires: kf5-knotifications-devel
+BuildRequires: kf5-kpackage-devel
+BuildRequires: kf5-solid-devel
+BuildRequires: kf5-sonnet-devel
+BuildRequires: kf5-ktextwidgets-devel
+BuildRequires: kf5-kwidgetsaddons-devel
+BuildRequires: kf5-kconfig-devel
+BuildRequires: kf5-kdeclarative-devel
+BuildRequires: kf5-ki18n-devel
+BuildRequires: kf5-kdoctools-devel
+BuildRequires: kf5-kiconthemes-devel
+BuildRequires: kf5-kitemmodels-devel
+BuildRequires: kf5-kitemviews-devel
+BuildRequires: kf5-kjobwidgets-devel
+BuildRequires: kf5-kcmutils-devel
+BuildRequires: kf5-kio-devel
+BuildRequires: kf5-knewstuff-devel
+BuildRequires: kf5-knotifyconfig-devel
+BuildRequires: kf5-kservice-devel
+BuildRequires: kf5-kparts-devel
+BuildRequires: kf5-ktexteditor-devel
+BuildRequires: kf5-threadweaver-devel
+BuildRequires: kf5-kxmlgui-devel
+BuildRequires: kf5-kwindowsystem-devel
+BuildRequires: kf5-krunner-devel
+BuildRequires: kf5-plasma-devel
+BuildRequires: kf5-kcrash-devel
+BuildRequires: libksysguard-devel
+BuildRequires: kf5-karchive-devel
 Requires: kdevelop
 
 %description
