@@ -1,7 +1,7 @@
 Name:    kf5-libkcddb
 Summary: CDDB retrieval library 
-Version: 16.07.0
-Release: 2%{?dist}
+Version: 16.11.80
+Release: 1%{?dist}
 
 License: GPLv2+
 URL:     https://github.com/isoft-linux/libkcddb
@@ -97,6 +97,9 @@ make install/fast DESTDIR=%{buildroot} -C %{_target_platform}
 
 
 %changelog
+* Mon Nov 28 2016 Leslie Zhai <xiang.zhai@i-soft.com.cn> - 16.11.80-1
+- 16.11.80-1
+
 * Thu Jul 21 2016 Leslie Zhai <xiang.zhai@i-soft.com.cn> - 16.07.0-2
 - 16.07.0
 - SOVERSION 16
