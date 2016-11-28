@@ -1,7 +1,7 @@
 Name:           kdevelop-pg-qt
 Summary:        A parser generator 
 Version:        1.9.90
-Release:        11%{?dist}
+Release:        12%{?dist}
 
 # All LGPLv2+, except for bison-generated kdev-pg-parser.{cc.h} which are GPLv2+
 License:        LGPLv2+ and GPLv2+ with exception
@@ -56,6 +56,9 @@ make install/fast DESTDIR=%{buildroot} -C %{_target_platform}
 
 
 %changelog
+* Mon Nov 28 2016 cjacker - 1.9.90-12
+- Build for v5
+
 * Mon Nov 28 2016 cjacker - 1.9.90-11
 - Build for v5
 
