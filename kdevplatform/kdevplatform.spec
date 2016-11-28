@@ -1,9 +1,9 @@
-%define kdevelop_ver 4.90.90
+%define kdevelop_ver 5.0.2 
 
 Name:           kdevplatform
 Summary:        Libraries for use by KDE development tools
-Version:        4.90.90 
-Release:        2%{?dist}
+Version:        5.0.2 
+Release:        3%{?dist}
 
 License:        GPLv2
 URL:            https://projects.kde.org/projects/extragear/kdevelop/kdevplatform
@@ -39,6 +39,8 @@ BuildRequires: kf5-threadweaver-devel
 BuildRequires: kf5-kwindowsystem-devel
 BuildRequires: kf5-kdeclarative-devel
 BuildRequires: kf5-kxmlgui-devel
+
+BuildRequires: qt5-qtwebkit-devel
 
 BuildRequires: grantlee-qt5-devel
 BuildRequires: libkomparediff2-devel
@@ -88,13 +90,11 @@ fi
 gtk-update-icon-cache %{_datadir}/icons/hicolor &> /dev/null || :
 
 %files
-%{_sysconfdir}/xdg/*
 %{_kf5_bindir}/kdev_dbus_socket_transformer
 %{_kf5_bindir}/kdev_format_source
 %{_kf5_bindir}/kdevplatform_shell_environment.sh
 %{_kf5_datadir}/kservicetypes5/kdevelopplugin.desktop
 %{_kf5_datadir}/kdevcodegen
-%{_kf5_datadir}/kxmlgui5/*
 %{_kf5_datadir}/kdevcodeutils
 
 %{_kf5_libdir}/lib*.so.*
@@ -112,5 +112,11 @@ gtk-update-icon-cache %{_datadir}/icons/hicolor &> /dev/null || :
 
 
 %changelog
+* Fri Nov 25 2016 cjacker - 5.0.2-3
+- Add missing build requires
+
+* Fri Nov 25 2016 cjacker - 5.0.2-2
+- Update to 5.0.2
+
 * Wed Oct 28 2015 Cjacker <cjacker@foxmail.com> - 4.90.90-2
 - Initial build
