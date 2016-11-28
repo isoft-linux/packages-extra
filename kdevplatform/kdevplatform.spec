@@ -3,7 +3,7 @@
 Name:           kdevplatform
 Summary:        Libraries for use by KDE development tools
 Version:        5.0.2 
-Release:        3%{?dist}
+Release:        4%{?dist}
 
 License:        GPLv2
 URL:            https://projects.kde.org/projects/extragear/kdevelop/kdevplatform
@@ -112,6 +112,9 @@ gtk-update-icon-cache %{_datadir}/icons/hicolor &> /dev/null || :
 
 
 %changelog
+* Mon Nov 28 2016 cjacker - 5.0.2-4
+- Build for v5
+
 * Fri Nov 25 2016 cjacker - 5.0.2-3
 - Add missing build requires
 
