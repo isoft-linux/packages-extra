@@ -3,7 +3,7 @@
 Name:           kdev-php
 Summary:        PHP development plugin for Kdevelop
 Version:        5.0.2 
-Release:        2%{?dist}
+Release:        3%{?dist}
 
 License:        GPLv2
 URL:            https://projects.kde.org/projects/extragear/kdevelop/kdevplatform
@@ -103,6 +103,9 @@ make install/fast DESTDIR=%{buildroot} -C %{_target_platform}
 %{_datadir}/locale/*/LC_MESSAGES/*.mo
 
 %changelog
+* Mon Nov 28 2016 cjacker - 5.0.2-3
+- Build for v5
+
 * Fri Nov 25 2016 cjacker - 5.0.2-2
 - Update to 5.0.2
 
