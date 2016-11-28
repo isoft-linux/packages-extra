@@ -82,9 +82,9 @@ make install/fast DESTDIR=%{buildroot} -C %{_target_platform}
 %{_kf5_qtplugindir}/kcm_cddb.so
 %{_kf5_libdir}/libKF5CddbWidgets.so.16*
 %{_kf5_libdir}/libKF5Cddb.so.16*
-%{_kf5_docdir}/HTML/*/kcontrol/cddbretrieval/
+%{_kf5_docdir}/HTML/*/kcontrol/cddbretrieval5/
 %{_kf5_datadir}/kservices5/libkcddb.desktop
-%{_kf5_datadir}/config.kcfg/libkcddb.kcfg
+%{_kf5_datadir}/config.kcfg/libkcddb5.kcfg
 
 
 %files devel
