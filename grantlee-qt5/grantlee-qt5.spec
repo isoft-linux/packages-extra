@@ -3,7 +3,7 @@
 Name:    grantlee-qt5
 Summary: Qt5 string template engine based on the Django template system
 Version: 5.1.0
-Release: 2%{?dist}
+Release: 3%{?dist}
 
 License: LGPLv2+
 URL:     https://github.com/steveire/grantlee
@@ -119,6 +119,9 @@ cp -prf %{_target_platform}/apidox/* %{buildroot}%{_docdir}/HTML/en/Grantlee5/
 
 
 %changelog
+* Mon Nov 28 2016 cjacker - 5.1.0-3
+- Build for v5
+
 * Fri Nov 25 2016 cjacker - 5.1.0-2
 - Update to 5.1.0
 
