@@ -5,7 +5,7 @@ Name:    k3b
 Summary: CD/DVD/Blu-ray burning application
 Epoch:   1
 Version: 2.10.0
-Release: 2%{?dist}
+Release: 3%{?dist}
 
 License: GPLv2+
 URL:     http://www.k3b.org/
@@ -171,6 +171,10 @@ update-mime-database %{_kf5_datadir}/mime &> /dev/null || :
 
 
 %changelog
+* Mon Nov 28 2016 Leslie Zhai <xiang.zhai@i-soft.com.cn> - 2.10.0-3
+- Rebuild for kf5-libkcddb-16.11.80-1
+- Rebuild for clang analyzer and sanitizer.
+
 * Thu Jul 21 2016 Leslie Zhai <xiang.zhai@i-soft.com.cn> - 2.10.0-2
 - Rebuild for kf5-libkcddb
 
