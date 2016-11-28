@@ -3,7 +3,7 @@
 Name:    kdevelop
 Summary: Integrated Development Environment for C++/C
 Version: 5.0.2
-Release: 2%{?dist}
+Release: 3%{?dist}
 
 License: GPLv2
 URL:     http://www.kdevelop.org/
@@ -180,6 +180,9 @@ update-mime-database -n %{_kf5_datadir}/mime &> /dev/null || :
 %{_includedir}/kdevelop/
 
 %changelog
+* Mon Nov 28 2016 cjacker - 5.0.2-3
+- Build for v5
+
 * Fri Nov 25 2016 cjacker - 5.0.2-2
 - Update to 5.0.2
 
