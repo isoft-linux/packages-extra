@@ -1,0 +1,21 @@
+diff -Nur libkcddb-16.11.80/CMakeLists.txt libkcddb-16.11.80n/CMakeLists.txt
+--- libkcddb-16.11.80/CMakeLists.txt	2016-11-28 12:23:11.000000000 +0800
++++ libkcddb-16.11.80n/CMakeLists.txt	2016-11-28 13:21:32.159303530 +0800
+@@ -4,7 +4,7 @@
+ 
+ # ECM setup
+ include(FeatureSummary)
+-find_package(ECM 5.24.0  NO_MODULE)
++find_package(ECM 5.16.0  NO_MODULE)
+ set_package_properties(ECM PROPERTIES TYPE REQUIRED DESCRIPTION "Extra CMake Modules." URL "https://projects.kde.org/projects/kdesupport/extra-cmake-modules")
+ set(CMAKE_MODULE_PATH "${ECM_MODULE_PATH}" "${CMAKE_CURRENT_SOURCE_DIR}/cmake")
+ 
+@@ -17,7 +17,7 @@
+ include(ECMGenerateHeaders)
+ 
+ set(PROJECT_VERSION "16.08.0")
+-set(KF5_DEP_VERSION "5.24.0") # handled by release scripts
++set(KF5_DEP_VERSION "5.16.0") # handled by release scripts
+ set(REQUIRED_QT_VERSION 5.4.0)
+ 
+ find_package(Qt5 ${REQUIRED_QT_VERSION} REQUIRED COMPONENTS Network Widgets)
