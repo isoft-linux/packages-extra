@@ -1,7 +1,7 @@
 Name:           kdevelop-pg-qt
 Summary:        A parser generator 
 Version:        1.9.90
-Release:        12%{?dist}
+Release:        14%{?dist}
 
 # All LGPLv2+, except for bison-generated kdev-pg-parser.{cc.h} which are GPLv2+
 License:        LGPLv2+ and GPLv2+ with exception
@@ -15,6 +15,7 @@ BuildRequires: cmake
 BuildRequires: extra-cmake-modules
 BuildRequires: gettext
 BuildRequires: kf5-rpm-macros
+BuildRequires: qt5-qtbase-devel
 
 %description
 KDevelop-PG-Qt is a parser generator written in readable source-code and
@@ -56,11 +57,11 @@ make install/fast DESTDIR=%{buildroot} -C %{_target_platform}
 
 
 %changelog
-* Mon Nov 28 2016 cjacker - 1.9.90-12
+* Mon Nov 28 2016 cjacker - 1.9.90-14
 - Build for v5
 
-* Mon Nov 28 2016 cjacker - 1.9.90-11
-- Build for v5
+* Fri Nov 25 2016 cjacker - 1.9.90-11
+- Update to latest git
 
 * Wed Oct 28 2015 Cjacker <cjacker@foxmail.com> - 1.9.90-10
 - Initial build
