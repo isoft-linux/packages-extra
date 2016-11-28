@@ -144,6 +144,10 @@ update-mime-database %{_kf5_datadir}/mime &> /dev/null || :
 %{_kf5_datadir}/konqsidebartng/virtual_folders/services/*.desktop
 %{_kf5_datadir}/solid/actions/k3b*.desktop
 %{_kf5_datadir}/applications/org.kde.k3b.desktop
+%{_kf5_datadir}/appdata/org.kde.k3b.appdata.xml
+%{_kf5_datadir}/knotifications5/k3b.notifyrc
+%{_kf5_datadir}/kxmlgui5/k3b/k3bdeviceui.rc
+%{_kf5_datadir}/kxmlgui5/k3b/k3bui.rc
 %{_kf5_datadir}/kservices5/*.desktop
 %{_kf5_datadir}/kservices5/*.protocol
 %{_kf5_datadir}/kservices5/ServiceMenus/*.desktop
@@ -173,6 +177,7 @@ update-mime-database %{_kf5_datadir}/mime &> /dev/null || :
 %changelog
 * Fri Nov 25 2016 sulit <sulitsrc@gmail.com> - 2:2.10.0-3
 - update release
+- add some datafiles
 
 * Thu Jul 21 2016 Leslie Zhai <xiang.zhai@i-soft.com.cn> - 2.10.0-2
 - Rebuild for kf5-libkcddb
