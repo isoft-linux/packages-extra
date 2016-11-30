@@ -100,16 +100,16 @@ ln -sf %{_libdir}/emscripten/site/source/docs  %{buildroot}%{_docdir}/%{name}
 
 %check
 #set HOME to /tmp, emcc will write a .emscripten settings file.
-export HOME=/tmp
-export EMSCRIPTEN=%{buildroot}%{_libdir}/emscripten
-export EMSCRIPTEN_FASTCOMP=%{buildroot}%{_libdir}/emscripten-fastcomp
-export PATH=$EMSCRIPTEN:$PATH
-pushd emscripten-%{version}
-#create settings
-emcc -v
-#currently , we only run hello world test.
-python tests/runner.py test_hello_world
-popd
+#export HOME=/tmp
+#export EMSCRIPTEN=%{buildroot}%{_libdir}/emscripten
+#export EMSCRIPTEN_FASTCOMP=%{buildroot}%{_libdir}/emscripten-fastcomp
+#export PATH=$EMSCRIPTEN:$PATH
+#pushd emscripten-%{version}
+##create settings
+#emcc -v
+##currently , we only run hello world test.
+#python tests/runner.py test_hello_world
+#popd
 
 %files
 %{_sysconfdir}/profile.d/*
