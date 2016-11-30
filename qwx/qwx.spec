@@ -23,7 +23,8 @@ chmod 644 LICENSE
 %build
 mkdir %{_target_platform}
 pushd %{_target_platform}
-%{cmake_kf5} ..
+cmake -DCMAKE_INSTALL_PREFIX:PATH=%{_prefix}    \
+    -DCMAKE_BUILD_TYPE=Release ..
 popd
 make %{?_smp_mflags} -C %{_target_platform}
 
