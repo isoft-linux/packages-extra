@@ -1,6 +1,6 @@
 Name: krfb
 Version: 4.13.0
-Release: 3
+Release: 4
 License: GPL
 
 Source0: krfb-4.13.0.tar.xz 
@@ -50,7 +50,7 @@ make %{?_smp_mflags} -C %{_target_platform}
 
 %install
 make install DESTDIR=%{buildroot} -C %{_target_platform}
-echo "NoDisplay=true" >> $RPM_BUILD_ROOT/usr/share/applications/org.kde.krfb.desktop
+#echo "NoDisplay=true" >> $RPM_BUILD_ROOT/usr/share/applications/org.kde.krfb.desktop
 
 %files 
 %{_bindir}/krfb
@@ -72,6 +72,9 @@ echo "NoDisplay=true" >> $RPM_BUILD_ROOT/usr/share/applications/org.kde.krfb.des
 
 
 %changelog
+* Wed Nov 30 2016 Leslie Zhai <xiang.zhai@i-soft.com.cn> - 4.13.0-4
+- QA want to display krfb in the category of Internet.
+
 * Thu Dec 10 2015 kun.li@i-soft.com.cn - 4.13.0-3
 - rebuilt
 
