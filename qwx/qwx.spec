@@ -1,10 +1,15 @@
 Name:           qwx
 Summary:        WeChat for linux
-Version:        0.7
+Version:        0.9.0
 Release:        1
 License:        GPL-3.0
 Url:            https://github.com/xiangzhai/qwx
-Source:        %{name}-%{version}.tar.bz2
+
+Source0:        %{name}-%{version}.tar.bz2
+Source1:        %{name}.desktop
+Source2:        %{name}.png
+
+BuildRequires:  cmake
 BuildRequires:  qt5-qtbase-devel
 BuildRequires:  qt5-qtquickcontrols-devel
 
@@ -13,22 +18,29 @@ WeChat for linux, base with QT5.
 
 %prep
 %setup -q 
-chmod 644 AUTHORS.md LICENSE
+chmod 644 LICENSE
 
 %build
-qmake-qt5 PREFIX=%{buildroot}%{_prefix}
-make
+mkdir %{_target_platform}
+pushd %{_target_platform}
+%{cmake_kf5} ..
+popd
+make %{?_smp_mflags} -C %{_target_platform}
 
 %install
-make install
+install -m644 -p -D %{SOURCE1} %{buildroot}%{_prefix}/share/applications/%{name}.desktop
+install -m644 -p -D %{SOURCE2} %{buildroot}%{_prefix}/share/icons/%{name}.png
+make install DESTDIR=%{buildroot} -C %{_target_platform}
 
 %files 
-%doc AUTHORS.md LICENSE
 %{_datadir}/applications/%{name}.desktop
-%{_datadir}/icons/
+%{_datadir}/icons/%{name}.png
 %{_bindir}/%{name}
 
 %changelog
+* Wed Nov 30 2016 Leslie Zhai <xiang.zhai@i-soft.com.cn> - 0.9.0-1
+- 0.9.0-1
+
 * Fri Dec 11 2015 Leslie Zhai <xiang.zhai@i-soft.com.cn>
 - Release v0.7
 
