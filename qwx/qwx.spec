@@ -12,6 +12,7 @@ Source2:        %{name}.png
 BuildRequires:  cmake
 BuildRequires:  qt5-qtbase-devel
 BuildRequires:  qt5-qtquickcontrols-devel
+BuildRequires:  qt5-qttools-devel
 
 %description
 WeChat for linux, base with QT5.
