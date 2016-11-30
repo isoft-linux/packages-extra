@@ -1,6 +1,6 @@
 Name: emscripten 
 Version: 1.35.12
-Release: 2 
+Release: 3 
 Summary: LLVM-based project that compiles C and C++ into highly-optimizable JavaScript in asm.js format
 
 License: Custom
@@ -118,6 +118,9 @@ popd
 %{_docdir}/%{name}
 
 %changelog
+* Wed Nov 30 2016 cjacker - 1.35.12-3
+- Rebuild
+
 * Sat Dec 05 2015 Cjacker <cjacker@foxmail.com> - 1.35.12-2
 - Update to 1.35.12
 
