@@ -3,13 +3,13 @@
 #
 
 
-%global year 2015
+%global year 2016
 %global month 11
 
 
 Name:		nqp
 Version:	0.0.%{year}.%{month}
-Release:	2%{?dist}
+Release:	1%{?dist}
 Summary:	Not Quite Perl (6)
 
 BuildArch:	noarch
@@ -84,6 +84,9 @@ CFLAGS="$RPM_OPT_FLAGS -fPIC" %{__make} %{?_smp_mflags}
 
 
 %changelog
+* Thu Dec 01 2016 sulit - 0.0.2016.11-1
+- upgrade nqp to 2016.11
+
 * Sat Dec 26 2015 Cjacker <cjacker@foxmail.com> - 0.0.2015.11-2
 - Update
 
