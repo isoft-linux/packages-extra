@@ -97,19 +97,17 @@ pod2man --section=1 --name=moar docs/moar.pod | %{__gzip} -c > $RPM_BUILD_ROOT%{
 %files devel
 %{_includedir}/dyncall
 %{_includedir}/moar
-%{_includedir}/tinymt
 %{_datadir}/pkgconfig/moar.pc
 
 %exclude %{_includedir}/libtommath
-%exclude %{_includedir}/sha1
 %exclude %{_includedir}/libuv
-%exclude %{_includedir}/msinttypes
 
 
 
 %changelog
 * Thu Dec 01 2016 sulit - 0.2016.11-1
 - update moarvm to 2016.11
+- remove some non-exsit files
 
 * Sat Dec 26 2015 Cjacker <cjacker@foxmail.com> - 0.2015.11-2
 - Update
