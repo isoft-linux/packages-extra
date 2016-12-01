@@ -12,13 +12,13 @@
 %define debug_package %{nil}
 
 
-%global year 2015
+%global year 2016
 %global month 11 
 
 
 Name:           rakudo-star
 Version:        0.0.%{year}.%{month}
-Release:        2%{?dist}
+Release:        1%{?dist}
 Summary:        Rakudo, Perl6-modules and documentation
 License:        Artistic 2.0
 URL:            http://www.rakudo.org/
@@ -252,6 +252,9 @@ prove -e ./perl6 -r modules/xml-writer/t
 
 
 %changelog
+* Thu Dec 01 2016 sulit - 0.0.2016.11-1
+- upgrade perl6 to 2016.11
+
 * Tue Oct 27 2015 Cjacker <cjacker@foxmail.com> - 0.0.2015.09-2
 - Rebuild
 
