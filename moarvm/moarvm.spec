@@ -1,10 +1,10 @@
-%global year 2015
+%global year 2016
 %global month 11
 
 
 Name:           moarvm
 Version:        0.%{year}.%{month}
-Release:        2%{?dist}
+Release:        1%{?dist}
 Summary:        Meta-model On A Runtime Virtual Machine
 
 License:        Artistic 2.0
@@ -108,6 +108,9 @@ pod2man --section=1 --name=moar docs/moar.pod | %{__gzip} -c > $RPM_BUILD_ROOT%{
 
 
 %changelog
+* Thu Dec 01 2016 sulit - 0.2016.11-1
+- update moarvm to 2016.11
+
 * Sat Dec 26 2015 Cjacker <cjacker@foxmail.com> - 0.2015.11-2
 - Update
 
