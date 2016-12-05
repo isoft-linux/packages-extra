@@ -1,9 +1,12 @@
 Name: krfb
 Version: 4.13.0
-Release: 4
+Release: 5
 License: GPL
 
 Source0: krfb-4.13.0.tar.xz 
+
+Patch0: desktop.patch
+
 BuildRequires: cmake
 BuildRequires: extra-cmake-modules
 BuildRequires: kf5-kbookmarks-devel
@@ -72,6 +75,9 @@ make install DESTDIR=%{buildroot} -C %{_target_platform}
 
 
 %changelog
+* Mon Dec 05 2016 Leslie Zhai <xiang.zhai@i-soft.com.cn> - 4.13.0-5
+- Change Exec for desktop.
+
 * Wed Nov 30 2016 Leslie Zhai <xiang.zhai@i-soft.com.cn> - 4.13.0-4
 - QA want to display krfb in the category of Internet.
 

@@ -1,0 +1,13 @@
+diff --git a/krfb/org.kde.krfb.desktop b/krfb/org.kde.krfb.desktop
+index 41d0fae..b8f8dcc 100755
+--- a/krfb/org.kde.krfb.desktop
++++ b/krfb/org.kde.krfb.desktop
+@@ -1,7 +1,7 @@
+ # KDE Config File
+ [Desktop Entry]
+ Type=Application
+-Exec=krfb -caption %c %i
++Exec=krfb -qwindowtitle %c %i
+ Icon=krfb
+ X-DocPath=krfb/index.html
+ Terminal=false
