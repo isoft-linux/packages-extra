@@ -6,8 +6,8 @@
 
 Summary: Mozilla Firefox Web browser
 Name: firefox
-Version: 50.0 
-Release: 2
+Version: 50.0.2 
+Release: 3 
 URL: http://www.mozilla.org/projects/firefox
 License: MPLv1.1 or GPLv2+ or LGPLv2+
 Source0: http://ftp.mozilla.org/pub/firefox/releases/%{version}/linux-x86_64/en-US/firefox-%{version}.tar.bz2
@@ -80,8 +80,14 @@ update-desktop-database ||:
 %{_datadir}/icons/hicolor/*/apps/firefox.png
 
 %changelog
-* Fri Nov 18 2016 cjacker - 50.0-2
-- Update to 50.0
+* Thu Dec 08 2016 cjacker - 50.0.2-3
+- Update to 50.0.2, rebuild for v4
+
+* Thu Dec 08 2016 cjacker - 50.0.2-2
+- Update to 50.0.2
+
+* Mon May 16 2016 Cjacker <cjacker@foxmail.com> - 46.0.1-2
+- Update to 46.0.1
 
 * Thu Jan 21 2016 Cjacker <cjacker@foxmail.com> - 43.0.4-2
 - Update to 43.0.4
