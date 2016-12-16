@@ -9,7 +9,7 @@ Source0: http://www.webkitgtk.org/webkitgtk-%{version}.tar.xz
 Patch0: webkit-gtk-1.7.90-parallel-make-hack.patch
 
 BuildRequires: clang
-BuildRequires: bison flex perl python ruby gperf gawk
+BuildRequires: bison flex perl python ruby gperf gawk automake
 BuildRequires: pkgconfig
 BuildRequires: coreutils
 BuildRequires: libjpeg-turbo-devel libpng-devel libwebp-devel
