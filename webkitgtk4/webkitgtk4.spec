@@ -3,7 +3,7 @@
 
 Name:	    webkitgtk4
 Version:    2.12.3
-Release:    1
+Release:    2
 Summary:    GTK Port of WebKit
 
 License:	MIT
@@ -95,6 +95,9 @@ popd
 %{_datadir}/gtk-doc/html/*
 
 %changelog
+* Fri Dec 16 2016 sulit - 2.12.3-2
+- rebuild
+
 * Thu Jul 07 2016 zhouyang <yang.zhou@i-soft.com.cn> - 2.12.3-1
 - Update
 - disable gtkdoc for now.
