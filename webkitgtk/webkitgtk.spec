@@ -1,6 +1,6 @@
 Name: webkitgtk
 Version: 2.4.9
-Release: 3
+Release: 4
 Summary: GTK+ Web content engine library
 License: LGPLv2+ and BSD
 URL: http://www.webkitgtk.org/
@@ -104,6 +104,9 @@ rm -rf %{buildroot}
 %{_datadir}/gtk-doc/*
 
 %changelog
+* Fri Dec 16 2016 sulit - 2.4.9-4
+- rebuild
+
 * Sun Nov 01 2015 Cjacker <cjacker@foxmail.com> - 2.4.9-3
 - Rebuild with icu 56.1
 
