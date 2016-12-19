@@ -26,7 +26,7 @@ BuildRequires: libpng-devel, libjpeg-devel, readline-devel
 BuildRequires: tcl-devel, tk-devel, ncurses-devel
 BuildRequires: pcre-devel, zlib-devel
 BuildRequires: libcurl-devel
-BuildRequires: texi2any
+BuildRequires: texinfo
 BuildRequires: tre-devel
 
 # valgrind is available only on selected arches
