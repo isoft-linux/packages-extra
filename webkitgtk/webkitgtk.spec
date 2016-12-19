@@ -50,7 +50,7 @@ files for developing applications that use %{name}.
 %patch0 -p1
 
 %build
-autoconf -f
+autoreconf -v
 export CC=clang
 export CXX=clang++
 
