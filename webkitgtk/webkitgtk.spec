@@ -7,6 +7,7 @@ URL: http://www.webkitgtk.org/
 
 Source0: http://www.webkitgtk.org/webkitgtk-%{version}.tar.xz
 Patch0: webkit-gtk-1.7.90-parallel-make-hack.patch
+Patch1: webkitgtk-2.4.9-abs.patch
 
 BuildRequires: clang
 BuildRequires: bison flex perl python ruby gperf gawk automake
@@ -48,6 +49,7 @@ files for developing applications that use %{name}.
 %prep
 %setup -q -n %{name}-%{version}
 %patch0 -p1
+%patch1 -p1
 
 %build
 autoreconf -v
@@ -107,6 +109,7 @@ rm -rf %{buildroot}
 %changelog
 * Fri Dec 16 2016 sulit - 2.4.9-4
 - rebuild
+- add abs patch
 
 * Sun Nov 01 2015 Cjacker <cjacker@foxmail.com> - 2.4.9-3
 - Rebuild with icu 56.1
