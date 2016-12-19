@@ -25,6 +25,7 @@ BuildRequires: gstreamer-devel gstreamer-plugins-base-devel
 
 BuildRequires: gtk-doc 
 BuildRequires: make
+BuildRequires: vim
 BuildRequires: gettext
 BuildRequires: chrpath
 BuildRequires: pcre-devel
