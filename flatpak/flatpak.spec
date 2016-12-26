@@ -148,6 +148,10 @@ flatpak remote-list --system
 %{_userunitdir}/flatpak-session-helper.service
 %{_userunitdir}/xdg-document-portal.service
 %{_userunitdir}/xdg-permission-store.service
+%{_libdir}/systemd/user/dbus.service.d/flatpak.conf
+%{_datadir}/doc/flatpak/*
+%{_datadir}/locale/*
+%{_datadir}/man/man5/flatpak-*
 
 %files builder
 %{_bindir}/flatpak-builder
