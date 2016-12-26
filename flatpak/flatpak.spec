@@ -28,6 +28,7 @@ BuildRequires:  libcap-devel
 BuildRequires:  libdwarf-devel
 BuildRequires:  systemd
 BuildRequires:  /usr/bin/xsltproc
+BuildRequires:  /usr/bin/xmlto
 
 # Crashes with older kernels (the bug being introduced in 4.0.2), without the
 # upstream fixes in this version.
