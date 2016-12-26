@@ -1,7 +1,7 @@
 Summary: Tool for managing bootable, immutable filesystem trees
 Name: ostree
 Version: 2016.15
-Release: 1
+Release: 2
 #VCS: git:git://git.gnome.org/ostree
 Source0: http://ftp.gnome.org/pub/GNOME/sources/ostree/%{version}/ostree-%{version}.tar.xz
 Source1: 91-ostree.preset
@@ -105,6 +105,7 @@ install -D -m 0644 %{SOURCE1} $RPM_BUILD_ROOT/%{_prefix}/lib/systemd/system-pres
 %dir %{_prefix}/lib/dracut/modules.d/98ostree
 #%{_prefix}/lib/systemd/system/ostree*.service
 %{_prefix}/lib/dracut/modules.d/98ostree/*
+%{_libdir}/ostree/ostree-prepare-root
 %{_libdir}/*.so.1*
 %{_libdir}/girepository-1.0/OSTree-1.0.typelib
 %{_mandir}/man*/*.gz
@@ -127,6 +128,9 @@ install -D -m 0644 %{SOURCE1} $RPM_BUILD_ROOT/%{_prefix}/lib/systemd/system-pres
 %endif
 
 %changelog
+* Mon Dec 26 2016 sulit - 2016.15-2
+- rebuild ostree
+
 * Mon Dec 26 2016 sulit - 2016.15-1
 - upgrade ostree to 2016.15
 
