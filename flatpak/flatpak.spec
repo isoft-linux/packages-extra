@@ -1,6 +1,6 @@
 Name:           flatpak
-Version:        0.6.6
-Release:        2
+Version:        0.8.0
+Release:        1
 Summary:        Application deployment framework for desktop apps
 
 Group:          Development/Tools
@@ -167,5 +167,8 @@ flatpak remote-list --system
 
 
 %changelog
+* Mon Dec 26 2016 sulit - 0.8.0-1
+- upgrade flatpak to 0.8.0
+
 * Tue Jun 28 2016 fj <fujiang.zhu@i-soft.com.cn> - 0.6.6-2
 - rebuilt
