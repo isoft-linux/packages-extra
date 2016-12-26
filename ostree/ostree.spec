@@ -97,13 +97,13 @@ install -D -m 0644 %{SOURCE1} $RPM_BUILD_ROOT/%{_prefix}/lib/systemd/system-pres
 %doc README.md
 %{_bindir}/ostree
 %{_bindir}/rofiles-fuse
-%{_sbindir}/ostree-prepare-root
-%{_sbindir}/ostree-remount
+#%{_sbindir}/ostree-prepare-root
+#%{_sbindir}/ostree-remount
 %{_datadir}/ostree/trusted.gpg.d
 %{_sysconfdir}/ostree
 %{_sysconfdir}/dracut.conf.d/ostree.conf
 %dir %{_prefix}/lib/dracut/modules.d/98ostree
-%{_prefix}/lib/systemd/system/ostree*.service
+#%{_prefix}/lib/systemd/system/ostree*.service
 %{_prefix}/lib/dracut/modules.d/98ostree/*
 %{_libdir}/*.so.1*
 %{_libdir}/girepository-1.0/OSTree-1.0.typelib
