@@ -1,9 +1,9 @@
 Name: partclone
-Version: 0.2.76
-Release: 2
+Version: 0.2.89
+Release: 1
 License: GPL
 
-Source0: https://github.com/Thomas-Tsai/partclone/archive/0.2.76.tar.gz
+Source0: https://github.com/Thomas-Tsai/partclone/archive/0.2.89.tar.gz
 BuildRequires: reiserfsprogs ntfs-3g-devel libuuid-devel e2fsprogs-devel ncurses-devel libblkid-devel
 
 Summary:Utilities to save and restore used blocks on a partition
@@ -73,5 +73,8 @@ make PREFIX=/usr DESTDIR="%{buildroot}" install
 %{_mandir}/man8/partclone.restore.8.gz
 
 %changelog
+* Tue Jan 17 2017 Leslie Zhai <xiang.zhai@i-soft.com.cn> - 0.2.89-1
+- 0.2.89
+
 * Mon Dec 21 2015 kun.li@i-soft.com.cn - 3.10.11-1
 - rebuilt
