@@ -140,7 +140,8 @@ mipsn32-linux-user mipsn32el-linux-user \
 or32-linux-user ppc-linux-user ppc64-linux-user ppc64le-linux-user \
 ppc64abi32-linux-user s390x-linux-user sh4-linux-user sh4eb-linux-user \
 sparc-linux-user sparc64-linux-user sparc32plus-linux-user \
-unicore32-linux-user aarch64-softmmu"
+aarch64-softmmu"
+#unicore32-linux-user aarch64-softmmu"
 
 ./configure \
     --prefix=%{_prefix} \
