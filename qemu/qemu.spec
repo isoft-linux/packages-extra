@@ -6,7 +6,7 @@
 Summary: QEMU is a FAST! processor emulator
 Name: qemu
 Version: 2.8.0
-Release: 1
+Release: 2
 License: GPLv2+ and LGPLv2+ and BSD
 URL: http://www.qemu.org/
 
@@ -167,8 +167,7 @@ aarch64-softmmu"
     --enable-vte \
     --enable-sdl \
     --with-sdlabi="2.0" \
-    --with-gtkabi="3.0" \
-    --smbd=/usr/bin/smbd
+    --with-gtkabi="3.0"
             
 
 make V=1 %{?_smp_mflags} $buildldflags
@@ -270,8 +269,9 @@ getent passwd qemu >/dev/null || \
 %{_datadir}/qemu/*
 
 %changelog
-* Tue Jan 17 2017 Leslie Zhai <xiang.zhai@i-soft.com.cn> - 2.8.0-1
+* Tue Jan 17 2017 Leslie Zhai <xiang.zhai@i-soft.com.cn> - 2.8.0-2
 - 2.8.0
+- /usr/sbin/smbd actually
 
 * Tue Aug 16 2016 Leslie Zhai <xiang.zhai@i-soft.com.cn> - 2.7.0-1
 - 2.7.0
