@@ -5,12 +5,12 @@
 
 Summary: QEMU is a FAST! processor emulator
 Name: qemu
-Version: 2.7.0
+Version: 2.8.0
 Release: 1
 License: GPLv2+ and LGPLv2+ and BSD
 URL: http://www.qemu.org/
 
-Source0: qemu-%{version}-rc2.tar.bz2
+Source0: qemu-%{version}.tar.bz2
 
 Source1: qemu-kvm.sh
 
@@ -36,7 +36,7 @@ Source15: 80-kvm.rules
 Source20: qemu.binfmt
 
 # Build fix, posted upstream
-Patch0001: for-2.7-virtio-gpu-fix-missing-log.h-include-file.patch
+#Patch0001: for-2.7-virtio-gpu-fix-missing-log.h-include-file.patch
 
 BuildRequires: SDL2-devel
 BuildRequires: zlib-devel
@@ -121,8 +121,8 @@ As QEMU requires no host kernel patches to run, it is safe and easy to use.
 
 
 %prep
-%setup -q -n qemu-%{version}-rc2
-%patch0001 -p1
+%setup -q -n qemu-%{version}
+#%patch0001 -p1
 
 %build
 buildarch="i386-softmmu x86_64-softmmu alpha-softmmu arm-softmmu \
@@ -166,7 +166,8 @@ unicore32-linux-user aarch64-softmmu"
     --enable-vte \
     --enable-sdl \
     --with-sdlabi="2.0" \
-    --with-gtkabi="3.0"
+    --with-gtkabi="3.0" \
+    --smbd=/usr/bin/smbd
             
 
 make V=1 %{?_smp_mflags} $buildldflags
@@ -268,6 +269,9 @@ getent passwd qemu >/dev/null || \
 %{_datadir}/qemu/*
 
 %changelog
+* Tue Jan 17 2017 Leslie Zhai <xiang.zhai@i-soft.com.cn> - 2.8.0-1
+- 2.8.0
+
 * Tue Aug 16 2016 Leslie Zhai <xiang.zhai@i-soft.com.cn> - 2.7.0-1
 - 2.7.0
 
